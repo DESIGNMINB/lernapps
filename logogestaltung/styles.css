@@ -713,16 +713,17 @@ body, .gl-tools { background: var(--page-bg); }
 /* Prominenter Rücklink zur Startseite: Pfeil + Logo der Startseite */
 .home-back {
   gap: 10px; margin: 16px 12px 0; padding: 8px 12px 8px 8px;
-  border: 1px solid var(--line); border-radius: 12px; background: var(--page-bg);
-  color: var(--side-fg); font: inherit; letter-spacing: 0; transition: background .15s, border-color .15s;
+  border: 1px solid #64378C; border-radius: 12px; background: #64378C;
+  color: #fff; font: inherit; letter-spacing: 0; transition: background .15s, border-color .15s;
 }
-.home-back svg { width: 16px; height: 16px; flex: none; color: var(--side-muted); stroke-width: 2.2; transition: transform .15s, color .15s; }
+.home-back svg { width: 16px; height: 16px; flex: none; color: rgba(255,255,255,.75); stroke-width: 2.2; transition: transform .15s, color .15s; }
 .home-back-logo {
-  flex: none; width: 30px; height: 30px; border-radius: 8px; background: #64378C; color: #fff;
+  flex: none; width: 30px; height: 30px; border-radius: 8px; background: #fff; color: #64378C;
   display: grid; place-items: center; font: 700 14px/1 var(--f-body);
 }
 .home-back-text { display: flex; flex-direction: column; font: 700 14px/1.15 var(--f-body); }
-.home-back-text small { margin-top: 2px; font: 600 9.5px/1.3 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--side-muted); }
-.home-back:hover, .home-back:focus-visible { border-color: var(--accent); background: #F1EEF4; color: var(--side-fg); outline: none; }
-.home-back:hover svg, .home-back:focus-visible svg { color: var(--accent); transform: translateX(-2px); }
+.home-back-text small { margin-top: 2px; font: 600 9.5px/1.3 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: #C8A8DE; }
+.home-back:hover, .home-back:focus-visible { border-color: #5A2576; background: #5A2576; color: #fff; outline: none; }
+.home-back:focus-visible { box-shadow: 0 0 0 3px #C8A8DE; }
+.home-back:hover svg, .home-back:focus-visible svg { color: #fff; transform: translateX(-2px); }
 .home-back + .brand { padding-top: 12px; }
