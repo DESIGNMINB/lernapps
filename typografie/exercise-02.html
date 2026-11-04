@@ -92,8 +92,23 @@
       transition: max-width 0.3s ease, columns 0.3s ease;
       column-gap: 32px;
     }
+    .preview-area .fit-note { margin: 12px 0 0; line-height: 1.5; font-size: 12px; color: var(--text-muted); }
     #preview-columns p {
-      margin-bottom: 16px;
+      margin-bottom: 1em;
+    }
+    #ch-slider { flex: 1 1 160px; min-width: 160px; }
+    #preview-columns { column-gap: 2em; overflow-wrap: break-word; hyphens: auto; }
+    .preview-area { overflow: hidden; }
+    @media (max-width: 640px) {
+      .controls-area { padding: 20px; }
+      .control-row { gap: 10px 12px; }
+      .control-label { min-width: 0; flex-basis: 100%; }
+      #ch-slider { flex-basis: 100%; order: 1; margin: 6px 0; }
+      .slider-value { margin: 0; }
+      .scale-labels { flex-wrap: wrap; gap: 4px 12px; }
+      .scale-labels .optimal { order: 3; flex-basis: 100%; }
+      .column-toggle { flex-wrap: wrap; }
+      .preview-area { padding: 44px 16px 20px; }
     }
     .info-card.red-top { border-top: 3px solid var(--error); }
     .info-card.green-top { border-top: 3px solid var(--success); }
@@ -143,6 +158,7 @@
           <p>Ist die Zeile hingegen zu lang, verliert das Auge beim Zeilensprung die Orientierung. Der Leser findet den Anfang der nächsten Zeile nicht zuverlässig wieder. Dies führt dazu, dass Zeilen übersprungen oder doppelt gelesen werden – ein klassisches Usability-Problem in der Webgestaltung.</p>
           <p>Die goldene Regel besagt: 45 bis 75 Zeichen pro Zeile sind ideal für Fließtext. In der Praxis lässt sich das am einfachsten mit der CSS-Einheit „ch" steuern, die der Breite der Ziffer „0" in der aktuellen Schrift entspricht. Ein max-width von 65ch ergibt in den meisten Schriften einen angenehmen Lesefluss.</p>
         </div>
+        <p class="fit-note" id="fit-note" hidden>Auf diesem schmalen Bildschirm wird die Schrift verkleinert, damit die eingestellte Zeichenzahl pro Zeile erhalten bleibt.</p>
       </div>
 
       <!-- Tip Box -->
@@ -189,6 +205,7 @@
       chValueDisplay.textContent = val + ' ch';
       chCounter.textContent = val + ' ch';
       previewColumns.style.maxWidth = val + 'ch';
+      fitPreview(val);
 
       // Update badge
       if (val < 45) {
@@ -218,6 +235,28 @@
         }
       }
     }
+
+    // Auf schmalen Bildschirmen passt 120 ch nicht in die Breite: Schrift so weit
+    // verkleinern, dass die eingestellte Zeichenzahl pro Zeile erhalten bleibt.
+    function fitPreview(val) {
+      previewColumns.style.fontSize = '';
+      const avail = previewColumns.parentElement.clientWidth
+        - parseFloat(getComputedStyle(previewColumns.parentElement).paddingLeft)
+        - parseFloat(getComputedStyle(previewColumns.parentElement).paddingRight);
+      const probe = document.createElement('span');
+      probe.textContent = '0'.repeat(100);
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      previewColumns.appendChild(probe);
+      const chPx = probe.getBoundingClientRect().width / 100;
+      probe.remove();
+      const base = parseFloat(getComputedStyle(previewColumns).fontSize);
+      const shrink = matchMedia('(max-width: 640px)').matches && val * chPx > avail;
+      if (shrink) {
+        previewColumns.style.fontSize = Math.max(6, base * avail / (val * chPx)) + 'px';
+      }
+      document.getElementById('fit-note').hidden = !shrink;
+    }
+    window.addEventListener('resize', () => fitPreview(parseInt(chSlider.value)));
 
     function setColumns(n) {
       currentCols = n;
