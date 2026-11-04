@@ -100,6 +100,27 @@ function renderSidebar(activePage) {
     sidebar.setAttribute('aria-label', 'Kapitelnavigation');
     initMobileNav(sidebar);
   }
+  renderPager(nav, activePage, base);
+}
+
+// Zurück/Weiter am Ende jeder Seite, in der Reihenfolge der Navigation
+function renderPager(nav, activePage, base) {
+  const card = document.querySelector('.main .content-card');
+  if (!card || card.querySelector('.pager')) return;
+  const pages = nav.filter((n) => n.href);
+  const i = pages.findIndex((n) => n.id === activePage);
+  if (i < 0) return;
+  const prev = pages[i - 1], next = pages[i + 1];
+  const name = (n) => n.label.replace(/^\d+\.\s*/, '');
+  const arrowL = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
+  const arrowR = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  const nav_ = document.createElement('nav');
+  nav_.className = 'pager';
+  nav_.setAttribute('aria-label', 'Lektionen blättern');
+  nav_.innerHTML =
+    (prev ? `<a class="pager-prev" href="${base}${prev.href}" rel="prev">${arrowL}<span><small>Zurück</small>${name(prev)}</span></a>` : '<span></span>') +
+    (next ? `<a class="pager-next" href="${base}${next.href}" rel="next"><span><small>${/^ex/.test(next.id) ? 'Nächste Lektion' : 'Weiter'}</small>${name(next)}</span>${arrowR}</a>` : '');
+  card.appendChild(nav_);
 }
 
 // Mobile Navigation: Menü-Button statt ausgeblendeter Sidebar (WCAG 1.4.10, 2.4.5)
