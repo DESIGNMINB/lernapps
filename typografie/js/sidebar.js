@@ -78,8 +78,9 @@ function renderSidebar(activePage) {
     } else {
       const isActive = item.id === activePage ? ' active' : '';
       const icon = icons[item.icon] || '';
-      html += `<a href="${base}${item.href}" class="nav-item${isActive}">
-        <span class="nav-icon">${icon}</span>${item.label}</a>`;
+      const current = isActive ? ' aria-current="page"' : '';
+      html += `<a href="${base}${item.href}" class="nav-item${isActive}"${current}>
+        <span class="nav-icon" aria-hidden="true">${icon}</span>${item.label}</a>`;
     }
   });
 
@@ -94,7 +95,46 @@ function renderSidebar(activePage) {
     </div>`;
 
   const sidebar = document.getElementById('sidebar');
-  if (sidebar) sidebar.innerHTML = html;
+  if (sidebar) {
+    sidebar.innerHTML = html;
+    sidebar.setAttribute('aria-label', 'Kapitelnavigation');
+    initMobileNav(sidebar);
+  }
+}
+
+// Mobile Navigation: Menü-Button statt ausgeblendeter Sidebar (WCAG 1.4.10, 2.4.5)
+function initMobileNav(sidebar) {
+  if (document.querySelector('.mobile-topbar')) return;
+  const bar = document.createElement('header');
+  bar.className = 'mobile-topbar';
+  bar.innerHTML = `
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="sidebar">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr-only">Menü öffnen</span>
+    </button>
+    <span class="topbar-title">TypoLab</span>`;
+  document.body.insertBefore(bar, document.body.firstChild);
+  const btn = bar.querySelector('.menu-btn');
+  const label = btn.querySelector('.sr-only');
+  const setOpen = (open, returnFocus) => {
+    document.body.classList.toggle('nav-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Menü schließen' : 'Menü öffnen';
+    if (open) {
+      const first = sidebar.querySelector('[aria-current="page"]') || sidebar.querySelector('a');
+      if (first) first.focus();
+    } else if (returnFocus) {
+      btn.focus();
+    }
+  };
+  btn.addEventListener('click', () => setOpen(!document.body.classList.contains('nav-open'), false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) setOpen(false, true);
+  });
+  document.addEventListener('click', (e) => {
+    if (document.body.classList.contains('nav-open') && !sidebar.contains(e.target) && !bar.contains(e.target)) setOpen(false, false);
+  });
+  window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => { if (e.matches) setOpen(false, false); });
 }
 
 // Dark mode toggle logic
@@ -131,8 +171,9 @@ function initTabs() {
 function initFilters() {
   document.querySelectorAll('.filter-tag').forEach(tag => {
     tag.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.filter-tag').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
       tag.classList.add('active');
+      tag.setAttribute('aria-pressed', 'true');
       const filter = tag.dataset.filter;
       document.querySelectorAll('.filterable').forEach(item => {
         if (filter === 'all' || item.dataset.category === filter) {
@@ -151,7 +192,15 @@ function initFilters() {
   });
 }
 
+// Dynamische Rückmeldungen für Screenreader ansagen (WCAG 4.1.3)
+function initLiveRegions() {
+  document.querySelectorAll('.feedback-box, #ch-badge, #feedback-text, #contrastRatio, [id^="ratio-"]').forEach(el => {
+    if (!el.hasAttribute('role')) el.setAttribute('role', 'status');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initLiveRegions();
   initDarkMode();
   initTabs();
   initFilters();

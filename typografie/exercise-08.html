@@ -7,13 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .color-combos { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
     .color-combo-btn {
       display: flex; align-items: center; gap: 8px;
       padding: 10px 16px; border-radius: 10px; border: 2px solid var(--border-color);
-      background: white; cursor: pointer; font-size: 13px; font-weight: 600;
+      background: var(--bg-white); color: var(--text-primary); cursor: pointer; font-size: 13px; font-weight: 600;
       transition: all 0.15s;
     }
     .color-combo-btn.active { border-color: var(--purple); box-shadow: 0 0 0 2px rgba(100,55,140,0.15); }
@@ -33,16 +33,16 @@
     }
     .color-preview-article h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
     .color-preview-article p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
-    .color-values { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+    .color-values { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: inherit; }
     .color-values span { display: flex; align-items: center; gap: 4px; }
     .color-values .swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid #ddd; }
     .mood-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 28px; }
     .mood-card h4 { margin-bottom: 8px; font-size: 15px; }
     .mood-card p { font-size: 14px; line-height: 1.6; }
     .accent-example { font-size: 15px; line-height: 1.8; margin: 16px 0; }
-    .accent-example .accent-purple { color: var(--purple); font-weight: 600; }
+    .accent-example .accent-purple { color: var(--purple-ink); font-weight: 600; }
     .accent-example .accent-blue { color: #2563EB; text-decoration: underline; }
-    .accent-example .accent-red { color: var(--error); font-weight: 600; }
+    .accent-example .accent-red { color: var(--error-text); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -160,7 +160,7 @@
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex8');</script>
   <script>
     const combos = [

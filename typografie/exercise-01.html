@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
 </head>
 <body>
   <nav id="sidebar" class="sidebar"></nav>
@@ -32,7 +32,7 @@
               <span class="green" id="slider-value-display">1.10</span>
               <span class="red">Zerrissen (2.5)</span>
             </div>
-            <input type="range" id="line-height-slider" min="1.0" max="2.5" step="0.05" value="1.1">
+            <input type="range" id="line-height-slider" aria-label="Zeilenabstand (line-height)" min="1.0" max="2.5" step="0.05" value="1.1">
           </div>
 
           <div class="slider-value" id="current-value">line-height: 1.10</div>
@@ -54,7 +54,7 @@
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex1');</script>
   <script>
     const slider = document.getElementById('line-height-slider');

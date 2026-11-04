@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
 </head>
 <body>
   <nav id="sidebar" class="sidebar"></nav>
@@ -17,14 +17,14 @@
       <p class="page-intro">Die wichtigsten Fachbegriffe der Typografie – kompakt erklärt. Nutzen Sie das Glossar als Nachschlagewerk während der Laborübungen.</p>
 
       <div class="filter-tags">
-        <span class="filter-tag active" data-filter="all">Alle</span>
-        <span class="filter-tag" data-filter="anatomie">Anatomie</span>
-        <span class="filter-tag" data-filter="abstaende">Abstände</span>
-        <span class="filter-tag" data-filter="klassifikation">Klassifikation</span>
-        <span class="filter-tag" data-filter="satz">Satz &amp; Layout</span>
-        <span class="filter-tag" data-filter="hierarchie">Hierarchie</span>
+        <button type="button" class="filter-tag active" data-filter="all" aria-pressed="true">Alle</button>
+        <button type="button" class="filter-tag" data-filter="anatomie" aria-pressed="false">Anatomie</button>
+        <button type="button" class="filter-tag" data-filter="abstaende" aria-pressed="false">Abstände</button>
+        <button type="button" class="filter-tag" data-filter="klassifikation" aria-pressed="false">Klassifikation</button>
+        <button type="button" class="filter-tag" data-filter="satz" aria-pressed="false">Satz &amp; Layout</button>
+        <button type="button" class="filter-tag" data-filter="hierarchie" aria-pressed="false">Hierarchie</button>
       </div>
-      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;"><span id="filter-count">34</span> Begriffe gefunden</p>
+      <p role="status" style="font-size:14px;color:var(--text-muted);margin-bottom:24px;"><span id="filter-count">34</span> Begriffe gefunden</p>
 
       <!-- ANATOMIE -->
       <div class="glossary-category filterable" data-category="anatomie">Anatomie</div>
@@ -76,7 +76,7 @@
       <div class="glossary-item filterable" data-category="hierarchie"><h4>Weißraum</h4><div class="english">White Space / Negative Space</div><p>Aktives Gestaltungselement, nicht leerer Platz – gibt Inhalten Raum zum Atmen.</p></div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('glossar');</script>
 </body>
 </html>

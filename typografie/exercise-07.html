@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=EB+Garamond:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;700&family=Raleway:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Lora:wght@400;700&family=Merriweather:wght@400;700&family=Crimson+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
     .preset-btn {
@@ -15,7 +15,7 @@
       cursor: pointer; border: 1px solid var(--border-color); background: var(--bg-white);
       color: var(--text-secondary); transition: all 0.15s;
     }
-    .preset-btn:hover { border-color: var(--purple); color: var(--purple); }
+    .preset-btn:hover { border-color: var(--purple); color: var(--purple-ink); }
     .preset-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
 
     .pairing-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
@@ -31,8 +31,8 @@
       padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px;
       background: var(--bg-white); cursor: pointer; transition: all 0.15s; text-align: left;
     }
-    .font-btn:hover { border-color: var(--purple-light); background: #FAFAFF; }
-    .font-btn.active { border-color: var(--purple); background: #F1EEF4; box-shadow: 0 0 0 2px rgba(100,55,140,0.15); }
+    .font-btn:hover { border-color: var(--purple-light); background: var(--bg-subtle); }
+    .font-btn.active { border-color: var(--purple); background: var(--purple-soft); box-shadow: 0 0 0 2px rgba(100,55,140,0.15); }
     .font-btn-name { font-size: 14px; font-weight: 600; color: var(--text-primary); display: block; }
     .font-btn-cat { font-size: 11px; color: var(--text-muted); }
     .font-btn-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; display: block; }
@@ -40,7 +40,7 @@
     .preview-article { position: relative; }
     .preview-category {
       font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--purple); margin-bottom: 12px;
+      text-transform: uppercase; color: var(--purple-ink); margin-bottom: 12px;
     }
     .preview-headline { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; color: var(--text-primary); }
     .preview-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4; }
@@ -49,7 +49,7 @@
     .preview-blockquote {
       border-left: 3px solid var(--purple-light); padding: 12px 20px; margin: 16px 0;
       font-style: italic; color: var(--text-secondary); font-size: 15px; line-height: 1.6;
-      background: #F9FAFB; border-radius: 0 8px 8px 0;
+      background: var(--bg-subtle); border-radius: 0 8px 8px 0;
     }
 
     .feedback-badge {
@@ -208,7 +208,7 @@
     </div>
 
   </div></main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex7');</script>
   <script>
     (function() {

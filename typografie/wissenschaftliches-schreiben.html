@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .meta-row { display:flex; gap:32px; margin-bottom:28px; }
     .meta-row .item { text-align:center; }
@@ -19,7 +19,7 @@
       border-bottom:1px solid var(--border-color);
     }
     .example-box {
-      background:#F9FAFB; border:1px solid var(--border-color); border-radius:8px;
+      background:var(--bg-subtle); border:1px solid var(--border-color); border-radius:8px;
       padding:12px 16px; margin:8px 0; font-size:13px; font-family:monospace;
       line-height:1.6; color:var(--text-secondary);
     }
@@ -39,13 +39,13 @@
       </div>
 
       <div class="filter-tags">
-        <span class="filter-tag active" data-filter="all">Alle</span>
-        <span class="filter-tag" data-filter="zitieren">Richtig Zitieren</span>
-        <span class="filter-tag" data-filter="quellen">Quellenangaben</span>
-        <span class="filter-tag" data-filter="web">Webquellen</span>
-        <span class="filter-tag" data-filter="stile">Zitierstile</span>
-        <span class="filter-tag" data-filter="verzeichnis">Literaturverzeichnis</span>
-        <span class="filter-tag" data-filter="formal">Formale Hinweise</span>
+        <button type="button" class="filter-tag active" data-filter="all" aria-pressed="true">Alle</button>
+        <button type="button" class="filter-tag" data-filter="zitieren" aria-pressed="false">Richtig Zitieren</button>
+        <button type="button" class="filter-tag" data-filter="quellen" aria-pressed="false">Quellenangaben</button>
+        <button type="button" class="filter-tag" data-filter="web" aria-pressed="false">Webquellen</button>
+        <button type="button" class="filter-tag" data-filter="stile" aria-pressed="false">Zitierstile</button>
+        <button type="button" class="filter-tag" data-filter="verzeichnis" aria-pressed="false">Literaturverzeichnis</button>
+        <button type="button" class="filter-tag" data-filter="formal" aria-pressed="false">Formale Hinweise</button>
       </div>
 
       <!-- RICHTIG ZITIEREN -->
@@ -90,7 +90,7 @@
       <div class="rule-card filterable" data-category="formal"><h4>3. Abbildungen und Tabellen</h4><p>Nummerierung (Abb. 1, Tab. 1), beschreibende Unterschrift, Quellenangabe direkt unter der Abbildung.</p></div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('wiss');</script>
 </body>
 </html>

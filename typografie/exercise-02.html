@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .controls-area {
       border: 1px solid var(--border-color);
@@ -47,7 +47,7 @@
       color: var(--text-muted);
       margin-top: 4px;
     }
-    .scale-labels .optimal { color: var(--success); font-weight: 600; }
+    .scale-labels .optimal { color: var(--success-text); font-weight: 600; }
     .column-toggle {
       display: flex;
       gap: 4px;
@@ -81,7 +81,7 @@
       font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
-      background: #F3F4F6;
+      background: var(--bg-muted);
       padding: 4px 10px;
       border-radius: 6px;
     }
@@ -114,7 +114,7 @@
       <!-- Controls Area -->
       <div class="controls-area">
         <div class="control-row">
-          <span class="control-label">Zeilenlänge</span>
+          <label class="control-label" for="ch-slider">Zeilenlänge</label>
           <input type="range" id="ch-slider" min="20" max="120" step="1" value="80" style="flex: 1;">
           <div class="slider-value" id="ch-value-display">80 ch</div>
           <span class="ch-badge orange" id="ch-badge">Leicht zu weit</span>
@@ -126,8 +126,8 @@
         </div>
 
         <div class="control-row" style="margin-top: 20px;">
-          <span class="control-label">Spaltensatz</span>
-          <div class="column-toggle">
+          <span class="control-label" id="col-label">Spaltensatz</span>
+          <div class="column-toggle" role="group" aria-labelledby="col-label">
             <button class="col-btn active" id="col-1" data-cols="1">1 Spalte</button>
             <button class="col-btn" id="col-2" data-cols="2" disabled>2 Spalten</button>
             <button class="col-btn" id="col-3" data-cols="3" disabled>3 Spalten</button>
@@ -147,7 +147,7 @@
 
       <!-- Tip Box -->
       <div class="tip-box">
-        <span class="tip-label">Prof. Typo empfiehlt:</span> Verwenden Sie in Ihrem CSS <code style="background: #F3F4F6; padding: 2px 6px; border-radius: 4px; font-size: 13px;">max-width: 65ch</code> für Textcontainer. Die Einheit „ch" passt sich automatisch an die verwendete Schriftart an und sorgt so für eine konsistente, optimale Zeilenlänge – unabhängig von der Schriftwahl.
+        <span class="tip-label">Prof. Typo empfiehlt:</span> Verwenden Sie in Ihrem CSS <code style="background: var(--bg-muted); padding: 2px 6px; border-radius: 4px; font-size: 13px;">max-width: 65ch</code> für Textcontainer. Die Einheit „ch" passt sich automatisch an die verwendete Schriftart an und sorgt so für eine konsistente, optimale Zeilenlänge – unabhängig von der Schriftwahl.
       </div>
 
       <!-- Info Cards -->
@@ -170,7 +170,7 @@
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex2');</script>
   <script>
     const chSlider = document.getElementById('ch-slider');

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .alert-banner {
       background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px;
@@ -17,7 +17,7 @@
     .law-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; margin: 24px 0; }
     .law-card {
       border: 1px solid var(--border-color); border-radius: 10px; padding: 18px;
-      background: white;
+      background: var(--bg-white);
     }
     .law-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
     .law-card .meta { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
@@ -27,12 +27,16 @@
     .level-card.a { background: #FFF7ED; border: 1px solid #FED7AA; }
     .level-card.aa { background: #F0FDF4; border: 1px solid #BBF7D0; }
     .level-card.aaa { background: #EFF6FF; border: 1px solid #BFDBFE; }
+    [data-theme="dark"] .level-card.a { background: #3D2400; border-color: #D97706; }
+    [data-theme="dark"] .level-card.aa { background: #14432A; border-color: #16A34A; }
+    [data-theme="dark"] .level-card.aaa { background: #1E3A5F; border-color: #2563EB; }
+    [data-theme="dark"] .level-card .subtitle, [data-theme="dark"] .level-card p { color: #D1D5DB; }
     .level-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
     .level-card .subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
     .level-card p { font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
     .contrast-exercise {
       border: 1px solid var(--border-color); border-radius: 14px;
-      padding: 24px; margin-bottom: 20px; background: white;
+      padding: 24px; margin-bottom: 20px; background: var(--bg-white);
     }
     .contrast-exercise h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
     .contrast-preview {
@@ -46,7 +50,7 @@
     .color-input-group input[type="text"] { width: 80px; padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; font-family: monospace; }
     .contrast-result { display: flex; align-items: center; gap: 16px; margin: 12px 0; flex-wrap: wrap; }
     .contrast-result .ratio { font-size: 22px; font-weight: 700; }
-    .target-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #F3F4F6; color: var(--text-muted); font-weight: 600; }
+    .target-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--bg-muted); color: var(--text-muted); font-weight: 600; }
     .target-badge.target { background: #DBEAFE; color: #1D4ED8; }
     .alt-exercise { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
     .alt-exercise .img-placeholder {
@@ -99,8 +103,8 @@
             <h4>1. Fließtext lesbar machen</h4>
             <div class="contrast-preview" id="preview-0" style="background:#E5E7EB;color:#9CA3AF;">Dieser Fließtext muss lesbar sein. Passen Sie die Farben an, bis WCAG AA Normal erreicht ist.</div>
             <div class="color-inputs">
-              <div class="color-input-group"><label>Text:</label><input type="color" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"><input type="text" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"></div>
-              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"><input type="text" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Text:</span><input type="color" aria-label="Textfarbe Aufgabe 1 (Farbwähler)" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"><input type="text" aria-label="Textfarbe Aufgabe 1 (Hex-Wert)" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Hintergrund:</span><input type="color" aria-label="Hintergrundfarbe Aufgabe 1 (Farbwähler)" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"><input type="text" aria-label="Hintergrundfarbe Aufgabe 1 (Hex-Wert)" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"></div>
               <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
             </div>
             <div class="contrast-result"><span class="ratio" id="ratio-0">2.05 : 1</span><div class="wcag-badges" id="badges-0"></div></div>
@@ -111,8 +115,8 @@
             <h4>2. Überschrift auf farbigem Hintergrund</h4>
             <div class="contrast-preview" id="preview-1" style="background:#FEFCE8;color:#F59E0B;font-size:24px;font-weight:700;">Gestaltung als Prozess</div>
             <div class="color-inputs">
-              <div class="color-input-group"><label>Text:</label><input type="color" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"><input type="text" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"></div>
-              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"><input type="text" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Text:</span><input type="color" aria-label="Textfarbe Aufgabe 2 (Farbwähler)" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"><input type="text" aria-label="Textfarbe Aufgabe 2 (Hex-Wert)" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Hintergrund:</span><input type="color" aria-label="Hintergrundfarbe Aufgabe 2 (Farbwähler)" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"><input type="text" aria-label="Hintergrundfarbe Aufgabe 2 (Hex-Wert)" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"></div>
               <span class="target-badge target">Ziel: AA Groß (≥ 3:1)</span>
             </div>
             <div class="contrast-result"><span class="ratio" id="ratio-1">2.08 : 1</span><div class="wcag-badges" id="badges-1"></div></div>
@@ -123,8 +127,8 @@
             <h4>3. Dark-Mode-Kontrast</h4>
             <div class="contrast-preview" id="preview-2" style="background:#1E293B;color:#475569;">Im Dark Mode müssen Farben besonders sorgfältig gewählt werden.</div>
             <div class="color-inputs">
-              <div class="color-input-group"><label>Text:</label><input type="color" value="#475569" onchange="updateContrast(2,'text',this.value)"><input type="text" value="#475569" onchange="updateContrast(2,'text',this.value)"></div>
-              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"><input type="text" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Text:</span><input type="color" aria-label="Textfarbe Aufgabe 3 (Farbwähler)" value="#475569" onchange="updateContrast(2,'text',this.value)"><input type="text" aria-label="Textfarbe Aufgabe 3 (Hex-Wert)" value="#475569" onchange="updateContrast(2,'text',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Hintergrund:</span><input type="color" aria-label="Hintergrundfarbe Aufgabe 3 (Farbwähler)" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"><input type="text" aria-label="Hintergrundfarbe Aufgabe 3 (Hex-Wert)" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"></div>
               <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
             </div>
             <div class="contrast-result"><span class="ratio" id="ratio-2">1.93 : 1</span><div class="wcag-badges" id="badges-2"></div></div>
@@ -135,8 +139,8 @@
             <h4>4. Link auf weißem Hintergrund</h4>
             <div class="contrast-preview" id="preview-3" style="background:#FFFFFF;color:#93C5FD;">Besuchen Sie unseren <u>Leitfaden zur Barrierefreiheit</u> für weitere Informationen.</div>
             <div class="color-inputs">
-              <div class="color-input-group"><label>Text:</label><input type="color" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"><input type="text" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"></div>
-              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"><input type="text" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Text:</span><input type="color" aria-label="Textfarbe Aufgabe 4 (Farbwähler)" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"><input type="text" aria-label="Textfarbe Aufgabe 4 (Hex-Wert)" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"></div>
+              <div class="color-input-group"><span aria-hidden="true">Hintergrund:</span><input type="color" aria-label="Hintergrundfarbe Aufgabe 4 (Farbwähler)" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"><input type="text" aria-label="Hintergrundfarbe Aufgabe 4 (Hex-Wert)" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"></div>
               <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
             </div>
             <div class="contrast-result"><span class="ratio" id="ratio-3">1.80 : 1</span><div class="wcag-badges" id="badges-3"></div></div>
@@ -150,29 +154,29 @@
 
           <div class="alt-exercise">
             <div class="img-placeholder" style="background:linear-gradient(135deg,#6366F1,#9254D1);">Diagramm: Nutzerzahlen 2025</div>
-            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
-            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <label for="alt-text-1" style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea id="alt-text-1" placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
             <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Beschreiben Sie die Kernaussage des Diagramms, nicht „Ein Balkendiagramm mit Farben".</div>
           </div>
 
           <div class="alt-exercise">
             <div class="img-placeholder" style="background:linear-gradient(135deg,#059669,#10B981);">Portrait: Prof. Dr. Anna Typo</div>
-            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
-            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <label for="alt-text-2" style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea id="alt-text-2" placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
             <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Name und Funktion sind wichtiger als Kleidung oder Hintergrund.</div>
           </div>
 
           <div class="alt-exercise">
             <div class="img-placeholder" style="background:linear-gradient(135deg,#DC2626,#F87171);">Screenshot: Fehlermeldung im Formular</div>
-            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
-            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <label for="alt-text-3" style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea id="alt-text-3" placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
             <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Welche Information vermittelt der Screenshot? Was ist die Fehlermeldung?</div>
           </div>
         </div>
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex9');</script>
   <script>
     const defaults = [

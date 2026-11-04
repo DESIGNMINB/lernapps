@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .tracking-preview {
       text-align: center;
@@ -58,7 +58,7 @@
               <span id="tracking-value-display" style="font-weight: 600; color: var(--text-primary);">0px</span>
               <span class="red">Zu weit (24px)</span>
             </div>
-            <input type="range" id="tracking-slider" min="-2" max="24" step="0.5" value="0">
+            <input type="range" id="tracking-slider" aria-label="Laufweite (letter-spacing)" min="-2" max="24" step="0.5" value="0">
           </div>
 
           <div class="slider-value" id="current-tracking">letter-spacing: 0px</div>
@@ -76,7 +76,7 @@
               Orientieren Sie sich beim Einstellen der Laufweite am Innenraum der Buchstaben. Die Abstände zwischen den Buchstaben sollten optisch den Binnenräumen (Punzen) der Zeichen entsprechen. Bei Versalien wie „H", „N" oder „U" sind die Innenräume relativ groß – daher brauchen Großbuchstaben mehr Laufweite als Kleinbuchstaben.
             </p>
             <p style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
-              Ein guter Richtwert für Versalien in UI-Elementen (Buttons, Labels, Navigation): <code style="background: #F3F4F6; padding: 2px 6px; border-radius: 4px; font-size: 13px;">letter-spacing: 0.05em – 0.15em</code>, was bei 16px Schriftgröße etwa 0,8–2,4px entspricht.
+              Ein guter Richtwert für Versalien in UI-Elementen (Buttons, Labels, Navigation): <code style="background: var(--bg-muted); padding: 2px 6px; border-radius: 4px; font-size: 13px;">letter-spacing: 0.05em – 0.15em</code>, was bei 16px Schriftgröße etwa 0,8–2,4px entspricht.
             </p>
           </div>
 
@@ -96,7 +96,7 @@
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex3');</script>
   <script>
     const trackingSlider = document.getElementById('tracking-slider');

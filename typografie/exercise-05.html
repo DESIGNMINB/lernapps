@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .section-heading { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-top: 40px; margin-bottom: 8px; }
     .section-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
@@ -29,7 +29,7 @@
     .exercise-block h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .exercise-block > p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
 
-    .exercise-preview { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; background: #FAFAFA; min-height: 100px; margin-bottom: 16px; }
+    .exercise-preview { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; background: var(--bg-subtle); min-height: 100px; margin-bottom: 16px; }
 
     .slider-row { display: flex; align-items: center; gap: 16px; margin: 12px 0; }
     .slider-row label { font-size: 13px; font-weight: 600; min-width: 80px; }
@@ -43,17 +43,17 @@
     .columns-preview .col-text { font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
 
     .gutter-cards-container { display: flex; gap: 16px; }
-    .gutter-card { flex: 1; background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; }
+    .gutter-card { flex: 1; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; }
     .gutter-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
     .gutter-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
-    .gutter-card .card-icon { width: 36px; height: 36px; background: #F1EEF4; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 16px; }
+    .gutter-card .card-icon { width: 36px; height: 36px; background: var(--purple-soft); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 16px; }
 
     .grid-system-options { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-    .grid-option-btn { padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 10px; background: white; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-primary); transition: all 0.15s; }
+    .grid-option-btn { padding: 12px 20px; border: 2px solid var(--border-color); border-radius: 10px; background: var(--bg-white); cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-primary); transition: all 0.15s; }
     .grid-option-btn:hover { border-color: var(--purple-light); }
-    .grid-option-btn.selected { border-color: var(--purple); background: #F1EEF4; color: var(--purple); }
+    .grid-option-btn.selected { border-color: var(--purple); background: var(--purple-soft); color: var(--purple-ink); }
 
-    .grid-preview-container { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; background: #FAFAFA; }
+    .grid-preview-container { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; background: var(--bg-subtle); }
     .grid-preview-cols { display: flex; gap: 4px; margin-bottom: 8px; }
     .grid-preview-col { flex: 1; height: 40px; background: var(--purple); border-radius: 3px; opacity: 0.6; }
     .grid-preview-info { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 8px; }
@@ -115,7 +115,7 @@
     <h2 class="section-heading">Interaktive Übungen</h2>
 
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">01</span> Content-Spalten</h3>
+      <h3><span style="color: var(--purple-ink);">01</span> Content-Spalten</h3>
       <p>Bestimmen Sie die Spaltenanzahl für den Textbereich. Beobachten Sie, wie sich der Textfluss verändert.</p>
 
       <div class="exercise-preview">
@@ -126,7 +126,7 @@
       </div>
 
       <div class="slider-row">
-        <label>Spalten</label>
+        <label for="ex1-columns">Spalten</label>
         <input type="range" id="ex1-columns" min="1" max="6" value="1" step="1">
         <span class="slider-value" id="ex1-columns-val">1</span>
       </div>
@@ -143,7 +143,7 @@
 
     <!-- Übung 2: Gutter-Abstände -->
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">02</span> Gutter-Abstände</h3>
+      <h3><span style="color: var(--purple-ink);">02</span> Gutter-Abstände</h3>
       <p>Stellen Sie den Gutter (Spaltenabstand) zwischen den Karten ein. Finden Sie den optimalen Wert.</p>
 
       <div class="exercise-preview">
@@ -167,7 +167,7 @@
       </div>
 
       <div class="slider-row">
-        <label>Gutter</label>
+        <label for="ex2-gutter">Gutter</label>
         <input type="range" id="ex2-gutter" min="6" max="64" value="16" step="2">
         <span class="slider-value" id="ex2-gutter-val">16px</span>
       </div>
@@ -184,7 +184,7 @@
 
     <!-- Übung 3: Das richtige Grid-System -->
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">03</span> Das richtige Grid-System</h3>
+      <h3><span style="color: var(--purple-ink);">03</span> Das richtige Grid-System</h3>
       <p>Wählen Sie das passende Rastersystem für ein Content-Layout mit Sidebar, Hauptbereich und Zusatzinformationen.</p>
 
       <div class="grid-system-options" id="ex3-options">
@@ -210,7 +210,7 @@
     </div>
 
   </div></main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex5');</script>
   <script>
     // Generate grid illustrations

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .color-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; margin:16px 0 28px; }
     .color-card { border:1px solid var(--border-color); border-radius:10px; overflow:hidden; }
@@ -21,12 +21,12 @@
     .spacing-bar { display:flex; align-items:center; gap:12px; margin:6px 0; }
     .spacing-bar .bar { height:20px; background:var(--purple-light); border-radius:4px; opacity:0.5; }
     .spacing-bar .info { font-size:13px; min-width:120px; }
-    .spacing-bar .info code { font-size:12px; background:#F3F4F6; padding:1px 6px; border-radius:3px; }
+    .spacing-bar .info code { font-size:12px; background:var(--bg-muted); padding:1px 6px; border-radius:3px; }
     .button-row { display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; align-items:center; }
     .ds-btn { padding:10px 24px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; border:1px solid; transition:all 0.15s; font-family:inherit; }
-    .ds-btn.default { background:white; color:var(--text-primary); border-color:var(--border-color); }
-    .ds-btn.secondary { background:#F3F4F6; color:var(--text-primary); border-color:#F3F4F6; }
-    .ds-btn.outline { background:transparent; color:var(--purple); border-color:var(--purple); }
+    .ds-btn.default { background:var(--bg-white); color:var(--text-primary); border-color:var(--border-color); }
+    .ds-btn.secondary { background:var(--bg-muted); color:var(--text-primary); border-color:#F3F4F6; }
+    .ds-btn.outline { background:transparent; color: var(--purple-ink); border-color:var(--purple); }
     .ds-btn.ghost { background:transparent; color:var(--text-primary); border-color:transparent; }
     .ds-btn.destructive { background:#EF4444; color:white; border-color:#EF4444; }
     .ds-btn.primary { background:var(--purple); color:white; border-color:var(--purple); }
@@ -98,7 +98,7 @@
           <h3 style="margin:20px 0 8px;">Schriftfamilie: Inter</h3>
           <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Moderne neutrale Grotesk, optimiert für digitale Oberflächen.</p>
 
-          <div class="type-sample"><h3 style="font-size:36px;font-weight:500;color:var(--purple);">H1 – Überschrift Ebene 1</h3><div class="meta">36px · font-weight: 500 · color: #64378C</div></div>
+          <div class="type-sample"><h3 style="font-size:36px;font-weight:500;color: var(--purple-ink);">H1 – Überschrift Ebene 1</h3><div class="meta">36px · font-weight: 500 · color: #64378C</div></div>
           <div class="type-sample"><h3 style="font-size:28px;font-weight:500;">H2 – Überschrift Ebene 2</h3><div class="meta">28px · font-weight: 500</div></div>
           <div class="type-sample"><h3 style="font-size:22px;font-weight:500;">H3 – Überschrift Ebene 3</h3><div class="meta">22px · font-weight: 500</div></div>
           <div class="type-sample"><h3 style="font-size:18px;font-weight:500;">H4 – Überschrift Ebene 4</h3><div class="meta">18px · font-weight: 500</div></div>
@@ -170,7 +170,7 @@
       </div>
     </div>
   </main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('design');</script>
 </body>
 </html>

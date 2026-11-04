@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261104c">
+  <link rel="stylesheet" href="css/style.css?v=20261104h">
   <style>
     .grundlagen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
     .grundlagen-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; }
@@ -16,9 +16,9 @@
     .example-row { display: flex; gap: 24px; margin-top: 12px; }
     .example-box { flex: 1; }
     .example-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .demo-container { border: 2px dashed var(--border-color); border-radius: 8px; padding: 12px; min-height: 60px; display: flex; align-items: center; justify-content: center; background: #FAFAFA; }
+    .demo-container { border: 2px dashed var(--border-color); border-radius: 8px; padding: 12px; min-height: 60px; display: flex; align-items: center; justify-content: center; background: var(--bg-subtle); }
     .demo-btn { background: var(--purple); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: default; }
-    .demo-card-item { background: #F3F4F6; border-radius: 6px; padding: 12px; font-size: 12px; color: var(--text-secondary); width: 100%; text-align: center; }
+    .demo-card-item { background: var(--bg-muted); border-radius: 6px; padding: 12px; font-size: 12px; color: var(--text-secondary); width: 100%; text-align: center; }
     .demo-cards-wrapper { display: flex; flex-direction: column; width: 100%; }
 
     .section-heading { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-top: 40px; margin-bottom: 8px; }
@@ -28,13 +28,13 @@
     .exercise-block h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
     .exercise-block > p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
 
-    .exercise-preview { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; background: #FAFAFA; min-height: 100px; margin-bottom: 16px; }
+    .exercise-preview { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; background: var(--bg-subtle); min-height: 100px; margin-bottom: 16px; }
 
     .event-cards-container { display: flex; gap: 16px; }
-    .event-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; flex: 1; }
+    .event-card { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 10px; flex: 1; }
     .event-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
     .event-card .event-meta { font-size: 12px; color: var(--text-muted); }
-    .event-card .event-date { color: var(--purple); font-weight: 600; }
+    .event-card .event-date { color: var(--purple-ink); font-weight: 600; }
 
     .slider-row { display: flex; align-items: center; gap: 16px; margin: 12px 0; }
     .slider-row label { font-size: 13px; font-weight: 600; min-width: 80px; }
@@ -142,7 +142,7 @@
 
     <!-- Übung 1 -->
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">01</span> Karten-Layout</h3>
+      <h3><span style="color: var(--purple-ink);">01</span> Karten-Layout</h3>
       <p>Stellen Sie Padding und Margin für die Event-Karten ein, um ein ausgewogenes Layout zu erreichen.</p>
 
       <div class="exercise-preview" id="ex1-preview">
@@ -161,12 +161,12 @@
       </div>
 
       <div class="slider-row">
-        <label>Padding</label>
+        <label for="ex1-padding">Padding</label>
         <input type="range" id="ex1-padding" min="8" max="48" value="16" step="1">
         <span class="slider-value" id="ex1-padding-val">16px</span>
       </div>
       <div class="slider-row">
-        <label>Margin</label>
+        <label for="ex1-margin">Margin</label>
         <input type="range" id="ex1-margin" min="8" max="48" value="16" step="1">
         <span class="slider-value" id="ex1-margin-val">16px</span>
       </div>
@@ -183,7 +183,7 @@
 
     <!-- Übung 2 -->
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">02</span> Text neben Bild</h3>
+      <h3><span style="color: var(--purple-ink);">02</span> Text neben Bild</h3>
       <p>Bestimmen Sie den optimalen Abstand zwischen Bild und Text. Zu wenig Abstand lässt die Elemente kollidieren, zu viel reißt den Zusammenhang auseinander.</p>
 
       <div class="exercise-preview" id="ex2-preview">
@@ -196,7 +196,7 @@
       </div>
 
       <div class="slider-row">
-        <label>Margin</label>
+        <label for="ex2-margin">Margin</label>
         <input type="range" id="ex2-margin" min="0" max="64" value="24" step="1">
         <span class="slider-value" id="ex2-margin-val">24px</span>
       </div>
@@ -213,7 +213,7 @@
 
     <!-- Übung 3 -->
     <div class="exercise-block">
-      <h3><span style="color: var(--purple);">03</span> Absatzabstand</h3>
+      <h3><span style="color: var(--purple-ink);">03</span> Absatzabstand</h3>
       <p>Regulieren Sie den Abstand zwischen den Absätzen. Der richtige Absatzabstand verbessert die Lesbarkeit und schafft eine klare Textstruktur.</p>
 
       <div class="exercise-preview" id="ex3-preview">
@@ -225,7 +225,7 @@
       </div>
 
       <div class="slider-row">
-        <label>Margin</label>
+        <label for="ex3-margin">Margin</label>
         <input type="range" id="ex3-margin" min="0" max="48" value="16" step="1">
         <span class="slider-value" id="ex3-margin-val">16px</span>
       </div>
@@ -241,7 +241,7 @@
     </div>
 
   </div></main>
-  <script src="js/sidebar.js?v=20261104c"></script>
+  <script src="js/sidebar.js?v=20261104h"></script>
   <script>renderSidebar('ex4');</script>
   <script>
     // === Exercise 1: Karten-Layout ===
