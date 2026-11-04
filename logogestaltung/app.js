@@ -447,8 +447,8 @@ const SHAPES = {
 const C = (type, x, y, w, h, r = 0, neg = false) => ({ type, x, y, w, h, r, neg });
 const EXAMPLES = [
   // Café
-  [C('capsule', 17, 12.5, 3, 8), C('capsule', 25, 12.5, 3, 8), C('circle', 31, 26, 12, 12), C('circle', 31, 26, 6, 6, 0, true),
-    C('half', 21, 28, 22, 16, 180), C('capsule', 21, 38.5, 28, 3)],
+  [C('capsule', 17, 12.5, 3, 8), C('capsule', 25, 12.5, 3, 8), C('circle', 31, 29.5, 12, 12), C('circle', 31, 29.5, 6, 6, 0, true),
+    C('half', 21, 30.5, 22, 11, 180), C('capsule', 21, 38.5, 28, 3)],
   // Fahrradparkplatz
   [C('circle', 13, 32, 16, 16), C('circle', 13, 32, 10, 10, 0, true), C('circle', 35, 32, 16, 16), C('circle', 35, 32, 10, 10, 0, true),
     C('capsule', 24, 32, 22, 3), C('capsule', 27, 26, 15, 3, 300), C('capsule', 21, 26, 15, 3, 240), C('capsule', 24, 20, 14, 3),
@@ -569,7 +569,8 @@ function initBaukasten() {
   $('#pk-toolbar').addEventListener('click', (e) => {
     const b = e.target.closest('[data-add]'); if (!b) return;
     const t = b.dataset.add;
-    const s = { id: 's' + (++counter), type: t, x: 24, y: 24, w: t === 'capsule' ? 16 : 12, h: t === 'capsule' ? 4 : 12, r: 0 };
+    const [w, h] = { capsule: [16, 4], half: [16, 8] }[t] || [12, 12];
+    const s = { id: 's' + (++counter), type: t, x: 24, y: 24, w, h, r: 0 };
     shapes.push(s); sel = s.id; commit();
   });
 
@@ -653,7 +654,14 @@ function initBaukasten() {
     if (e.key === 'Delete' || e.key === 'Backspace') { shapes = shapes.filter((x) => x !== s); sel = null; commit(); e.preventDefault(); }
   });
 
-  const bindRange = (id, key) => $(id).addEventListener('input', (e) => { const s = find(sel); if (!s) return; s[key] = +e.target.value; commit(); });
+  const bindRange = (id, key) => $(id).addEventListener('input', (e) => {
+    const s = find(sel); if (!s) return;
+    s[key] = +e.target.value;
+    // Halbkreis bleibt ein Halbkreis: Breite = 2 × Höhe
+    if (s.type === 'half' && key === 'w') s.h = s.w / 2;
+    if (s.type === 'half' && key === 'h') { s.h = Math.min(s.h, 22); s.w = s.h * 2; }
+    commit();
+  });
   bindRange('#pk-w', 'w'); bindRange('#pk-h', 'h'); bindRange('#pk-r', 'r');
   $('#pk-neg').addEventListener('change', (e) => { const s = find(sel); if (!s) return; s.neg = e.target.checked; commit(); });
   $('#pk-colors').innerHTML = PK_COLORS.map(([v, name, hex]) => `<button type="button" class="swatch" role="radio" data-c="${v || ''}" style="--sw:${hex}" title="${name}" aria-label="${name}"></button>`).join('')
