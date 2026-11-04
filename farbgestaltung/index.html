@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farbgestaltung Lernmodul</title>
+<meta name="description" content="Interaktives Lernmodul Farbgestaltung für das erste Semester Mediengestaltung – Prof. Dipl. Des. T. Hinz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261104b">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="home-back" href="../" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <a class="brand" href="#home">
+      <span class="brand-mark">FG</span>
+      <span class="brand-name">Lernmodul<small>04 · Farbgestaltung</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>Farb-Lernplattform v1.0</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px" aria-hidden="true">FG</span>
+      <span class="t">Farbgestaltung</span>
+    </div>
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home">
+      <div class="wrap-wide">
+        <div class="home-head">
+          <div class="home-mod"><div class="label">Lernmodul 04</div><div>Grundlagen der Mediengestaltung</div></div>
+        </div>
+        <div class="hero">
+          <h1>Farbe gestalten<span>lernen</span></h1>
+          <div class="hero-sub">
+            <p>Wie entsteht Farbe, wie mischt und beschreibt man sie, und wie setzt man sie gezielt ein? Von Licht und Wahrnehmung über Farbmodelle, Kontraste und Harmonien bis zu Farbe im Interface und Barrierefreiheit. Mit sechs interaktiven Übungen, in denen Sie mischen, messen und eigene Paletten testen.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn" href="#ue-mischer">Zum Farbmischer</a>
+            </div>
+          </div>
+        </div>
+        <div class="fg-hero-strip" aria-hidden="true"></div>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Theorie &amp; Grundlagen</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Mischen · Messen · Gestalten</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Farb-Lernplattform · Lernmodul 04 · Fotos KI-generiert mit Magnific, alle Farbgrafiken aus exakten Farbwerten berechnet. Prof. Dipl. Des. T. Hinz</p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 01 · Einleitung</span>
+        <h1>Warum Farbe gestalten?</h1>
+        <p class="lead">Farbe ist meist das Erste, was wir an einem Plakat, einer App oder einer Verpackung wahrnehmen, noch bevor wir Text lesen oder Formen deuten. Sie ordnet, lenkt den Blick, transportiert Stimmung und trägt Bedeutung. Wer mit Farbe gestaltet, sollte wissen, wie sie entsteht, wie man sie präzise beschreibt und wie sie wirkt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Schreibtisch von oben mit aufgefächertem Farbfächer, Farbmusterkarten, Gouache-Tuben und einem Skizzenbuch mit Farbstudien" loading="lazy" width="1600" height="900"><figcaption>Farbfächer, Muster und erste Studien: das Werkzeug der Farbgestaltung. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Vier Aufgaben von Farbe</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Ordnen</h3><p>Farbe gruppiert Zusammengehöriges und trennt Unterschiedliches: Linien im Verkehrsnetz, Kategorien in einem Diagramm, Bereiche einer Website.</p></div>
+          <div class="card key"><h3>Hervorheben</h3><p>Eine Akzentfarbe zieht den Blick auf das Wichtigste, etwa den Button „Jetzt kaufen“ oder eine Warnung. Das funktioniert nur, wenn sie sparsam eingesetzt wird.</p></div>
+          <div class="card key"><h3>Wirken</h3><p>Farben lösen Assoziationen und Stimmungen aus: ruhig oder laut, kühl oder warm, edel oder günstig. Diese Wirkung ist teils erlernt und kulturell geprägt.</p></div>
+          <div class="card key"><h3>Wiedererkennen</h3><p>Hausfarben machen Marken unterscheidbar. Viele Unternehmen sind an ihrer Farbe erkennbar, lange bevor man das Logo lesen kann.</p></div>
+        </div>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>erklären, wie Farbe physikalisch und physiologisch entsteht,</li>
+          <li>additive und subtraktive Farbmischung unterscheiden und anwenden,</li>
+          <li>Farben in RGB, HEX, HSL und CMYK lesen, notieren und umrechnen,</li>
+          <li>die wichtigsten Farbordnungen von Goethe bis NCS einordnen,</li>
+          <li>die sieben Farbkontraste nach Itten erkennen und gezielt einsetzen,</li>
+          <li>harmonische Farbklänge am Farbkreis bilden,</li>
+          <li>Farbwirkung und kulturelle Bedeutung von Farben reflektieren,</li>
+          <li>eine Farbpalette für ein Interface mit Hell- und Dunkelmodus aufbauen,</li>
+          <li>Kontraste nach WCAG prüfen und Gestaltungen für Menschen mit Farbsehschwäche robust machen.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen</div><p style="margin-top:10px">Die Kapitel 01–10 bauen aufeinander auf. Viele enthalten kleine Demos zum Ausprobieren.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen vom Farbmischer bis zur eigenen Palette. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Prüfen</div><p style="margin-top:10px">Der Wissenstest mit 15 Fragen fasst das Modul zusammen. Ihr Fortschritt bleibt in diesem Browser gespeichert.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Hinweis zu Farben am Bildschirm:</strong> Jeder Monitor stellt Farben etwas anders dar. Die Farbflächen in diesem Modul sind aus exakten Werten berechnet, ihr Eindruck hängt aber von Bildschirm, Helligkeit und Umgebungslicht ab. Genau darum geht es auch in Kapitel 04.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 02 LICHT & WAHRNEHMUNG ================= -->
+    <section class="page" id="p-wahrnehmung" data-page="wahrnehmung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02</span>
+        <h1>Licht und Wahrnehmung</h1>
+        <p class="lead">Farbe ist keine Eigenschaft der Dinge, sondern eine Empfindung. Sie entsteht, wenn Licht auf unser Auge trifft und das Gehirn die Signale deutet. Drei Faktoren wirken zusammen: die Lichtquelle, die Oberfläche, die Licht verschluckt oder zurückwirft, und das wahrnehmende Auge.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/wahrnehmung.jpg" alt="Glasprisma zerlegt einen Strahl weißen Sonnenlichts in ein Regenbogenspektrum an einer weißen Wand" loading="lazy" width="1600" height="900"><figcaption>Newtons Experiment: Ein Prisma zerlegt weißes Licht in die Spektralfarben. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Das sichtbare Spektrum</h2>
+        <p>Licht ist elektromagnetische Strahlung. Sichtbar ist für uns nur ein schmaler Bereich mit Wellenlängen von etwa 380 bis 780 Nanometern. Kurze Wellen empfinden wir als Violett und Blau, lange als Orange und Rot. Isaac Newton zeigte 1666 mit einem Prisma, dass weißes Licht alle diese Farben enthält, und beschrieb es 1704 in seiner Schrift <em>Opticks</em>.</p>
+        <div class="demo">
+          <div class="fg-spectrum" id="spectrum" role="img" aria-label="Sichtbares Spektrum von 380 bis 780 Nanometern, von Violett über Blau, Grün, Gelb und Orange bis Rot"></div>
+          <div class="fg-spectrum-scale" aria-hidden="true"><span>380 nm</span><span>500</span><span>600</span><span>700</span><span>780 nm</span></div>
+          <div class="fg-spectrum-labels" aria-hidden="true"><span>UV</span><span>Violett · Blau</span><span>Grün</span><span>Gelb · Orange</span><span>Rot</span><span>IR</span></div>
+        </div>
+
+        <h2>Körperfarbe: Was eine Oberfläche mit Licht macht</h2>
+        <p>Eine Tomate „ist“ nicht rot. Ihre Oberfläche verschluckt (absorbiert) den größten Teil des kurz- und mittelwelligen Lichts und wirft vor allem langwelliges Licht zurück (Remission). Nur dieses zurückgeworfene Licht erreicht unser Auge. Weiße Flächen werfen fast alles Licht zurück, schwarze verschlucken fast alles.</p>
+        <div class="grid g3">
+          <div class="card"><h3>Lichtfarbe</h3><p class="small muted">Farbe, die von einer Lichtquelle ausgeht: Bildschirm, LED, Sonne. Grundlage der additiven Mischung.</p></div>
+          <div class="card"><h3>Körperfarbe</h3><p class="small muted">Farbe, die durch Absorption und Remission an einer Oberfläche entsteht: Papier, Lack, Stoff. Grundlage der subtraktiven Mischung.</p></div>
+          <div class="card"><h3>Farbreiz</h3><p class="small muted">Das Licht, das tatsächlich ins Auge fällt. Er hängt von Lichtquelle und Oberfläche gleichermaßen ab.</p></div>
+        </div>
+
+        <h2>Das Auge: Zapfen und Stäbchen</h2>
+        <p>Auf der Netzhaut liegen zwei Arten von Lichtsinneszellen. Rund 120 Millionen <strong>Stäbchen</strong> sind sehr lichtempfindlich, unterscheiden aber keine Farben. Sie übernehmen das Sehen in der Dämmerung. Etwa 6 Millionen <strong>Zapfen</strong> ermöglichen das Farbsehen bei Tageslicht. Es gibt drei Zapfentypen, die jeweils auf einen anderen Wellenlängenbereich am stärksten ansprechen:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Zapfentyp</th><th>Empfindlichkeit am höchsten bei</th><th>vereinfacht</th></tr></thead>
+            <tbody>
+              <tr><td><strong>S-Zapfen</strong> (short)</td><td>ca. 420 nm</td><td>Blau</td></tr>
+              <tr><td><strong>M-Zapfen</strong> (medium)</td><td>ca. 530 nm</td><td>Grün</td></tr>
+              <tr><td><strong>L-Zapfen</strong> (long)</td><td>ca. 560 nm</td><td>Gelbgrün bis Rot</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px">Aus dem Verhältnis der drei Signale errechnet das Gehirn einen Farbton. Diese <strong>Dreifarbentheorie</strong> (Young und Helmholtz, 19. Jh.) erklärt, warum Bildschirme mit nur drei Lichtfarben Rot, Grün und Blau fast alle Farben darstellen können. Die <strong>Gegenfarbentheorie</strong> von Ewald Hering ergänzt: In den Nervenbahnen werden die Signale zu Gegensatzpaaren verrechnet, Rot gegen Grün, Gelb gegen Blau und Hell gegen Dunkel. Das erklärt Nachbilder und Simultankontrast.</p>
+
+        <h2>Ausprobieren: das Nachbild</h2>
+        <p>Schauen Sie etwa 20 Sekunden auf den Punkt in der Mitte der farbigen Fläche. Klicken Sie dann auf „Weiß zeigen“ und schauen Sie weiter auf den Punkt. Die ermüdeten Zapfen erzeugen kurz die Gegenfarbe.</p>
+        <div class="demo">
+          <div class="fg-after" id="after-stage"><span class="fg-after-dot" aria-hidden="true"></span></div>
+          <div class="row-btns" style="margin-top:14px">
+            <button class="btn btn-dark" type="button" id="after-toggle" aria-pressed="false">Weiß zeigen</button>
+            <div class="chips" role="group" aria-label="Farbe der Fläche wählen" id="after-colors"></div>
+          </div>
+          <p class="small muted" id="after-hint" role="status" style="margin-top:10px">Fläche: Rot (#E0301E). Erwartetes Nachbild: Blaugrün.</p>
+        </div>
+
+        <h2>Metamerie und Farbkonstanz</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Metamerie</h3><p class="small">Zwei Farbmuster sehen unter einer Lichtart gleich aus, unter einer anderen verschieden. Ihr Licht ist physikalisch unterschiedlich zusammengesetzt, löst aber unter der ersten Beleuchtung dieselben Zapfensignale aus. Darum prüft man Druckmuster unter Normlicht (D50).</p></div>
+          <div class="card"><h3>Farbkonstanz</h3><p class="small">Ein weißes Blatt wirkt im gelblichen Lampenlicht und im bläulichen Tageslicht weiß, obwohl unterschiedliches Licht ins Auge fällt. Das Gehirn gleicht die Lichtfarbe aus. Kameras brauchen dafür einen Weißabgleich.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Farbsehschwäche:</strong> Rund 8 % der Männer und 0,5 % der Frauen in Europa sehen Farben anders, meist mit eingeschränkter Unterscheidung von Rot und Grün. Mehr dazu in Kapitel 10 und in Übung 5.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 03 FARBMISCHUNG ================= -->
+    <section class="page" id="p-mischung" data-page="mischung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03</span>
+        <h1>Farbmischung</h1>
+        <p class="lead">Es gibt zwei grundlegend verschiedene Arten, Farben zu mischen. Am Bildschirm addieren wir Licht, im Druck und beim Malen nehmen Pigmente Licht weg. Wer für Bildschirm und Papier gestaltet, muss beide Systeme kennen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/mischung.jpg" alt="Drei sich überlagernde farbige Scheinwerferkegel in Rot, Grün und Blau auf einer weißen Bühne" loading="lazy" width="1600" height="900"><figcaption>Additive Mischung mit Scheinwerfern: Wo sich Lichtkegel überlagern, wird es heller. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Additive Mischung: Licht plus Licht</h2>
+        <p>Bei der additiven Mischung überlagern sich Lichtfarben. Jede weitere Farbe fügt Licht hinzu, das Ergebnis wird heller. Die Grundfarben sind <strong>Rot, Grün und Blau</strong> (RGB). Rot und Grün ergeben Gelb, alle drei zusammen ergeben Weiß. So arbeiten Monitore, Smartphones, Beamer und LED-Wände.</p>
+
+        <h2>Subtraktive Mischung: Pigment nimmt Licht weg</h2>
+        <p>Bei der subtraktiven Mischung filtern Farbschichten Teile des Lichts heraus. Jede weitere Farbe nimmt Licht weg, das Ergebnis wird dunkler. Die Grundfarben des Drucks sind <strong>Cyan, Magenta und Gelb</strong> (CMY). Cyan und Gelb ergeben Grün, alle drei zusammen theoretisch Schwarz. In der Praxis entsteht ein schmutziges Dunkelbraun, darum druckt man zusätzlich Schwarz (K, von <em>Key</em>).</p>
+
+        <div class="demo">
+          <div class="demo-head">
+            <span class="label">Demo · Mischsysteme vergleichen</span>
+            <div class="toggle" role="group" aria-label="Mischsystem wählen" id="mix-mode">
+              <button type="button" data-mode="add" aria-pressed="true">Additiv (RGB)</button>
+              <button type="button" data-mode="sub" aria-pressed="false">Subtraktiv (CMY)</button>
+            </div>
+          </div>
+          <div class="fg-venn-wrap">
+            <svg class="fg-venn" id="venn" viewBox="0 0 300 280" role="img" aria-labelledby="venn-desc"></svg>
+            <div>
+              <p id="venn-desc" class="small"></p>
+              <div class="fg-venn-legend" id="venn-legend"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Vergleich</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Additiv</th><th>Subtraktiv</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Medium</strong></td><td>Licht (Bildschirm, Projektion)</td><td>Pigment, Druckfarbe, Filter</td></tr>
+              <tr><td><strong>Grundfarben</strong></td><td>Rot, Grün, Blau</td><td>Cyan, Magenta, Gelb (+ Schwarz)</td></tr>
+              <tr><td><strong>Ausgangspunkt</strong></td><td>Schwarz (kein Licht)</td><td>Weiß (unbedrucktes Papier)</td></tr>
+              <tr><td><strong>Alle Grundfarben</strong></td><td>ergeben Weiß</td><td>ergeben (fast) Schwarz</td></tr>
+              <tr><td><strong>Mischen macht</strong></td><td>heller</td><td>dunkler</td></tr>
+              <tr><td><strong>Farbmodell</strong></td><td>RGB, HEX, HSL</td><td>CMYK</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px">Beide Systeme sind über Kreuz verbunden: Die Mischfarben der einen Seite sind die Grundfarben der anderen. Rot + Grün ergibt additiv Gelb, Magenta + Gelb ergibt subtraktiv Rot.</p>
+
+        <h2>Weitere Mischarten</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Optische Mischung</h3><p class="small">Kleine Farbpunkte verschmelzen ab einem gewissen Abstand im Auge. So arbeiten Rasterdruck, Pixel und die Malerei des Pointillismus (Georges Seurat).</p></div>
+          <div class="card"><h3>Ittens Malfarbenkreis</h3><p class="small">In der Malerei lehrt man traditionell Rot, Gelb und Blau als Grundfarben. Für Pigmente ist das eine brauchbare Faustregel, physikalisch präziser sind Cyan, Magenta und Gelb.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-mischer">Übung 1</a> mischen Sie Zielfarben mit RGB- und CMY-Reglern nach.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 04 FARBMODELLE ================= -->
+    <section class="page" id="p-modelle" data-page="modelle">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04</span>
+        <h1>Farbmodelle und Farbräume</h1>
+        <p class="lead">Um Farben exakt weiterzugeben, brauchen wir Zahlen. Ein Farbmodell legt fest, wie eine Farbe beschrieben wird, zum Beispiel als Anteile von Rot, Grün und Blau. Ein Farbraum legt zusätzlich fest, welche konkreten Farben diese Zahlen bedeuten.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/modelle.jpg" alt="Arbeitsplatz mit Monitor, auf dem ein Farbwähler zu sehen ist, davor ein gedruckter Andruck mit CMYK-Farbbalken und ein Fadenzähler" loading="lazy" width="1600" height="900"><figcaption>Bildschirm und Druck sprechen verschiedene Farbsprachen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>RGB und HEX</h2>
+        <p>Im RGB-Modell hat jeder Kanal einen Wert von 0 bis 255 (8 Bit). <code class="mono">rgb(255, 0, 0)</code> ist reines Rot, <code class="mono">rgb(0, 0, 0)</code> Schwarz, <code class="mono">rgb(255, 255, 255)</code> Weiß. Das ergibt 256³, also rund 16,7 Millionen Kombinationen.</p>
+        <p>Die <strong>HEX-Schreibweise</strong> notiert dieselben drei Werte hexadezimal, je zwei Ziffern von 00 bis FF. <code class="mono">#FF8000</code> bedeutet Rot FF (255), Grün 80 (128), Blau 00 (0), also Orange. Sind beide Ziffern jedes Paares gleich, darf man kürzen: <code class="mono">#FFAA00</code> wird zu <code class="mono">#FA0</code>.</p>
+
+        <h2>HSL: Farbton, Sättigung, Helligkeit</h2>
+        <p>RGB ist für Maschinen gedacht. Menschen beschreiben Farben eher so: Welcher Farbton? Wie kräftig? Wie hell? Genau das bildet <strong>HSL</strong> ab:</p>
+        <div class="grid g3">
+          <div class="card"><h3>H · Hue</h3><p class="small muted">Farbton als Winkel auf dem Farbkreis, 0° bis 360°. 0° Rot, 120° Grün, 240° Blau.</p></div>
+          <div class="card"><h3>S · Saturation</h3><p class="small muted">Sättigung von 0 % (Grau) bis 100 % (volle Buntheit).</p></div>
+          <div class="card"><h3>L · Lightness</h3><p class="small muted">Helligkeit von 0 % (Schwarz) über 50 % (reine Farbe) bis 100 % (Weiß).</p></div>
+        </div>
+
+        <div class="demo" style="margin-top:20px">
+          <div class="demo-head"><span class="label">Demo · Farbwähler mit allen Schreibweisen</span></div>
+          <div class="fg-picker">
+            <div class="fg-picker-swatch" id="pk-swatch"><span id="pk-swatch-label"></span></div>
+            <div class="fg-picker-ctrl">
+              <div class="field"><label for="pk-h">Farbton H <output id="pk-h-o">210°</output></label><input type="range" id="pk-h" min="0" max="360" value="210" class="fg-range-hue"></div>
+              <div class="field"><label for="pk-s">Sättigung S <output id="pk-s-o">70 %</output></label><input type="range" id="pk-s" min="0" max="100" value="70"></div>
+              <div class="field"><label for="pk-l">Helligkeit L <output id="pk-l-o">45 %</output></label><input type="range" id="pk-l" min="0" max="100" value="45"></div>
+              <dl class="fg-codes" id="pk-codes"></dl>
+            </div>
+          </div>
+        </div>
+
+        <h2>CMYK</h2>
+        <p>CMYK beschreibt Druckfarben als Flächendeckung von 0 bis 100 % je Farbe: <code class="mono">C 0 · M 60 · Y 100 · K 0</code> ist ein kräftiges Orange. Weil Druckfarben Licht wegnehmen, kann CMYK weniger leuchtende Farben darstellen als ein Bildschirm. Ein knalliges RGB-Grün oder -Blau wirkt gedruckt oft stumpfer.</p>
+
+        <h2>Lab und OKLCH: Farben, wie wir sie sehen</h2>
+        <p>Die CIE (Internationale Beleuchtungskommission) definierte 1931 einen Farbraum, der alle für Menschen sichtbaren Farben umfasst. Daraus entstand 1976 <strong>CIELAB</strong> mit L* für Helligkeit, a* für die Achse Grün–Rot und b* für Blau–Gelb. Lab ist <em>wahrnehmungsnah</em>: Gleiche Zahlenabstände sollen ungefähr gleich große empfundene Unterschiede bedeuten. Der Farbabstand ΔE (Delta E) misst, wie verschieden zwei Farben wirken. Ab etwa ΔE 2 bemerken geübte Betrachter einen Unterschied.</p>
+        <p>Im Web gewinnt <strong>OKLCH</strong> an Bedeutung (Helligkeit, Chroma, Farbton). Es funktioniert wie HSL, aber zwei Farben mit gleichem L wirken dort tatsächlich gleich hell. In HSL ist Gelb bei L 50 % viel heller als Blau bei L 50 %. Probieren Sie es oben im Farbwähler aus.</p>
+
+        <h2>Farbraum, Gamut und Farbmanagement</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Gamut</h3><p class="small">Der Umfang an Farben, den ein Gerät oder Verfahren darstellen kann. Ein Monitor hat einen anderen Gamut als eine Zeitungsdruckmaschine.</p></div>
+          <div class="card"><h3>sRGB und Display P3</h3><p class="small">sRGB (1996) ist der Standardfarbraum des Webs. Display P3 ist größer und bei modernen Smartphones und Laptops verbreitet: Rot und Grün können dort kräftiger leuchten.</p></div>
+          <div class="card"><h3>ICC-Profil</h3><p class="small">Beschreibt den Farbraum eines Geräts oder Druckverfahrens, z. B. <em>PSO Coated v3</em> für Bilderdruckpapier. Farbmanagement rechnet Farben von einem Profil ins andere um.</p></div>
+          <div class="card"><h3>Softproof</h3><p class="small">Bildschirmsimulation, wie eine Datei im Druck aussehen wird. Nur auf einem kalibrierten Monitor aussagekräftig.</p></div>
+        </div>
+        <div class="table-wrap" style="margin-top:20px">
+          <table>
+            <thead><tr><th>Modell</th><th>Schreibweise (Beispiel Orange)</th><th>Typischer Einsatz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>HEX</strong></td><td class="mono">#F28C28</td><td>Web, CSS, Styleguides</td></tr>
+              <tr><td><strong>RGB</strong></td><td class="mono">rgb(242 140 40)</td><td>Bildschirm, Bildbearbeitung</td></tr>
+              <tr><td><strong>HSL</strong></td><td class="mono">hsl(30 89% 55%)</td><td>CSS, Farbvarianten ableiten</td></tr>
+              <tr><td><strong>CMYK</strong></td><td class="mono">C 0 · M 50 · Y 90 · K 0</td><td>Offsetdruck, Digitaldruck</td></tr>
+              <tr><td><strong>Lab</strong></td><td class="mono">L 68 · a 34 · b 66</td><td>Farbmessung, Umrechnung, Qualitätskontrolle</td></tr>
+              <tr><td><strong>OKLCH</strong></td><td class="mono">oklch(0.72 0.16 58)</td><td>modernes CSS, gleichmäßige Paletten</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:10px">CMYK- und Lab-Werte sind gerundete Näherungen, die genauen Werte hängen vom verwendeten Profil ab.</p>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-codes">Übung 2</a> lernen Sie, HEX- und HSL-Werte zu lesen, ohne die Farbe zu sehen.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 05 FARBORDNUNGEN ================= -->
+    <section class="page" id="p-ordnungen" data-page="ordnungen">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05</span>
+        <h1>Farbordnungen</h1>
+        <p class="lead">Seit Jahrhunderten versuchen Wissenschaftler und Künstler, die Vielfalt der Farben in eine Ordnung zu bringen: als Kreis, Dreieck, Kugel oder Körper. Jede Ordnung beantwortet eine andere Frage, und viele werden bis heute in Gestaltung, Industrie und Lehre genutzt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/ordnungen.jpg" alt="Archivtisch mit alten Büchern zur Farbenlehre, einem handgemalten Aquarell-Farbkreis, Farbskalen und Kugelstudien" loading="lazy" width="1600" height="900"><figcaption>Historische Farbstudien: der Versuch, Farben zu ordnen. KI-generiert mit Magnific. Die Farben im Bild sind nicht farbverbindlich.</figcaption></figure>
+
+        <ol class="timeline">
+          <li><span class="yr">1704</span><div><h3>Isaac Newton</h3><p>Ordnet die Spektralfarben in einem Kreis an und verbindet so das rote mit dem violetten Ende des Spektrums. Grundlage aller späteren Farbkreise.</p></div></li>
+          <li><span class="yr">1810</span><div><h3>Johann Wolfgang von Goethe</h3><p>Seine <em>Farbenlehre</em> beschreibt Farbe als Erlebnis. Sein sechsteiliger Farbkreis und die Lehre von der „sinnlich-sittlichen Wirkung“ der Farben prägen bis heute das Nachdenken über Farbwirkung.</p></div></li>
+          <li><span class="yr">1810</span><div><h3>Philipp Otto Runge</h3><p>Der Maler entwirft mit der <em>Farbenkugel</em> das erste dreidimensionale Farbsystem: Der Äquator zeigt die reinen Farben, die Pole Weiß und Schwarz.</p></div></li>
+          <li><span class="yr">1905</span><div><h3>Albert H. Munsell</h3><p>Ordnet Farben nach Farbton (Hue), Helligkeit (Value) und Buntheit (Chroma) in gleichen Empfindungsschritten. Das Munsell-System wird noch heute etwa in Geologie und Medizin verwendet.</p></div></li>
+          <li><span class="yr">1927</span><div><h3>RAL-Farben</h3><p>Das deutsche RAL-Register normiert Farbtöne für Industrie und Behörden mit vierstelligen Nummern, etwa RAL 3020 Verkehrsrot.</p></div></li>
+          <li><span class="yr">1961</span><div><h3>Johannes Itten</h3><p>Der Bauhaus-Lehrer veröffentlicht <em>Kunst der Farbe</em> mit seinem zwölfteiligen Farbkreis und den sieben Farbkontrasten (Kapitel 06). Prägend für die Gestaltungslehre.</p></div></li>
+          <li><span class="yr">1963</span><div><h3>Josef Albers · Pantone</h3><p>Albers zeigt in <em>Interaction of Color</em>, wie stark Farben voneinander abhängen. Im selben Jahr führt Pantone sein Matching System für Sonderfarben ein.</p></div></li>
+          <li><span class="yr">1979</span><div><h3>NCS · Harald Küppers</h3><p>Das schwedische Natural Color System beschreibt Farben nach ihrer Ähnlichkeit mit sechs Elementarfarben. Küppers entwickelt ab den 1970er-Jahren eine Farbenlehre mit acht Grundfarben, die additive und subtraktive Mischung verbindet.</p></div></li>
+        </ol>
+
+        <h2>Ittens zwölfteiliger Farbkreis</h2>
+        <p>Itten baut seinen Kreis aus den drei <strong>Grundfarben</strong> (Primärfarben) Gelb, Rot und Blau auf. Je zwei mischen sich zu den <strong>Sekundärfarben</strong> Orange, Violett und Grün. Aus Grund- und Sekundärfarbe entstehen sechs <strong>Tertiärfarben</strong>. Gegenüberliegende Farben sind <strong>Komplementärfarben</strong>.</p>
+        <div class="demo">
+          <div class="fg-itten-wrap">
+            <svg class="fg-itten" id="itten-wheel" viewBox="-160 -160 320 320" role="img" aria-label="Zwölfteiliger Farbkreis nach Itten mit Grund-, Sekundär- und Tertiärfarben"></svg>
+            <div>
+              <div class="toggle" role="group" aria-label="Farbstufe hervorheben" id="itten-filter">
+                <button type="button" data-lvl="all" aria-pressed="true">Alle</button>
+                <button type="button" data-lvl="1" aria-pressed="false">Grundfarben</button>
+                <button type="button" data-lvl="2" aria-pressed="false">Sekundär</button>
+                <button type="button" data-lvl="3" aria-pressed="false">Tertiär</button>
+              </div>
+              <p class="small" id="itten-text" role="status" style="margin-top:14px">Alle zwölf Farben des Kreises. Die Ziffern 1, 2 und 3 kennzeichnen Grund-, Sekundär- und Tertiärfarben.</p>
+              <p class="small muted">Die Farbwerte sind digitale Annäherungen an Ittens Malfarben.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>Farbsysteme in der Praxis</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>System</th><th>Prinzip</th><th>Einsatz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Pantone (PMS)</strong></td><td>Nummerierte Sonderfarben mit fester Rezeptur, z. B. Pantone 286 C</td><td>Logos, Verpackung, Corporate Design</td></tr>
+              <tr><td><strong>HKS</strong></td><td>Deutsches Sonderfarbensystem mit 88 Grundtönen</td><td>Druck im deutschsprachigen Raum</td></tr>
+              <tr><td><strong>RAL</strong></td><td>Register normierter Farbtöne (RAL Classic, RAL Design)</td><td>Lacke, Industrie, Architektur, Verkehr</td></tr>
+              <tr><td><strong>NCS</strong></td><td>Anteile Schwarz, Buntheit und Farbton, z. B. S 2050-Y90R</td><td>Architektur, Innenraum, Textil</td></tr>
+              <tr><td><strong>Munsell</strong></td><td>Hue, Value, Chroma in gleichen Empfindungsabständen</td><td>Wissenschaft, Bodenkunde, Lehre</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 KONTRASTE ================= -->
+    <section class="page" id="p-kontraste" data-page="kontraste">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06</span>
+        <h1>Die sieben Farbkontraste</h1>
+        <p class="lead">Farben wirken nie allein, sondern immer im Verhältnis zu ihrer Umgebung. Johannes Itten beschrieb sieben Arten, wie Farben sich gegenseitig steigern oder abschwächen. Sie sind bis heute ein Werkzeugkasten, um Farbwirkungen zu analysieren und bewusst zu gestalten.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/kontraste.jpg" alt="Farbstudie im Bauhaus-Stil: bemalte Papierquadrate in stark kontrastierenden Farben auf einem weißen Tisch" loading="lazy" width="1600" height="900"><figcaption>Kontraststudien aus Papier: Hell und Dunkel, Warm und Kalt, Komplementär. KI-generiert mit Magnific.</figcaption></figure>
+        <p>Wählen Sie einen Kontrast. Die Beispielfläche ist jeweils aus exakten Farbwerten gezeichnet.</p>
+        <div class="chips" role="group" aria-label="Kontrast wählen" id="kt-pick"></div>
+        <div class="fg-kt" id="kt-view" aria-live="polite"></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-kontraste">Übung 3</a> ordnen Sie Beispiele den Kontrasten zu und erleben den Simultankontrast selbst.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 07 HARMONIEN ================= -->
+    <section class="page" id="p-harmonien" data-page="harmonien">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07</span>
+        <h1>Farbharmonien</h1>
+        <p class="lead">Ein Farbklang wirkt harmonisch, wenn seine Farben in einer erkennbaren Beziehung zueinander stehen. Der Farbkreis hilft, solche Beziehungen zu finden: über Nachbarschaft, Gegenüberstellung oder gleichmäßige Abstände. Harmonie ist dabei kein Naturgesetz, sondern ein Ausgangspunkt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/harmonien.jpg" alt="Flatlay aus Papier- und Stoffmustern in benachbarten Blau- und Grüntönen mit einem einzelnen orangefarbenen Akzent" loading="lazy" width="1600" height="900"><figcaption>Analoge Blaugrün-Töne mit einem komplementären Akzent in Orange. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die klassischen Farbklänge</h2>
+        <div class="fg-harm-grid" id="harm-grid"></div>
+
+        <h2>Mehr als der Farbton</h2>
+        <p>Der Farbkreis zeigt nur den Farbton. Ob eine Palette funktioniert, entscheiden genauso <strong>Helligkeit</strong> und <strong>Sättigung</strong>. Drei Faustregeln:</p>
+        <ul class="list">
+          <li><strong>Eine Farbe führt.</strong> Eine Hauptfarbe dominiert, die anderen begleiten. Gleich starke, gesättigte Farben konkurrieren.</li>
+          <li><strong>Helligkeit staffeln.</strong> Eine gute Palette funktioniert auch in Graustufen: Hell, Mittel und Dunkel müssen klar unterscheidbar bleiben.</li>
+          <li><strong>Sättigung dosieren.</strong> Gedämpfte Töne als Fläche, gesättigte als Akzent. Die 60-30-10-Regel in Kapitel 09 zeigt eine bewährte Verteilung.</li>
+        </ul>
+        <blockquote class="quote">„In visual perception a color is almost never seen as it really is – as it physically is.“<cite>Josef Albers, Interaction of Color (1963)</cite></blockquote>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> Mit dem <a href="#ue-harmonie">Harmonie-Farbkreis in Übung 4</a> erzeugen Sie Farbklänge und prüfen sie an einem Plakatentwurf.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 08 WIRKUNG ================= -->
+    <section class="page" id="p-wirkung" data-page="wirkung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08</span>
+        <h1>Farbwirkung und Kultur</h1>
+        <p class="lead">Farben lösen Gefühle und Assoziationen aus. Manche Wirkungen sind körperlich begründet, etwa die Signalwirkung von Rot. Viele sind gelernt und hängen von Kultur, Epoche und Kontext ab. Gute Farbgestaltung kennt diese Bedeutungen und prüft sie für die jeweilige Zielgruppe.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/wirkung.jpg" alt="Marktstand mit Bergen bunter Gewürze und gestapelten gefärbten Stoffen in Rot, Safrangelb und Indigo" loading="lazy" width="1600" height="900"><figcaption>Farben tragen kulturelle Bedeutung, auf dem Markt wie im Design. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Warm und kalt, schwer und leicht</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Temperatur</h3><p class="small">Rot, Orange und Gelb wirken warm und scheinen nach vorn zu treten. Blau, Blaugrün und Blauviolett wirken kühl und treten zurück. Das nutzt man für räumliche Tiefe.</p></div>
+          <div class="card"><h3>Gewicht</h3><p class="small">Dunkle, gesättigte Farben wirken schwer, helle leicht. Eine dunkle Fläche oben im Format wirkt drückend, unten stabil.</p></div>
+        </div>
+
+        <h2>Farben und ihre Bedeutungen</h2>
+        <p>Eva Heller befragte für ihr Buch <em>Wie Farben wirken</em> rund 2.000 Menschen in Deutschland nach Lieblingsfarben und Assoziationen. Die folgende Übersicht fasst typische Bedeutungen im europäischen Kontext zusammen und nennt Gegenbeispiele aus anderen Kulturen.</p>
+        <div class="fg-meaning" id="meaning"></div>
+
+        <h2>Kontext entscheidet</h2>
+        <p>Dieselbe Farbe kann je nach Umgebung Gegensätzliches bedeuten. Rot steht für Liebe, Gefahr, Sale oder Fehler. Erst Form, Text, Bild und Konvention machen die Bedeutung eindeutig. Fragen Sie bei jeder Farbentscheidung:</p>
+        <ul class="list">
+          <li>Welche Bedeutung hat die Farbe in meiner Branche? Grün bei Banken, Bioprodukten und Ampeln meint jeweils etwas anderes.</li>
+          <li>Für welche Kulturen gestalte ich? Weiß ist in Europa Hochzeitsfarbe, in Teilen Ostasiens traditionell Trauerfarbe.</li>
+          <li>Welche Farben nutzt der Wettbewerb? Abgrenzung ist oft wichtiger als „die richtige“ Farbe.</li>
+        </ul>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Vorsicht mit Farbpsychologie-Listen:</strong> Viele populäre Aussagen wie „Blau steigert die Produktivität“ sind wissenschaftlich kaum belegt. Nutzen Sie solche Zuordnungen als Ausgangspunkt für Ideen, nicht als Beweis.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 09 INTERFACE ================= -->
+    <section class="page" id="p-interface" data-page="interface">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09</span>
+        <h1>Farbe im Interface</h1>
+        <p class="lead">In Websites und Apps hat Farbe vor allem eine Aufgabe: Orientierung. Sie zeigt, was klickbar ist, was gerade aktiv ist und ob etwas geklappt hat. Damit das über Hunderte Bildschirme hinweg konsistent bleibt, arbeitet man mit festen Rollen und benannten Farbwerten.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/interface.jpg" alt="Laptop und Tablet auf einem Schreibtisch zeigen dasselbe Dashboard in Violett und Orange, einmal im hellen und einmal im dunklen Modus" loading="lazy" width="1600" height="900"><figcaption>Eine Palette, zwei Modi: Hell und Dunkel brauchen eigene, abgestimmte Werte. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die 60-30-10-Regel</h2>
+        <p>Eine bewährte Faustregel aus der Innenarchitektur: etwa <strong>60 %</strong> der Fläche in einer ruhigen Grundfarbe, <strong>30 %</strong> in einer Sekundärfarbe und <strong>10 %</strong> in einer Akzentfarbe. Im Interface ist die Grundfarbe meist ein helles oder dunkles Neutral, die Akzentfarbe markiert Aktionen.</p>
+        <div class="demo">
+          <div class="fg-6030" id="r6030" role="img" aria-label="Beispiel-Interface: 60 Prozent heller Hintergrund, 30 Prozent dunkelblaue Navigation und Karten, 10 Prozent orangefarbener Akzent für den Hauptbutton"></div>
+          <div class="fg-6030-bar" aria-hidden="true"><span style="flex:60;background:#F4F1EC">60 % Grundfarbe</span><span style="flex:30;background:#1E3A5F;color:#fff">30 %</span><span style="flex:10;background:#C2410C;color:#fff">10 %</span></div>
+        </div>
+
+        <h2>Farbrollen statt Farbnamen</h2>
+        <p>Professionelle Interfaces vergeben Farben nach ihrer <strong>Rolle</strong>, nicht nach ihrem Aussehen. Statt „Orange“ heißt es „Primärfarbe“, statt „Hellgrau“ „Fläche“. So lässt sich die Palette ändern, ohne jede Stelle einzeln anzupassen.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rolle</th><th>Aufgabe</th><th>Beispiel</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Primär</strong></td><td>Hauptaktionen, aktive Zustände, Markenfarbe</td><td>Button „Speichern“</td></tr>
+              <tr><td><strong>Sekundär</strong></td><td>Ergänzende Aktionen, Auszeichnungen</td><td>Filter-Chip</td></tr>
+              <tr><td><strong>Neutral</strong></td><td>Hintergründe, Flächen, Linien, Text</td><td>Seitenhintergrund, Fließtext</td></tr>
+              <tr><td><strong>Erfolg</strong></td><td>Bestätigung</td><td>„Gespeichert“</td></tr>
+              <tr><td><strong>Warnung</strong></td><td>Aufmerksamkeit, reversible Probleme</td><td>„Akku schwach“</td></tr>
+              <tr><td><strong>Fehler</strong></td><td>Fehler, destruktive Aktionen</td><td>„Passwort falsch“, „Löschen“</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Design Tokens</h2>
+        <p>Design Tokens sind benannte Variablen für Gestaltungsentscheidungen. In CSS schreibt man sie als Custom Properties. Ein zweistufiges System trennt Rohwerte von Rollen:</p>
+        <pre class="fg-code" tabindex="0"><code>/* Stufe 1: Basispalette */
+--blue-700: #1E3A5F;
+--orange-600: #C2410C;
+--gray-50: #F9FAFB;
+
+/* Stufe 2: Rollen, verweisen auf die Basis */
+--color-primary: var(--orange-600);
+--color-surface: var(--gray-50);
+--color-text: var(--blue-700);
+
+/* Dunkelmodus: nur die Rollen ändern sich */
+[data-theme="dark"] {
+  --color-surface: #111827;
+  --color-text: #F3F4F6;
+}</code></pre>
+
+        <h2>Dunkelmodus</h2>
+        <p>Ein guter Dunkelmodus ist mehr als invertierte Farben:</p>
+        <ul class="list">
+          <li><strong>Kein reines Schwarz:</strong> Dunkelgrau (z. B. #121212 bis #1F2937) wirkt ruhiger und lässt Schatten und Ebenen sichtbar werden.</li>
+          <li><strong>Gesättigte Farben aufhellen:</strong> Kräftige Farben flimmern auf Dunkel. Hellere, leicht entsättigte Varianten lesen sich besser.</li>
+          <li><strong>Ebenen durch Helligkeit:</strong> Was weiter vorn liegt, wird etwas heller statt durch Schatten getrennt.</li>
+          <li><strong>Kontraste neu prüfen:</strong> Jede Kombination braucht in beiden Modi ausreichend Kontrast.</li>
+        </ul>
+        <div class="demo">
+          <div class="demo-head"><span class="label">Demo · Gleiche Rollen, zwei Modi</span>
+            <div class="toggle" role="group" aria-label="Modus wählen" id="dm-toggle"><button type="button" data-m="light" aria-pressed="true">Hell</button><button type="button" data-m="dark" aria-pressed="false">Dunkel</button></div>
+          </div>
+          <div class="fg-ui" id="dm-ui"></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-palette">Übung 6</a> bauen Sie eine eigene Palette mit Rollen und testen sie in beiden Modi.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 10 BARRIEREFREIHEIT ================= -->
+    <section class="page" id="p-barrierefreiheit" data-page="barrierefreiheit">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10</span>
+        <h1>Farbe und Barrierefreiheit</h1>
+        <p class="lead">Rund 8 % der Männer sehen Farben anders, viele Menschen lesen bei Sonnenlicht, mit Sehschwäche oder auf schlechten Bildschirmen. Barrierefreie Farbgestaltung sorgt dafür, dass Inhalte für alle lesbar und verständlich bleiben. In Deutschland verlangen BITV 2.0 und seit 2025 das Barrierefreiheitsstärkungsgesetz dafür die Richtlinien der WCAG.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/barrierefreiheit.jpg" alt="Testarbeitsplatz mit Tablet mit kontrastreicher Oberfläche, gedruckten Farbsehtesttafeln aus farbigen Punkten und einer Lesebrille" loading="lazy" width="1600" height="900"><figcaption>Barrierefreiheit prüfen: Kontrast, Farbsehen, Lesbarkeit. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Kontrastverhältnis nach WCAG</h2>
+        <p>Die Web Content Accessibility Guidelines (WCAG 2.2) messen den Helligkeitskontrast zwischen Vorder- und Hintergrund als Verhältnis von 1 : 1 (kein Kontrast) bis 21 : 1 (Schwarz auf Weiß). Der Farbton spielt dabei keine Rolle, nur die relative Leuchtdichte.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Element</th><th>Stufe AA</th><th>Stufe AAA</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Fließtext</strong></td><td>mind. 4,5 : 1</td><td>mind. 7 : 1</td></tr>
+              <tr><td><strong>Große Schrift</strong> (ab 24 px oder 18,66 px fett)</td><td>mind. 3 : 1</td><td>mind. 4,5 : 1</td></tr>
+              <tr><td><strong>Bedienelemente, Icons, Diagrammlinien</strong></td><td>mind. 3 : 1</td><td>–</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="demo" style="margin-top:20px">
+          <div class="demo-head"><span class="label">Demo · Wie viel ist 4,5 : 1?</span></div>
+          <div class="fg-ramp" id="ramp"></div>
+          <p class="small muted" style="margin-top:10px">Grautöne auf Weiß. Ab #767676 ist normaler Text nach AA erlaubt.</p>
+        </div>
+
+        <h2>Farbe nie als einziges Merkmal</h2>
+        <p>WCAG-Kriterium 1.4.1 verlangt: Information darf nicht allein über Farbe vermittelt werden. Ein rot markiertes Pflichtfeld braucht zusätzlich ein Sternchen oder einen Text, ein Diagramm zusätzlich Beschriftungen oder Muster, ein Link im Fließtext zusätzlich eine Unterstreichung.</p>
+        <div class="grid g2">
+          <div class="card"><div class="label" style="color:var(--bad)">Nur Farbe</div>
+            <div class="fg-field-demo"><span class="fg-in" style="border-color:#D9372B">E-Mail</span><span class="fg-in" style="border-color:#2E9E4F">Name</span></div>
+            <p class="small muted">Wer Rot und Grün nicht unterscheidet, erkennt nicht, welches Feld fehlerhaft ist.</p></div>
+          <div class="card"><div class="label" style="color:var(--ok)">Farbe + Symbol + Text</div>
+            <div class="fg-field-demo"><span class="fg-in" style="border-color:#B91C1C;border-width:2px">E-Mail <b style="color:#B91C1C">✕ Bitte gültige Adresse eingeben</b></span><span class="fg-in" style="border-color:#15803D">Name <b style="color:#15803D">✓</b></span></div>
+            <p class="small muted">Der Fehler ist auch ohne Farbsehen eindeutig.</p></div>
+        </div>
+
+        <h2>Formen der Farbsehschwäche</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Form</th><th>Betroffen</th><th>Auswirkung</th><th>Häufigkeit (Männer, Europa)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Deuteranomalie / Deuteranopie</strong></td><td>M-Zapfen (Grün)</td><td>Rot und Grün schwer unterscheidbar</td><td>ca. 6 %</td></tr>
+              <tr><td><strong>Protanomalie / Protanopie</strong></td><td>L-Zapfen (Rot)</td><td>Rot–Grün-Verwechslung, Rot wirkt dunkler</td><td>ca. 2 %</td></tr>
+              <tr><td><strong>Tritanopie</strong></td><td>S-Zapfen (Blau)</td><td>Blau–Gelb-Verwechslung</td><td>unter 0,01 %</td></tr>
+              <tr><td><strong>Achromatopsie</strong></td><td>alle Zapfen</td><td>nur Helligkeit, keine Farbe</td><td>ca. 0,003 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px">Die Endung <em>-anomalie</em> bezeichnet eine Schwäche, <em>-anopie</em> den vollständigen Ausfall eines Zapfentyps. Werkzeuge wie die Entwicklertools von Chrome und Firefox, Figma-Plugins oder die Bildschirmfilter von macOS und Windows simulieren diese Sehweisen.</p>
+
+        <h2>Checkliste</h2>
+        <ul class="list">
+          <li>Text erreicht mindestens 4,5 : 1, große Schrift und Bedienelemente 3 : 1.</li>
+          <li>Keine Information steckt allein in der Farbe.</li>
+          <li>Links sind auch ohne Farbe erkennbar, etwa unterstrichen.</li>
+          <li>Diagramme funktionieren mit Beschriftung, Muster oder Form auch in Graustufen.</li>
+          <li>Rot-Grün-Kombinationen als einziges Unterscheidungsmerkmal sind vermieden.</li>
+          <li>Hell- und Dunkelmodus sind beide geprüft.</li>
+        </ul>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-check">Übung 5</a> messen Sie Kontraste und sehen eine Oberfläche durch die Augen von Menschen mit Farbsehschwäche.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 FARBMISCHER ================= -->
+    <section class="page" id="p-ue-mischer" data-page="ue-mischer">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Mischen</span>
+        <h1>Farbmischer</h1>
+        <p class="lead">Mischen Sie eine vorgegebene Zielfarbe nach, einmal mit Licht (RGB) und einmal mit Druckfarben (CMY). So bekommen Sie ein Gefühl dafür, wie die Kanäle zusammenwirken.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>Additiv · Subtraktiv</span><span><i></i>Messung mit ΔE</span></div>
+        <figure class="media media-ex"><img src="media/ue-mischer.jpg" alt="Hände mischen Gouachefarben auf einer weißen Keramikpalette, drei Grundfarben verlaufen ineinander" loading="lazy" width="1600" height="900"><figcaption>Mischen ist Übungssache, mit dem Pinsel wie mit dem Regler. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Stellen Sie die Regler so ein, dass Ihre Farbe der Zielfarbe möglichst nahekommt. Der Farbabstand ΔE zeigt, wie weit Sie entfernt sind: Unter 10 ist sehr nah, unter 3 kaum noch zu unterscheiden. Treffen Sie drei Zielfarben mit ΔE unter 10, davon mindestens eine im CMY-Modus.</p></div>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Mischsystem wählen" id="mx-mode">
+              <button type="button" data-mode="rgb" aria-pressed="true">Licht · RGB</button>
+              <button type="button" data-mode="cmy" aria-pressed="false">Druck · CMY</button>
+            </div>
+            <span class="small muted" id="mx-score" role="status">Getroffen: 0 von 3</span>
+          </div>
+          <div class="fg-mix">
+            <div class="fg-mix-pair">
+              <div class="fg-mix-sw"><div class="fg-mix-box" id="mx-target"></div><span class="label">Zielfarbe</span></div>
+              <div class="fg-mix-sw"><div class="fg-mix-box" id="mx-mine"></div><span class="label">Ihre Mischung</span></div>
+            </div>
+            <div>
+              <div id="mx-sliders"></div>
+              <div class="fg-delta"><span class="label">Farbabstand</span><b id="mx-de">ΔE –</b><span id="mx-hint" class="small"></span></div>
+              <div class="row-btns" style="margin-top:12px"><button class="btn btn-dark" type="button" id="mx-check">Mischung prüfen</button><button class="btn" type="button" id="mx-next">Neue Zielfarbe</button><button class="btn" type="button" id="mx-reveal">Lösung zeigen</button></div>
+            </div>
+          </div>
+          <div id="mx-fb" role="status"></div>
+        </div>
+        <div class="task"><span class="label">Reflexion</span><p>Welcher Modus fiel Ihnen leichter? Beschreiben Sie, was passiert, wenn Sie im RGB-Modus alle Regler gleichzeitig erhöhen, und im CMY-Modus.</p></div>
+        <div class="ex-done" data-ex="ue-mischer"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 FARBCODES ================= -->
+    <section class="page" id="p-ue-codes" data-page="ue-codes">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Farbmodelle</span>
+        <h1>Farbcodes lesen</h1>
+        <p class="lead">Profis erkennen an einem HEX- oder HSL-Wert ungefähr, welche Farbe gemeint ist, ohne sie zu sehen. Das hilft beim Lesen von Styleguides und CSS. Zehn Codes, zehn Beschreibungen.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>10 Fragen</span><span><i></i>HEX · RGB · HSL</span></div>
+        <figure class="media media-ex"><img src="media/ue-codes.jpg" alt="Kleine Farbmusterchips in einem Verlaufsraster auf einem weißen Schreibtisch neben einem Laptop" loading="lazy" width="1600" height="900"><figcaption>Jeder Farbe ihr Code. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie die Beschreibung, die zum Farbcode passt. Erst nach der Antwort sehen Sie die Farbe. Ab 7 richtigen Antworten gilt die Übung als bestanden.</p>
+          <details class="fg-tip"><summary>Spickzettel einblenden</summary>
+            <ul class="list small">
+              <li><strong>HEX:</strong> Das größte Ziffernpaar bestimmt den Farbton. Hohe Werte in allen drei Paaren bedeuten hell, niedrige dunkel. Drei ähnliche Paare ergeben Grau.</li>
+              <li><strong>HSL:</strong> H 0 Rot, 30 Orange, 60 Gelb, 120 Grün, 180 Cyan, 240 Blau, 300 Magenta. S unter 20 % wirkt grau. L unter 30 % dunkel, über 75 % hell.</li>
+            </ul>
+          </details>
+        </div>
+        <div class="demo" id="cq"></div>
+        <div class="ex-done" data-ex="ue-codes"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 KONTRASTE ================= -->
+    <section class="page" id="p-ue-kontraste" data-page="ue-kontraste">
+      <div class="wrap">
+        <span class="eyebrow">Übung 3 · Kontraste</span>
+        <h1>Kontraste erkennen</h1>
+        <p class="lead">Erst erleben Sie, wie stark das Umfeld eine Farbe verändert. Dann ordnen Sie sieben Beispiele den Farbkontrasten nach Itten zu.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>7 Beispiele</span><span><i></i>Simultankontrast · Itten</span></div>
+        <figure class="media media-ex"><img src="media/ue-kontraste.jpg" alt="Collage-Farbstudie: identische graue Papierquadrate liegen auf großen Bögen in Gelb, Blau, Rot und Schwarz" loading="lazy" width="1600" height="900"><figcaption>Dasselbe Grau, verschiedene Umgebungen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Teil A · Erleben</span><p>Die beiden kleinen Quadrate haben exakt denselben Farbwert. Wirken sie gleich? Verbinden Sie die Quadrate mit einem Steg oder entfernen Sie das Umfeld, um es zu überprüfen.</p></div>
+        <div class="demo">
+          <div class="chips" role="group" aria-label="Beispiel wählen" id="sim-pick"></div>
+          <svg class="fg-sim" id="sim-svg" viewBox="0 0 600 260" role="img" aria-labelledby="sim-cap"></svg>
+          <p class="small" id="sim-cap" role="status"></p>
+          <div class="row-btns"><button class="btn" type="button" id="sim-bridge" aria-pressed="false">Steg zeigen</button><button class="btn" type="button" id="sim-bg" aria-pressed="false">Umfeld entfernen</button></div>
+        </div>
+        <div class="task"><span class="label">Teil B · Zuordnen</span><p>Welcher Kontrast prägt das jeweilige Beispiel am stärksten? Wählen Sie für jedes Beispiel einen Kontrast und prüfen Sie dann. Ab 5 von 7 richtigen Zuordnungen gilt die Übung als bestanden.</p></div>
+        <div class="fg-kq" id="kq"></div>
+        <div class="row-btns" style="margin-top:14px"><button class="btn btn-dark" type="button" id="kq-check">Zuordnung prüfen</button><button class="btn" type="button" id="kq-reset">Zurücksetzen</button></div>
+        <div id="kq-fb" role="status"></div>
+        <div class="ex-done" data-ex="ue-kontraste"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 HARMONIE ================= -->
+    <section class="page" id="p-ue-harmonie" data-page="ue-harmonie">
+      <div class="wrap">
+        <span class="eyebrow">Übung 4 · Harmonien</span>
+        <h1>Harmonie-Farbkreis</h1>
+        <p class="lead">Wählen Sie einen Grundton und eine Harmonieregel. Der Farbkreis zeigt die Beziehung, das Plakat daneben die Wirkung. Danach verfeinern Sie Helligkeit und Sättigung.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>6 Farbklänge</span><span><i></i>Entwurf wird im Browser gespeichert</span></div>
+        <figure class="media media-ex"><img src="media/ue-harmonie.jpg" alt="Kunsthochschul-Atelier mit großem, handgemaltem zwölfteiligem Farbkreis an der Wand, davor Pinsel und Farbgläser" loading="lazy" width="1600" height="900"><figcaption>Der Farbkreis als Werkzeug für Farbklänge. KI-generiert mit Magnific. Die Farben im Bild sind nicht farbverbindlich.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Gestalten Sie ein Plakat für das <strong id="hb-brief">Sommerfest der Hochschule</strong>. Probieren Sie mindestens drei Harmonieregeln aus und entscheiden Sie sich für eine. Achten Sie darauf, dass der Titel gut lesbar bleibt: Der Kontrastwert unter dem Plakat hilft dabei.</p>
+          <div class="row-btns" style="margin-top:8px"><label for="hb-select" class="small muted" style="align-self:center">Anderes Thema:</label><select id="hb-select" style="width:auto"></select></div>
+        </div>
+        <div class="fg-hw">
+          <div class="card">
+            <svg class="fg-wheel" id="hw-wheel" viewBox="-150 -150 300 300" role="img" aria-label="Farbkreis mit markierten Farbtönen der gewählten Harmonie"></svg>
+            <div class="field"><label for="hw-h">Grundton <output id="hw-h-o"></output></label><input type="range" id="hw-h" min="0" max="359" value="200" class="fg-range-hue"></div>
+            <div class="field"><label for="hw-s">Sättigung <output id="hw-s-o"></output></label><input type="range" id="hw-s" min="10" max="100" value="70"></div>
+            <div class="field"><label for="hw-l">Helligkeit Grundton <output id="hw-l-o"></output></label><input type="range" id="hw-l" min="15" max="85" value="40"></div>
+            <div class="chips" role="group" aria-label="Harmonieregel wählen" id="hw-rule"></div>
+          </div>
+          <div>
+            <div class="fg-poster" id="hw-poster"></div>
+            <p class="small" id="hw-contrast" role="status" style="margin-top:10px"></p>
+            <div class="fg-pal" id="hw-pal"></div>
+            <p class="small muted" id="hw-rule-text" style="margin-top:10px"></p>
+            <div class="row-btns"><button class="btn" type="button" id="hw-swap">Rollen tauschen</button><button class="btn" type="button" id="hw-copy">HEX-Werte kopieren</button></div>
+          </div>
+        </div>
+        <div class="task"><span class="label">Reflexion</span><p>Welche Regel passt am besten zum Thema, und warum? Wie verändert sich die Wirkung, wenn Sie nur die Sättigung senken?</p></div>
+        <div class="ex-done" data-ex="ue-harmonie"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 KONTRAST-CHECK ================= -->
+    <section class="page" id="p-ue-check" data-page="ue-check">
+      <div class="wrap">
+        <span class="eyebrow">Übung 5 · Barrierefreiheit</span>
+        <h1>Kontrast-Check und Farbsehschwäche</h1>
+        <p class="lead">Messen Sie Kontraste wie ein Prüfwerkzeug, reparieren Sie zu schwache Farbkombinationen und sehen Sie eine Oberfläche so, wie Menschen mit Farbsehschwäche sie wahrnehmen.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>WCAG 2.2</span><span><i></i>Simulation</span></div>
+        <figure class="media media-ex"><img src="media/ue-check.jpg" alt="Gestalterin prüft mit einer Lupe Text auf farbigen Buttons an einem Monitor" loading="lazy" width="1600" height="900"><figcaption>Genau hinsehen: Ist der Text lesbar? KI-generiert mit Magnific.</figcaption></figure>
+
+        <div class="task"><span class="label">Teil A · Messen</span><p>Wählen Sie Text- und Hintergrundfarbe. Das Werkzeug berechnet das Kontrastverhältnis nach WCAG.</p></div>
+        <div class="demo">
+          <div class="fg-cc">
+            <div class="fg-cc-in">
+              <div class="field"><label for="cc-fg-t">Textfarbe</label><div class="fg-colorrow"><input type="color" id="cc-fg" value="#64378c" aria-label="Textfarbe wählen"><input type="text" id="cc-fg-t" value="#64378C" maxlength="7" spellcheck="false" class="mono"></div></div>
+              <div class="field"><label for="cc-bg-t">Hintergrund</label><div class="fg-colorrow"><input type="color" id="cc-bg" value="#f1eef4" aria-label="Hintergrundfarbe wählen"><input type="text" id="cc-bg-t" value="#F1EEF4" maxlength="7" spellcheck="false" class="mono"></div></div>
+              <button class="btn" type="button" id="cc-swap">Farben tauschen</button>
+            </div>
+            <div class="fg-cc-out">
+              <div class="fg-cc-sample" id="cc-sample"><b>Große Überschrift</b><span>Fließtext in normaler Größe. So liest sich Ihr Text auf diesem Hintergrund.</span><i class="fg-cc-btn">Button</i></div>
+              <div class="fg-cc-ratio"><b id="cc-ratio">–</b><span class="label">Kontrast</span></div>
+              <ul class="fg-cc-res" id="cc-res"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="task"><span class="label">Teil B · Reparieren</span><p>Diese vier Kombinationen fallen durch. Verändern Sie nur die Helligkeit der Textfarbe, bis jede mindestens AA erreicht (4,5 : 1). Der Farbton bleibt erhalten.</p></div>
+        <div class="fg-fix" id="fix"></div>
+        <p class="small" id="fix-status" role="status" style="margin-top:10px"></p>
+
+        <div class="task"><span class="label">Teil C · Simulieren</span><p>Schalten Sie die Simulation um. Welche Informationen gehen verloren? Aktivieren Sie dann „Zusätzliche Merkmale“ und vergleichen Sie.</p></div>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="field" style="margin:0"><label for="cvd-sel">Sehweise</label>
+              <select id="cvd-sel" style="width:auto">
+                <option value="none">Normales Farbsehen</option>
+                <option value="protan">Protanopie (Rot fehlt)</option>
+                <option value="deutan">Deuteranopie (Grün fehlt)</option>
+                <option value="tritan">Tritanopie (Blau fehlt)</option>
+                <option value="achro">Achromatopsie (keine Farben)</option>
+              </select></div>
+            <label class="check"><input type="checkbox" id="cvd-fix"> Zusätzliche Merkmale (Form, Text, Muster)</label>
+          </div>
+          <div class="fg-cvd" id="cvd-stage"></div>
+          <p class="small muted" style="margin-top:10px">Simulation nach Machado, Oliveira &amp; Fernandes (2009), vollständiger Ausfall. Sie ist eine Annäherung, das individuelle Farbsehen ist sehr verschieden.</p>
+        </div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+          <filter id="f-protan"><feColorMatrix type="matrix" values="0.152286 1.052583 -0.204868 0 0  0.114503 0.786281 0.099216 0 0  -0.003882 -0.048116 1.051998 0 0  0 0 0 1 0"/></filter>
+          <filter id="f-deutan"><feColorMatrix type="matrix" values="0.367322 0.860646 -0.227968 0 0  0.280085 0.672501 0.047413 0 0  -0.011820 0.042940 0.968881 0 0  0 0 0 1 0"/></filter>
+          <filter id="f-tritan"><feColorMatrix type="matrix" values="1.255528 -0.076749 -0.178779 0 0  -0.078411 0.930809 0.147602 0 0  0.004733 0.691367 0.303900 0 0  0 0 0 1 0"/></filter>
+          <filter id="f-achro"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"/></filter>
+        </svg>
+        <div class="ex-done" data-ex="ue-check"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 PALETTE ================= -->
+    <section class="page" id="p-ue-palette" data-page="ue-palette">
+      <div class="wrap">
+        <span class="eyebrow">Übung 6 · Interface</span>
+        <h1>Palette bauen</h1>
+        <p class="lead">Entwickeln Sie eine Farbpalette für eine App: mit Rollen, einer Hell- und einer Dunkelvariante und automatischer Kontrastprüfung. Am Ende exportieren Sie Ihre Palette als CSS-Variablen.</p>
+        <div class="ex-meta"><span><i></i>ca. 25 Minuten</span><span><i></i>Design Tokens</span><span><i></i>Entwurf wird im Browser gespeichert</span></div>
+        <figure class="media media-ex"><img src="media/ue-palette.jpg" alt="Moodboard an einer Atelierwand mit Farbmustern, Stoffproben und Fotos, eine Hand pinnt ein Farbmuster an" loading="lazy" width="1600" height="900"><figcaption>Vom Moodboard zur Palette. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Gestalten Sie die Palette für die App <strong id="pl-brief-name">„Mensa heute“</strong>. <span id="pl-brief-hint" class="muted"></span> Alle Prüfungen rechts sollen bestanden sein, im hellen und im dunklen Modus.</p>
+          <div class="row-btns" style="margin-top:8px"><label for="pl-brief" class="small muted" style="align-self:center">Andere App:</label><select id="pl-brief" style="width:auto"></select></div>
+        </div>
+        <div class="fg-pl">
+          <div class="card">
+            <div class="field"><label for="pl-primary-t">Primärfarbe</label><div class="fg-colorrow"><input type="color" id="pl-primary" aria-label="Primärfarbe wählen"><input type="text" id="pl-primary-t" maxlength="7" spellcheck="false" class="mono"></div></div>
+            <div class="field"><label for="pl-accent-t">Akzentfarbe</label><div class="fg-colorrow"><input type="color" id="pl-accent" aria-label="Akzentfarbe wählen"><input type="text" id="pl-accent-t" maxlength="7" spellcheck="false" class="mono"></div></div>
+            <div class="field"><label for="pl-tint">Tönung der Neutralfarben <output id="pl-tint-o"></output></label><input type="range" id="pl-tint" min="0" max="30" value="8"></div>
+            <div class="field"><label for="pl-radius">Eckenradius <output id="pl-radius-o"></output></label><input type="range" id="pl-radius" min="0" max="24" value="12"></div>
+            <div class="row-btns"><button class="btn" type="button" id="pl-harm">Akzent: komplementär</button><button class="btn" type="button" id="pl-reset">Zurücksetzen</button></div>
+            <h3 style="margin-top:20px">Prüfungen</h3>
+            <ul class="fg-checks" id="pl-checks"></ul>
+          </div>
+          <div>
+            <div class="demo-head" style="margin-bottom:10px">
+              <div class="toggle" role="group" aria-label="Vorschau-Modus" id="pl-mode"><button type="button" data-m="light" aria-pressed="true">Hell</button><button type="button" data-m="dark" aria-pressed="false">Dunkel</button></div>
+            </div>
+            <div class="fg-ui" id="pl-ui"></div>
+            <div class="fg-roles" id="pl-roles"></div>
+          </div>
+        </div>
+        <h3 style="margin-top:28px">Export als CSS-Variablen</h3>
+        <label for="pl-css" class="visually-hidden">CSS-Variablen der Palette</label>
+        <textarea id="pl-css" class="mono small fg-export" readonly></textarea>
+        <div class="row-btns" style="margin-top:10px"><button class="btn btn-dark" type="button" id="pl-copy">CSS kopieren</button></div>
+        <div class="ex-done" data-ex="ue-palette"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Fünfzehn Fragen quer durch das Modul. Nach jeder Frage erhalten Sie eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Schreibtisch mit nach Spektrum sortierten Buntstiften, einem Antwortbogen zum Ankreuzen, Karteikarten und einer Tasse Tee" loading="lazy" width="1600" height="900"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Bibliothek</span>
+        <h1>Literatur und Quellen</h1>
+        <p class="lead">Grundlagenwerke und Standards zu Farbe, chronologisch geordnet. Zur Vertiefung und für Hausarbeiten.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Stapel Bücher zu Farbenlehre und Gestaltung auf einem Bibliothekstisch, ein aufgeschlagenes Buch zeigt Farbtafeln" loading="lazy" width="1600" height="900"><figcaption>Grundlagenwerke zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Alte Karteibox mit bunten Registerreitern und einer Lupe auf einem Holztisch" loading="lazy" width="1600" height="900"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Komplementär" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <nav class="az" id="gl-az" aria-label="Alphabet"></nav>
+        </div>
+        <p class="small muted" id="gl-count" role="status"></p>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=20261104b"></script>
+</body>
+</html>
