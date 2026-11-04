@@ -643,3 +643,55 @@ input[type="range"] { margin-inline: 0; }
   .table-wrap td:first-child { font-size: 16px; padding-bottom: 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
   .table-wrap td:not(:first-child)[data-label]::before { content: attr(data-label); display: block; font: 600 10.5px/1.3 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 }
+
+
+/* ================================================================
+   IWI-/HKA-Design – angeglichen an die Typografie-App (TypoLab)
+   Helle Seitenleiste, IWI-Violett #64378C, Schrift Inter.
+   ================================================================ */
+:root {
+  --paper: #FFFFFF; --page-bg: #F9FAFB; --surface: #F3F4F6; --surface-2: #E5E7EB; --line: #E5E7EB;
+  --ink: #1F2937; --ink-2: #374151; --muted: #6B7280; --faint: #D1D5DB;
+  --accent: #64378C; --accent-ink: #5A2576; --accent-soft: #F1EEF4;
+  --side-bg: #FFFFFF; --side-fg: #1F2937; --side-muted: #9CA3AF; --side-hover: #F3F4F6;
+  --f-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-serif: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --side-w: 260px;
+  --shadow: 0 1px 2px rgba(17, 24, 39, .04), 0 4px 16px rgba(17, 24, 39, .05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1A1D27; --page-bg: #0F1117; --surface: #252836; --surface-2: #252836; --line: #2D3148;
+    --ink: #F3F4F6; --ink-2: #E5E7EB; --muted: #9CA3AF; --faint: #4B5068;
+    --accent: #9254D1; --accent-ink: #C8A8DE; --accent-soft: #2A2140;
+    --side-bg: #1A1D27; --side-fg: #F3F4F6; --side-muted: #6B7280; --side-hover: #252836;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1A1D27; --page-bg: #0F1117; --surface: #252836; --surface-2: #252836; --line: #2D3148;
+  --ink: #F3F4F6; --ink-2: #E5E7EB; --muted: #9CA3AF; --faint: #4B5068;
+  --accent: #9254D1; --accent-ink: #C8A8DE; --accent-soft: #2A2140;
+  --side-bg: #1A1D27; --side-fg: #F3F4F6; --side-muted: #6B7280; --side-hover: #252836;
+}
+.sidebar { border-right: 1px solid var(--line); }
+.sidebar::before { content: ""; display: block; height: 3px; flex: none; background: linear-gradient(90deg, #DE6A10, #E99A5C, #DE6A10); }
+.home-back:hover, .home-back:focus-visible { color: var(--accent); }
+.brand-mark { width: 40px; height: 40px; border-radius: 10px; font: 700 15px/1 var(--f-display); }
+.brand-name { font: 700 20px/1.2 var(--f-display); color: var(--side-fg); }
+.brand-name small { font: 600 10px/1.4 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--side-muted); margin-top: 2px; }
+.nav { scrollbar-color: var(--line) transparent; }
+.nav-label { font: 600 11px/1 var(--f-body); letter-spacing: .1em; color: var(--side-muted); }
+.nav a { padding: 10px 14px; border-radius: 8px; font-weight: 500; }
+.nav a:hover { background: var(--side-hover); color: var(--side-fg); }
+.nav a[aria-current="page"] { background: var(--accent); color: #fff; }
+.nav a[aria-current="page"] svg { color: #fff; }
+.side-foot { border-top: 1px solid var(--line); }
+.side-progress { background: var(--surface-2); }
+@media (max-width: 880px) {
+  .topbar { color: var(--ink); border-bottom: 1px solid var(--line); }
+  .topbar button { color: var(--ink); }
+}
+body, .gl-tools { background: var(--page-bg); }
+.page h1 { color: var(--accent); letter-spacing: -.02em; }
+.page h2 { letter-spacing: -.01em; }
