@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Logogestaltung Lernmodul</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..800;1,8..60,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Serif+Display&family=Syne:wght@600;800&family=Space+Mono:wght@400;700&family=Bodoni+Moda:wght@500;800&family=Outfit:wght@300;500;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="brand" href="#home">
+      <span class="brand-mark">LG</span>
+      <span class="brand-name">Lernmodul<small>02 · LOGOGESTALTUNG</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>Logo-Lernplattform v1.0</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px">LG</span>
+      <span class="t">Logogestaltung</span>
+    </div>
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home">
+      <div class="wrap-wide">
+        <div class="home-head">
+          <div class="home-mod"><div class="label">Lernmodul 02</div><div>Zeichen, Piktogramm &amp; Logo</div></div>
+        </div>
+        <div class="hero">
+          <h1>Logo&shy;design<span>lernen</span></h1>
+          <div class="hero-sub">
+            <p>Vom Zeichen zur Marke: Grundlagen der Semiotik, Piktogramm-Systeme, Logoarten, Gestaltungsprinzipien, Animation und KI im Gestaltungsprozess. Mit sechs interaktiven Übungen, in denen Sie selbst reduzieren, konstruieren und bewerten.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn" href="#ue-baukasten">Zum Piktogramm-Baukasten</a>
+            </div>
+          </div>
+        </div>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Theorie &amp; Grundlagen</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Piktogramm · Logo</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Logo-Lernplattform · Lernmodul 02 · Alle Beispiel-Logos auf dieser Seite sind fiktiv und für Lernzwecke gestaltet. Prof. Dipl. Des. T. Hinz</p>
+      </div>
+    </section>
+
+    <!-- ================= EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Einleitung</span>
+        <h1>Warum Zeichen gestalten?</h1>
+        <p class="lead">Ein Logo ist oft das kleinste und zugleich am häufigsten gesehene Element einer Marke. Ein Piktogramm muss in Sekunden verstanden werden, ganz ohne Sprache. Beide verlangen dieselbe Disziplin: so viel wie nötig zeigen, so wenig wie möglich zeichnen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Hände skizzieren Logo-Ideen mit Bleistift in einem Skizzenbuch" loading="lazy" width="1600" height="900"><figcaption>Am Anfang steht die Skizze: viele Ideen, schnell auf Papier. KI-generiert mit Magnific.</figcaption></figure>
+        <h2>Was Sie in diesem Modul erwartet</h2>
+        <div class="grid g2">
+          <div class="card key">
+            <h3>Piktogramm</h3>
+            <p class="muted small">Information ohne Worte</p>
+            <p>Piktogramme vermitteln eine Bedeutung über ein vereinfachtes Bild. Sie leiten durch Flughäfen, warnen vor Gefahren und erklären Funktionen in Interfaces. Ihr Maßstab ist die Verständlichkeit.</p>
+            <p class="q">Leitfrage: „Versteht man es sofort, überall?“</p>
+          </div>
+          <div class="card dark key">
+            <h3>Logo</h3>
+            <p class="muted small">Identität in einem Zeichen</p>
+            <p>Ein Logo kennzeichnet einen Absender: ein Unternehmen, eine Institution, ein Produkt. Es soll wiedererkannt werden, sich unterscheiden und Werte transportieren. Sein Maßstab ist die Unverwechselbarkeit.</p>
+            <p class="q">Leitfrage: „Erkennt man es wieder, und nur dieses?“</p>
+          </div>
+        </div>
+        <p style="margin-top:20px">Danach geht es um den Designprozess, den Einsatz in Anwendung und Bewegung sowie um die Frage, wie KI-Werkzeuge den Prozess verändern.</p>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>die Begriffe Logo, Signet, Marke, Piktogramm und Icon voneinander abgrenzen,</li>
+          <li>Zeichen nach Peirce als Ikon, Index oder Symbol einordnen,</li>
+          <li>die sechs gängigen Logoarten unterscheiden und Beispiele zuordnen,</li>
+          <li>Reduktion, Gestaltgesetze und optische Korrekturen gezielt einsetzen,</li>
+          <li>ein Piktogramm auf einem Konstruktionsraster aufbauen,</li>
+          <li>ein Logo in Anwendungskontexten testen und begründet bewerten,</li>
+          <li>Bewegung für Logos und Icons gezielt und barrierearm einsetzen,</li>
+          <li>Chancen und Grenzen von KI-Werkzeugen im Gestaltungsprozess einschätzen.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen</div><p style="margin-top:10px">Die Kapitel 01–10 bauen aufeinander auf. Fachbegriffe sind im Stichwortverzeichnis erklärt.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen, drei zum Piktogramm, drei zum Logo. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Prüfen</div><p style="margin-top:10px">Der Wissenstest mit 14 Fragen fasst das Modul zusammen. Ihr Fortschritt bleibt in diesem Browser gespeichert.</p></div>
+        </div>
+        <div class="note"><span class="badge-i">i</span><p><strong>Zeitbedarf:</strong> etwa 3–4 Stunden für Kapitel und Übungen. Die Übungen funktionieren auch einzeln, etwa als Einstieg in eine Seminarsitzung.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GRUNDLAGEN ================= -->
+    <section class="page" id="p-grundlagen" data-page="grundlagen">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02</span>
+        <h1>Grundlagen: Zeichen, Logo, Marke</h1>
+        <p class="lead">Bevor wir gestalten, klären wir die Begriffe. Im Alltag werden Logo, Signet und Marke oft gleichgesetzt. Für die Gestaltung lohnt sich die genaue Unterscheidung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/grundlagen.jpg" alt="Holzhaus, Foto von Fußspuren, Euro-Münze und Stempel mit abstraktem Zeichen" loading="lazy" width="1600" height="900"><figcaption>Ikon, Index, Symbol: ein Haus, Fußspuren, eine Münze und ein Stempelzeichen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Begriffe im Überblick</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:24%">Begriff</th><th>Bedeutung</th><th style="width:26%">Herkunft</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Logo</strong></td><td>Umgangssprachlich jedes grafische Kennzeichen eines Absenders. Kurzform von <em>Logotype</em>, ursprünglich ein Schriftzug.</td><td>griech. <em>lógos</em>, Wort</td></tr>
+              <tr><td><strong>Signet</strong></td><td>Grafisches Zeichen, vor allem das Bildzeichen eines Absenders. Historisch das Druckerzeichen.</td><td>lat. <em>signum</em>, Zeichen</td></tr>
+              <tr><td><strong>Marke</strong></td><td>Rechtlich geschütztes Kennzeichen, das Waren oder Dienstleistungen eines Unternehmens unterscheidet (MarkenG § 3).</td><td>Rechtsbegriff</td></tr>
+              <tr><td><strong>Piktogramm</strong></td><td>Vereinfachte bildliche Darstellung, die eine Information sprachunabhängig vermittelt.</td><td>lat. <em>pictus</em>, gemalt + griech. <em>gráphein</em>, schreiben</td></tr>
+              <tr><td><strong>Icon</strong></td><td>Piktogramm in digitalen Oberflächen, steht für eine Funktion oder einen Inhalt (z. B. Suchen, Speichern).</td><td>griech. <em>eikṓn</em>, Abbild</td></tr>
+              <tr><td><strong>Corporate Design</strong></td><td>Das visuelle Erscheinungsbild einer Organisation: Logo, Farben, Schriften, Bildsprache, Raster. Teil der Corporate Identity.</td><td>engl.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Ikon, Index, Symbol</h2>
+        <p>Der Philosoph Charles S. Peirce unterschied drei Arten, wie ein Zeichen auf seine Bedeutung verweist. Piktogramme arbeiten meist ikonisch, Logos oft symbolisch: Ihre Bedeutung wird erst durch Wiederholung gelernt.</p>
+        <div class="sign-row">
+          <div class="sign">
+            <div class="pic"><img src="media/zeichen-ikon.jpg" alt="Hand hält eine Hauszeichnung vor das echte Haus, das sie darstellt" loading="lazy" width="1000" height="667"></div>
+            <div class="txt"><h3>Ikon <span class="label">Ähnlichkeit</span></h3><p class="small muted">Das Zeichen sieht aus wie das Gemeinte. Ein Haus-Umriss steht für ein Haus.</p></div>
+          </div>
+          <div class="sign">
+            <div class="pic"><img src="media/zeichen-index.jpg" alt="Fußspuren im nassen Sand am Strand" loading="lazy" width="1000" height="667"></div>
+            <div class="txt"><h3>Index <span class="label">Folge</span></h3><p class="small muted">Das Zeichen ist eine Spur oder Wirkung. Fußspuren zeigen, dass hier jemand ging.</p></div>
+          </div>
+          <div class="sign">
+            <div class="pic"><img src="media/zeichen-symbol.jpg" alt="Großes Euro-Zeichen an der Wand einer Wechselstube" loading="lazy" width="1000" height="667"></div>
+            <div class="txt"><h3>Symbol <span class="label">Konvention</span></h3><p class="small muted">Die Bedeutung ist vereinbart und muss gelernt werden. Das €-Zeichen ähnelt keiner Münze.</p></div>
+          </div>
+        </div>
+
+        <h2>Was ein Logo leisten muss</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Identifizieren</h3><p class="small muted">Es benennt den Absender und schafft eine eindeutige Zuordnung.</p></div>
+          <div class="card"><h3>Unterscheiden</h3><p class="small muted">Es grenzt sich von Wettbewerbern ab. Austauschbare Zeichen verlieren diese Funktion.</p></div>
+          <div class="card"><h3>Wiedererkennen</h3><p class="small muted">Durch konsequente Wiederholung wird es zum gelernten Symbol.</p></div>
+          <div class="card"><h3>Vertrauen stiften</h3><p class="small muted">Es steht für ein Qualitätsversprechen, ähnlich einer Unterschrift.</p></div>
+          <div class="card"><h3>Haltung zeigen</h3><p class="small muted">Form, Farbe und Schrift transportieren Werte: traditionell, technisch, verspielt.</p></div>
+          <div class="card"><h3>Verbinden</h3><p class="small muted">Es stiftet Zugehörigkeit, nach innen für Mitarbeitende, nach außen für Kundschaft.</p></div>
+        </div>
+        <blockquote class="quote">„A logo does not sell, it identifies.“<cite>Paul Rand, Grafikdesigner (1914–1996)</cite></blockquote>
+
+        <h2>Logo und Piktogramm im Vergleich</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th></th><th>Piktogramm</th><th>Logo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ziel</strong></td><td>Verstehen</td><td>Wiedererkennen</td></tr>
+              <tr><td><strong>Zeichentyp</strong></td><td>meist Ikon</td><td>meist Symbol</td></tr>
+              <tr><td><strong>Eigenständigkeit</strong></td><td>erwünscht ist Konvention</td><td>erwünscht ist Unverwechselbarkeit</td></tr>
+              <tr><td><strong>Auftreten</strong></td><td>im System, als Familie</td><td>als Einzelzeichen mit Varianten</td></tr>
+              <tr><td><strong>Erfolgskriterium</strong></td><td>Fehlerfreie Deutung ohne Sprache</td><td>Eindeutige Zuordnung zum Absender</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GESCHICHTE ================= -->
+    <section class="page" id="p-geschichte" data-page="geschichte">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03</span>
+        <h1>Eine kurze Geschichte der Zeichen</h1>
+        <p class="lead">Menschen markieren Besitz und Herkunft seit Jahrtausenden. Das moderne Logo entsteht mit Industrialisierung, Massenproduktion und Markenrecht. Das Piktogramm wird im 20. Jahrhundert zur Weltsprache.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/geschichte.jpg" alt="In Sandstein gemeißelte Steinmetzzeichen an einer Kirchenmauer" loading="lazy" width="1600" height="900"><figcaption>Steinmetzzeichen: frühe Kennzeichen von Herkunft und Urheberschaft. KI-generiert mit Magnific.</figcaption></figure>
+        <ol class="timeline">
+          <li><span class="yr">ab 1200</span><div><h3>Haus- und Steinmetzzeichen</h3><p>Handwerker kennzeichnen ihre Arbeit mit einfachen Linienzeichen. Hausmarken zeigen Besitz an Vieh, Werkzeug und Gebäuden.</p></div></li>
+          <li><span class="yr">1462</span><div><h3>Druckerzeichen</h3><p>Fust und Schöffer drucken ihr Signet aus zwei Wappenschilden in die Mainzer Bibel, eines der frühesten Druckerzeichen. Signets werden Qualitätsnachweis und Werbung zugleich.</p></div></li>
+          <li><span class="yr">1876</span><div><h3>Erste eingetragene Marke</h3><p>Das rote Dreieck der Brauerei Bass wird unter dem britischen Trade Marks Registration Act als erste Marke eingetragen.</p></div></li>
+          <li><span class="yr">1907</span><div><h3>Peter Behrens und die AEG</h3><p>Behrens gestaltet für die AEG Produkte, Architektur und Drucksachen aus einem Guss. Das gilt als Beginn des Corporate Designs.</p></div></li>
+          <li><span class="yr">1925</span><div><h3>Isotype in Wien</h3><p>Otto Neurath entwickelt mit Marie Reidemeister am Wiener Gesellschafts- und Wirtschaftsmuseum die „Wiener Methode der Bildstatistik“. Ab 1928 prägt Gerd Arntz die Zeichen. Später heißt die Methode Isotype: Mengen werden durch wiederholte Piktogramme gezeigt.</p></div></li>
+          <li><span class="yr">1956</span><div><h3>Paul Rand und IBM</h3><p>Rand prägt das moderne, reduzierte Firmenzeichen. Seine Gestaltung für IBM, Westinghouse oder UPS zeigt den Einfluss der Moderne.</p></div></li>
+          <li><span class="yr">1964</span><div><h3>Olympia Tokio</h3><p>Masaru Katsumi und Yoshiro Yamashita entwickeln die ersten systematischen Sport-Piktogramme für Olympische Spiele.</p></div></li>
+          <li><span class="yr">1972</span><div><h3>Otl Aicher in München</h3><p>Aichers Piktogramme auf einem Raster aus Orthogonalen und Diagonalen werden zum Vorbild für Leitsysteme weltweit.</p></div></li>
+          <li><span class="yr">1974</span><div><h3>AIGA/DOT-Symbole</h3><p>Cook und Shanosky gestalten im Auftrag des US-Verkehrsministeriums 34 frei nutzbare Symbole für Verkehrsknotenpunkte.</p></div></li>
+          <li><span class="yr">ab 2010</span><div><h3>Flach, responsiv, dynamisch</h3><p>Logos verlieren Verläufe und Schatten, werden für App-Icons und Favicons optimiert und als flexible Systeme mit Varianten gedacht.</p></div></li>
+        </ol>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LOGOARTEN ================= -->
+    <section class="page" id="p-logoarten" data-page="logoarten">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04</span>
+        <h1>Logoarten</h1>
+        <p class="lead">Logos lassen sich nach ihrem Aufbau aus Schrift und Bild einteilen. Die Grenzen sind fließend, die Einteilung hilft aber bei Analyse und Entwurf. Alle Beispiele sind fiktive Marken.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/logoarten.jpg" alt="Wand mit fiktiven Logos in sechs Spalten: Wortmarken, Buchstabenmarken, Bildmarken, Wort-Bild-Marken, Embleme und abstrakte Marken" loading="lazy" width="1600" height="900"><figcaption>Sechs Spalten, sechs Logoarten: von der Wortmarke links bis zur abstrakten Marke rechts. Ordnen Sie die Spalten den Beschreibungen unten zu. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="grid g2">
+          <article class="type-card"><div class="pic" data-logo="nordlicht"></div><div class="txt"><h3>Wortmarke</h3><p class="small">Besteht nur aus Schrift, meist dem Namen. Die Wirkung entsteht durch Schriftwahl, Laufweite und Details.</p><p class="ex">Bekannte Beispiele: Google, Coca-Cola, Canon</p></div></article>
+          <article class="type-card"><div class="pic" data-logo="km"></div><div class="txt"><h3>Buchstabenmarke</h3><p class="small">Initialen oder ein einzelner Buchstabe, oft als Monogramm verbunden. Gut für lange Namen.</p><p class="ex">Bekannte Beispiele: IBM, VW, McDonald’s „M“</p></div></article>
+          <article class="type-card"><div class="pic" data-logo="vogel"></div><div class="txt"><h3>Bildmarke</h3><p class="small">Ein gegenständliches Bildzeichen ohne Schrift. Setzt voraus, dass die Marke bereits bekannt ist.</p><p class="ex">Bekannte Beispiele: Apple, Shell, Lacoste</p></div></article>
+          <article class="type-card"><div class="pic" data-logo="fahrwerk"></div><div class="txt"><h3>Wort-Bild-Marke</h3><p class="small">Kombination aus Bildzeichen und Schriftzug. Die häufigste Form, weil beide Teile auch einzeln nutzbar sind.</p><p class="ex">Bekannte Beispiele: Adidas, Lufthansa, Puma</p></div></article>
+          <article class="type-card"><div class="pic" data-logo="altstadt"></div><div class="txt"><h3>Emblem</h3><p class="small">Schrift und Bild sind fest in einer umschließenden Form verbunden, etwa einem Siegel oder Wappen.</p><p class="ex">Bekannte Beispiele: Harley-Davidson, Burger King, viele Vereinswappen</p></div></article>
+          <article class="type-card"><div class="pic" data-logo="prisma"></div><div class="txt"><h3>Abstrakte Marke</h3><p class="small">Eine geometrische oder freie Form ohne gegenständliches Vorbild. Die Bedeutung wird vollständig zugeschrieben.</p><p class="ex">Bekannte Beispiele: Deutsche Bank, Nike, Pepsi</p></div></article>
+        </div>
+        <div class="note"><span class="badge-i">i</span><p>Zur Wort-Bild-Marke zählt auch die <strong>Kombination mit Claim</strong>, einem kurzen Slogan unter dem Logo. Der Claim ist austauschbar, das Logo bleibt.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= PIKTOGRAMME ================= -->
+    <section class="page" id="p-piktogramme" data-page="piktogramme">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05</span>
+        <h1>Piktogramme</h1>
+        <p class="lead">Ein Piktogramm übersetzt eine Information in ein Bild, das ohne Worte funktioniert. Gute Piktogramme stehen nie allein: Sie folgen einem System aus Raster, Strichstärke und Formsprache.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/piktogramme.jpg" alt="Bahnhofshalle mit Leitsystem aus weißen Piktogrammen auf dunklen Schildern" loading="lazy" width="1600" height="900"><figcaption>Leitsysteme funktionieren ohne Worte, wenn alle Zeichen einem System folgen. KI-generiert mit Magnific.</figcaption></figure>
+        <h2>Merkmale guter Piktogramme</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Reduziert</h3><p class="small muted">Nur die Merkmale, die zum Erkennen nötig sind. Details, Perspektive und Schatten entfallen.</p></div>
+          <div class="card"><h3>Eindeutig</h3><p class="small muted">Eine Bedeutung pro Zeichen. Mehrdeutige Motive werden durch Kontext oder Konvention geklärt.</p></div>
+          <div class="card"><h3>Sprachunabhängig</h3><p class="small muted">Funktioniert über Kulturen hinweg. Gesten, Farben und Symbole müssen daraufhin geprüft werden.</p></div>
+          <div class="card"><h3>Systematisch</h3><p class="small muted">Gleiche Strichstärke, gleiche Ecken, gleiches Raster. Erst die Familie macht ein Leitsystem lesbar.</p></div>
+        </div>
+
+        <h2>Isotype: Mengen zeigen statt messen</h2>
+        <p>Otto Neuraths Regel: Eine größere Menge wird durch <strong>mehr</strong> Zeichen gezeigt, nicht durch ein <strong>größeres</strong> Zeichen. So bleibt der Vergleich ehrlich lesbar.</p>
+        <div class="demo">
+          <div id="isotype-demo"></div>
+          <p class="small muted" style="margin:12px 0 0">Beispiel: Wege zur Hochschule, ein Zeichen entspricht 10 Studierenden (fiktive Werte).</p>
+        </div>
+
+        <h2>Das Konstruktionsraster</h2>
+        <p>Piktogramme entstehen auf einem Raster, häufig 24 × 24 oder 48 × 48 Einheiten. Ein Rand bleibt frei (Schutzraum). Hilfsformen, sogenannte <span class="term" title="Hilfslinien für Grundformen im Raster">Keylines</span>, geben Kreis, Quadrat, Hoch- und Querformat vor. Sie sind so bemessen, dass die Grundformen optisch gleich groß wirken.</p>
+        <div class="demo" style="display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;align-items:center" id="keyline-demo-wrap">
+          <svg viewBox="0 0 48 48" style="width:100%;background:var(--paper);border-radius:12px" aria-label="Keyline-Raster 48 mal 48">
+            <g id="keyline-grid"></g>
+            <rect x="4" y="4" width="40" height="40" fill="none" stroke="var(--accent)" stroke-width=".25" stroke-dasharray="1 .6"/>
+            <circle cx="24" cy="24" r="20" fill="none" stroke="var(--ink)" stroke-width=".3"/>
+            <rect x="6" y="6" width="36" height="36" rx="2" fill="none" stroke="var(--ink)" stroke-width=".3"/>
+            <rect x="8" y="4" width="32" height="40" rx="2" fill="none" stroke="var(--muted)" stroke-width=".25"/>
+            <rect x="4" y="8" width="40" height="32" rx="2" fill="none" stroke="var(--muted)" stroke-width=".25"/>
+          </svg>
+          <ul class="list small" style="margin:0">
+            <li><strong>Arbeitsfläche</strong> 48 × 48 Einheiten</li>
+            <li><strong>Schutzraum</strong> 4 Einheiten rundum (gestrichelt)</li>
+            <li><strong>Kreis</strong> Ø 40, <strong>Quadrat</strong> 36 × 36: Das Quadrat ist kleiner, damit beide gleich groß wirken</li>
+            <li><strong>Hochformat</strong> 32 × 40, <strong>Querformat</strong> 40 × 32</li>
+            <li><strong>Strichstärke</strong> einheitlich, z. B. 4 Einheiten</li>
+            <li class="muted">Maße angelehnt an die Keylines der Material-Design-Icons (dort auf 24 × 24 px)</li>
+          </ul>
+        </div>
+
+        <h2>Normierte Sicherheitszeichen</h2>
+        <p>Für Sicherheitskennzeichnung legt <strong>DIN EN ISO 7010</strong> Form und Farbe verbindlich fest. Die Kombination aus Grundform und Farbe ist selbst schon ein Zeichen, noch bevor man das Motiv liest. Öffentliche Informationszeichen regelt <strong>ISO 7001</strong>.</p>
+        <div class="demo">
+          <div class="iso-row">
+            <div class="iso"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#fff" stroke="#c8102e" stroke-width="5"/><path d="M10 10 38 38" stroke="#c8102e" stroke-width="5"/></svg><b>Verbot</b><span>Rot, Kreis mit Balken</span></div>
+            <div class="iso"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#0054a5"/><circle cx="24" cy="15" r="4" fill="#fff"/><rect x="20" y="21" width="8" height="15" rx="2" fill="#fff"/></svg><b>Gebot</b><span>Blau, Kreis</span></div>
+            <div class="iso"><svg viewBox="0 0 48 48"><path d="M24 4 45 42H3z" fill="#f9c80e" stroke="#111" stroke-width="3" stroke-linejoin="round"/><rect x="22" y="17" width="4" height="13" rx="1" fill="#111"/><circle cx="24" cy="35" r="2.3" fill="#111"/></svg><b>Warnung</b><span>Gelb, Dreieck</span></div>
+            <div class="iso"><svg viewBox="0 0 48 48"><rect x="2" y="8" width="44" height="32" rx="2" fill="#009a44"/><path d="M24 14v20M14 24h20" stroke="#fff" stroke-width="6"/></svg><b>Rettung</b><span>Grün, Rechteck</span></div>
+          </div>
+        </div>
+
+        <h2>Checkliste für ein Piktogramm</h2>
+        <ul class="list">
+          <li>Ist das Motiv das typischste Merkmal des Gemeinten (Prototyp)?</li>
+          <li>Ist es in 16 px noch erkennbar? Und negativ auf dunklem Grund?</li>
+          <li>Passt es zur Familie: Strichstärke, Radien, Raster, Blickwinkel?</li>
+          <li>Wird es von Testpersonen ohne Erklärung richtig gedeutet? ISO 9186 nennt dafür Verständnisquoten als Prüfmaßstab.</li>
+        </ul>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GESTALTUNG ================= -->
+    <section class="page" id="p-gestaltung" data-page="gestaltung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06</span>
+        <h1>Gestaltungsprinzipien</h1>
+        <p class="lead">Gute Zeichen wirken mühelos. Dahinter stehen Entscheidungen über Form, Proportion, Farbe und Schrift, die auf Gesetzmäßigkeiten unserer Wahrnehmung aufbauen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/gestaltung.jpg" alt="Konstruktionszeichnung einer Kreis-Bildmarke mit Zirkel und Lineal" loading="lazy" width="1600" height="900"><figcaption>Konstruktion aus Kreisen und Hilfslinien macht ein Zeichen exakt reproduzierbar. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Reduktion</h2>
+        <p>Reduktion heißt nicht „wenig“, sondern „nichts Überflüssiges“. Ein reduziertes Zeichen bleibt in kleinen Größen, auf schlechtem Papier und im Augenwinkel lesbar. Prüffrage: Was passiert, wenn ich dieses Element weglasse? Wenn das Zeichen gleich gut funktioniert, war das Element überflüssig.</p>
+
+        <h2>Gestaltgesetze im Zeichen</h2>
+        <div class="grid g3">
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg></div><h3>Prägnanz</h3><p class="small muted">Einfache, geschlossene Formen werden bevorzugt wahrgenommen und schneller gemerkt.</p></div>
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 4a8 8 0 0 1 8 8M20 15a8 8 0 0 1-5 5M9 20a8 8 0 0 1-5-8M5 8a8 8 0 0 1 4-3.5"/></svg></div><h3>Geschlossenheit</h3><p class="small muted">Lücken werden im Kopf ergänzt. Unterbrochene Konturen wirken leichter und dennoch vollständig.</p></div>
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor"/><path d="M7 12h8M12 8l4 4-4 4" stroke="var(--accent-soft)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Figur und Grund</h3><p class="small muted">Der Negativraum wird zur zweiten Form. Bekanntes Beispiel: der Pfeil zwischen „E“ und „x“ bei FedEx.</p></div>
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="8" r="2.2"/><circle cx="11" cy="8" r="2.2"/><circle cx="6" cy="13" r="2.2"/><circle cx="11" cy="13" r="2.2"/><circle cx="18" cy="16" r="2.2"/></svg></div><h3>Nähe</h3><p class="small muted">Was nah beieinander liegt, gehört zusammen. Abstände bestimmen, ob Bild und Schrift eine Einheit bilden.</p></div>
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="5" height="5" rx="1"/><rect x="10" y="4" width="5" height="5" rx="1"/><circle cx="19" cy="6.5" r="2.6"/><rect x="3" y="14" width="5" height="5" rx="1"/><circle cx="12.5" cy="16.5" r="2.6"/><circle cx="19" cy="16.5" r="2.6"/></svg></div><h3>Ähnlichkeit</h3><p class="small muted">Gleiche Formen, Farben oder Strichstärken werden als Gruppe gelesen. Grundlage jeder Piktogrammfamilie.</p></div>
+          <div class="card"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 17c4-10 8-10 9-5s5 5 9-5"/></svg></div><h3>Kontinuität</h3><p class="small muted">Linien werden in ihrer Richtung weitergelesen. Ein Schwung verbindet Elemente und erzeugt Bewegung.</p></div>
+        </div>
+
+        <h2>Optische Korrekturen</h2>
+        <p>Geometrisch gleich ist nicht optisch gleich. Ein Kreis mit derselben Höhe wie ein Quadrat wirkt kleiner, weil er weniger Fläche hat. Runde und spitze Formen ragen deshalb leicht über die Grundlinie hinaus (engl. <em>overshoot</em>). Schalten Sie zwischen beiden Varianten um. Der Ausgleich ist zur Verdeutlichung etwas verstärkt; in der Praxis sind es wenige Prozent.</p>
+        <div class="demo">
+          <div class="demo-head"><span class="label">Kreis, Quadrat, Dreieck auf einer Linie</span>
+            <div class="toggle" role="group" aria-label="Korrektur"><button type="button" aria-pressed="true" data-oc="geo">Geometrisch gleich</button><button type="button" aria-pressed="false" data-oc="opt">Optisch ausgeglichen</button></div>
+          </div>
+          <div class="oc"><svg viewBox="0 0 300 120" id="oc-svg" aria-label="Optischer Ausgleich"></svg></div>
+          <p class="small muted" style="margin:10px 0 0" id="oc-text">Alle drei Formen sind exakt 80 Einheiten hoch. Kreis und Dreieck wirken trotzdem kleiner als das Quadrat.</p>
+        </div>
+
+        <h2>Proportion und Konstruktion</h2>
+        <p>Viele Bildmarken werden aus Kreisen und Rastern konstruiert. Das sorgt für harmonische Kurven und macht das Zeichen exakt reproduzierbar. Der Goldene Schnitt (≈ 1 : 1,618) ist ein mögliches Proportionssystem, aber kein Qualitätsbeweis. Entscheidend ist, wie das Zeichen wirkt.</p>
+
+        <h2>Farbe</h2>
+        <p>Farbe wirkt schneller als Form und ist stark kulturell geprägt. Ein Logo sollte daher <strong>zuerst einfarbig</strong> funktionieren; Farbe kommt als zweite Ebene hinzu.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:18%">Farbe</th><th>Häufige Assoziation (westlich)</th><th>Typische Branchen</th></tr></thead>
+            <tbody>
+              <tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#d7261e;margin-right:8px"></span>Rot</td><td>Energie, Leidenschaft, Signal</td><td>Lebensmittel, Medien, Sport</td></tr>
+              <tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#1d57a8;margin-right:8px"></span>Blau</td><td>Vertrauen, Ruhe, Kompetenz</td><td>Banken, Versicherungen, Tech</td></tr>
+              <tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2c8a4b;margin-right:8px"></span>Grün</td><td>Natur, Gesundheit, Nachhaltigkeit</td><td>Bio, Energie, Pharmazie</td></tr>
+              <tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#f2b705;margin-right:8px"></span>Gelb</td><td>Optimismus, Aufmerksamkeit</td><td>Logistik, Handel, Gastronomie</td></tr>
+              <tr><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#161412;margin-right:8px;box-shadow:0 0 0 1px var(--line)"></span>Schwarz</td><td>Eleganz, Präzision, Luxus</td><td>Mode, Design, Premium</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Typografie</h2>
+        <p>In Wortmarken ist die Schrift das Zeichen. Serifenschriften wirken eher traditionell, Groteskschriften sachlich, Schreibschriften persönlich. Selten wird eine Schrift unverändert übernommen: Laufweite, Kerning und einzelne Buchstaben werden angepasst, damit der Schriftzug eigenständig und schutzfähig wird.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= PROZESS ================= -->
+    <section class="page" id="p-prozess" data-page="prozess">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07</span>
+        <h1>Der Designprozess</h1>
+        <p class="lead">Ein Logo entsteht selten durch einen Geistesblitz. Es ist das Ergebnis eines Prozesses, der vom Verstehen über viele Skizzen zur präzisen Reinzeichnung führt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/prozess.jpg" alt="Arbeitstisch mit Moodboard, Scribbles auf Transparentpapier und Logo-Varianten" loading="lazy" width="1600" height="900"><figcaption>Moodboard, Scribbles, Varianten: Der Prozess ist sichtbar auf dem Tisch. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><div><h3>Briefing</h3><p>Wer ist der Absender, wer die Zielgruppe? Welche Werte, welcher Wettbewerb, welche Anwendungen? Ein Re-Briefing hält das gemeinsame Verständnis schriftlich fest.</p><p class="out"><b>Ergebnis:</b> Briefing-Dokument, Anforderungsliste</p></div></div>
+          <div class="step"><span class="n">02</span><div><h3>Recherche und Analyse</h3><p>Wettbewerbsanalyse, Geschichte des Unternehmens, Bildwelten der Branche. Ziel ist, Klischees zu erkennen, um sie bewusst zu nutzen oder zu vermeiden.</p><p class="out"><b>Ergebnis:</b> Wettbewerbsübersicht, Moodboard, Begriffssammlung</p></div></div>
+          <div class="step"><span class="n">03</span><div><h3>Ideenfindung</h3><p>Mindmaps und Wortfelder, dann schnelle Scribbles mit Stift auf Papier: viele Ideen in kurzer Zeit, bewertet wird erst danach.</p><p class="out"><b>Ergebnis:</b> 50–100 Scribbles, Auswahl von 3–5 Richtungen</p></div></div>
+          <div class="step"><span class="n">04</span><div><h3>Entwurf</h3><p>Die besten Ideen werden digital als Vektor umgesetzt, variiert und in Schwarz-Weiß geprüft. Erst danach kommen Farbe und Schrift hinzu.</p><p class="out"><b>Ergebnis:</b> Entwurfsvarianten mit Konstruktion</p></div></div>
+          <div class="step"><span class="n">05</span><div><h3>Präsentation und Feedback</h3><p>Entwürfe werden im Kontext gezeigt (Visitenkarte, Website, Schild) und mit dem Briefing begründet, nicht mit Geschmack.</p><p class="out"><b>Ergebnis:</b> Entscheidung, Änderungswünsche</p></div></div>
+          <div class="step"><span class="n">06</span><div><h3>Reinzeichnung</h3><p>Präzise Ausarbeitung: Kurven optimieren, optische Korrekturen, Kerning, Varianten für klein und groß, positiv und negativ.</p><p class="out"><b>Ergebnis:</b> finale Vektordateien</p></div></div>
+          <div class="step"><span class="n">07</span><div><h3>Styleguide und Übergabe</h3><p>Regeln für Schutzzone, Mindestgröße, Farben und Anwendung, dazu ein Paket mit allen Dateiformaten.</p><p class="out"><b>Ergebnis:</b> Logo-Manual, Dateipaket (SVG, PDF, PNG)</p></div></div>
+        </div>
+        <div class="note"><span class="badge-i">i</span><p><strong>Tipp:</strong> Der Schwarz-Weiß-Test in Schritt 04 spart später viel Arbeit. Ein Zeichen, das nur durch Farbe oder Verlauf funktioniert, scheitert bei Stempel, Gravur oder Fax.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= ANWENDUNG ================= -->
+    <section class="page" id="p-anwendung" data-page="anwendung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08</span>
+        <h1>Anwendung und Logo-Systeme</h1>
+        <p class="lead">Ein Logo lebt in hunderten Kontexten: vom 16-Pixel-Favicon bis zur Fassade. Regeln im Styleguide sichern, dass es überall gleich gut funktioniert.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/anwendung.jpg" alt="Geschäftsausstattung mit einheitlichem Logo auf Visitenkarten, Briefbogen und Tasche" loading="lazy" width="1600" height="900"><figcaption>Ein Logo im Einsatz: von der Visitenkarte bis zur Tasche gleich erkennbar. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Responsive Logos</h2>
+        <p>Statt ein Logo einfach zu verkleinern, werden Varianten mit abnehmender Komplexität definiert. Klicken Sie sich durch die vier Stufen:</p>
+        <div class="demo">
+          <div class="demo-head"><span class="label">Fiktive Marke „Fahrwerk“</span>
+            <div class="toggle" role="group" aria-label="Stufe" id="resp-toggle">
+              <button type="button" aria-pressed="true" data-step="0">XL</button><button type="button" aria-pressed="false" data-step="1">L</button><button type="button" aria-pressed="false" data-step="2">M</button><button type="button" aria-pressed="false" data-step="3">S</button>
+            </div>
+          </div>
+          <div style="background:var(--paper);border-radius:12px;height:200px;display:grid;place-items:center;color:var(--ink)" id="resp-view"></div>
+          <p class="small muted" style="margin:10px 0 0" id="resp-text"></p>
+        </div>
+
+        <h2>Schutzzone und Mindestgröße</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Schutzzone</h3><p class="small">Ein Freiraum rund um das Logo, in den keine anderen Elemente ragen dürfen. Er wird relativ zum Logo definiert, etwa als Höhe des Bildzeichens oder eines Buchstabens („x“).</p></div>
+          <div class="card"><h3>Mindestgröße</h3><p class="small">Die kleinste zulässige Darstellung, z. B. 20 mm Breite im Druck oder 24 px Höhe am Bildschirm. Darunter wird eine vereinfachte Variante eingesetzt.</p></div>
+        </div>
+
+        <h2>Häufige Fehler in der Anwendung</h2>
+        <div class="dont-grid" id="dont-grid"></div>
+
+        <h2>Dateiformate und Farbangaben</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:22%">Format / System</th><th>Einsatz</th><th style="width:22%">Art</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SVG</strong></td><td>Web, Apps, Präsentationen. Beliebig skalierbar, klein, per CSS einfärbbar.</td><td>Vektor</td></tr>
+              <tr><td><strong>PDF / EPS</strong></td><td>Druckvorstufe, Weitergabe an Agenturen und Druckereien.</td><td>Vektor</td></tr>
+              <tr><td><strong>PNG</strong></td><td>Office, soziale Medien, wenn kein SVG möglich ist. Transparenz möglich.</td><td>Pixel</td></tr>
+              <tr><td><strong>CMYK</strong></td><td>Vierfarbdruck (Offset, Digitaldruck)</td><td>Druckfarben</td></tr>
+              <tr><td><strong>Pantone / HKS</strong></td><td>Sonderfarbe für exakte Farbwiedergabe im Druck</td><td>Volltonfarbe</td></tr>
+              <tr><td><strong>RGB / HEX</strong></td><td>Bildschirm, Web, Apps</td><td>Lichtfarben</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= ANIMATION ================= -->
+    <section class="page" id="p-animation" data-page="animation">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09</span>
+        <h1>Animierte Logos und Icons</h1>
+        <p class="lead">Auf Bildschirmen stehen Logos und Icons selten still. Bewegung kann eine Markenidee erzählen, Zustände erklären und Rückmeldung geben. Sie muss aber genauso diszipliniert gestaltet werden wie die Form selbst.</p>
+        <hr class="rule">
+        <figure class="media">
+          <video id="anim-video" src="media/logo-animation.mp4" muted loop playsinline controls preload="metadata" poster="media/logo-animation-poster.jpg" aria-label="Beispielhafte Logo-Animation: Ein Kreis zeichnet sich, füllt sich zur Hälfte, ein Punkt springt hinein"></video>
+          <figcaption>Beispiel einer Logo-Animation: Kontur zeichnen, Fläche füllen, Akzent setzen. KI-generiert mit Magnific.</figcaption>
+        </figure>
+
+        <h2>Wo Bewegung eingesetzt wird</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Intro und Outro</h3><p class="small muted">Logo am Anfang oder Ende von Videos, Präsentationen und Spots. Dauer meist 1–3 Sekunden, oft mit Sound (Audio-Logo).</p></div>
+          <div class="card"><h3>App-Start</h3><p class="small muted">Der Splash-Screen überbrückt Ladezeit. Die Animation sollte kürzer sein als die Wartezeit und nie zusätzlich bremsen.</p></div>
+          <div class="card"><h3>Ladezustand</h3><p class="small muted">Ein Teil des Logos wird zum Loader, z. B. ein rotierendes Rad. Läuft als Schleife, bis der Inhalt bereit ist.</p></div>
+          <div class="card"><h3>Mikrointeraktionen</h3><p class="small muted">Icons reagieren auf Klick oder Tippen: Herz füllt sich, Menü wird zum Schließen-Kreuz. Bestätigt eine Aktion.</p></div>
+          <div class="card"><h3>Website und Social</h3><p class="small muted">Hover-Effekte im Header, animierte Profilbilder und Sticker. Kurz, wiederholbar, ohne Ton.</p></div>
+          <div class="card"><h3>Dynamische Identität</h3><p class="small muted">Das Logo verändert sich je nach Inhalt oder Daten. Bekannt sind das wandelbare MTV-Logo oder die Google-Punkte, die sich zum „G“ formen.</p></div>
+        </div>
+
+        <h2>Gestaltungsprinzipien für Bewegung</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:22%">Prinzip</th><th>Bedeutung</th><th style="width:28%">Richtwert</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Timing</strong></td><td>Die Dauer bestimmt die Wirkung: kurz wirkt präzise, lang wirkt feierlich.</td><td>Icons 100–300 ms, Übergänge 200–500 ms, Logo-Intro 1–3 s</td></tr>
+              <tr><td><strong>Easing</strong></td><td>Beschleunigung und Abbremsen. Lineare Bewegung wirkt mechanisch, natürliche Bewegung bremst am Ende ab.</td><td>Ease-out für Erscheinen, ease-in für Verschwinden</td></tr>
+              <tr><td><strong>Aufbau</strong></td><td>Die Reihenfolge, in der Teile erscheinen, erzählt die Logik des Zeichens: erst Kontur, dann Fläche, dann Schrift.</td><td>Versatz (Stagger) 50–150 ms zwischen Elementen</td></tr>
+              <tr><td><strong>Morphing</strong></td><td>Eine Form verwandelt sich in eine andere, z. B. Menü in Kreuz. Verbindet zwei Zustände sichtbar.</td><td>Gleiche Anzahl Punkte in beiden Formen</td></tr>
+              <tr><td><strong>Ruhezustand</strong></td><td>Jede Animation endet im statischen Logo. Das Endbild muss allein funktionieren.</td><td>Letztes Bild = Reinzeichnung</td></tr>
+              <tr><td><strong>Markenbezug</strong></td><td>Die Bewegung leitet sich aus der Idee ab: ein Rad rollt, Licht geht an, Wellen fließen.</td><td>Eine Bewegungsidee pro Marke</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Ausprobieren: Logo-Animation</h2>
+        <p>Wählen Sie ein Logo, eine Beschleunigungskurve und eine Dauer. Achten Sie darauf, wie sich die Wirkung ändert, obwohl die Bewegung gleich bleibt.</p>
+        <div class="demo">
+          <div class="anim-controls">
+            <div class="field"><span class="lbl">Logo</span><div class="toggle" role="group" aria-label="Logo" id="anim-logo"><button type="button" data-v="lumen" aria-pressed="true">lumen</button><button type="button" data-v="fahrwerk" aria-pressed="false">fahrwerk</button><button type="button" data-v="prisma" aria-pressed="false">Prisma</button></div></div>
+            <div class="field"><label for="anim-ease">Easing</label><select id="anim-ease">
+              <option value="cubic-bezier(.16,1,.3,1)">Ease-out (bremst sanft ab)</option>
+              <option value="linear">Linear (mechanisch)</option>
+              <option value="cubic-bezier(.65,0,.35,1)">Ease-in-out (weich)</option>
+              <option value="cubic-bezier(.34,1.56,.64,1)">Federnd (schießt über)</option>
+            </select></div>
+            <div class="field"><label for="anim-dur">Dauer <output id="anim-dur-o">1200 ms</output></label><input type="range" id="anim-dur" min="300" max="3000" step="100" value="1200"></div>
+          </div>
+          <div class="anim-stage artboard" id="anim-stage"></div>
+          <div class="row-btns" style="margin-top:12px"><button class="btn btn-primary" type="button" id="anim-play"><svg viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg>Abspielen</button><span class="small muted" id="anim-note" style="align-self:center"></span></div>
+        </div>
+
+        <h2>Ausprobieren: Animierte Icons</h2>
+        <p>Klicken Sie auf die Icons. Jedes zeigt eine typische Mikrointeraktion mit ihrer Dauer. Gute Icon-Animationen sind so kurz, dass sie nicht warten lassen, und so deutlich, dass die Zustandsänderung klar wird.</p>
+        <div class="icon-grid" id="icon-grid"></div>
+
+        <h2>Technik und Formate</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:22%">Format</th><th>Einsatz</th><th style="width:26%">Eigenschaften</th></tr></thead>
+            <tbody>
+              <tr><td><strong>CSS / SVG</strong></td><td>Icons und Logos im Web, Hover- und Klick-Effekte</td><td>Leicht, scharf, per Code steuerbar</td></tr>
+              <tr><td><strong>Lottie</strong></td><td>Komplexere Animationen aus After Effects (Export mit Bodymovin) für Web und Apps</td><td>Vektorbasiert, JSON-Datei, klein</td></tr>
+              <tr><td><strong>Rive</strong></td><td>Interaktive Animationen mit Zuständen (State Machines), z. B. Icons, die auf Eingaben reagieren</td><td>Vektorbasiert, interaktiv, eigene Laufzeit</td></tr>
+              <tr><td><strong>MP4 / WebM</strong></td><td>Intros, Social Media, Präsentationen</td><td>Pixelbasiert, gut für Effekte, nicht skalierbar</td></tr>
+              <tr><td><strong>GIF</strong></td><td>E-Mail-Signaturen, ältere Plattformen</td><td>256 Farben, große Dateien, nur noch Notlösung</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Barrierefreiheit</h2>
+        <ul class="list">
+          <li><strong>Reduzierte Bewegung respektieren:</strong> Wer im Betriebssystem „Bewegung reduzieren“ aktiviert hat, sieht per CSS-Abfrage <span class="mono small">prefers-reduced-motion</span> das statische Logo.</li>
+          <li><strong>Keine Blitze:</strong> Nicht mehr als drei Lichtblitze pro Sekunde (WCAG 2.3.1), um Anfälle zu vermeiden.</li>
+          <li><strong>Anhalten ermöglichen:</strong> Bewegung, die länger als fünf Sekunden läuft, muss sich pausieren lassen (WCAG 2.2.2).</li>
+          <li><strong>Bedeutung nicht nur über Bewegung:</strong> Ein Zustand wie „gespeichert“ braucht zusätzlich Form, Farbe oder Text.</li>
+        </ul>
+        <div class="note"><span class="badge-i">i</span><p><strong>Faustregel:</strong> Erst das statische Logo fertig gestalten, dann die Bewegung. Eine Animation rettet kein schwaches Zeichen.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= KI ================= -->
+    <section class="page" id="p-ki" data-page="ki">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10</span>
+        <h1>KI und Logogestaltung</h1>
+        <p class="lead">Bildgeneratoren liefern in Sekunden dutzende Logo-Entwürfe. Das verändert den Prozess, ersetzt aber nicht die gestalterische Arbeit. Dieses Kapitel zeigt, wo KI hilft, wo sie scheitert und wie Sie sie verantwortungsvoll einsetzen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/ki.jpg" alt="Bildschirm mit vielen generierten Logo-Varianten neben Papier mit handgezeichneten Überarbeitungen" loading="lazy" width="1600" height="900"><figcaption>KI liefert Varianten, die Ausarbeitung bleibt Handarbeit. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Wo KI im Prozess hilft</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th style="width:24%">Prozessschritt</th><th>Möglicher KI-Einsatz</th><th style="width:26%">Wer entscheidet</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Briefing</strong></td><td>Fragen sammeln, Begriffe und Werte strukturieren</td><td>Mensch</td></tr>
+              <tr><td><strong>Recherche</strong></td><td>Moodboards, Bildwelten, Wettbewerbsübersicht zusammenfassen</td><td>Mensch prüft Quellen</td></tr>
+              <tr><td><strong>Ideenfindung</strong></td><td>Viele Bildideen und Stilrichtungen als Anregung</td><td>Mensch wählt aus</td></tr>
+              <tr><td><strong>Entwurf</strong></td><td>Varianten von Farbe und Form, schnelle Skizzen</td><td>Mensch zeichnet neu</td></tr>
+              <tr><td><strong>Präsentation</strong></td><td>Mockups und Anwendungsbilder (wie die Fotos in diesem Modul)</td><td>Mensch</td></tr>
+              <tr><td><strong>Reinzeichnung</strong></td><td>Kaum: Vektorisieren hilft, ersetzt aber keine Konstruktion</td><td>Mensch</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Vorteile und Nachteile</h2>
+        <div class="grid g2">
+          <div class="card key">
+            <h3>Vorteile</h3>
+            <ul class="list small">
+              <li>Sehr schnelle Variantenbildung, gut gegen die „leere Seite“</li>
+              <li>Unerwartete Kombinationen als Denkanstoß</li>
+              <li>Günstige Mockups und Visualisierungen für Präsentationen</li>
+              <li>Mehr Zeit für Strategie, Auswahl und Ausarbeitung</li>
+              <li>Hilfreich bei Animation und Varianten für Social Media</li>
+            </ul>
+          </div>
+          <div class="card dark key">
+            <h3>Nachteile</h3>
+            <ul class="list small">
+              <li>Ergebnisse sind Pixelbilder, keine sauberen Vektoren</li>
+              <li>Schrift wird oft fehlerhaft oder unleserlich erzeugt</li>
+              <li>Tendenz zum Durchschnitt: Branchenklischees statt Eigenständigkeit</li>
+              <li>Keine Konstruktion, keine optischen Korrekturen</li>
+              <li>Unklare Rechtslage und Ähnlichkeit zu bestehenden Marken</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Grenzen</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Urheberrecht</h3><p class="small muted">In Deutschland schützt das Urheberrecht nur persönliche geistige Schöpfungen von Menschen. Ein rein KI-generiertes Bild ist in der Regel nicht urheberrechtlich geschützt. Erst die menschliche Überarbeitung kann Schutz begründen.</p></div>
+          <div class="card"><h3>Markenrecht</h3><p class="small muted">Ein Logo kann als Marke angemeldet werden, auch mit KI entstanden. Es darf aber nicht mit älteren Marken verwechselbar sein. Eine Recherche in den Registern von DPMA und EUIPO ist Pflicht.</p></div>
+          <div class="card"><h3>Strategie</h3><p class="small muted">KI kennt weder die Geschichte noch die Werte oder die Zielgruppe eines Unternehmens. Die Begründung, warum ein Zeichen passt, bleibt Aufgabe der Gestaltenden.</p></div>
+          <div class="card"><h3>Systemdenken</h3><p class="small muted">Ein Logo ist Teil eines Systems mit Varianten, Schutzzone, Mindestgröße und Farbwerten. Einzelbilder aus einem Generator liefern dieses System nicht.</p></div>
+        </div>
+        <div class="note"><span class="badge-i">i</span><p><strong>Transparenz:</strong> Kennzeichnen Sie KI-Anteile gegenüber Auftraggebenden und in Prüfungsleistungen. Prüfen Sie außerdem die Nutzungsbedingungen des jeweiligen Tools, etwa zur kommerziellen Nutzung.</p></div>
+
+        <h2>Empfohlenes Vorgehen</h2>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><div><h3>Briefing ohne KI</h3><p>Ziele, Zielgruppe und Werte klären Sie selbst. Ohne klares Briefing produziert KI nur Beliebiges.</p></div></div>
+          <div class="step"><span class="n">02</span><div><h3>KI als Moodboard nutzen</h3><p>Generieren Sie Stimmungen, Formideen und Stilrichtungen, nicht das fertige Logo.</p></div></div>
+          <div class="step"><span class="n">03</span><div><h3>Bewusst auswählen</h3><p>Prüfen Sie Varianten mit den Kriterien aus dem Logo-Check: einfach, eigenständig, skalierbar, einfarbig nutzbar.</p></div></div>
+          <div class="step"><span class="n">04</span><div><h3>Neu zeichnen</h3><p>Übertragen Sie die beste Idee von Hand in einen konstruierten Vektor mit Raster, Kurvenkontrolle und optischen Korrekturen.</p></div></div>
+          <div class="step"><span class="n">05</span><div><h3>Recherchieren und testen</h3><p>Markenrecherche, Bildersuche nach ähnlichen Zeichen, Kontexttests wie im Logo-Labor.</p></div></div>
+          <div class="step"><span class="n">06</span><div><h3>Dokumentieren</h3><p>Halten Sie fest, welche Schritte mit KI entstanden sind und welche Entscheidungen Sie getroffen haben.</p></div></div>
+        </div>
+
+        <h2>Ausprobieren: Prompt-Baukasten</h2>
+        <p>Gute Prompts beschreiben Inhalt und Einschränkungen, nicht nur einen Stil. Stellen Sie einen Prompt für eine Ideenrunde zusammen und kopieren Sie ihn in ein Bild-Tool Ihrer Wahl.</p>
+        <div class="demo">
+          <div class="grid g2" style="gap:12px">
+            <div class="field"><label for="pr-brand">Marke und Branche</label><input type="text" id="pr-brand" value="Fahrradwerkstatt „Fahrwerk“"></div>
+            <div class="field"><label for="pr-type">Logoart</label><select id="pr-type"><option>Bildmarke</option><option>Wort-Bild-Marke</option><option>Buchstabenmarke</option><option>Emblem</option><option>abstrakte Marke</option></select></div>
+            <div class="field"><label for="pr-motif">Motividee</label><input type="text" id="pr-motif" value="ein Rad, reduziert auf geometrische Grundformen"></div>
+            <div class="field"><label for="pr-style">Stil</label><select id="pr-style"><option>flach, geometrisch, minimal</option><option>handgezeichnet, organisch</option><option>kräftig, modern, technisch</option><option>klassisch, elegant</option></select></div>
+          </div>
+          <div class="chips" style="margin:6px 0 12px" id="pr-rules">
+            <label class="check"><input type="checkbox" checked value="einfarbig schwarz auf weißem Grund"> einfarbig</label>
+            <label class="check"><input type="checkbox" checked value="kein Text"> ohne Schrift</label>
+            <label class="check"><input type="checkbox" checked value="keine Verläufe, keine Schatten"> ohne Effekte</label>
+            <label class="check"><input type="checkbox" value="mehrere Varianten in einem Raster"> Variantenraster</label>
+          </div>
+          <textarea id="pr-out" class="mono small" readonly style="width:100%;height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--paper);color:var(--ink)"></textarea>
+          <div class="row-btns" style="margin-top:10px"><button class="btn btn-dark" type="button" id="pr-copy">Prompt kopieren</button></div>
+          <p class="small muted" style="margin:10px 0 0">Tipp: Lassen Sie Schrift bewusst weg. Die Wortmarke gestalten Sie besser selbst mit einer echten Schrift.</p>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 ABSTRAKTION ================= -->
+    <section class="page" id="p-ue-abstraktion" data-page="ue-abstraktion">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Piktogramm</span>
+        <h1>Vom Abbild zum Zeichen</h1>
+        <p class="lead">Jedes Piktogramm ist das Ergebnis von Abstraktion. Je weiter wir reduzieren, desto universeller, aber auch desto mehr gelernt muss das Zeichen sein.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Einstieg</span><span><i></i>Reduktion · Abstraktionsgrad</span></div>
+        <figure class="media media-ex"><img src="media/ue-abstraktion.jpg" alt="Fünf Karten zeigen dieselbe Kaffeetasse vom detaillierten Abbild bis zum einfachen Kreis" loading="lazy" width="1600" height="900"><figcaption>Vom Abbild zum Zeichen: Mit jeder Stufe fallen Merkmale weg. KI-generiert mit Magnific.</figcaption></figure>
+
+        <div class="task"><span class="label">Teil A · Erkunden</span><p>Ziehen Sie den Regler und beobachten Sie, welche Merkmale der Tasse bei jeder Stufe wegfallen und welche bleiben müssen.</p></div>
+        <div class="demo">
+          <div class="abs-stage">
+            <div class="abs-pic" id="abs-pic"></div>
+            <div class="abs-text">
+              <div class="label" id="abs-step">Stufe 1 von 5</div>
+              <h3 id="abs-title" style="margin:6px 0 8px"></h3>
+              <p id="abs-desc" class="small"></p>
+              <label for="abs-range" class="label" style="display:block;margin-top:18px">Abstraktionsgrad</label>
+              <input type="range" id="abs-range" min="1" max="5" value="1" step="1">
+              <div class="abs-scale"><span>konkret</span><span>abstrakt</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="task"><span class="label">Teil B · Ordnen</span><p>Bringen Sie die vier Bäume in die Reihenfolge von <strong>konkret</strong> nach <strong>abstrakt</strong>. Klicken Sie sie nacheinander an. Ein zweiter Klick nimmt die Auswahl zurück.</p></div>
+        <div class="order-grid" id="order-grid"></div>
+        <div class="row-btns" style="margin-top:14px"><button class="btn btn-dark" type="button" id="order-check">Reihenfolge prüfen</button><button class="btn" type="button" id="order-reset">Zurücksetzen</button></div>
+        <div id="order-fb"></div>
+
+        <div class="task"><span class="label">Reflexion</span><p>Welche Stufe würden Sie für ein Leitsystem in einem Café wählen, welche für ein Logo? Begründen Sie in zwei Sätzen.</p></div>
+        <div class="ex-done" data-ex="ue-abstraktion"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 DEUTEN ================= -->
+    <section class="page" id="p-ue-deuten" data-page="ue-deuten">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Piktogramm</span>
+        <h1>Piktogramme deuten</h1>
+        <p class="lead">Ein Piktogramm ist nur so gut wie seine Deutung. Testen Sie acht Zeichen: Was bedeuten sie, und warum versteht man sie? Achten Sie auf den Zeichentyp nach Peirce.</p>
+        <div class="ex-meta"><span><i></i>ca. 8 Minuten</span><span><i></i>8 Zeichen</span><span><i></i>Ikon · Index · Symbol</span></div>
+        <figure class="media media-ex"><img src="media/ue-deuten.jpg" alt="Studierende testen Karten mit Piktogrammen am Tisch" loading="lazy" width="1600" height="900"><figcaption>Piktogramme müssen ohne Erklärung verstanden werden. Testen Sie Ihre eigene Deutung. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie die passende Bedeutung. Nach jeder Antwort erfahren Sie, auf welchem Prinzip das Zeichen beruht. Ab 6 richtigen Antworten gilt die Übung als bestanden.</p></div>
+        <div class="demo" id="pq"></div>
+        <div class="ex-done" data-ex="ue-deuten"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 BAUKASTEN ================= -->
+    <section class="page" id="p-ue-baukasten" data-page="ue-baukasten">
+      <div class="wrap-wide">
+        <span class="eyebrow">Übung 3 · Piktogramm</span>
+        <h1>Piktogramm-Baukasten</h1>
+        <p class="lead">Konstruieren Sie ein Piktogramm aus geometrischen Grundformen auf einem 48er-Raster. Die Vorschau zeigt sofort, ob es in kleinen Größen und negativ noch funktioniert.</p>
+        <div class="ex-meta"><span><i></i>ca. 25 Minuten</span><span><i></i>Konstruktion · Raster</span><span><i></i>Entwurf wird im Browser gespeichert</span></div>
+        <figure class="media media-ex"><img src="media/ue-baukasten.jpg" alt="Aus schwarzen Papierformen gelegte Kaffeetasse auf Rasterpapier" loading="lazy" width="1600" height="900"><figcaption>Aus wenigen Grundformen auf einem Raster entsteht ein Piktogramm. KI-generiert mit Magnific.</figcaption></figure>
+
+        <div class="task">
+          <span class="label">Aufgabe</span>
+          <p>Gestalten Sie ein Piktogramm für <strong id="brief-name">Café</strong>. <span id="brief-hint" class="muted"></span></p>
+          <div class="row-btns" style="margin-top:8px"><label for="brief-select" class="small muted" style="align-self:center">Andere Aufgabe:</label><select id="brief-select" style="width:auto"></select></div>
+        </div>
+
+        <div class="builder">
+          <div class="canvas-box">
+            <div class="toolbar" id="pk-toolbar" aria-label="Formen hinzufügen"></div>
+            <div class="pk-stage" id="pk-stage">
+              <svg id="pk-svg" viewBox="0 0 48 48" aria-label="Zeichenfläche, 48 mal 48 Einheiten" tabindex="0">
+                <g class="pk-grid" id="pk-grid"></g>
+                <rect class="pk-key" x="4" y="4" width="40" height="40"/>
+                <circle class="pk-key" cx="24" cy="24" r="20"/>
+                <g id="pk-shapes"></g>
+                <g id="pk-selection"></g>
+              </svg>
+            </div>
+            <div class="row-btns" style="margin-top:12px;justify-content:center">
+              <label class="check"><input type="checkbox" id="pk-guides" checked> Raster und Keylines</label>
+            </div>
+            <p class="small muted" style="text-align:center;margin:8px 0 0">Form anklicken zum Auswählen, ziehen zum Verschieben. Pfeiltasten bewegen um 1 Einheit, mit Umschalt um 4.</p>
+          </div>
+
+          <div class="panel">
+            <div class="card">
+              <div class="label" style="margin-bottom:12px">Ausgewählte Form</div>
+              <div id="pk-props">
+                <div class="field"><label for="pk-w">Breite <output id="pk-w-o"></output></label><input type="range" id="pk-w" min="1" max="44" step="1"></div>
+                <div class="field"><label for="pk-h">Höhe <output id="pk-h-o"></output></label><input type="range" id="pk-h" min="1" max="44" step="1"></div>
+                <div class="field"><label for="pk-r">Drehung <output id="pk-r-o"></output></label><input type="range" id="pk-r" min="0" max="345" step="15"></div>
+                <div class="field"><label class="check" for="pk-neg"><span style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="pk-neg"> Aussparung (Negativform)</span></label></div>
+                <div class="row-btns">
+                  <button class="btn btn-sm" type="button" id="pk-front">Nach vorn</button>
+                  <button class="btn btn-sm" type="button" id="pk-back">Nach hinten</button>
+                  <button class="btn btn-sm" type="button" id="pk-dup">Duplizieren</button>
+                  <button class="btn btn-sm" type="button" id="pk-del">Löschen</button>
+                </div>
+              </div>
+              <p class="small muted" id="pk-noprops" hidden style="margin:0">Keine Form ausgewählt. Klicken Sie auf eine Form oder fügen Sie oben eine hinzu.</p>
+            </div>
+            <div class="card">
+              <div class="label" style="margin-bottom:12px">Größentest</div>
+              <div class="previews" id="pk-previews"></div>
+            </div>
+            <div class="card">
+              <div class="label" style="margin-bottom:12px">Prüfliste</div>
+              <ul class="checklist" id="pk-checks"></ul>
+            </div>
+            <div class="row-btns">
+              <button class="btn" type="button" id="pk-copy"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>SVG kopieren</button>
+              <button class="btn" type="button" id="pk-example">Beispiel zur Aufgabe</button>
+              <button class="btn" type="button" id="pk-clear">Leeren</button>
+            </div>
+          </div>
+        </div>
+        <div class="pk-gallery-wrap">
+          <div class="label">Beispiele zum Vergleichen</div>
+          <p class="small muted" style="margin:6px 0 12px">Ein Lösungsvorschlag pro Aufgabe. Ein Klick lädt das Beispiel auf die Zeichenfläche, wo Sie es zerlegen und verändern können. Ihr eigener Entwurf wird dabei ersetzt.</p>
+          <div class="pk-gallery" id="pk-gallery"></div>
+        </div>
+        <textarea id="pk-fallback" class="mono small" readonly hidden style="width:100%;height:110px;margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface)"></textarea>
+
+        <div class="task"><span class="label">Reflexion</span><p>Zeigen Sie Ihr Piktogramm einer anderen Person ohne Erklärung. Hat sie es richtig gedeutet? Welche Form haben Sie nach dem 16-px-Test noch verändert?</p></div>
+        <div class="ex-done" data-ex="ue-baukasten"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 LOGOARTEN ZUORDNEN ================= -->
+    <section class="page" id="p-ue-logoarten" data-page="ue-logoarten">
+      <div class="wrap-wide">
+        <span class="eyebrow">Übung 4 · Logo</span>
+        <h1>Logoarten zuordnen</h1>
+        <p class="lead">Zehn fiktive Marken, sechs Kategorien. Ordnen Sie jedes Logo seiner Logoart zu und prüfen Sie dann Ihr Ergebnis.</p>
+        <div class="ex-meta"><span><i></i>ca. 8 Minuten</span><span><i></i>10 Logos</span><span><i></i>Kapitel 04 als Grundlage</span></div>
+        <figure class="media media-ex"><img src="media/ue-logoarten.jpg" alt="Viele Karten mit einfachen Logozeichen werden auf einem Tisch in Gruppen sortiert" loading="lazy" width="1600" height="900"><figcaption>Sortieren schärft den Blick: Welche Zeichen gehören zu welcher Logoart? KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Ziehen Sie ein Logo in die passende Kategorie. Alternativ: Logo antippen, dann Kategorie antippen. Ein Klick auf ein zugeordnetes Logo legt es zurück.</p></div>
+        <div class="pool" id="sort-pool" aria-label="Nicht zugeordnete Logos"></div>
+        <div class="buckets" id="sort-buckets"></div>
+        <div class="row-btns" style="margin-top:16px"><button class="btn btn-dark" type="button" id="sort-check">Zuordnung prüfen</button><button class="btn" type="button" id="sort-reset">Neu mischen</button></div>
+        <div id="sort-fb"></div>
+        <div class="ex-done" data-ex="ue-logoarten"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 LOGO-LABOR ================= -->
+    <section class="page" id="p-ue-labor" data-page="ue-labor">
+      <div class="wrap-wide">
+        <span class="eyebrow">Übung 5 · Logo</span>
+        <h1>Logo-Labor</h1>
+        <p class="lead">Entwickeln Sie eine einfache Wort-Bild-Marke und testen Sie sie dort, wo Logos wirklich leben: im Browser-Tab, auf der Visitenkarte, als App-Icon und auf dunklem Grund.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>Schrift · Farbe · Anwendung</span><span><i></i>Ergebnis fließt in Übung 6</span></div>
+        <figure class="media media-ex"><img src="media/ue-labor.jpg" alt="Ein Wellen-Logo im Test auf Laptop, Smartphone, Visitenkarte und hellem wie dunklem Papier" loading="lazy" width="1600" height="900"><figcaption>Ein Logo muss überall funktionieren: auf dem Bildschirm, auf Papier, hell und dunkel. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie eine fiktive Marke (oder erfinden Sie eine) und entwerfen Sie zwei deutlich unterschiedliche Varianten. Mit „Variante A“ und „Variante B“ wechseln Sie zwischen beiden; unter dem großen Logo sehen Sie sie direkt nebeneinander. Entscheiden Sie sich anhand der Kontexttests für eine und notieren Sie drei Gründe.</p></div>
+
+        <div class="lab">
+          <div class="panel">
+            <div class="card">
+              <div class="field"><span class="lbl">Variante</span><div class="toggle" role="group" aria-label="Variante" id="lab-slot"><button type="button" data-v="A">Variante A</button><button type="button" data-v="B">Variante B</button></div></div>
+              <div class="field"><label for="lab-name">Markenname</label><input type="text" id="lab-name" maxlength="18" autocomplete="off"></div>
+              <div class="field"><span class="lbl">Bildzeichen</span><div class="sym-pick" id="lab-sym"></div></div>
+              <div class="field"><label for="lab-font">Schrift</label><select id="lab-font"></select></div>
+              <div class="field"><label for="lab-weight">Strichstärke <output id="lab-weight-o"></output></label><input type="range" id="lab-weight" min="300" max="800" step="100"></div>
+              <div class="field"><label for="lab-track">Laufweite <output id="lab-track-o"></output></label><input type="range" id="lab-track" min="-60" max="300" step="10"></div>
+              <div class="field"><span class="lbl">Schreibweise</span>
+                <div class="toggle" role="group" aria-label="Schreibweise" id="lab-case"><button type="button" data-v="none">Normal</button><button type="button" data-v="lower">klein</button><button type="button" data-v="upper">GROSS</button></div>
+              </div>
+              <div class="field"><span class="lbl">Anordnung</span>
+                <div class="toggle" role="group" aria-label="Anordnung" id="lab-layout"><button type="button" data-v="h">Horizontal</button><button type="button" data-v="v">Vertikal</button></div>
+              </div>
+              <div class="field"><span class="lbl">Farbe</span><div class="swatches" id="lab-colors"></div></div>
+              <div class="field"><label class="check" for="lab-zone"><span style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="lab-zone"> Schutzzone anzeigen</span></label></div>
+            </div>
+          </div>
+          <div class="lab-stage">
+            <div class="lab-hero" id="lab-hero"></div>
+            <div class="lab-compare" id="lab-compare" aria-label="Vergleich der Varianten"></div>
+            <div class="ctx-grid" id="lab-ctx"></div>
+          </div>
+        </div>
+
+        <div class="task"><span class="label">Reflexion</span><p>In welchem Kontext hat Ihre Variante am meisten verloren? Was würden Sie für eine kleine Version (Favicon, App-Icon) vereinfachen?</p></div>
+        <div class="ex-done" data-ex="ue-labor"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 LOGO-CHECK ================= -->
+    <section class="page" id="p-ue-check" data-page="ue-check">
+      <div class="wrap-wide">
+        <span class="eyebrow">Übung 6 · Logo</span>
+        <h1>Logo-Check</h1>
+        <p class="lead">Geschmack ist kein Kriterium. Bewerten Sie Logos anhand von sechs Qualitätskriterien und vergleichen Sie Ihr Urteil mit einer Referenzbewertung.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>6 Kriterien</span><span><i></i>Begründet bewerten</span></div>
+        <figure class="media media-ex"><img src="media/ue-check.jpg" alt="Logo-Entwürfe an der Wand mit Markierungen und eine Bewertungsliste auf einem Klemmbrett" loading="lazy" width="1600" height="900"><figcaption>Bewerten mit Kriterien statt nach Geschmack. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie ein Logo, bewerten Sie es auf einer Skala von 1 bis 5 und decken Sie dann die Referenzbewertung auf. Bewerten Sie mindestens zwei der drei Beispiele. Unter „Mein Logo“ finden Sie die zuletzt bearbeitete Variante aus dem Logo-Labor.</p></div>
+        <div class="chk">
+          <div>
+            <div class="chk-pick" id="chk-pick" role="group" aria-label="Logo wählen"></div>
+            <div class="chk-view artboard" id="chk-view"></div>
+            <div style="margin-top:18px">
+              <svg class="radar" id="chk-radar" viewBox="0 0 470 330" aria-label="Netzdiagramm der Bewertung"></svg>
+              <div class="legend"><span><i></i>Ihre Bewertung</span><span id="chk-leg-ref" hidden><i class="ref"></i>Referenz</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div id="chk-crit"></div>
+            <div class="row-btns" style="margin-top:14px"><button class="btn btn-dark" type="button" id="chk-reveal">Referenz aufdecken</button></div>
+            <div id="chk-fb"></div>
+          </div>
+        </div>
+        <div class="ex-done" data-ex="ue-check"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Vierzehn Fragen quer durch das Modul. Sie erhalten nach jeder Frage eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Schreibtisch mit Antwortbogen zum Ankreuzen, Bleistift, Karteikarten und Tee" loading="lazy" width="1600" height="900"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Bibliothek</span>
+        <h1>Literatur und Quellen</h1>
+        <p class="lead">Grundlagenwerke zu Zeichen, Piktogrammen und Logogestaltung, chronologisch geordnet. Ideal zur Vertiefung und für Hausarbeiten.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Stapel Designbücher und ein aufgeschlagenes Buch mit Piktogrammen auf einem Bibliothekstisch" loading="lazy" width="1600" height="900"><figcaption>Grundlagenwerke zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Alte Karteibox mit Buchstabenreitern und Lupe auf einem Holztisch" loading="lazy" width="1600" height="900"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Schutzzone" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <div class="az" id="gl-az" aria-label="Alphabet"></div>
+        </div>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lern-Apps · Gestaltung & UX</title>
+  <meta name="description" content="Interaktive Lern-Apps zu Typografie, UX-Design und Logogestaltung – Prof. Dipl. Des. T. Hinz">
+  <style>
+    :root {
+      --bg: #f4f2ee;
+      --ink: #141414;
+      --muted: #6b6862;
+      --line: #d9d5cd;
+      --card: #ffffff;
+      --accent: #e5452b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #121212; --ink: #f1efea; --muted: #9a968e; --line: #2c2b29; --card: #1b1b1a; }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+      background: var(--bg); color: var(--ink);
+      line-height: 1.5; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: clamp(32px, 6vw, 80px) clamp(20px, 4vw, 40px); }
+    header { border-bottom: 1px solid var(--line); padding-bottom: clamp(32px, 5vw, 56px); margin-bottom: clamp(32px, 5vw, 56px); }
+    .eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    h1 { font-size: clamp(44px, 8vw, 96px); line-height: .95; letter-spacing: -.035em; font-weight: 700; }
+    h1 span { color: var(--accent); }
+    .lead { max-width: 56ch; margin-top: 24px; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+    .card {
+      position: relative; display: flex; flex-direction: column; height: 100%;
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 28px; text-decoration: none; color: inherit;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover, .card:focus-visible { transform: translateY(-4px); border-color: var(--ink); box-shadow: 0 12px 32px rgba(0,0,0,.08); outline: none; }
+    .glyph { font-size: 72px; line-height: 1; font-weight: 700; letter-spacing: -.04em; margin-bottom: 28px; }
+    .num { position: absolute; top: 28px; right: 28px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .card h2 { font-size: 24px; letter-spacing: -.01em; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 15px; flex: 1; }
+    .go { margin-top: 24px; font-size: 14px; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; }
+    .go::after { content: "→"; transition: transform .2s ease; }
+    .card:hover .go::after { transform: translateX(4px); }
+    footer { margin-top: clamp(48px, 7vw, 88px); padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+    @media (prefers-reduced-motion: reduce) { .card, .go::after { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Interaktive Lernmodule</p>
+      <h1>Lern-Apps<br>Gestaltung <span>&amp;</span> UX</h1>
+      <p class="lead">Drei interaktive Module zum Ausprobieren, Üben und Nachschlagen – von Typografie über UX-Design bis zur Logogestaltung.</p>
+    </header>
+
+    <main>
+      <ul class="grid">
+        <li>
+          <a class="card" href="typografie/">
+            <span class="num">01</span>
+            <span class="glyph" aria-hidden="true">Aa</span>
+            <h2>Typografie</h2>
+            <p>Laufweite, Zeilenabstand, Hierarchie, Spaltensatz und Schriftpaarungen – plus Glossar, DIN 16518 und Leitfaden zum wissenschaftlichen Schreiben.</p>
+            <span class="go">Modul öffnen</span>
+          </a>
+        </li>
+        <li>
+          <a class="card" href="ux-grundlagen/">
+            <span class="num">02</span>
+            <span class="glyph" aria-hidden="true">UX</span>
+            <h2>UX Grundlagen</h2>
+            <p>Heuristiken, ISO 9241, Gestaltgesetze, Laws of UX, Barrierefreiheit, Evaluation, Quiz und UX &amp; KI.</p>
+            <span class="go">Modul öffnen</span>
+          </a>
+        </li>
+        <li>
+          <a class="card" href="logogestaltung/">
+            <span class="num">03</span>
+            <span class="glyph" aria-hidden="true">◐</span>
+            <h2>Logogestaltung</h2>
+            <p>Vom Zeichen zur Marke: Semiotik, Piktogramm-Systeme, Logoarten, Gestaltungsprinzipien, Animation und KI – mit sechs interaktiven Übungen.</p>
+            <span class="go">Modul öffnen</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+
+    <footer>© 2026 Prof. Dipl. Des. T. Hinz</footer>
+  </div>
+</body>
+</html>
