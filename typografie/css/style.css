@@ -195,7 +195,7 @@ a { text-decoration: none; color: inherit; }
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  max-width: 960px;
+  max-width: none;
 }
 
 /* ===== PAGE HEADER (Exercise pages) ===== */
