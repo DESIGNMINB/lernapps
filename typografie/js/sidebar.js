@@ -62,7 +62,7 @@ function renderSidebar(activePage) {
 
   let html = `
     <div class="sidebar-top-gradient"></div>
-    <a href="${base}../" class="home-back"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Alle Lern-Apps</a>
+    <a href="${base}../" class="home-back" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
     <a href="${base}index.html" class="sidebar-header" style="text-decoration:none">
       <div class="sidebar-logo">T</div>
       <div class="sidebar-brand">
