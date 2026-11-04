@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laufweite (Tracking) – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .tracking-preview {
+      text-align: center;
+      padding: 32px 16px;
+      margin-bottom: 20px;
+    }
+    .tracking-word {
+      font-size: 48px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      display: block;
+      margin-bottom: 12px;
+      transition: letter-spacing 0.15s ease;
+    }
+    .tracking-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card">
+      <div class="lektion-badge">
+        <span class="lektion-number">3</span>
+        <span class="lektion-label">Lektion</span>
+      </div>
+      <h1 class="page-title">Laufweite (Tracking)</h1>
+      <p class="page-intro">Laufweite (Tracking) ist der gleichmäßige Abstand zwischen allen Buchstaben eines Wortes. Besonders bei Versalien (Großbuchstaben) ist eine leicht erhöhte Laufweite essenziell für Lesbarkeit und Ästhetik in User Interfaces.</p>
+
+      <div class="two-col">
+        <!-- Left: Task Panel -->
+        <div class="task-panel">
+          <h3>Ihre Aufgabe</h3>
+          <p>Finden Sie die optimale Laufweite für den Versalsatz. Beobachten Sie, wie sich die Lesbarkeit des Wortes „GESTALTUNG" verändert.</p>
+
+          <div class="tracking-preview">
+            <span class="tracking-word" id="tracking-word">GESTALTUNG</span>
+            <span class="tracking-subtitle">Gute Typografie lenkt den Blick, ohne aufzufallen.</span>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-labels">
+              <span class="red">Zu eng (-2px)</span>
+              <span id="tracking-value-display" style="font-weight: 600; color: var(--text-primary);">0px</span>
+              <span class="red">Zu weit (24px)</span>
+            </div>
+            <input type="range" id="tracking-slider" min="-2" max="24" step="0.5" value="0">
+          </div>
+
+          <div class="slider-value" id="current-tracking">letter-spacing: 0px</div>
+
+          <div class="feedback-box warning" id="tracking-feedback">
+            Keine Laufweite – für Fließtext ok, für Versalien zu eng.
+          </div>
+        </div>
+
+        <!-- Right: Tip Box -->
+        <div>
+          <div class="tip-box" style="margin-top: 0;">
+            <span class="tip-label">Prof. Typo empfiehlt:</span>
+            <p style="margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              Orientieren Sie sich beim Einstellen der Laufweite am Innenraum der Buchstaben. Die Abstände zwischen den Buchstaben sollten optisch den Binnenräumen (Punzen) der Zeichen entsprechen. Bei Versalien wie „H", „N" oder „U" sind die Innenräume relativ groß – daher brauchen Großbuchstaben mehr Laufweite als Kleinbuchstaben.
+            </p>
+            <p style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--text-secondary);">
+              Ein guter Richtwert für Versalien in UI-Elementen (Buttons, Labels, Navigation): <code style="background: #F3F4F6; padding: 2px 6px; border-radius: 4px; font-size: 13px;">letter-spacing: 0.05em – 0.15em</code>, was bei 16px Schriftgröße etwa 0,8–2,4px entspricht.
+            </p>
+          </div>
+
+          <div class="card-grid" style="margin-top: 24px;">
+            <div class="info-card" style="border-top: 3px solid var(--error);">
+              <div class="meta">Negativ</div>
+              <h4>Zu eng</h4>
+              <p>Buchstaben rücken zusammen oder überlappen. Lesbarkeit sinkt drastisch, besonders bei kleinen Schriftgrößen.</p>
+            </div>
+            <div class="info-card" style="border-top: 3px solid var(--success);">
+              <div class="meta">2–6 px</div>
+              <h4>Optimal für Versalien</h4>
+              <p>Die Buchstaben atmen, das Wort bleibt als Einheit erkennbar. Ideal für Headlines, Buttons und Labels.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex3');</script>
+  <script>
+    const trackingSlider = document.getElementById('tracking-slider');
+    const trackingWord = document.getElementById('tracking-word');
+    const trackingFeedback = document.getElementById('tracking-feedback');
+    const currentTracking = document.getElementById('current-tracking');
+    const trackingValueDisplay = document.getElementById('tracking-value-display');
+
+    function updateTracking() {
+      const val = parseFloat(trackingSlider.value);
+      trackingWord.style.letterSpacing = val + 'px';
+      currentTracking.textContent = 'letter-spacing: ' + val + 'px';
+      trackingValueDisplay.textContent = val + 'px';
+
+      if (val < 0) {
+        trackingFeedback.className = 'feedback-box error';
+        trackingFeedback.textContent = 'Zu eng – Buchstaben überlappen sich.';
+      } else if (val < 2) {
+        trackingFeedback.className = 'feedback-box warning';
+        trackingFeedback.textContent = 'Keine Laufweite – für Fließtext ok, für Versalien zu eng.';
+      } else if (val <= 6) {
+        trackingFeedback.className = 'feedback-box success';
+        trackingFeedback.textContent = 'Gute Laufweite für Versalien!';
+      } else if (val <= 12) {
+        trackingFeedback.className = 'feedback-box warning';
+        trackingFeedback.textContent = 'Etwas weit, kann für sehr große Headlines funktionieren.';
+      } else {
+        trackingFeedback.className = 'feedback-box error';
+        trackingFeedback.textContent = 'Zu weit – das Wort zerfällt optisch.';
+      }
+    }
+
+    trackingSlider.addEventListener('input', updateTracking);
+    updateTracking();
+  </script>
+</body>
+</html>

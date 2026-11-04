@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIN 16518 – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@400;700&family=Montserrat:wght@400;700&family=Space+Grotesk:wght@400;700&family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .din-meta { display: flex; gap: 32px; margin-bottom: 32px; }
+    .din-meta-item { text-align: center; }
+    .din-meta-item .label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .din-meta-item .value { font-size: 18px; font-weight: 700; }
+    .din-card {
+      border: 1px solid var(--border-color); border-radius: 14px; padding: 28px;
+      margin-bottom: 20px; background: white; border-left: 4px solid var(--purple-light);
+    }
+    .din-card .group-num { font-size: 13px; font-weight: 700; color: var(--purple); margin-bottom: 2px; }
+    .din-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 2px; }
+    .din-card .subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+    .din-card .merkmale { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; }
+    .din-card .specimens { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+    .specimen-tag {
+      padding: 8px 16px; border-radius: 8px; background: #F9FAFB;
+      border: 1px solid var(--border-color); font-size: 18px; line-height: 1.3;
+    }
+    .specimen-tag .name { font-size: 11px; color: var(--text-muted); display: block; }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card" style="max-width:1100px">
+      <h1 class="page-title">DIN 16518 – Schriftklassifikation</h1>
+      <p class="page-intro">Die DIN-Norm 16518 (1964) klassifiziert lateinische Druckschriften in 11 Gruppen nach historischen und formalen Kriterien.</p>
+
+      <div class="din-meta">
+        <div class="din-meta-item"><div class="label">Norm</div><div class="value">DIN 16518</div></div>
+        <div class="din-meta-item"><div class="label">Jahr</div><div class="value">1964</div></div>
+        <div class="din-meta-item"><div class="label">Klassen</div><div class="value">11</div></div>
+        <div class="din-meta-item"><div class="label">Herausgeber</div><div class="value">DIN</div></div>
+      </div>
+
+      <div class="din-card"><div class="group-num">I.</div><h3>Venezianische Renaissance-Antiqua</h3><div class="subtitle">Venetian Renaissance Roman · 15. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Schräge Achse (humanistischer Duktus), geringer Strichkontrast, geschwungene Serifen mit kalligrafischem Charakter. Typische Vertreter: Centaur (Bruce Rogers), Jenson.</p><div class="specimens"><span class="specimen-tag" style="font-family:'EB Garamond',serif;">Hamburgefons<span class="name">EB Garamond (als Näherung)</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">II.</div><h3>Französische Renaissance-Antiqua</h3><div class="subtitle">French Renaissance Roman · 16. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Leicht schräge Achse, mäßiger Strichkontrast, waagerechter e-Querstrich, ausgeprägte geschwungene Serifen.</p><div class="specimens"><span class="specimen-tag" style="font-family:'EB Garamond',serif;">Hamburgefons<span class="name">EB Garamond</span></span><span class="specimen-tag" style="font-family:'EB Garamond',serif;font-style:italic;">Hamburgefons<span class="name">EB Garamond Kursiv</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">III.</div><h3>Barock-Antiqua</h3><div class="subtitle">Transitional Roman · 17.–18. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Nahezu vertikale Achse, erhöhter Strichkontrast, waagerechte leicht geschwungene Serifen.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Libre Baskerville',serif;">Hamburgefons<span class="name">Libre Baskerville</span></span><span class="specimen-tag" style="font-family:'Times New Roman',serif;">Hamburgefons<span class="name">Times New Roman</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">IV.</div><h3>Klassizistische Antiqua</h3><div class="subtitle">Neoclassical / Didone · spätes 18. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Streng vertikale Achse, extremer Strichkontrast, feine waagerechte Haarlinien-Serifen.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Playfair Display',serif;">Hamburgefons<span class="name">Playfair Display (Bodoni)</span></span><span class="specimen-tag" style="font-family:'Playfair Display',serif;font-style:italic;">Hamburgefons<span class="name">Playfair Display Kursiv</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">V.</div><h3>Serifenbetonte Linear-Antiqua</h3><div class="subtitle">Slab Serif / Egyptienne · 19. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Geringer Strichkontrast, kräftige rechteckige Blockserifen, robuster technischer Look.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Roboto Slab',serif;">Hamburgefons<span class="name">Roboto Slab</span></span><span class="specimen-tag" style="font-family:'Roboto Slab',serif;font-weight:700;">Hamburgefons<span class="name">Roboto Slab Bold</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">VI.</div><h3>Serifenlose Linear-Antiqua</h3><div class="subtitle">Sans-Serif / Grotesque · 19.–20. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Keine Serifen, gleichmäßige Strichstärke (monolinear), neutral/modern/technisch. Untergruppen: Grotesk, Geometrisch, Humanistisch.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Montserrat',sans-serif;">Hamburgefons<span class="name">Montserrat (Futura)</span></span><span class="specimen-tag" style="font-family:'Inter',sans-serif;">Hamburgefons<span class="name">Inter (Helvetica/Grotesk)</span></span><span class="specimen-tag" style="font-family:'Space Grotesk',sans-serif;">Hamburgefons<span class="name">Space Grotesk</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">VII.</div><h3>Antiqua-Varianten</h3><div class="subtitle">Glyphic / Incised · 20. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Keine echten Serifen, aber betonte Strichenden, dreieckige Abschlüsse, Übergang Serif/Sans-Serif.</p><div class="specimens"><span class="specimen-tag" style="font-family:Optima,'Inter',sans-serif;">Hamburgefons<span class="name">Optima (System)</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">VIII.</div><h3>Schreibschriften</h3><div class="subtitle">Script / Cursive · historisch bis heute</div><p class="merkmale"><strong>Merkmale:</strong> Imitation von Kursivschrift, oft verbundene Buchstaben, kalligrafischer dynamischer Duktus.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Great Vibes',cursive;font-size:24px;">Hamburgefons<span class="name">Great Vibes</span></span><span class="specimen-tag" style="font-family:'Dancing Script',cursive;">Hamburgefons<span class="name">Dancing Script</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">IX.</div><h3>Handschriftliche Antiqua</h3><div class="subtitle">Informal / Casual Script · 20. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Nicht verbundene Handschrift, imitiert freie Hand oder Pinselstrich, informell und lebendig.</p><div class="specimens"><span class="specimen-tag" style="font-family:'Caveat',cursive;">Hamburgefons<span class="name">Caveat</span></span><span class="specimen-tag" style="font-family:'Patrick Hand',cursive;">Hamburgefons<span class="name">Patrick Hand</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">X.</div><h3>Gebrochene Schriften</h3><div class="subtitle">Blackletter / Gothic · Mittelalter bis 20. Jh.</div><p class="merkmale"><strong>Merkmale:</strong> Scharfe gebrochene Bögen, starke Vertikalbetonung. Untergruppen: Textura, Rotunda, Schwabacher, Fraktur. Standard-Druckschrift in Deutschland bis 1941.</p><div class="specimens"><span class="specimen-tag" style="font-family:serif;font-weight:900;letter-spacing:2px;">𝔉𝔯𝔞𝔨𝔱𝔲𝔯<span class="name">Fraktur (Unicode)</span></span></div></div>
+
+      <div class="din-card"><div class="group-num">XI.</div><h3>Fremde Schriften</h3><div class="subtitle">Non-Latin Scripts · verschiedene Epochen</div><p class="merkmale"><strong>Merkmale:</strong> Nicht-lateinische Schriftsysteme (Kyrillisch, Griechisch, Arabisch, CJK). Eigene typografische Regeln, in DIN 16518 nur bedingt erfasst.</p><div class="specimens"><span class="specimen-tag">Αλφάβητο<span class="name">Griechisch</span></span><span class="specimen-tag" dir="rtl">أبجدية<span class="name">Arabisch</span></span><span class="specimen-tag">漢字<span class="name">CJK</span></span></div></div>
+
+      <div class="tip-box" style="margin-top:32px;">
+        <p><span class="tip-label">Hinweis:</span> DIN 16518 wurde 1964 für lateinische Druckschriften erlassen. Wo Originalschriften nicht als Webfonts verfügbar sind, werden Google-Fonts-Alternativen mit System-Fallbacks verwendet.</p>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('din');</script>
+</body>
+</html>

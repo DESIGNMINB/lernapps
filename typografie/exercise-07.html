@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schriftpaarungen (Type Pairing) – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=EB+Garamond:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;700&family=Raleway:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Lora:wght@400;700&family=Merriweather:wght@400;700&family=Crimson+Pro:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .preset-btn {
+      padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--border-color); background: var(--bg-white);
+      color: var(--text-secondary); transition: all 0.15s;
+    }
+    .preset-btn:hover { border-color: var(--purple); color: var(--purple); }
+    .preset-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
+
+    .pairing-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+    @media (max-width: 1024px) { .pairing-layout { grid-template-columns: 1fr; } }
+
+    .font-section { margin-bottom: 20px; }
+    .font-section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .font-btn {
+      padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px;
+      background: var(--bg-white); cursor: pointer; transition: all 0.15s; text-align: left;
+    }
+    .font-btn:hover { border-color: var(--purple-light); background: #FAFAFF; }
+    .font-btn.active { border-color: var(--purple); background: #F5F3FF; box-shadow: 0 0 0 2px rgba(124,58,237,0.15); }
+    .font-btn-name { font-size: 14px; font-weight: 600; color: var(--text-primary); display: block; }
+    .font-btn-cat { font-size: 11px; color: var(--text-muted); }
+    .font-btn-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; display: block; }
+
+    .preview-article { position: relative; }
+    .preview-category {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 12px;
+    }
+    .preview-headline { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; color: var(--text-primary); }
+    .preview-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4; }
+    .preview-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+    .preview-body { font-size: 15px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 16px; }
+    .preview-blockquote {
+      border-left: 3px solid var(--purple-light); padding: 12px 20px; margin: 16px 0;
+      font-style: italic; color: var(--text-secondary); font-size: 15px; line-height: 1.6;
+      background: #F9FAFB; border-radius: 0 8px 8px 0;
+    }
+
+    .feedback-badge {
+      position: absolute; top: 0; right: 0;
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .feedback-badge.good { background: #DCFCE7; color: #166534; }
+    .feedback-badge.ok { background: #FEF3C7; color: #92400E; }
+    .feedback-badge.bad { background: #FEE2E2; color: #991B1B; }
+    .feedback-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .feedback-badge.good .feedback-dot { background: #22C55E; }
+    .feedback-badge.ok .feedback-dot { background: #F59E0B; }
+    .feedback-badge.bad .feedback-dot { background: #EF4444; }
+
+    .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+    @media (max-width: 1024px) { .rules-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main"><div class="content-card" style="max-width: 1100px;">
+    <div class="lektion-badge"><span class="lektion-number">7</span><span class="lektion-label">Lektion</span></div>
+    <h1 class="page-title">Schriftpaarungen (Type Pairing)</h1>
+    <p class="page-intro">Schriften stehen selten allein. Zwei Schriften harmonisch zu kombinieren ist eine der anspruchsvollsten Aufgaben der Typografie. Das Grundprinzip lautet: Kontrast ohne Konflikt.</p>
+
+    <!-- Presets -->
+    <div style="margin-bottom: 8px; font-size: 13px; font-weight: 600; color: var(--text-primary);">Bewährte Klassiker</div>
+    <div class="preset-row">
+      <button class="preset-btn active" data-preset="editorial">Editorial Classic</button>
+      <button class="preset-btn" data-preset="web">Web-Klassiker</button>
+      <button class="preset-btn" data-preset="akademisch">Akademisch Modern</button>
+      <button class="preset-btn" data-preset="news">News Bold</button>
+      <button class="preset-btn" data-preset="elegant">Elegant &amp; Solid</button>
+      <button class="preset-btn" data-preset="tech">Tech meets Classic</button>
+    </div>
+
+    <div class="pairing-layout">
+      <!-- Left: Font Selection -->
+      <div>
+        <div class="task-panel">
+          <div class="font-section">
+            <div class="font-section-label">Überschriften-Schrift</div>
+            <div class="font-grid">
+              <button class="font-btn active" data-role="heading" data-font="'Playfair Display', serif">
+                <span class="font-btn-name" style="font-family:'Playfair Display',serif;">Playfair Display</span>
+                <span class="font-btn-cat">Serif</span>
+                <span class="font-btn-desc">Elegant, hoher Kontrast</span>
+              </button>
+              <button class="font-btn" data-role="heading" data-font="'EB Garamond', serif">
+                <span class="font-btn-name" style="font-family:'EB Garamond',serif;">EB Garamond</span>
+                <span class="font-btn-cat">Serif</span>
+                <span class="font-btn-desc">Klassisch, literarisch</span>
+              </button>
+              <button class="font-btn" data-role="heading" data-font="'Montserrat', sans-serif">
+                <span class="font-btn-name" style="font-family:'Montserrat',sans-serif;">Montserrat</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Geometrisch, modern</span>
+              </button>
+              <button class="font-btn" data-role="heading" data-font="'Oswald', sans-serif">
+                <span class="font-btn-name" style="font-family:'Oswald',sans-serif;">Oswald</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Kondensiert, kräftig</span>
+              </button>
+              <button class="font-btn" data-role="heading" data-font="'Raleway', sans-serif">
+                <span class="font-btn-name" style="font-family:'Raleway',sans-serif;">Raleway</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Dünn, elegant</span>
+              </button>
+              <button class="font-btn" data-role="heading" data-font="'Space Grotesk', sans-serif">
+                <span class="font-btn-name" style="font-family:'Space Grotesk',sans-serif;">Space Grotesk</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Technisch, markant</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="font-section">
+            <div class="font-section-label">Fließtext-Schrift</div>
+            <div class="font-grid">
+              <button class="font-btn active" data-role="body" data-font="'Inter', sans-serif">
+                <span class="font-btn-name" style="font-family:'Inter',sans-serif;">Inter</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Neutral, bildschirmoptimiert</span>
+              </button>
+              <button class="font-btn" data-role="body" data-font="'Source Sans 3', sans-serif">
+                <span class="font-btn-name" style="font-family:'Source Sans 3',sans-serif;">Source Sans 3</span>
+                <span class="font-btn-cat">Sans-Serif</span>
+                <span class="font-btn-desc">Adobe, vielseitig</span>
+              </button>
+              <button class="font-btn" data-role="body" data-font="'Lora', serif">
+                <span class="font-btn-name" style="font-family:'Lora',serif;">Lora</span>
+                <span class="font-btn-cat">Serif</span>
+                <span class="font-btn-desc">Warm, gut lesbar</span>
+              </button>
+              <button class="font-btn" data-role="body" data-font="'Merriweather', serif">
+                <span class="font-btn-name" style="font-family:'Merriweather',serif;">Merriweather</span>
+                <span class="font-btn-cat">Serif</span>
+                <span class="font-btn-desc">Kräftig, digital optimiert</span>
+              </button>
+              <button class="font-btn" data-role="body" data-font="'Crimson Pro', serif">
+                <span class="font-btn-name" style="font-family:'Crimson Pro',serif;">Crimson Pro</span>
+                <span class="font-btn-cat">Serif</span>
+                <span class="font-btn-desc">Buchschrift, fein</span>
+              </button>
+              <button class="font-btn" data-role="body" data-font="'Space Mono', monospace">
+                <span class="font-btn-name" style="font-family:'Space Mono',monospace;">Space Mono</span>
+                <span class="font-btn-cat">Monospace</span>
+                <span class="font-btn-desc">Code-Stil, technisch</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Preview -->
+      <div>
+        <div class="preview-panel">
+          <div class="preview-article">
+            <div class="feedback-badge good" id="feedback-badge">
+              <span class="feedback-dot"></span>
+              <span id="feedback-text">Ausgezeichnet</span>
+            </div>
+            <div class="preview-category">Typografie &amp; Gestaltung</div>
+            <div class="preview-headline" id="preview-headline" style="font-family:'Playfair Display',serif;">Die Kunst der Schriftpaarung: Harmonie durch Kontrast</div>
+            <div class="preview-subtitle" id="preview-subtitle" style="font-family:'Playfair Display',serif;">Warum gute Typografie zwei Stimmen braucht, die sich ergänzen</div>
+            <div class="preview-meta">Von Anna Typo &middot; 15. März 2026 &middot; 8 Min. Lesezeit</div>
+            <div class="preview-body" id="preview-body" style="font-family:'Inter',sans-serif;">
+              Die Wahl der richtigen Schriftpaarung ist eine der subtilsten Entscheidungen im Gestaltungsprozess. Eine gelungene Kombination schafft visuelle Hierarchie und führt den Leser mühelos durch den Text. Dabei gilt: Ähnlichkeit erzeugt Monotonie, zu großer Unterschied wirkt chaotisch.
+            </div>
+            <div class="preview-blockquote" id="preview-blockquote" style="font-family:'Inter',sans-serif;">
+              „Typografie ist die Stimme des geschriebenen Wortes. Zwei Schriften zu paaren bedeutet, einen Dialog zu inszenieren."
+            </div>
+            <div class="preview-body" id="preview-body2" style="font-family:'Inter',sans-serif;">
+              Der Schlüssel liegt im kontrollierten Kontrast: Eine Serifenschrift für Überschriften, kombiniert mit einer serifenlosen für den Fließtext, ist ein bewährtes Rezept. Doch auch innerhalb einer Kategorie lassen sich spannende Paarungen finden.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rules -->
+    <div class="rules-grid">
+      <div class="rule-card">
+        <h4>Regel 1: Kontrast durch Kategorie</h4>
+        <p>Kombiniere Schriften aus unterschiedlichen Kategorien (z.B. Serif + Sans-Serif). Der sichtbare Unterschied schafft Hierarchie und Spannung, ohne zu kollidieren.</p>
+      </div>
+      <div class="rule-card">
+        <h4>Regel 2: Harmonieren durch Ton</h4>
+        <p>Achte auf ähnliche Proportionen und x-Höhe. Schriften, die den gleichen „Ton" treffen – etwa beide humanistisch oder beide geometrisch – wirken harmonisch zusammen.</p>
+      </div>
+      <div class="rule-card">
+        <h4>Regel 3: Hierarchie durch Gewicht</h4>
+        <p>Nutze unterschiedliche Schriftstärken, um die Leserichtung zu lenken. Die Überschrift darf laut sein, der Fließtext bleibt zurückhaltend und gut lesbar.</p>
+      </div>
+    </div>
+
+  </div></main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex7');</script>
+  <script>
+    (function() {
+      const presets = {
+        editorial:  { heading: "'Playfair Display', serif", body: "'Inter', sans-serif" },
+        web:        { heading: "'Montserrat', sans-serif", body: "'Inter', sans-serif" },
+        akademisch: { heading: "'EB Garamond', serif", body: "'Source Sans 3', sans-serif" },
+        news:       { heading: "'Oswald', sans-serif", body: "'Merriweather', serif" },
+        elegant:    { heading: "'Raleway', sans-serif", body: "'Crimson Pro', serif" },
+        tech:       { heading: "'Space Grotesk', sans-serif", body: "'Space Mono', monospace" }
+      };
+
+      // Good pairings: serif+sans, sans+serif, grotesk+mono
+      const goodPairings = [
+        ["'Playfair Display', serif", "'Inter', sans-serif"],
+        ["'Playfair Display', serif", "'Source Sans 3', sans-serif"],
+        ["'EB Garamond', serif", "'Inter', sans-serif"],
+        ["'EB Garamond', serif", "'Source Sans 3', sans-serif"],
+        ["'Montserrat', sans-serif", "'Inter', sans-serif"],
+        ["'Montserrat', sans-serif", "'Lora', serif"],
+        ["'Montserrat', sans-serif", "'Merriweather', serif"],
+        ["'Montserrat', sans-serif", "'Crimson Pro', serif"],
+        ["'Oswald', sans-serif", "'Merriweather', serif"],
+        ["'Oswald', sans-serif", "'Lora', serif"],
+        ["'Oswald', sans-serif", "'Crimson Pro', serif"],
+        ["'Raleway', sans-serif", "'Crimson Pro', serif"],
+        ["'Raleway', sans-serif", "'Lora', serif"],
+        ["'Raleway', sans-serif", "'Merriweather', serif"],
+        ["'Space Grotesk', sans-serif", "'Space Mono', monospace"],
+        ["'Space Grotesk', sans-serif", "'Inter', sans-serif"],
+        ["'Space Grotesk', sans-serif", "'Source Sans 3', sans-serif"],
+        ["'Playfair Display', serif", "'Lora', serif"],
+        ["'Playfair Display', serif", "'Merriweather', serif"],
+        ["'EB Garamond', serif", "'Lora', serif"],
+      ];
+
+      const okPairings = [
+        ["'Montserrat', sans-serif", "'Source Sans 3', sans-serif"],
+        ["'Raleway', sans-serif", "'Inter', sans-serif"],
+        ["'Raleway', sans-serif", "'Source Sans 3', sans-serif"],
+        ["'EB Garamond', serif", "'Merriweather', serif"],
+        ["'EB Garamond', serif", "'Crimson Pro', serif"],
+        ["'Oswald', sans-serif", "'Inter', sans-serif"],
+        ["'Oswald', sans-serif", "'Source Sans 3', sans-serif"],
+      ];
+
+      let currentHeading = "'Playfair Display', serif";
+      let currentBody = "'Inter', sans-serif";
+
+      const headlineEl = document.getElementById('preview-headline');
+      const subtitleEl = document.getElementById('preview-subtitle');
+      const bodyEl = document.getElementById('preview-body');
+      const body2El = document.getElementById('preview-body2');
+      const blockquoteEl = document.getElementById('preview-blockquote');
+      const feedbackBadge = document.getElementById('feedback-badge');
+      const feedbackText = document.getElementById('feedback-text');
+
+      function updatePreview() {
+        headlineEl.style.fontFamily = currentHeading;
+        subtitleEl.style.fontFamily = currentHeading;
+        bodyEl.style.fontFamily = currentBody;
+        body2El.style.fontFamily = currentBody;
+        blockquoteEl.style.fontFamily = currentBody;
+
+        // Evaluate pairing
+        const isGood = goodPairings.some(p => p[0] === currentHeading && p[1] === currentBody);
+        const isOk = okPairings.some(p => p[0] === currentHeading && p[1] === currentBody);
+
+        feedbackBadge.className = 'feedback-badge';
+        if (isGood) {
+          feedbackBadge.classList.add('good');
+          feedbackText.textContent = 'Ausgezeichnet';
+        } else if (isOk) {
+          feedbackBadge.classList.add('ok');
+          feedbackText.textContent = 'Akzeptabel';
+        } else {
+          feedbackBadge.classList.add('bad');
+          feedbackText.textContent = 'Ungünstig';
+        }
+
+        // Update active states on font buttons
+        document.querySelectorAll('.font-btn[data-role="heading"]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.font === currentHeading);
+        });
+        document.querySelectorAll('.font-btn[data-role="body"]').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.font === currentBody);
+        });
+      }
+
+      // Font button clicks
+      document.querySelectorAll('.font-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const role = btn.dataset.role;
+          const font = btn.dataset.font;
+          if (role === 'heading') currentHeading = font;
+          else currentBody = font;
+          // Clear active preset
+          document.querySelectorAll('.preset-btn').forEach(p => p.classList.remove('active'));
+          // Check if matches a preset
+          Object.keys(presets).forEach(key => {
+            if (presets[key].heading === currentHeading && presets[key].body === currentBody) {
+              document.querySelector(`.preset-btn[data-preset="${key}"]`).classList.add('active');
+            }
+          });
+          updatePreview();
+        });
+      });
+
+      // Preset button clicks
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.preset;
+          const preset = presets[key];
+          currentHeading = preset.heading;
+          currentBody = preset.body;
+          document.querySelectorAll('.preset-btn').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          updatePreview();
+        });
+      });
+
+      updatePreview();
+    })();
+  </script>
+</body>
+</html>

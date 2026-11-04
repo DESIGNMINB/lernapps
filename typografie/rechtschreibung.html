@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rechtschreibung – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .meta-row { display:flex; gap:32px; margin-bottom:28px; }
+    .meta-row .item { text-align:center; }
+    .meta-row .label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); }
+    .meta-row .val { font-size:18px; font-weight:700; }
+    .rule-group-label {
+      font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--text-muted); margin:28px 0 12px; padding-bottom:8px;
+      border-bottom:1px solid var(--border-color);
+    }
+    .abbr-list { font-size:14px; line-height:2; color:var(--text-secondary); }
+    .abbr-list code { background:#F3F4F6; padding:2px 6px; border-radius:4px; font-size:13px; }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card" style="max-width:1100px">
+      <h1 class="page-title">Rechtschreibung &amp; Abkürzungen</h1>
+      <p class="page-intro">Wichtige Regeln der amtlichen deutschen Rechtschreibung (Reform 1996, aktuelle Fassung 2024) und häufig verwendete Abkürzungen.</p>
+
+      <div class="meta-row">
+        <div class="item"><div class="label">Grundlage</div><div class="val">Regelwerk 2024</div></div>
+        <div class="item"><div class="label">Regelgruppen</div><div class="val">5</div></div>
+        <div class="item"><div class="label">Regeln</div><div class="val">15</div></div>
+        <div class="item"><div class="label">Abkürzungen</div><div class="val">53</div></div>
+      </div>
+
+      <div class="tabs-container">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-regeln">Rechtschreibregeln</button>
+          <button class="tab-btn" data-tab="tab-abk">Abkürzungen</button>
+        </div>
+
+        <div id="tab-regeln" class="tab-content active">
+          <div class="rule-group-label">Laut-Buchstaben-Zuordnung</div>
+          <div class="rule-card"><h4>1. ss statt ß nach kurzem Vokal</h4><p>Nach kurzem Vokal steht immer ss: Fluss, dass, Schloss, Fass. Nach langem Vokal oder Diphthong bleibt ß: Straße, Fuß, Maß.</p></div>
+          <div class="rule-card"><h4>2. ß bleibt nach langem Vokal und Diphthong</h4><p>Beispiele: Straße, Grüße, außen, heißen. In der Schweiz wird generell ss verwendet.</p></div>
+          <div class="rule-card"><h4>3. Stammprinzip bei Ableitungen</h4><p>Die Schreibung richtet sich nach dem Wortstamm: Bändel von Band, behände von Hand, Stängel von Stange.</p></div>
+
+          <div class="rule-group-label">Getrennt- und Zusammenschreibung</div>
+          <div class="rule-card"><h4>4. Verb + Verb: getrennt schreiben</h4><p>kennen lernen, spazieren gehen, sitzen bleiben. Ausnahme: Zusammensetzungen mit bleiben/lassen (fakultativ).</p></div>
+          <div class="rule-card"><h4>5. Adjektiv + Verb: getrennt bei unveränderter Bedeutung</h4><p>gut schreiben (= qualitativ gut), aber: gutschreiben (= einem Konto gutschreiben).</p></div>
+          <div class="rule-card"><h4>6. Zusammensetzungen mit Substantiv</h4><p>Rad fahren, Eis laufen, Schlange stehen. Aber als Substantiv: das Radfahren.</p></div>
+
+          <div class="rule-group-label">Groß- und Kleinschreibung</div>
+          <div class="rule-card"><h4>7. Substantivierte Adjektive und Partizipien</h4><p>Großschreibung: das Gute, im Allgemeinen, alles Mögliche, nichts Neues.</p></div>
+          <div class="rule-card"><h4>8. Anredepronomen: Sie groß, du klein</h4><p>Sie/Ihnen immer groß. du/dein in Briefen wahlweise groß (empfohlen: klein).</p></div>
+          <div class="rule-card"><h4>9. Straßenbezeichnungen</h4><p>Adjektive in Straßennamen werden großgeschrieben: Lange Gasse, Alte Brücke.</p></div>
+
+          <div class="rule-group-label">Zeichensetzung</div>
+          <div class="rule-card"><h4>10. Komma bei Infinitivgruppen</h4><p>Pflicht bei: um zu, ohne zu, anstatt zu, außer zu, als zu. Beispiel: Er ging, um einzukaufen.</p></div>
+          <div class="rule-card"><h4>11. Komma bei Aufzählungen</h4><p>Gleichrangige Elemente ohne „und/oder" mit Komma trennen. Vor „und" kein Komma (Ausnahme: Klarheit).</p></div>
+          <div class="rule-card"><h4>12. Gedankenstrich statt Komma</h4><p>Für Einschübe kann der Gedankenstrich (–) statt Komma stehen: Die Lösung – falls es eine gibt – liegt nahe.</p></div>
+
+          <div class="rule-group-label">Silbentrennung</div>
+          <div class="rule-card"><h4>13. Trennung nach Sprechsilben</h4><p>Getrennt wird nach Sprechsilben: Freun-de, Bal-kon, Fens-ter.</p></div>
+          <div class="rule-card"><h4>14. ck wird nicht mehr getrennt</h4><p>Neu: Zu-cker (nicht mehr: Zuk-ker). Das ck bleibt zusammen.</p></div>
+          <div class="rule-card"><h4>15. st darf getrennt werden</h4><p>Neu erlaubt: Fens-ter, Küs-te, Kas-ten. Früher war die st-Trennung verboten.</p></div>
+        </div>
+
+        <div id="tab-abk" class="tab-content">
+          <div class="rule-group-label">Allgemein gebräuchliche Abkürzungen</div>
+          <div class="info-card" style="margin-bottom:16px;">
+            <p class="abbr-list"><code>bzw.</code> <code>d. h.</code> <code>etc.</code> <code>f.</code> <code>ff.</code> <code>ggf.</code> <code>i. d. R.</code> <code>i. e. S.</code> <code>i. w. S.</code> <code>o. g.</code> <code>s. o.</code> <code>s. u.</code> <code>sog.</code> <code>u. a.</code> <code>u. U.</code> <code>usw.</code> <code>v. a.</code> <code>vgl.</code> <code>z. B.</code> <code>z. T.</code></p>
+          </div>
+
+          <div class="rule-group-label">Wissenschaftlich / Akademisch</div>
+          <div class="info-card" style="margin-bottom:16px;">
+            <p class="abbr-list"><code>Abb.</code> <code>Anm.</code> <code>Aufl.</code> <code>Bd.</code> <code>ebd.</code> <code>ed./Hg.</code> <code>Hrsg.</code> <code>Jh.</code> <code>Kap.</code> <code>o. J.</code> <code>o. O.</code> <code>S.</code> <code>Tab.</code> <code>u. ä.</code> <code>URL</code></p>
+          </div>
+
+          <div class="rule-group-label">Typografie &amp; Medien</div>
+          <div class="info-card" style="margin-bottom:16px;">
+            <p class="abbr-list"><code>DIN</code> <code>DTP</code> <code>em</code> <code>fett</code> <code>Ges.</code> <code>GmbH</code> <code>ISO</code> <code>kursiv</code> <code>pt</code> <code>RGB</code> <code>CMYK</code> <code>PDF</code> <code>SVG</code></p>
+          </div>
+
+          <div class="rule-group-label">Regeln zur Abkürzungsschreibung</div>
+          <div class="rule-card"><h4>1. Punkt nach Abkürzungen</h4><p>Abkürzungen, die als solche gesprochen werden, erhalten einen Punkt: z. B., usw., vgl.</p></div>
+          <div class="rule-card"><h4>2. Kein Punkt bei Symbolen</h4><p>Maßeinheiten und Symbole ohne Punkt: m, kg, km, MHz, PDF.</p></div>
+          <div class="rule-card"><h4>3. Leerzeichen in mehrteiligen Abk.</h4><p>Geschütztes Leerzeichen zwischen den Teilen: z.&nbsp;B., d.&nbsp;h., i.&nbsp;d.&nbsp;R.</p></div>
+          <div class="rule-card"><h4>4. Abk. am Satzende</h4><p>Kein zusätzlicher Punkt: „Er kaufte Äpfel, Birnen usw." (nicht: „usw..")</p></div>
+          <div class="rule-card"><h4>5. Akronyme ohne Punkte</h4><p>GmbH, AG, NATO, ISBN – Akronyme werden ohne Punkte geschrieben.</p></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('rechtschreibung');</script>
+</body>
+</html>

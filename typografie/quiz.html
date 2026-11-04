@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typografie-Quiz – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== QUIZ LAYOUT ===== */
+    .quiz-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .quiz-progress-text {
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+    }
+    .quiz-score-live {
+      font-size: 13px; font-weight: 600; color: var(--purple);
+    }
+    .progress-bar-track {
+      width: 100%; height: 6px; background: var(--bg-muted);
+      border-radius: 3px; margin-bottom: 32px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--purple);
+      border-radius: 3px; transition: width 0.4s ease;
+    }
+
+    /* ===== QUESTION CARD ===== */
+    .question-card {
+      border: 1px solid var(--border-color);
+      border-radius: 16px; padding: 36px;
+      background: var(--bg-white); margin-bottom: 24px;
+    }
+    .question-category {
+      display: inline-block; padding: 4px 12px;
+      border-radius: 20px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      background: var(--bg-muted); color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .question-text {
+      font-size: 20px; font-weight: 700; color: var(--text-primary);
+      line-height: 1.4; margin-bottom: 28px;
+    }
+    .question-hint {
+      font-size: 13px; color: var(--text-muted); font-style: italic;
+      margin-top: -16px; margin-bottom: 24px;
+    }
+
+    /* ===== ANSWER OPTIONS ===== */
+    .answer-options { display: flex; flex-direction: column; gap: 12px; }
+    .answer-option {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px; border: 2px solid var(--border-color);
+      border-radius: 12px; cursor: pointer; background: var(--bg-white);
+      transition: all 0.2s ease; font-size: 15px; line-height: 1.5;
+      color: var(--text-primary);
+    }
+    .answer-option:hover:not(.disabled) {
+      border-color: var(--purple-light);
+      background: var(--bg-muted);
+    }
+    .answer-letter {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      background: var(--bg-muted); color: var(--text-secondary);
+      flex-shrink: 0; transition: all 0.2s ease;
+    }
+    .answer-text { flex: 1; }
+
+    /* States */
+    .answer-option.selected {
+      border-color: var(--purple); background: rgba(124, 58, 237, 0.06);
+    }
+    .answer-option.selected .answer-letter {
+      background: var(--purple); color: white;
+    }
+    .answer-option.correct {
+      border-color: var(--success); background: rgba(34, 197, 94, 0.06);
+    }
+    .answer-option.correct .answer-letter {
+      background: var(--success); color: white;
+    }
+    .answer-option.incorrect {
+      border-color: var(--error); background: rgba(239, 68, 68, 0.06);
+    }
+    .answer-option.incorrect .answer-letter {
+      background: var(--error); color: white;
+    }
+    .answer-option.disabled { cursor: default; opacity: 0.7; }
+    .answer-option.correct.disabled { opacity: 1; }
+
+    /* ===== EXPLANATION BOX ===== */
+    .explanation-box {
+      margin-top: 20px; padding: 16px 20px;
+      border-radius: 12px; font-size: 14px; line-height: 1.6;
+      display: none;
+    }
+    .explanation-box.correct {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #166534;
+    }
+    .explanation-box.incorrect {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #991B1B;
+    }
+    [data-theme="dark"] .explanation-box.correct {
+      background: #14432A; color: #86EFAC; border-color: #16A34A;
+    }
+    [data-theme="dark"] .explanation-box.incorrect {
+      background: #3D1010; color: #FCA5A5; border-color: #DC2626;
+    }
+    .explanation-box .explain-icon { font-size: 16px; margin-right: 6px; }
+
+    /* ===== NAVIGATION ===== */
+    .quiz-nav {
+      display: flex; justify-content: flex-end; gap: 12px;
+      margin-top: 8px;
+    }
+    .quiz-nav .btn { min-width: 160px; text-align: center; }
+
+    /* ===== RESULT SCREEN ===== */
+    .result-screen { display: none; }
+    .result-card {
+      border: 1px solid var(--border-color);
+      border-radius: 16px; padding: 48px; text-align: center;
+      background: var(--bg-white);
+    }
+    .result-score-ring {
+      width: 140px; height: 140px; margin: 0 auto 24px;
+      position: relative;
+    }
+    .result-score-ring svg { transform: rotate(-90deg); }
+    .result-score-ring .ring-bg {
+      fill: none; stroke: var(--bg-muted); stroke-width: 8;
+    }
+    .result-score-ring .ring-fill {
+      fill: none; stroke-width: 8; stroke-linecap: round;
+      transition: stroke-dashoffset 1s ease, stroke 0.5s;
+    }
+    .result-score-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-size: 36px; font-weight: 700; color: var(--text-primary);
+    }
+    .result-score-text span { font-size: 16px; font-weight: 500; color: var(--text-muted); }
+    .result-label {
+      font-size: 24px; font-weight: 700; color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .result-sub {
+      font-size: 15px; color: var(--text-secondary); margin-bottom: 32px;
+      max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.6;
+    }
+
+    /* Category breakdown */
+    .result-breakdown {
+      margin-top: 32px; text-align: left;
+      border-top: 1px solid var(--border-color); padding-top: 28px;
+    }
+    .result-breakdown h3 {
+      font-size: 16px; font-weight: 700; margin-bottom: 16px;
+    }
+    .breakdown-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--bg-muted);
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-cat { flex: 1; font-size: 14px; font-weight: 500; }
+    .breakdown-bar-track {
+      flex: 2; height: 6px; background: var(--bg-muted);
+      border-radius: 3px; overflow: hidden;
+    }
+    .breakdown-bar-fill {
+      height: 100%; border-radius: 3px; transition: width 0.6s ease;
+    }
+    .breakdown-score { font-size: 13px; font-weight: 600; min-width: 40px; text-align: right; }
+
+    /* Question dots summary */
+    .question-dots {
+      display: flex; gap: 6px; justify-content: center;
+      flex-wrap: wrap; margin: 24px 0;
+    }
+    .q-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: white;
+    }
+    .q-dot.correct { background: var(--success); }
+    .q-dot.incorrect { background: var(--error); }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card">
+      <div class="lektion-badge">
+        <div class="lektion-number" style="background: var(--purple-light);">?</div>
+        <span class="lektion-label">Wissenstest</span>
+      </div>
+      <h1 class="page-title">Typografie-Quiz</h1>
+      <p class="page-intro">Testen Sie Ihr Wissen aus allen Lektionen und Referenzseiten. 15 Fragen zu Zeilenabstand, Laufweite, Hierarchie, Barrierefreiheit, DIN-Klassifikation und mehr.</p>
+
+      <!-- Quiz Container -->
+      <div id="quiz-container">
+        <div class="quiz-header">
+          <span class="quiz-progress-text" id="progress-text">Frage 1 von 15</span>
+          <span class="quiz-score-live" id="score-live"></span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <div class="question-card" id="question-card">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next-btn" style="display:none">
+            Nächste Frage &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Screen -->
+      <div class="result-screen" id="result-screen">
+        <div class="result-card">
+          <div class="result-score-ring">
+            <svg viewBox="0 0 140 140" width="140" height="140">
+              <circle class="ring-bg" cx="70" cy="70" r="60"/>
+              <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="60"
+                stroke-dasharray="377" stroke-dashoffset="377"/>
+            </svg>
+            <div class="result-score-text" id="result-score-text">0<span>/15</span></div>
+          </div>
+          <div class="result-label" id="result-label">Ergebnis</div>
+          <p class="result-sub" id="result-sub"></p>
+
+          <div class="question-dots" id="question-dots"></div>
+
+          <div class="result-breakdown" id="result-breakdown">
+            <h3>Ergebnis nach Kategorie</h3>
+            <div id="breakdown-rows"></div>
+          </div>
+
+          <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center;">
+            <button class="btn btn-primary" id="restart-btn">Quiz wiederholen</button>
+            <a href="index.html" class="btn">Zur Startseite</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('quiz');</script>
+  <script>
+    // ===== QUIZ DATA =====
+    const questions = [
+      {
+        category: 'Zeilenabstand',
+        question: 'Welcher Zeilenabstand (line-height) gilt als optimal für Fließtext am Bildschirm?',
+        options: [
+          '1.0 (einfacher Zeilenabstand)',
+          '1.4 bis 1.6',
+          '2.0 (doppelter Zeilenabstand)',
+          '0.8 (eng gesetzt)'
+        ],
+        correct: 1,
+        explanation: 'Ein Zeilenabstand von 1.4 bis 1.6 bietet die beste Lesbarkeit für Fließtext. Zu enger Durchschuss (1.0) macht den Text schwer lesbar, zu großer (2.0) löst die Zeilen optisch voneinander.'
+      },
+      {
+        category: 'Zeilenlänge',
+        question: 'Wie viele Zeichen pro Zeile gelten als ideal für Fließtext?',
+        options: [
+          '20–30 Zeichen',
+          '45–75 Zeichen',
+          '80–120 Zeichen',
+          '100–150 Zeichen'
+        ],
+        correct: 1,
+        explanation: 'Die goldene Regel besagt: 45 bis 75 Zeichen pro Zeile sind ideal. In CSS lässt sich das am einfachsten mit der Einheit „ch" steuern (z.B. max-width: 65ch).'
+      },
+      {
+        category: 'Zeilenlänge',
+        question: 'Welche CSS-Einheit eignet sich am besten zur Steuerung der Zeilenlänge?',
+        options: [
+          'px (Pixel)',
+          'em (relative Einheit)',
+          'ch (Zeichenbreite der „0")',
+          'vw (Viewport Width)'
+        ],
+        correct: 2,
+        explanation: 'Die Einheit „ch" entspricht der Breite der Ziffer „0" in der aktuellen Schrift und eignet sich daher ideal, um die Zeichenanzahl pro Zeile direkt zu steuern.'
+      },
+      {
+        category: 'Laufweite',
+        question: 'Bei welchem Anwendungsfall sollte die Laufweite (letter-spacing) erhöht werden?',
+        options: [
+          'Bei Fließtext in Kleinbuchstaben',
+          'Bei Versalien (Großbuchstaben)',
+          'Bei kursivem Text',
+          'Bei sehr kleiner Schriftgröße unter 8px'
+        ],
+        correct: 1,
+        explanation: 'Versalien haben größere Innenräume (Punzen) als Kleinbuchstaben. Daher brauchen sie mehr Laufweite, um optisch gleichmäßig zu wirken. Ein guter Richtwert: 0.05em bis 0.1em.'
+      },
+      {
+        category: 'Glossar',
+        question: 'Was bezeichnet der typografische Begriff „Punze"?',
+        options: [
+          'Den Abstand zwischen zwei Buchstaben',
+          'Den geschlossenen oder offenen Innenraum eines Buchstabens',
+          'Die Unterlänge eines Buchstabens wie „g" oder „p"',
+          'Die Strichstärke einer Schrift'
+        ],
+        correct: 1,
+        explanation: 'Die Punze ist der Innenraum eines Buchstabens – geschlossen (wie bei „o", „d") oder offen (wie bei „c", „u"). Sie beeinflusst maßgeblich die Lesbarkeit einer Schrift.'
+      },
+      {
+        category: 'Glossar',
+        question: 'Was ist ein „Geviert" in der Typografie?',
+        options: [
+          'Ein spezieller Satzzeichen-Typ',
+          'Die Breite des Buchstabens „M"',
+          'Ein quadratischer Raum, dessen Seitenlänge der Schriftgröße entspricht',
+          'Der Abstand zwischen zwei Wörtern'
+        ],
+        correct: 2,
+        explanation: 'Das Geviert ist eine typografische Maßeinheit: ein Quadrat, dessen Seitenlänge der aktuellen Schriftgröße entspricht. Bei 12pt Schrift ist ein Geviert 12pt × 12pt.'
+      },
+      {
+        category: 'Barrierefreiheit',
+        question: 'Welches Kontrastverhältnis fordert WCAG AA für normalen Text?',
+        options: [
+          '3:1',
+          '4.5:1',
+          '7:1',
+          '2:1'
+        ],
+        correct: 1,
+        explanation: 'WCAG AA verlangt mindestens 4.5:1 für normalen Text und 3:1 für großen Text (ab 18pt oder 14pt fett). WCAG AAA fordert sogar 7:1 für normalen Text.'
+      },
+      {
+        category: 'Barrierefreiheit',
+        question: 'Ab wann gilt das Barrierefreiheitsstärkungsgesetz (BFSG) für digitale Produkte?',
+        options: [
+          '28. Juni 2024',
+          '1. Januar 2025',
+          '28. Juni 2025',
+          '1. Januar 2026'
+        ],
+        correct: 2,
+        explanation: 'Das BFSG tritt am 28. Juni 2025 in Kraft und verpflichtet Unternehmen, ihre digitalen Produkte und Dienstleistungen barrierefrei zu gestalten.'
+      },
+      {
+        category: 'DIN 16518',
+        question: 'Zu welcher DIN-16518-Gruppe gehören Schriften wie die Garamond?',
+        options: [
+          'Klassizistische Antiqua',
+          'Venezianische Renaissance-Antiqua',
+          'Französische Renaissance-Antiqua',
+          'Serifenbetonte Linear-Antiqua'
+        ],
+        correct: 2,
+        explanation: 'Die Garamond ist eine Französische Renaissance-Antiqua (Gruppe II). Erkennungsmerkmale: leicht schräge Achse, mäßiger Strichstärkenkontrast, waagerechter e-Querstrich und ausgeprägte geschwungene Serifen. Venezianische Renaissance-Antiqua (Gruppe I) wären dagegen Schriften wie Centaur oder Jenson.'
+      },
+      {
+        category: 'Schriftpaarung',
+        question: 'Was ist das wichtigste Prinzip bei der Kombination zweier Schriften?',
+        options: [
+          'Möglichst ähnliche Schriften wählen',
+          'Kontrast ohne Konflikt',
+          'Mindestens drei verschiedene Schriften verwenden',
+          'Nur Schriften derselben Klassifikationsgruppe nutzen'
+        ],
+        correct: 1,
+        explanation: 'Gute Schriftpaarungen basieren auf Kontrast ohne Konflikt: Die Schriften sollten sich deutlich unterscheiden (z.B. Serif + Sans-Serif), aber in Proportionen und Charakter harmonieren.'
+      },
+      {
+        category: 'Abstände',
+        question: 'Was beschreibt der CSS-Begriff „Padding"?',
+        options: [
+          'Den Außenabstand zwischen zwei Elementen',
+          'Den Innenabstand innerhalb eines Elements',
+          'Den Zeilenabstand im Text',
+          'Den Abstand zwischen Buchstaben'
+        ],
+        correct: 1,
+        explanation: 'Padding ist der Innenabstand – der Raum zwischen dem Inhalt eines Elements und seinem Rand. Margin hingegen ist der Außenabstand zwischen Elementen.'
+      },
+      {
+        category: 'Visuelle Hierarchie',
+        question: 'Welche drei Hauptmittel erzeugen visuelle Hierarchie in der Typografie?',
+        options: [
+          'Farbe, Animation, Schatten',
+          'Gewicht, Größe, Raum',
+          'Schrift, Bild, Icon',
+          'Kontrast, Sättigung, Helligkeit'
+        ],
+        correct: 1,
+        explanation: 'Die drei Hauptmittel sind Gewicht (Bold vs. Regular), Größe (große Überschriften vs. kleiner Fließtext) und Raum (Abstände, die Gruppierung und Trennung erzeugen).'
+      },
+      {
+        category: 'Glossar',
+        question: 'Was sind Serifen?',
+        options: [
+          'Dekorative Schnörkel in Handschriften',
+          'Die runden Teile von Buchstaben wie „o" oder „e"',
+          'Kleine Striche an den Enden von Buchstabenstrichen',
+          'Ligaturen zwischen zwei Buchstaben'
+        ],
+        correct: 2,
+        explanation: 'Serifen sind die kleinen Querstriche oder „Füßchen" an den Enden der Buchstabenstriche. Schriften mit Serifen (z.B. Times, Garamond) heißen Serifenschriften oder Antiqua.'
+      },
+      {
+        category: 'Spalten & Raster',
+        question: 'Was bezeichnet der Begriff „Gutter" im Spaltensatz?',
+        options: [
+          'Die Gesamtbreite einer Spalte',
+          'Den Abstand zwischen den Spalten',
+          'Den Seitenrand links und rechts',
+          'Die Kopfzeile über den Spalten'
+        ],
+        correct: 1,
+        explanation: 'Der Gutter (auch Spaltenabstand oder Zwischenschlag) ist der freie Raum zwischen zwei Spalten. Er verhindert, dass Zeilen optisch ineinander laufen.'
+      },
+      {
+        category: 'Farbwirkung',
+        question: 'Welche Farbkombination bietet typischerweise den höchsten Lesekontrast?',
+        options: [
+          'Dunkelgrau (#666) auf Hellgrau (#EEE)',
+          'Schwarz (#000) auf Weiß (#FFF)',
+          'Dunkelblau auf Mittelgrün',
+          'Rot (#FF0000) auf Orange (#FFA500)'
+        ],
+        correct: 1,
+        explanation: 'Schwarz auf Weiß erreicht das maximale Kontrastverhältnis von 21:1. In der Praxis wird oft ein leicht abgemilderter Kontrast (z.B. #1F2937 auf #FFFFFF) bevorzugt, um die Augen zu schonen.'
+      }
+    ];
+
+    // ===== QUIZ STATE =====
+    let currentQuestion = 0;
+    let score = 0;
+    let answers = [];
+    let answered = false;
+
+    // ===== DOM REFERENCES =====
+    const questionCard = document.getElementById('question-card');
+    const progressText = document.getElementById('progress-text');
+    const progressFill = document.getElementById('progress-fill');
+    const scoreLive = document.getElementById('score-live');
+    const nextBtn = document.getElementById('next-btn');
+    const quizContainer = document.getElementById('quiz-container');
+    const resultScreen = document.getElementById('result-screen');
+
+    // ===== RENDER QUESTION =====
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      answered = false;
+      nextBtn.style.display = 'none';
+      progressText.textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
+      progressFill.style.width = `${((currentQuestion) / questions.length) * 100}%`;
+      scoreLive.textContent = currentQuestion > 0 ? `${score} richtig` : '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      let html = `
+        <div class="question-category">${q.category}</div>
+        <div class="question-text">${q.question}</div>
+        <div class="answer-options">
+      `;
+
+      q.options.forEach((opt, i) => {
+        html += `
+          <div class="answer-option" data-index="${i}" onclick="selectAnswer(${i})">
+            <span class="answer-letter">${letters[i]}</span>
+            <span class="answer-text">${opt}</span>
+          </div>`;
+      });
+
+      html += `</div>
+        <div class="explanation-box" id="explanation-box"></div>`;
+
+      questionCard.innerHTML = html;
+    }
+
+    // ===== SELECT ANSWER =====
+    function selectAnswer(index) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[currentQuestion];
+      const isCorrect = index === q.correct;
+      const options = questionCard.querySelectorAll('.answer-option');
+      const explanationBox = document.getElementById('explanation-box');
+
+      if (isCorrect) {
+        score++;
+        answers.push(true);
+      } else {
+        answers.push(false);
+      }
+
+      // Mark all options
+      options.forEach((opt, i) => {
+        opt.classList.add('disabled');
+        if (i === q.correct) {
+          opt.classList.add('correct');
+        } else if (i === index && !isCorrect) {
+          opt.classList.add('incorrect');
+        }
+      });
+
+      // Show explanation
+      explanationBox.className = `explanation-box ${isCorrect ? 'correct' : 'incorrect'}`;
+      explanationBox.style.display = 'block';
+      explanationBox.innerHTML = `
+        <span class="explain-icon">${isCorrect ? '&#10003;' : '&#10007;'}</span>
+        <strong>${isCorrect ? 'Richtig!' : 'Leider falsch.'}</strong> ${q.explanation}`;
+
+      // Show next button
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.textContent = currentQuestion < questions.length - 1
+        ? 'Nächste Frage \u2192'
+        : 'Ergebnis anzeigen';
+
+      scoreLive.textContent = `${score} richtig`;
+    }
+
+    // ===== NEXT QUESTION =====
+    nextBtn.addEventListener('click', () => {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    // ===== SHOW RESULT =====
+    function showResult() {
+      quizContainer.style.display = 'none';
+      resultScreen.style.display = 'block';
+
+      const pct = Math.round((score / questions.length) * 100);
+
+      // Score ring
+      const circumference = 2 * Math.PI * 60; // r=60
+      const offset = circumference - (pct / 100) * circumference;
+      const ringFill = document.getElementById('ring-fill');
+      let ringColor = '#EF4444';
+      if (pct >= 80) ringColor = '#22C55E';
+      else if (pct >= 50) ringColor = '#FFA500';
+      ringFill.style.stroke = ringColor;
+      setTimeout(() => { ringFill.style.strokeDashoffset = offset; }, 100);
+
+      document.getElementById('result-score-text').innerHTML = `${score}<span>/${questions.length}</span>`;
+
+      // Label & subtitle
+      let label, sub;
+      if (pct >= 90) {
+        label = 'Hervorragend!';
+        sub = 'Sie beherrschen die typografischen Grundlagen exzellent. Bereit für die Praxis!';
+      } else if (pct >= 70) {
+        label = 'Gut gemacht!';
+        sub = 'Solides Wissen! Schauen Sie sich die Lektionen zu den fehlenden Themen noch einmal an.';
+      } else if (pct >= 50) {
+        label = 'Ordentlich!';
+        sub = 'Ein guter Anfang. Wiederholen Sie die Lektionen, um Ihr Wissen zu vertiefen.';
+      } else {
+        label = 'Weiter üben!';
+        sub = 'Arbeiten Sie die Lektionen noch einmal durch und versuchen Sie das Quiz erneut.';
+      }
+      document.getElementById('result-label').textContent = label;
+      document.getElementById('result-sub').textContent = sub;
+
+      // Question dots
+      const dotsEl = document.getElementById('question-dots');
+      dotsEl.innerHTML = answers.map((correct, i) =>
+        `<div class="q-dot ${correct ? 'correct' : 'incorrect'}">${i + 1}</div>`
+      ).join('');
+
+      // Category breakdown
+      const cats = {};
+      questions.forEach((q, i) => {
+        if (!cats[q.category]) cats[q.category] = { total: 0, correct: 0 };
+        cats[q.category].total++;
+        if (answers[i]) cats[q.category].correct++;
+      });
+
+      const breakdownEl = document.getElementById('breakdown-rows');
+      breakdownEl.innerHTML = Object.entries(cats).map(([cat, data]) => {
+        const catPct = Math.round((data.correct / data.total) * 100);
+        let barColor = '#EF4444';
+        if (catPct >= 80) barColor = '#22C55E';
+        else if (catPct >= 50) barColor = '#FFA500';
+        return `
+          <div class="breakdown-row">
+            <span class="breakdown-cat">${cat}</span>
+            <div class="breakdown-bar-track">
+              <div class="breakdown-bar-fill" style="width:${catPct}%;background:${barColor}"></div>
+            </div>
+            <span class="breakdown-score">${data.correct}/${data.total}</span>
+          </div>`;
+      }).join('');
+    }
+
+    // ===== RESTART =====
+    document.getElementById('restart-btn').addEventListener('click', () => {
+      currentQuestion = 0;
+      score = 0;
+      answers = [];
+      quizContainer.style.display = 'block';
+      resultScreen.style.display = 'none';
+      // Shuffle questions
+      for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+      }
+      renderQuestion();
+    });
+
+    // ===== INIT =====
+    renderQuestion();
+  </script>
+</body>
+</html>

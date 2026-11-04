@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innen- und Außenabstände – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .grundlagen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+    .grundlagen-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; }
+    .grundlagen-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .grundlagen-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
+    .example-row { display: flex; gap: 24px; margin-top: 12px; }
+    .example-box { flex: 1; }
+    .example-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .demo-container { border: 2px dashed var(--border-color); border-radius: 8px; padding: 12px; min-height: 60px; display: flex; align-items: center; justify-content: center; background: #FAFAFA; }
+    .demo-btn { background: var(--purple); color: white; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: default; }
+    .demo-card-item { background: #F3F4F6; border-radius: 6px; padding: 12px; font-size: 12px; color: var(--text-secondary); width: 100%; text-align: center; }
+    .demo-cards-wrapper { display: flex; flex-direction: column; width: 100%; }
+
+    .section-heading { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-top: 40px; margin-bottom: 8px; }
+    .section-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+
+    .exercise-block { border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-top: 24px; }
+    .exercise-block h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .exercise-block > p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+
+    .exercise-preview { border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; background: #FAFAFA; min-height: 100px; margin-bottom: 16px; }
+
+    .event-cards-container { display: flex; gap: 16px; }
+    .event-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; flex: 1; }
+    .event-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .event-card .event-meta { font-size: 12px; color: var(--text-muted); }
+    .event-card .event-date { color: var(--purple); font-weight: 600; }
+
+    .slider-row { display: flex; align-items: center; gap: 16px; margin: 12px 0; }
+    .slider-row label { font-size: 13px; font-weight: 600; min-width: 80px; }
+    .slider-row input[type="range"] { flex: 1; }
+    .slider-row .slider-value { min-width: 56px; text-align: center; }
+
+    .btn-row { display: flex; gap: 8px; margin-top: 16px; }
+
+    .image-text-container { display: flex; gap: 24px; align-items: flex-start; }
+    .image-placeholder { width: 220px; min-height: 160px; background: linear-gradient(135deg, var(--purple), var(--purple-light)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600; text-align: center; padding: 16px; flex-shrink: 0; }
+    .text-beside { flex: 1; font-size: 14px; line-height: 1.7; color: var(--text-secondary); }
+
+    .paragraphs-container p { font-size: 14px; line-height: 1.7; color: var(--text-secondary); }
+
+    @media (max-width: 768px) {
+      .grundlagen-grid { grid-template-columns: 1fr; }
+      .event-cards-container { flex-direction: column; }
+      .image-text-container { flex-direction: column; }
+      .image-placeholder { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main"><div class="content-card">
+    <div class="lektion-badge"><span class="lektion-number">4</span><span class="lektion-label">Lektion</span></div>
+    <h1 class="page-title">Innen- und Außenabstände</h1>
+    <p class="page-intro">Richtig gesetzte Abstände sind entscheidend für Lesbarkeit und visuelle Hierarchie. Diese Lektion zeigt den Unterschied zwischen Padding (Innenabstand) und Margin (Außenabstand).</p>
+
+    <!-- Grundlagen -->
+    <h2 class="section-heading">Grundlagen</h2>
+    <div class="grundlagen-grid">
+      <div class="grundlagen-card">
+        <h3>Padding (Innenabstand)</h3>
+        <p>Padding ist der Abstand zwischen dem Inhalt eines Elements und seinem Rand. Er sorgt dafür, dass Inhalte nicht am Rand kleben und besser lesbar sind.</p>
+        <div class="example-row">
+          <div class="example-box">
+            <div class="example-label">0px Padding</div>
+            <div class="demo-container">
+              <span class="demo-btn" style="padding: 0px;">Speichern</span>
+            </div>
+          </div>
+          <div class="example-box">
+            <div class="example-label">16px Padding</div>
+            <div class="demo-container">
+              <span class="demo-btn" style="padding: 16px;">Speichern</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grundlagen-card">
+        <h3>Margin (Außenabstand)</h3>
+        <p>Margin ist der Abstand zwischen Elementen. Er steuert, wie viel Luft zwischen benachbarten Komponenten liegt und erzeugt visuelle Gruppierung.</p>
+        <div class="example-row">
+          <div class="example-box">
+            <div class="example-label">0px Margin</div>
+            <div class="demo-container">
+              <div class="demo-cards-wrapper" style="gap: 0px;">
+                <div class="demo-card-item">Karte A</div>
+                <div class="demo-card-item">Karte B</div>
+              </div>
+            </div>
+          </div>
+          <div class="example-box">
+            <div class="example-label">16px Margin</div>
+            <div class="demo-container">
+              <div class="demo-cards-wrapper" style="gap: 16px;">
+                <div class="demo-card-item">Karte A</div>
+                <div class="demo-card-item">Karte B</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Practices -->
+    <h2 class="section-heading">Best Practices</h2>
+    <p class="section-desc">Bewährte Methoden für konsistente und harmonische Abstände in Ihren Layouts.</p>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="meta">Grundprinzip</div>
+        <h4>8px-System</h4>
+        <p>Verwenden Sie Vielfache von 8px (8, 16, 24, 32, 40, 48 ...) für alle Abstände. Das erzeugt ein konsistentes, harmonisches Layout.</p>
+      </div>
+      <div class="info-card">
+        <div class="meta">Textgestaltung</div>
+        <h4>Vertikaler Rhythmus</h4>
+        <p>Der Absatzabstand sollte 1–1,5× der Zeilenhöhe betragen. Das schafft eine gleichmäßige vertikale Struktur im Textfluss.</p>
+      </div>
+      <div class="info-card">
+        <div class="meta">Container</div>
+        <h4>Atmende Elemente</h4>
+        <p>Geben Sie Containern mindestens 16–24px Padding. Inhalte brauchen Luft zum Rand, um professionell und lesbar zu wirken.</p>
+      </div>
+      <div class="info-card">
+        <div class="meta">Layout</div>
+        <h4>Visuelle Gruppierung</h4>
+        <p>Nutzen Sie kleinere Abstände innerhalb von Gruppen und größere zwischen Gruppen. Das Gesetz der Nähe steuert die Wahrnehmung.</p>
+      </div>
+    </div>
+
+    <!-- Interaktive Übungen -->
+    <h2 class="section-heading">Interaktive Übungen</h2>
+
+    <!-- Übung 1 -->
+    <div class="exercise-block">
+      <h3><span style="color: var(--purple);">01</span> Karten-Layout</h3>
+      <p>Stellen Sie Padding und Margin für die Event-Karten ein, um ein ausgewogenes Layout zu erreichen.</p>
+
+      <div class="exercise-preview" id="ex1-preview">
+        <div class="event-cards-container" id="ex1-cards">
+          <div class="event-card" style="padding: 16px;">
+            <h4>Workshop Typografie</h4>
+            <div class="event-meta"><span class="event-date">15. März 2026</span></div>
+            <div class="event-meta">Room A-201</div>
+          </div>
+          <div class="event-card" style="padding: 16px;">
+            <h4>Vortrag Grid-Systeme</h4>
+            <div class="event-meta"><span class="event-date">22. März 2026</span></div>
+            <div class="event-meta">Aula</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-row">
+        <label>Padding</label>
+        <input type="range" id="ex1-padding" min="8" max="48" value="16" step="1">
+        <span class="slider-value" id="ex1-padding-val">16px</span>
+      </div>
+      <div class="slider-row">
+        <label>Margin</label>
+        <input type="range" id="ex1-margin" min="8" max="48" value="16" step="1">
+        <span class="slider-value" id="ex1-margin-val">16px</span>
+      </div>
+
+      <div id="ex1-feedback" class="feedback-box info" style="margin-top: 12px;">
+        <span>Passen Sie Padding und Margin an, um ein harmonisches Karten-Layout zu erstellen.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-sm" onclick="resetEx1()">Zurücksetzen</button>
+        <button class="btn btn-sm" onclick="hintEx1()">Hinweis anzeigen</button>
+      </div>
+    </div>
+
+    <!-- Übung 2 -->
+    <div class="exercise-block">
+      <h3><span style="color: var(--purple);">02</span> Text neben Bild</h3>
+      <p>Bestimmen Sie den optimalen Abstand zwischen Bild und Text. Zu wenig Abstand lässt die Elemente kollidieren, zu viel reißt den Zusammenhang auseinander.</p>
+
+      <div class="exercise-preview" id="ex2-preview">
+        <div class="image-text-container" id="ex2-container">
+          <div class="image-placeholder">Schweizer Typografie</div>
+          <div class="text-beside">
+            Die Schweizer Typografie, auch als Internationaler Typografischer Stil bekannt, entstand in den 1950er-Jahren. Sie zeichnet sich durch klare Raster, asymmetrische Layouts und serifenlose Schriften aus. Das Ziel war objektive, funktionale Gestaltung – frei von persönlichem Ausdruck. Bis heute prägt dieser Ansatz das moderne Grafikdesign und Webdesign.
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-row">
+        <label>Margin</label>
+        <input type="range" id="ex2-margin" min="0" max="64" value="24" step="1">
+        <span class="slider-value" id="ex2-margin-val">24px</span>
+      </div>
+
+      <div id="ex2-feedback" class="feedback-box info" style="margin-top: 12px;">
+        <span>Finden Sie den optimalen Abstand zwischen Bild und Text.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-sm" onclick="resetEx2()">Zurücksetzen</button>
+        <button class="btn btn-sm" onclick="hintEx2()">Hinweis anzeigen</button>
+      </div>
+    </div>
+
+    <!-- Übung 3 -->
+    <div class="exercise-block">
+      <h3><span style="color: var(--purple);">03</span> Absatzabstand</h3>
+      <p>Regulieren Sie den Abstand zwischen den Absätzen. Der richtige Absatzabstand verbessert die Lesbarkeit und schafft eine klare Textstruktur.</p>
+
+      <div class="exercise-preview" id="ex3-preview">
+        <div class="paragraphs-container" id="ex3-paragraphs">
+          <p>Typografie ist die Kunst und Technik, Schrift so anzuordnen, dass geschriebene Sprache lesbar, leserlich und ansprechend ist. Die Gestaltung von Schrift umfasst die Auswahl von Schriftarten, Zeilenabständen, Zeilenlängen und Buchstabenabständen.</p>
+          <p>Ein guter Typograf achtet stets auf die Wechselwirkung zwischen Form und Inhalt. Die Schrift muss den Inhalt unterstützen, nicht davon ablenken. Lesbarkeit steht an erster Stelle, gefolgt von ästhetischer Qualität.</p>
+          <p>Moderne Typografie im Web bietet neue Herausforderungen: Variable Bildschirmgrößen, unterschiedliche Rendering-Engines und die Notwendigkeit barrierefreier Gestaltung erfordern flexible, systematische Ansätze.</p>
+        </div>
+      </div>
+
+      <div class="slider-row">
+        <label>Margin</label>
+        <input type="range" id="ex3-margin" min="0" max="48" value="16" step="1">
+        <span class="slider-value" id="ex3-margin-val">16px</span>
+      </div>
+
+      <div id="ex3-feedback" class="feedback-box info" style="margin-top: 12px;">
+        <span>Stellen Sie den Absatzabstand ein, der die beste Lesbarkeit erzeugt.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-sm" onclick="resetEx3()">Zurücksetzen</button>
+        <button class="btn btn-sm" onclick="hintEx3()">Hinweis anzeigen</button>
+      </div>
+    </div>
+
+  </div></main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex4');</script>
+  <script>
+    // === Exercise 1: Karten-Layout ===
+    const ex1Padding = document.getElementById('ex1-padding');
+    const ex1Margin = document.getElementById('ex1-margin');
+    const ex1PaddingVal = document.getElementById('ex1-padding-val');
+    const ex1MarginVal = document.getElementById('ex1-margin-val');
+    const ex1Cards = document.getElementById('ex1-cards');
+    const ex1Feedback = document.getElementById('ex1-feedback');
+
+    function updateEx1() {
+      const p = parseInt(ex1Padding.value);
+      const m = parseInt(ex1Margin.value);
+      ex1PaddingVal.textContent = p + 'px';
+      ex1MarginVal.textContent = m + 'px';
+      ex1Cards.style.gap = m + 'px';
+      const cards = ex1Cards.querySelectorAll('.event-card');
+      cards.forEach(c => c.style.padding = p + 'px');
+
+      const pGood = (p >= 16 && p <= 32);
+      const mGood = (m >= 16 && m <= 24);
+
+      if (pGood && mGood) {
+        ex1Feedback.className = 'feedback-box success';
+        ex1Feedback.innerHTML = '<span>Hervorragend! Padding und Margin sind ausgewogen. Die Karten haben genug inneren Raum und stehen in harmonischem Abstand zueinander.</span>';
+      } else if (p < 12 || m < 12) {
+        ex1Feedback.className = 'feedback-box error';
+        ex1Feedback.innerHTML = '<span>Die Abstände sind zu eng. Inhalte wirken gequetscht und die Karten lassen sich schlecht voneinander unterscheiden.</span>';
+      } else if (p > 36 || m > 36) {
+        ex1Feedback.className = 'feedback-box warning';
+        ex1Feedback.innerHTML = '<span>Die Abstände sind recht großzügig. Das Layout wirkt luftig, verliert aber an Kompaktheit und Zusammenhalt.</span>';
+      } else {
+        ex1Feedback.className = 'feedback-box info';
+        ex1Feedback.innerHTML = '<span>Passen Sie Padding und Margin weiter an, um ein optimales Verhältnis zu finden.</span>';
+      }
+    }
+
+    ex1Padding.addEventListener('input', updateEx1);
+    ex1Margin.addEventListener('input', updateEx1);
+
+    function resetEx1() {
+      ex1Padding.value = 16;
+      ex1Margin.value = 16;
+      updateEx1();
+    }
+
+    function hintEx1() {
+      ex1Feedback.className = 'feedback-box info';
+      ex1Feedback.innerHTML = '<span><strong>Hinweis:</strong> Versuchen Sie Padding zwischen 20–28px und Margin zwischen 16–24px. Das 8px-System empfiehlt Werte wie 16, 24 oder 32.</span>';
+    }
+
+    // === Exercise 2: Text neben Bild ===
+    const ex2Margin = document.getElementById('ex2-margin');
+    const ex2MarginVal = document.getElementById('ex2-margin-val');
+    const ex2Container = document.getElementById('ex2-container');
+    const ex2Feedback = document.getElementById('ex2-feedback');
+
+    function updateEx2() {
+      const m = parseInt(ex2Margin.value);
+      ex2MarginVal.textContent = m + 'px';
+      ex2Container.style.gap = m + 'px';
+
+      if (m >= 20 && m <= 32) {
+        ex2Feedback.className = 'feedback-box success';
+        ex2Feedback.innerHTML = '<span>Perfekt! Der Abstand zwischen Bild und Text ist ausgewogen – nah genug für Zusammengehörigkeit, weit genug für klare Trennung.</span>';
+      } else if (m < 8) {
+        ex2Feedback.className = 'feedback-box error';
+        ex2Feedback.innerHTML = '<span>Zu wenig Abstand! Bild und Text kollidieren optisch. Die Elemente brauchen mehr Luft.</span>';
+      } else if (m > 48) {
+        ex2Feedback.className = 'feedback-box warning';
+        ex2Feedback.innerHTML = '<span>Der Abstand ist sehr groß. Bild und Text wirken nicht mehr zusammengehörig.</span>';
+      } else {
+        ex2Feedback.className = 'feedback-box info';
+        ex2Feedback.innerHTML = '<span>Experimentieren Sie weiter mit dem Abstand zwischen Bild und Text.</span>';
+      }
+    }
+
+    ex2Margin.addEventListener('input', updateEx2);
+
+    function resetEx2() {
+      ex2Margin.value = 24;
+      updateEx2();
+    }
+
+    function hintEx2() {
+      ex2Feedback.className = 'feedback-box info';
+      ex2Feedback.innerHTML = '<span><strong>Hinweis:</strong> Ein Abstand von 24–32px ist ideal. Das entspricht dem 8px-Raster und sorgt für eine klare, aber nicht zu starke Trennung.</span>';
+    }
+
+    // === Exercise 3: Absatzabstand ===
+    const ex3Margin = document.getElementById('ex3-margin');
+    const ex3MarginVal = document.getElementById('ex3-margin-val');
+    const ex3Paragraphs = document.getElementById('ex3-paragraphs');
+    const ex3Feedback = document.getElementById('ex3-feedback');
+
+    function updateEx3() {
+      const m = parseInt(ex3Margin.value);
+      ex3MarginVal.textContent = m + 'px';
+      const paras = ex3Paragraphs.querySelectorAll('p');
+      paras.forEach((p, i) => {
+        p.style.marginBottom = (i < paras.length - 1) ? m + 'px' : '0';
+      });
+
+      if (m >= 16 && m <= 28) {
+        ex3Feedback.className = 'feedback-box success';
+        ex3Feedback.innerHTML = '<span>Sehr gut! Der Absatzabstand erzeugt einen klaren vertikalen Rhythmus. Die Absätze sind deutlich getrennt, ohne den Lesefluss zu unterbrechen.</span>';
+      } else if (m < 8) {
+        ex3Feedback.className = 'feedback-box error';
+        ex3Feedback.innerHTML = '<span>Die Absätze sind kaum voneinander zu unterscheiden. Mehr Abstand verbessert die Struktur deutlich.</span>';
+      } else if (m > 36) {
+        ex3Feedback.className = 'feedback-box warning';
+        ex3Feedback.innerHTML = '<span>Die Absätze stehen sehr weit auseinander. Der Text wirkt fragmentiert statt zusammenhängend.</span>';
+      } else {
+        ex3Feedback.className = 'feedback-box info';
+        ex3Feedback.innerHTML = '<span>Experimentieren Sie weiter – der ideale Absatzabstand liegt bei 1–1,5× der Zeilenhöhe.</span>';
+      }
+    }
+
+    ex3Margin.addEventListener('input', updateEx3);
+
+    function resetEx3() {
+      ex3Margin.value = 16;
+      updateEx3();
+    }
+
+    function hintEx3() {
+      ex3Feedback.className = 'feedback-box info';
+      ex3Feedback.innerHTML = '<span><strong>Hinweis:</strong> Bei einer Zeilenhöhe von ~22px (14px × 1.6) ist ein Absatzabstand von 16–24px ideal. Das entspricht etwa 1–1,1× der Zeilenhöhe.</span>';
+    }
+
+    // Initialize
+    updateEx1();
+    updateEx2();
+    updateEx3();
+  </script>
+</body>
+</html>

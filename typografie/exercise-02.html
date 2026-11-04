@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeilenlänge & Spaltensatz – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .controls-area {
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 32px;
+      background: var(--bg-white);
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .control-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 100px;
+    }
+    .ch-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .ch-badge.green { background: #DCFCE7; color: #166534; }
+    .ch-badge.orange { background: #FEF3C7; color: #92400E; }
+    .ch-badge.red { background: #FEE2E2; color: #991B1B; }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .scale-labels .optimal { color: var(--success); font-weight: 600; }
+    .column-toggle {
+      display: flex;
+      gap: 4px;
+    }
+    .col-btn {
+      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      background: var(--bg-white);
+      color: var(--text-primary);
+      transition: all 0.15s;
+    }
+    .col-btn:hover:not(:disabled) { border-color: var(--purple); }
+    .col-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
+    .col-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .preview-area {
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 24px;
+      background: var(--bg-white);
+      position: relative;
+    }
+    .preview-area .ch-counter {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #F3F4F6;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    #preview-columns {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      transition: max-width 0.3s ease, columns 0.3s ease;
+      column-gap: 32px;
+    }
+    #preview-columns p {
+      margin-bottom: 16px;
+    }
+    .info-card.red-top { border-top: 3px solid var(--error); }
+    .info-card.green-top { border-top: 3px solid var(--success); }
+    .info-card.orange-top { border-top: 3px solid var(--warning); }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card">
+      <div class="lektion-badge">
+        <span class="lektion-number">2</span>
+        <span class="lektion-label">Lektion</span>
+      </div>
+      <h1 class="page-title">Zeilenlänge & Spaltensatz</h1>
+      <p class="page-intro">Die optimale Zeilenlänge ist entscheidend für einen ermüdungsfreien Lesefluss. Als Faustregel gilt: 45–75 Zeichen pro Zeile. Wird dieser Rahmen gesprengt, schafft der Mehrspaltensatz Abhilfe.</p>
+
+      <!-- Controls Area -->
+      <div class="controls-area">
+        <div class="control-row">
+          <span class="control-label">Zeilenlänge</span>
+          <input type="range" id="ch-slider" min="20" max="120" step="1" value="80" style="flex: 1;">
+          <div class="slider-value" id="ch-value-display">80 ch</div>
+          <span class="ch-badge orange" id="ch-badge">Leicht zu weit</span>
+        </div>
+        <div class="scale-labels">
+          <span>20 ch (zu schmal)</span>
+          <span class="optimal">&#9650; 45–75 ch (optimal)</span>
+          <span>120 ch (zu weit)</span>
+        </div>
+
+        <div class="control-row" style="margin-top: 20px;">
+          <span class="control-label">Spaltensatz</span>
+          <div class="column-toggle">
+            <button class="col-btn active" id="col-1" data-cols="1">1 Spalte</button>
+            <button class="col-btn" id="col-2" data-cols="2" disabled>2 Spalten</button>
+            <button class="col-btn" id="col-3" data-cols="3" disabled>3 Spalten</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Area -->
+      <div class="preview-area">
+        <div class="ch-counter" id="ch-counter">80 ch</div>
+        <div id="preview-columns" style="max-width: 80ch;">
+          <p>Die Zeilenlänge ist einer der wichtigsten Faktoren für komfortables Lesen am Bildschirm. Ist eine Zeile zu kurz, wird der Lesefluss durch ständige Zeilenumbrüche unterbrochen. Das Auge muss zu häufig zum Zeilenanfang zurückspringen, was ermüdend wirkt und den Lesefluss stört.</p>
+          <p>Ist die Zeile hingegen zu lang, verliert das Auge beim Zeilensprung die Orientierung. Der Leser findet den Anfang der nächsten Zeile nicht zuverlässig wieder. Dies führt dazu, dass Zeilen übersprungen oder doppelt gelesen werden – ein klassisches Usability-Problem in der Webgestaltung.</p>
+          <p>Die goldene Regel besagt: 45 bis 75 Zeichen pro Zeile sind ideal für Fließtext. In der Praxis lässt sich das am einfachsten mit der CSS-Einheit „ch" steuern, die der Breite der Ziffer „0" in der aktuellen Schrift entspricht. Ein max-width von 65ch ergibt in den meisten Schriften einen angenehmen Lesefluss.</p>
+        </div>
+      </div>
+
+      <!-- Tip Box -->
+      <div class="tip-box">
+        <span class="tip-label">Prof. Typo empfiehlt:</span> Verwenden Sie in Ihrem CSS <code style="background: #F3F4F6; padding: 2px 6px; border-radius: 4px; font-size: 13px;">max-width: 65ch</code> für Textcontainer. Die Einheit „ch" passt sich automatisch an die verwendete Schriftart an und sorgt so für eine konsistente, optimale Zeilenlänge – unabhängig von der Schriftwahl.
+      </div>
+
+      <!-- Info Cards -->
+      <div class="card-grid">
+        <div class="info-card red-top">
+          <div class="meta">&lt; 45 ch</div>
+          <h4>Zu schmal</h4>
+          <p>Zu kurze Zeilen erzeugen übermäßig viele Trennungen und Umbrüche. Der Lesefluss wird ständig unterbrochen, das Auge muss zu häufig zum Zeilenanfang springen. Besonders problematisch bei langen Wörtern im Deutschen.</p>
+        </div>
+        <div class="info-card green-top">
+          <div class="meta">45–75 ch</div>
+          <h4>Optimal</h4>
+          <p>In diesem Bereich findet das Auge beim Zeilensprung sicher den Anfang der nächsten Zeile. Der Lesefluss ist natürlich und ermüdungsfrei. Die meisten Styleguides empfehlen 60–70 Zeichen als idealen Wert.</p>
+        </div>
+        <div class="info-card orange-top">
+          <div class="meta">&gt; 80 ch</div>
+          <h4>Zu weit &rarr; Spaltensatz</h4>
+          <p>Bei zu langen Zeilen hilft der Mehrspaltensatz: Mit CSS Columns lässt sich der Text in zwei oder drei Spalten umbrechen, sodass jede Spalte wieder eine angenehme Zeilenlänge erreicht.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex2');</script>
+  <script>
+    const chSlider = document.getElementById('ch-slider');
+    const chValueDisplay = document.getElementById('ch-value-display');
+    const chBadge = document.getElementById('ch-badge');
+    const chCounter = document.getElementById('ch-counter');
+    const previewColumns = document.getElementById('preview-columns');
+    const col1 = document.getElementById('col-1');
+    const col2 = document.getElementById('col-2');
+    const col3 = document.getElementById('col-3');
+
+    let currentCols = 1;
+
+    function updateChPreview() {
+      const val = parseInt(chSlider.value);
+      chValueDisplay.textContent = val + ' ch';
+      chCounter.textContent = val + ' ch';
+      previewColumns.style.maxWidth = val + 'ch';
+
+      // Update badge
+      if (val < 45) {
+        chBadge.className = 'ch-badge red';
+        chBadge.textContent = 'Zu schmal';
+      } else if (val <= 75) {
+        chBadge.className = 'ch-badge green';
+        chBadge.textContent = 'Optimal';
+      } else if (val <= 80) {
+        chBadge.className = 'ch-badge orange';
+        chBadge.textContent = 'Leicht zu weit';
+      } else {
+        chBadge.className = 'ch-badge red';
+        chBadge.textContent = 'Zu weit';
+      }
+
+      // Enable/disable column buttons
+      if (val > 80) {
+        col2.disabled = false;
+        col3.disabled = false;
+      } else {
+        col2.disabled = true;
+        col3.disabled = true;
+        // Reset to 1 column if currently multi-column
+        if (currentCols > 1) {
+          setColumns(1);
+        }
+      }
+    }
+
+    function setColumns(n) {
+      currentCols = n;
+      previewColumns.style.columnCount = n;
+      [col1, col2, col3].forEach(btn => btn.classList.remove('active'));
+      if (n === 1) col1.classList.add('active');
+      else if (n === 2) col2.classList.add('active');
+      else if (n === 3) col3.classList.add('active');
+    }
+
+    col1.addEventListener('click', () => setColumns(1));
+    col2.addEventListener('click', () => { if (!col2.disabled) setColumns(2); });
+    col3.addEventListener('click', () => { if (!col3.disabled) setColumns(3); });
+
+    chSlider.addEventListener('input', updateChPreview);
+    updateChPreview();
+  </script>
+</body>
+</html>

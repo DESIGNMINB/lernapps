@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossar – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card" style="max-width:1100px">
+      <h1 class="page-title">Typografie-Glossar</h1>
+      <p class="page-intro">Die wichtigsten Fachbegriffe der Typografie – kompakt erklärt. Nutzen Sie das Glossar als Nachschlagewerk während der Laborübungen.</p>
+
+      <div class="filter-tags">
+        <span class="filter-tag active" data-filter="all">Alle</span>
+        <span class="filter-tag" data-filter="anatomie">Anatomie</span>
+        <span class="filter-tag" data-filter="abstaende">Abstände</span>
+        <span class="filter-tag" data-filter="klassifikation">Klassifikation</span>
+        <span class="filter-tag" data-filter="satz">Satz &amp; Layout</span>
+        <span class="filter-tag" data-filter="hierarchie">Hierarchie</span>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;"><span id="filter-count">34</span> Begriffe gefunden</p>
+
+      <!-- ANATOMIE -->
+      <div class="glossary-category filterable" data-category="anatomie">Anatomie</div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Grundlinie</h4><div class="english">Baseline</div><p>Die unsichtbare horizontale Linie, auf der die Buchstaben stehen.</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>x-Höhe</h4><div class="english">x-Height</div><p>Die Höhe der Kleinbuchstaben ohne Ober- und Unterlängen, gemessen am Buchstaben „x".</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Oberlänge</h4><div class="english">Ascender</div><p>Der Teil eines Kleinbuchstabens, der über die x-Höhe hinausragt (z. B. b, d, h).</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Unterlänge</h4><div class="english">Descender</div><p>Der Teil eines Buchstabens, der unter die Grundlinie reicht (z. B. g, p, y).</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Versalhöhe</h4><div class="english">Cap Height</div><p>Die Höhe der Großbuchstaben, gemessen von der Grundlinie bis zur Oberkante.</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Punze</h4><div class="english">Counter</div><p>Der eingeschlossene Innenraum eines Buchstabens (z. B. in o, e, d).</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Strich</h4><div class="english">Stroke</div><p>Die Linien, aus denen ein Buchstabe aufgebaut ist. Man unterscheidet Grundstriche (dick) und Haarstriche (dünn).</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Serife</h4><div class="english">Serif</div><p>Kleine Querstriche an den Enden von Buchstaben, typisch für Antiqua-Schriften.</p></div>
+      <div class="glossary-item filterable" data-category="anatomie"><h4>Kapitälchen</h4><div class="english">Small Caps</div><p>Großbuchstaben in der Höhe von Kleinbuchstaben – für dezente Hervorhebungen.</p></div>
+
+      <!-- ABSTÄNDE -->
+      <div class="glossary-category filterable" data-category="abstaende">Abstände</div>
+      <div class="glossary-item filterable" data-category="abstaende"><h4>Laufweite</h4><div class="english">Tracking / Letter-Spacing</div><p>Der gleichmäßige Abstand zwischen allen Buchstaben eines Textes.</p></div>
+      <div class="glossary-item filterable" data-category="abstaende"><h4>Unterschneidung</h4><div class="english">Kerning</div><p>Die individuelle Anpassung des Abstands zwischen bestimmten Buchstabenpaaren (z. B. AV, To).</p></div>
+      <div class="glossary-item filterable" data-category="abstaende"><h4>Zeilenabstand</h4><div class="english">Leading / Line-Height</div><p>Der vertikale Abstand zwischen den Grundlinien aufeinanderfolgender Zeilen. Optimal: 120–145 % (Druck), 140–160 % (Bildschirm).</p></div>
+      <div class="glossary-item filterable" data-category="abstaende"><h4>Wortabstand</h4><div class="english">Word Spacing</div><p>Der horizontale Abstand zwischen einzelnen Wörtern in einer Zeile.</p></div>
+      <div class="glossary-item filterable" data-category="abstaende"><h4>Spationierung</h4><div class="english">Spacing</div><p>Oberbegriff für alle Abstandsregelungen im Schriftsatz.</p></div>
+
+      <!-- KLASSIFIKATION -->
+      <div class="glossary-category filterable" data-category="klassifikation">Klassifikation</div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Antiqua</h4><div class="english">Serif / Roman</div><p>Serifenschriften mit kontrastierenden Strichstärken (Renaissance, Barock, Klassizistisch).</p></div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Grotesk</h4><div class="english">Sans-Serif / Gothic</div><p>Serifenlose Schriften, oft mit gleichmäßiger Strichstärke. Untergruppen: Grotesk (Helvetica), Geometrisch (Futura), Humanistisch (Gill Sans).</p></div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Slab Serif</h4><div class="english">Egyptienne</div><p>Schriften mit kräftigen, rechteckigen Serifen (Rockwell, Courier, Clarendon).</p></div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Monospace</h4><div class="english">Fixed-Width</div><p>Schriften mit gleicher Zeichenbreite – ideal für Code (Courier, Fira Code, JetBrains Mono).</p></div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Schriftschnitt</h4><div class="english">Font Style / Cut</div><p>Eine bestimmte Variante innerhalb einer Schriftfamilie (Thin, Regular, Bold, Italic).</p></div>
+      <div class="glossary-item filterable" data-category="klassifikation"><h4>Schriftfamilie</h4><div class="english">Typeface Family</div><p>Alle Schnitte unter einem Namen (z. B. Roboto mit Thin bis Black, plus Italic).</p></div>
+
+      <!-- SATZ & LAYOUT -->
+      <div class="glossary-category filterable" data-category="satz">Satz &amp; Layout</div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Blocksatz</h4><div class="english">Justified Text</div><p>Text bündig links und rechts – erfordert Silbentrennung (CSS: hyphens: auto).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Flattersatz</h4><div class="english">Ragged Text / Flush Left</div><p>Gleichmäßiger Wortabstand, rechter Rand ungleichmäßig (text-align: left).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Zeilenlänge</h4><div class="english">Measure / Line Length</div><p>Optimal 45–75 Zeichen pro Zeile (CSS: max-width: 65ch).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Spaltensatz</h4><div class="english">Multi-Column Layout</div><p>Text in mehreren Spalten – für breite Displays (CSS: columns).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Einzug</h4><div class="english">Indent</div><p>Einrückung der ersten Zeile eines Absatzes (CSS: text-indent).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Schusterjunge</h4><div class="english">Orphan</div><p>Erste Zeile eines Absatzes allein am Seitenende (CSS: orphans: 2).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Hurenkind</h4><div class="english">Widow</div><p>Letzte Zeile eines Absatzes allein am Seitenanfang (CSS: widows: 2).</p></div>
+      <div class="glossary-item filterable" data-category="satz"><h4>Grauwert</h4><div class="english">Type Color / Texture</div><p>Der optische Gesamteindruck eines Textblocks – gleichmäßig ist ideal.</p></div>
+
+      <!-- HIERARCHIE -->
+      <div class="glossary-category filterable" data-category="hierarchie">Hierarchie</div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Visuelle Hierarchie</h4><div class="english">Visual Hierarchy</div><p>Abstufung von Elementen nach Wichtigkeit durch Größe, Gewicht, Farbe und Raum.</p></div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Schriftgrad</h4><div class="english">Font Size</div><p>Die Größe einer Schrift, gemessen in pt, px, rem oder em (1 rem = 16px).</p></div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Auszeichnung</h4><div class="english">Emphasis / Highlight</div><p>Hervorhebung durch Fett, Kursiv, Kapitälchen, Farbe oder Unterstreichung.</p></div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Kontrast</h4><div class="english">Typographic Contrast</div><p>Spannung zwischen Elementen durch Unterschiede in Größe, Gewicht, Stil oder Farbe.</p></div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Schriftpaarung</h4><div class="english">Font Pairing</div><p>Kombination von 2 (selten 3) Schriftarten – Grundprinzip: Serif + Grotesk.</p></div>
+      <div class="glossary-item filterable" data-category="hierarchie"><h4>Weißraum</h4><div class="english">White Space / Negative Space</div><p>Aktives Gestaltungselement, nicht leerer Platz – gibt Inhalten Raum zum Atmen.</p></div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('glossar');</script>
+</body>
+</html>

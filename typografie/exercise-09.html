@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barrierefreiheit – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .alert-banner {
+      background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 28px; font-size: 14px; color: #92400E;
+      display: flex; align-items: center; gap: 10px; font-weight: 500;
+    }
+    .law-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 14px; margin: 24px 0; }
+    .law-card {
+      border: 1px solid var(--border-color); border-radius: 10px; padding: 18px;
+      background: white;
+    }
+    .law-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .law-card .meta { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+    .law-card p { font-size: 12px; line-height: 1.5; color: var(--text-secondary); }
+    .level-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 24px 0; }
+    .level-card { border-radius: 12px; padding: 20px; }
+    .level-card.a { background: #FFF7ED; border: 1px solid #FED7AA; }
+    .level-card.aa { background: #F0FDF4; border: 1px solid #BBF7D0; }
+    .level-card.aaa { background: #EFF6FF; border: 1px solid #BFDBFE; }
+    .level-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .level-card .subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .level-card p { font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .contrast-exercise {
+      border: 1px solid var(--border-color); border-radius: 14px;
+      padding: 24px; margin-bottom: 20px; background: white;
+    }
+    .contrast-exercise h4 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    .contrast-preview {
+      border-radius: 10px; padding: 20px; margin-bottom: 16px;
+      font-size: 16px; line-height: 1.6; min-height: 60px;
+    }
+    .color-inputs { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .color-input-group { display: flex; align-items: center; gap: 8px; }
+    .color-input-group label { font-size: 13px; font-weight: 600; }
+    .color-input-group input[type="color"] { width: 36px; height: 36px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; }
+    .color-input-group input[type="text"] { width: 80px; padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 13px; font-family: monospace; }
+    .contrast-result { display: flex; align-items: center; gap: 16px; margin: 12px 0; flex-wrap: wrap; }
+    .contrast-result .ratio { font-size: 22px; font-weight: 700; }
+    .target-badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: #F3F4F6; color: var(--text-muted); font-weight: 600; }
+    .target-badge.target { background: #DBEAFE; color: #1D4ED8; }
+    .alt-exercise { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+    .alt-exercise .img-placeholder {
+      width: 100%; height: 120px; border-radius: 8px; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; color: white; font-size: 14px;
+    }
+    .alt-exercise textarea { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 60px; }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card">
+      <div class="lektion-badge">
+        <span class="lektion-number">9</span>
+        <span class="lektion-label">Lektion</span>
+      </div>
+      <h1 class="page-title">Barrierefreiheit</h1>
+      <p class="page-intro">Barrierefreies Design ist nicht optional, sondern gesetzlich gefordert und ethisch notwendig. Diese Lektion behandelt gesetzliche Grundlagen, WCAG-Kontrast-Checks und Alt-Text-Formulierung.</p>
+
+      <div class="alert-banner">⚠️ Ab dem 28. Juni 2025 gilt das BFSG – digitale Produkte müssen barrierefrei sein.</div>
+
+      <h2 style="font-size:20px; font-weight:700; margin-bottom:16px;">Gesetzliche Grundlagen</h2>
+      <div class="law-cards">
+        <div class="law-card"><h4>EAA</h4><div class="meta">2019 · Frist: 28.06.2025</div><p>European Accessibility Act – EU-weite Richtlinie für digitale Barrierefreiheit.</p></div>
+        <div class="law-card"><h4>BFSG</h4><div class="meta">2021 · Frist: 28.06.2025</div><p>Barrierefreiheitsstärkungsgesetz – deutsche Umsetzung des EAA.</p></div>
+        <div class="law-card"><h4>BITV 2.0</h4><div class="meta">2011 / 2019</div><p>Barrierefreie-Informationstechnik-VO für den öffentlichen Sektor in Deutschland.</p></div>
+        <div class="law-card"><h4>WCAG 2.2</h4><div class="meta">2023 · W3C</div><p>Web Content Accessibility Guidelines – internationaler Standard.</p></div>
+        <div class="law-card"><h4>EN 301 549</h4><div class="meta">2021 · V3.2.1</div><p>Europäische Norm für ICT-Barrierefreiheit.</p></div>
+      </div>
+
+      <h2 style="font-size:20px; font-weight:700; margin:28px 0 16px;">WCAG-Konformitätsstufen</h2>
+      <div class="level-cards">
+        <div class="level-card a"><h4>A</h4><div class="subtitle">Minimum</div><p>Grundlegende Barrierefreiheit. Keine spezifische Kontrastanforderung für Text. Nicht ausreichend für gesetzliche Konformität.</p></div>
+        <div class="level-card aa"><h4>AA</h4><div class="subtitle">Empfohlen / Gesetzlich gefordert</div><p>Kontrast 4.5:1 (normal) / 3:1 (groß). Standard für BFSG, BITV 2.0, EN 301 549.</p></div>
+        <div class="level-card aaa"><h4>AAA</h4><div class="subtitle">Höchste Stufe</div><p>Kontrast 7:1 (normal) / 4.5:1 (groß). Optimale Barrierefreiheit, nicht vollständig für ganze Seiten erreichbar.</p></div>
+      </div>
+
+      <div class="tabs-container" style="margin-top:32px;">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-contrast">Kontrast-Check</button>
+          <button class="tab-btn" data-tab="tab-alttext">Alt-Text</button>
+        </div>
+
+        <div id="tab-contrast" class="tab-content active">
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:20px;">Übung: Kontrast-Check</h3>
+
+          <div class="contrast-exercise" data-idx="0">
+            <h4>1. Fließtext lesbar machen</h4>
+            <div class="contrast-preview" id="preview-0" style="background:#E5E7EB;color:#9CA3AF;">Dieser Fließtext muss lesbar sein. Passen Sie die Farben an, bis WCAG AA Normal erreicht ist.</div>
+            <div class="color-inputs">
+              <div class="color-input-group"><label>Text:</label><input type="color" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"><input type="text" value="#9CA3AF" onchange="updateContrast(0,'text',this.value)"></div>
+              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"><input type="text" value="#E5E7EB" onchange="updateContrast(0,'bg',this.value)"></div>
+              <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
+            </div>
+            <div class="contrast-result"><span class="ratio" id="ratio-0">2.05 : 1</span><div class="wcag-badges" id="badges-0"></div></div>
+            <div style="display:flex;gap:8px;margin-top:8px;"><button class="btn btn-sm" onclick="resetContrast(0)">Zurücksetzen</button><button class="btn btn-sm" onclick="hintContrast(0)">Hinweis anzeigen</button></div>
+          </div>
+
+          <div class="contrast-exercise" data-idx="1">
+            <h4>2. Überschrift auf farbigem Hintergrund</h4>
+            <div class="contrast-preview" id="preview-1" style="background:#FEFCE8;color:#F59E0B;font-size:24px;font-weight:700;">Gestaltung als Prozess</div>
+            <div class="color-inputs">
+              <div class="color-input-group"><label>Text:</label><input type="color" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"><input type="text" value="#F59E0B" onchange="updateContrast(1,'text',this.value)"></div>
+              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"><input type="text" value="#FEFCE8" onchange="updateContrast(1,'bg',this.value)"></div>
+              <span class="target-badge target">Ziel: AA Groß (≥ 3:1)</span>
+            </div>
+            <div class="contrast-result"><span class="ratio" id="ratio-1">2.08 : 1</span><div class="wcag-badges" id="badges-1"></div></div>
+            <div style="display:flex;gap:8px;margin-top:8px;"><button class="btn btn-sm" onclick="resetContrast(1)">Zurücksetzen</button><button class="btn btn-sm" onclick="hintContrast(1)">Hinweis anzeigen</button></div>
+          </div>
+
+          <div class="contrast-exercise" data-idx="2">
+            <h4>3. Dark-Mode-Kontrast</h4>
+            <div class="contrast-preview" id="preview-2" style="background:#1E293B;color:#475569;">Im Dark Mode müssen Farben besonders sorgfältig gewählt werden.</div>
+            <div class="color-inputs">
+              <div class="color-input-group"><label>Text:</label><input type="color" value="#475569" onchange="updateContrast(2,'text',this.value)"><input type="text" value="#475569" onchange="updateContrast(2,'text',this.value)"></div>
+              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"><input type="text" value="#1E293B" onchange="updateContrast(2,'bg',this.value)"></div>
+              <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
+            </div>
+            <div class="contrast-result"><span class="ratio" id="ratio-2">1.93 : 1</span><div class="wcag-badges" id="badges-2"></div></div>
+            <div style="display:flex;gap:8px;margin-top:8px;"><button class="btn btn-sm" onclick="resetContrast(2)">Zurücksetzen</button><button class="btn btn-sm" onclick="hintContrast(2)">Hinweis anzeigen</button></div>
+          </div>
+
+          <div class="contrast-exercise" data-idx="3">
+            <h4>4. Link auf weißem Hintergrund</h4>
+            <div class="contrast-preview" id="preview-3" style="background:#FFFFFF;color:#93C5FD;">Besuchen Sie unseren <u>Leitfaden zur Barrierefreiheit</u> für weitere Informationen.</div>
+            <div class="color-inputs">
+              <div class="color-input-group"><label>Text:</label><input type="color" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"><input type="text" value="#93C5FD" onchange="updateContrast(3,'text',this.value)"></div>
+              <div class="color-input-group"><label>Hintergrund:</label><input type="color" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"><input type="text" value="#FFFFFF" onchange="updateContrast(3,'bg',this.value)"></div>
+              <span class="target-badge target">Ziel: AA Normal (≥ 4.5:1)</span>
+            </div>
+            <div class="contrast-result"><span class="ratio" id="ratio-3">1.80 : 1</span><div class="wcag-badges" id="badges-3"></div></div>
+            <div style="display:flex;gap:8px;margin-top:8px;"><button class="btn btn-sm" onclick="resetContrast(3)">Zurücksetzen</button><button class="btn btn-sm" onclick="hintContrast(3)">Hinweis anzeigen</button></div>
+          </div>
+        </div>
+
+        <div id="tab-alttext" class="tab-content">
+          <h3 style="font-size:18px; font-weight:700; margin-bottom:12px;">Alt-Text formulieren</h3>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:20px;">Guter Alt-Text beschreibt den Informationsgehalt eines Bildes, nicht sein Aussehen. Er ist kurz, präzise und kontextbezogen.</p>
+
+          <div class="alt-exercise">
+            <div class="img-placeholder" style="background:linear-gradient(135deg,#6366F1,#8B5CF6);">Diagramm: Nutzerzahlen 2025</div>
+            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Beschreiben Sie die Kernaussage des Diagramms, nicht „Ein Balkendiagramm mit Farben".</div>
+          </div>
+
+          <div class="alt-exercise">
+            <div class="img-placeholder" style="background:linear-gradient(135deg,#059669,#10B981);">Portrait: Prof. Dr. Anna Typo</div>
+            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Name und Funktion sind wichtiger als Kleidung oder Hintergrund.</div>
+          </div>
+
+          <div class="alt-exercise">
+            <div class="img-placeholder" style="background:linear-gradient(135deg,#DC2626,#F87171);">Screenshot: Fehlermeldung im Formular</div>
+            <label style="font-size:13px; font-weight:600; margin-bottom:4px; display:block;">Ihr Alt-Text:</label>
+            <textarea placeholder="Beschreiben Sie den Informationsgehalt..."></textarea>
+            <div class="tip-box" style="margin-top:8px;padding:12px;font-size:12px;"><span class="tip-label">Tipp:</span> Welche Information vermittelt der Screenshot? Was ist die Fehlermeldung?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex9');</script>
+  <script>
+    const defaults = [
+      {text:'#9CA3AF', bg:'#E5E7EB', hint:'Versuchen Sie #374151 als Textfarbe.'},
+      {text:'#F59E0B', bg:'#FEFCE8', hint:'Versuchen Sie #B45309 als Textfarbe.'},
+      {text:'#475569', bg:'#1E293B', hint:'Versuchen Sie #CBD5E1 als Textfarbe.'},
+      {text:'#93C5FD', bg:'#FFFFFF', hint:'Versuchen Sie #2563EB als Textfarbe.'},
+    ];
+
+    function luminance(hex) {
+      hex = hex.replace('#','');
+      if (hex.length===3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+      const r=parseInt(hex.slice(0,2),16)/255, g=parseInt(hex.slice(2,4),16)/255, b=parseInt(hex.slice(4,6),16)/255;
+      const f=c=>c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);
+      return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b);
+    }
+
+    function contrast(c1,c2) {
+      const l1=luminance(c1), l2=luminance(c2);
+      return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);
+    }
+
+    function updateContrast(idx, type, val) {
+      const ex = document.querySelector(`.contrast-exercise[data-idx="${idx}"]`);
+      const inputs = ex.querySelectorAll('input');
+      if (type==='text') { inputs[0].value=val; inputs[1].value=val; }
+      else { inputs[2].value=val; inputs[3].value=val; }
+      const tc=inputs[1].value, bc=inputs[3].value;
+      const preview = document.getElementById('preview-'+idx);
+      preview.style.color=tc; preview.style.background=bc;
+      const ratio = contrast(tc,bc);
+      document.getElementById('ratio-'+idx).textContent = ratio.toFixed(2)+' : 1';
+      const badges = document.getElementById('badges-'+idx);
+      badges.innerHTML = [
+        {l:'AA Normal',m:4.5},{l:'AAA Normal',m:7},{l:'AA Groß',m:3},{l:'AAA Groß',m:4.5}
+      ].map(b=>`<span class="wcag-badge ${ratio>=b.m?'pass':'fail'}">${b.l} ${ratio>=b.m?'✓':'✗'}</span>`).join('');
+    }
+
+    function resetContrast(idx) {
+      const d=defaults[idx], ex=document.querySelector(`.contrast-exercise[data-idx="${idx}"]`), inputs=ex.querySelectorAll('input');
+      inputs[0].value=d.text; inputs[1].value=d.text; inputs[2].value=d.bg; inputs[3].value=d.bg;
+      updateContrast(idx,'text',d.text);
+    }
+
+    function hintContrast(idx) { alert(defaults[idx].hint); }
+
+    [0,1,2,3].forEach(i=>updateContrast(i,'text',defaults[i].text));
+  </script>
+</body>
+</html>

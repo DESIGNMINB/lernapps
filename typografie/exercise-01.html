@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeilenabstand (Leading) – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card">
+      <div class="lektion-badge">
+        <span class="lektion-number">1</span>
+        <span class="lektion-label">Lektion</span>
+      </div>
+      <h1 class="page-title">Zeilenabstand (Leading)</h1>
+      <p class="page-intro">Ein zu enger Zeilenabstand macht den Text zu einer unleserlichen Masse. Ein zu weiter Abstand zerreißt den Zusammenhang der Sätze. Der ideale Zeilenabstand führt das Auge beim Lesen sicher zur nächsten Zeile.</p>
+
+      <div class="two-col">
+        <!-- Left: Task Panel -->
+        <div class="task-panel">
+          <h3>Ihre Aufgabe</h3>
+          <p>Stellen Sie den Schieberegler so ein, dass der Zeilenabstand (line-height) im Vorschautext optimal für gute Lesbarkeit ist. Beobachten Sie, wie sich der Textfluss verändert.</p>
+
+          <div class="slider-group">
+            <div class="slider-labels">
+              <span class="red">Gequetscht (1.0)</span>
+              <span class="green" id="slider-value-display">1.10</span>
+              <span class="red">Zerrissen (2.5)</span>
+            </div>
+            <input type="range" id="line-height-slider" min="1.0" max="2.5" step="0.05" value="1.1">
+          </div>
+
+          <div class="slider-value" id="current-value">line-height: 1.10</div>
+
+          <div class="feedback-box error" id="feedback-box">
+            Der Text wirkt gedrängt. Die Ober- und Unterlängen der Buchstaben kommen sich gefährlich nahe.
+          </div>
+        </div>
+
+        <!-- Right: Preview Panel -->
+        <div class="preview-panel" id="preview-panel">
+          <p id="preview-text" style="font-size: 15px; line-height: 1.1; color: var(--text-secondary);">
+            Typografie im Interaction Design ist weit mehr als die Wahl einer hübschen Schriftart. Sie ist ein zentrales Werkzeug, um Informationen zu strukturieren, Hierarchien sichtbar zu machen und den Nutzer intuitiv durch ein Interface zu führen. Ein gut gesetzter Text reduziert die kognitive Belastung, verbessert die Lesbarkeit und sorgt dafür, dass sich Nutzer auf das Wesentliche konzentrieren können. Dabei spielen Faktoren wie Zeilenabstand, Zeilenlänge, Schriftgröße und Kontrast eine entscheidende Rolle. Wer diese Grundlagen beherrscht, gestaltet nicht nur ästhetisch ansprechende, sondern vor allem funktionale und barrierefreie digitale Produkte. Die Kunst liegt darin, Typografie so einzusetzen, dass sie den Leser unterstützt, ohne selbst in den Vordergrund zu treten.
+          </p>
+          <div style="margin-top: 20px;">
+            <span class="status-badge pending" id="status-badge">Visuelle Kontrolle: Korrektur nötig</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex1');</script>
+  <script>
+    const slider = document.getElementById('line-height-slider');
+    const previewText = document.getElementById('preview-text');
+    const feedbackBox = document.getElementById('feedback-box');
+    const currentValue = document.getElementById('current-value');
+    const sliderValueDisplay = document.getElementById('slider-value-display');
+    const statusBadge = document.getElementById('status-badge');
+    const previewPanel = document.getElementById('preview-panel');
+
+    function updatePreview() {
+      const val = parseFloat(slider.value);
+      previewText.style.lineHeight = val.toString();
+      currentValue.textContent = 'line-height: ' + val.toFixed(2);
+      sliderValueDisplay.textContent = val.toFixed(2);
+
+      // Remove existing border classes
+      previewPanel.classList.remove('error-border', 'success-border');
+
+      if (val < 1.2) {
+        feedbackBox.className = 'feedback-box error';
+        feedbackBox.textContent = 'Der Text wirkt gedrängt. Die Ober- und Unterlängen der Buchstaben kommen sich gefährlich nahe.';
+        statusBadge.className = 'status-badge pending';
+        statusBadge.textContent = 'Visuelle Kontrolle: Korrektur nötig';
+        previewPanel.classList.add('error-border');
+      } else if (val < 1.4) {
+        feedbackBox.className = 'feedback-box warning';
+        feedbackBox.textContent = 'Besser, aber noch etwas eng für längere Texte.';
+        statusBadge.className = 'status-badge pending';
+        statusBadge.textContent = 'Visuelle Kontrolle: Korrektur nötig';
+      } else if (val <= 1.6) {
+        feedbackBox.className = 'feedback-box success';
+        feedbackBox.textContent = 'Optimaler Zeilenabstand für Fließtext!';
+        statusBadge.className = 'status-badge success';
+        statusBadge.textContent = 'Optimaler Zeilenabstand!';
+        previewPanel.classList.add('success-border');
+      } else if (val <= 2.0) {
+        feedbackBox.className = 'feedback-box warning';
+        feedbackBox.textContent = 'Etwas großzügig, kann aber für kurze Texte funktionieren.';
+        statusBadge.className = 'status-badge pending';
+        statusBadge.textContent = 'Visuelle Kontrolle: Korrektur nötig';
+      } else {
+        feedbackBox.className = 'feedback-box error';
+        feedbackBox.textContent = 'Der Text zerfällt optisch. Der Zusammenhang geht verloren.';
+        statusBadge.className = 'status-badge pending';
+        statusBadge.textContent = 'Visuelle Kontrolle: Korrektur nötig';
+        previewPanel.classList.add('error-border');
+      }
+    }
+
+    slider.addEventListener('input', updatePreview);
+    updatePreview();
+  </script>
+</body>
+</html>

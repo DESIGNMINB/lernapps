@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wissenschaftliches Schreiben – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .meta-row { display:flex; gap:32px; margin-bottom:28px; }
+    .meta-row .item { text-align:center; }
+    .meta-row .label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); }
+    .meta-row .val { font-size:18px; font-weight:700; }
+    .section-label {
+      font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;
+      color:var(--text-muted); margin:28px 0 12px; padding-bottom:8px;
+      border-bottom:1px solid var(--border-color);
+    }
+    .example-box {
+      background:#F9FAFB; border:1px solid var(--border-color); border-radius:8px;
+      padding:12px 16px; margin:8px 0; font-size:13px; font-family:monospace;
+      line-height:1.6; color:var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main">
+    <div class="content-card" style="max-width:1100px">
+      <h1 class="page-title">Wissenschaftliches Schreiben</h1>
+      <p class="page-intro">Grundlagen des wissenschaftlichen Zitierens: Quellen korrekt angeben – auch für Webseiten, Videos und Social Media.</p>
+
+      <div class="meta-row">
+        <div class="item"><div class="label">Themenbereiche</div><div class="val">6</div></div>
+        <div class="item"><div class="label">Regeln</div><div class="val">23</div></div>
+        <div class="item"><div class="label">Zitierstile</div><div class="val">APA, Harvard, Chicago, IEEE</div></div>
+      </div>
+
+      <div class="filter-tags">
+        <span class="filter-tag active" data-filter="all">Alle</span>
+        <span class="filter-tag" data-filter="zitieren">Richtig Zitieren</span>
+        <span class="filter-tag" data-filter="quellen">Quellenangaben</span>
+        <span class="filter-tag" data-filter="web">Webquellen</span>
+        <span class="filter-tag" data-filter="stile">Zitierstile</span>
+        <span class="filter-tag" data-filter="verzeichnis">Literaturverzeichnis</span>
+        <span class="filter-tag" data-filter="formal">Formale Hinweise</span>
+      </div>
+
+      <!-- RICHTIG ZITIEREN -->
+      <div class="section-label filterable" data-category="zitieren">Richtig Zitieren</div>
+      <div class="rule-card filterable" data-category="zitieren"><h4>1. Direktes (wörtliches) Zitat</h4><p>Exakter Wortlaut in Anführungszeichen. Quellenangabe mit Seitenzahl direkt im Anschluss.</p><div class="example-box">„Text" (Nachname, Jahr, S. xx)</div></div>
+      <div class="rule-card filterable" data-category="zitieren"><h4>2. Indirektes (sinngemäßes) Zitat</h4><p>Inhalt in eigenen Worten wiedergeben, mit „vgl." kennzeichnen.</p><div class="example-box">Sinngemäße Wiedergabe (vgl. Nachname, Jahr, S. xx)</div></div>
+      <div class="rule-card filterable" data-category="zitieren"><h4>3. Zitat im Zitat</h4><p>Ein Zitat innerhalb eines Zitats wird mit einfachen Anführungszeichen markiert.</p><div class="example-box">„Er sagte: ‚Das ist wichtig.' und ging."</div></div>
+      <div class="rule-card filterable" data-category="zitieren"><h4>4. Blockzitat</h4><p>Längere Zitate (ab 3 Zeilen / 40+ Wörter) eingerückt, ohne Anführungszeichen.</p></div>
+
+      <!-- QUELLENANGABEN -->
+      <div class="section-label filterable" data-category="quellen">Quellenangaben / Printmedien</div>
+      <div class="rule-card filterable" data-category="quellen"><h4>1. Monografie (Einzelwerk)</h4><p>Nachname, V. (Jahr). <em>Titel</em>. Verlag.</p></div>
+      <div class="rule-card filterable" data-category="quellen"><h4>2. Sammelband / Herausgeberwerk</h4><p>Nachname, V. (Jahr). Beitragstitel. In V. Herausgeber (Hrsg.), <em>Sammeltitel</em> (S. xx–yy). Verlag.</p></div>
+      <div class="rule-card filterable" data-category="quellen"><h4>3. Zeitschriftenartikel</h4><p>Nachname, V. (Jahr). Titel. <em>Zeitschrift</em>, Jg.(Heft), S. xx–yy.</p></div>
+      <div class="rule-card filterable" data-category="quellen"><h4>4. Hochschulschriften</h4><p>Nachname, V. (Jahr). <em>Titel</em> [Dissertation / Masterarbeit]. Hochschule.</p></div>
+
+      <!-- WEBQUELLEN -->
+      <div class="section-label filterable" data-category="web">Webquellen und digitale Medien</div>
+      <div class="rule-card filterable" data-category="web"><h4>1. Webseite mit Autor</h4><p>Nachname, V. (Jahr, Datum). Titel. <em>Website</em>. URL (Zugriff: Datum)</p></div>
+      <div class="rule-card filterable" data-category="web"><h4>2. Webseite ohne Autor</h4><p>Titel (Jahr). <em>Website</em>. URL (Zugriff: Datum)</p></div>
+      <div class="rule-card filterable" data-category="web"><h4>3. Wikipedia-Artikel</h4><p>Titel (Jahr, Datum der Version). In <em>Wikipedia</em>. Versions-URL angeben.</p></div>
+      <div class="rule-card filterable" data-category="web"><h4>4. Social-Media-Beiträge</h4><p>@Nutzername (Datum). Beitragstext [Plattform]. URL</p></div>
+      <div class="rule-card filterable" data-category="web"><h4>5. Online-Video (YouTube etc.)</h4><p>Nachname/Kanal (Jahr, Datum). <em>Titel</em> [Video]. Plattform. URL</p></div>
+      <div class="rule-card filterable" data-category="web"><h4>6. PDF-Dokument online</h4><p>Wie Printquelle, ergänzt um URL und Zugriffsdatum.</p></div>
+
+      <!-- ZITIERSTILE -->
+      <div class="section-label filterable" data-category="stile">Gängige Zitierstile im Vergleich</div>
+      <div class="rule-card filterable" data-category="stile"><h4>APA (American Psychological Association)</h4><p>Autor-Jahr-System. Standardstil in Psychologie, Sozialwissenschaften, Informatik.</p><div class="example-box">(Müller, 2023, S. 45)</div></div>
+      <div class="rule-card filterable" data-category="stile"><h4>Harvard-Zitierweise</h4><p>Ähnlich APA, deutscher Stil mit Doppelpunkt nach dem Jahr.</p><div class="example-box">(Müller 2023: 45)</div></div>
+      <div class="rule-card filterable" data-category="stile"><h4>Chicago Manual of Style</h4><p>Fußnoten-System. Standard in Geisteswissenschaften und Geschichtswissenschaft.</p><div class="example-box">¹ Müller, Vorname. Titel. Ort: Verlag, 2023, S. 45.</div></div>
+      <div class="rule-card filterable" data-category="stile"><h4>IEEE</h4><p>Numerisches System mit eckigen Klammern. Standard in Ingenieurwissenschaften und Informatik.</p><div class="example-box">[1] V. Müller, „Titel", Zeitschrift, Bd. 5, Nr. 2, S. 45-50, 2023.</div></div>
+
+      <!-- LITERATURVERZEICHNIS -->
+      <div class="section-label filterable" data-category="verzeichnis">Literaturverzeichnis</div>
+      <div class="rule-card filterable" data-category="verzeichnis"><h4>1. Aufbau und Sortierung</h4><p>Alphabetisch nach Nachname, hängender Einzug, einheitlicher Stil. Jede im Text zitierte Quelle muss aufgeführt werden.</p></div>
+      <div class="rule-card filterable" data-category="verzeichnis"><h4>2. Besondere Fälle</h4><p>Mehrere Autoren: bis 3 alle nennen, ab 4 „et al.". Fehlende Daten: o. J. (ohne Jahr), o. O. (ohne Ort). Institutionen als Autoren.</p></div>
+
+      <!-- FORMALE HINWEISE -->
+      <div class="section-label filterable" data-category="formal">Formale Hinweise</div>
+      <div class="rule-card filterable" data-category="formal"><h4>1. Plagiat und Kennzeichnungspflicht</h4><p>Jede übernommene Idee oder Formulierung muss gekennzeichnet werden. Plagiat ist ein schwerwiegender Verstoß.</p></div>
+      <div class="rule-card filterable" data-category="formal"><h4>2. Seitenangaben und Fundstellen</h4><p>f. = folgende Seite, ff. = fortfolgende Seiten. Möglichst genaue Seitenangaben verwenden.</p></div>
+      <div class="rule-card filterable" data-category="formal"><h4>3. Abbildungen und Tabellen</h4><p>Nummerierung (Abb. 1, Tab. 1), beschreibende Unterschrift, Quellenangabe direkt unter der Abbildung.</p></div>
+    </div>
+  </main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('wiss');</script>
+</body>
+</html>

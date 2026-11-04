@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visuelle Hierarchie – TypoLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .section-heading { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-top: 40px; margin-bottom: 8px; }
+
+    .hierarchy-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
+
+    .assignment-panel { border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; background: var(--bg-white); }
+    .assignment-panel h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; }
+
+    .assignment-row { margin-bottom: 16px; }
+    .assignment-row label { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .assignment-row .element-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+    .assignment-row select { width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; background: white; color: var(--text-primary); cursor: pointer; }
+    .assignment-row select:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+
+    .check-btn-row { margin-top: 24px; }
+
+    .preview-panel { border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; background: var(--bg-white); position: relative; }
+    .preview-panel h3 { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+
+    .preview-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; background: #FAFAFA; min-height: 280px; }
+
+    .preview-eyebrow,
+    .preview-title,
+    .preview-subtitle,
+    .preview-body,
+    .preview-cta {
+      transition: all 0.3s ease;
+    }
+
+    .unstyled {
+      font-size: 15px;
+      font-weight: 400;
+      color: #9CA3AF;
+      letter-spacing: normal;
+      text-transform: none;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .preview-eyebrow.unstyled,
+    .preview-title.unstyled,
+    .preview-subtitle.unstyled,
+    .preview-body.unstyled,
+    .preview-cta.unstyled {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      display: block;
+      text-align: left;
+      border: none;
+      cursor: default;
+    }
+
+    .style-primary { font-size: 32px; font-weight: 700; color: var(--purple); line-height: 1.2; margin-bottom: 12px; letter-spacing: normal; text-transform: none; background: none; padding: 0; border-radius: 0; display: block; text-align: left; border: none; cursor: default; }
+    .style-secondary { font-size: 22px; font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 12px; letter-spacing: normal; text-transform: none; background: none; padding: 0; border-radius: 0; display: block; text-align: left; border: none; cursor: default; }
+    .style-meta { font-size: 12px; font-weight: 600; color: var(--purple); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; margin-bottom: 12px; background: none; padding: 0; border-radius: 0; display: block; text-align: left; border: none; cursor: default; }
+    .style-standard { font-size: 15px; font-weight: 400; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; letter-spacing: normal; text-transform: none; background: none; padding: 0; border-radius: 0; display: block; text-align: left; border: none; cursor: default; }
+    .style-action { display: inline-block; font-size: 14px; font-weight: 600; color: white; background: var(--purple); padding: 12px 28px; border-radius: 10px; letter-spacing: normal; text-transform: none; line-height: 1.4; margin-bottom: 12px; cursor: pointer; border: none; text-align: center; }
+
+    .legende-section { margin-top: 40px; }
+    .legende-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 16px; }
+    .legende-item { border: 1px solid var(--border-color); border-radius: 10px; padding: 16px; text-align: center; }
+    .legende-item .legende-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .legende-item .legende-desc { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+    .legende-item .legende-preview { margin-bottom: 8px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+
+    @media (max-width: 1024px) {
+      .hierarchy-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="main"><div class="content-card">
+    <div class="lektion-badge"><span class="lektion-number">6</span><span class="lektion-label">Lektion</span></div>
+    <h1 class="page-title">Visuelle Hierarchie</h1>
+    <p class="page-intro">Gute Typografie führt das Auge. Ohne klare Hierarchie geht Information im Rauschen unter. Aufgabe: Schaffen Sie durch gezielte Stil-Klassen eine logische Ordnung.</p>
+
+    <!-- Main Layout -->
+    <div class="hierarchy-layout">
+
+      <!-- Left: Stil-Zuweisung -->
+      <div class="assignment-panel">
+        <h3>Stil-Zuweisung</h3>
+
+        <div class="assignment-row">
+          <label>1. Metadaten / Eyebrow</label>
+          <div class="element-desc">Kontextinformation oberhalb des Titels</div>
+          <select id="select-eyebrow" onchange="updatePreview()">
+            <option value="">Stil wählen...</option>
+            <option value="primary">Primär (H1)</option>
+            <option value="secondary">Sekundär (H2)</option>
+            <option value="meta">Meta / Eyebrow</option>
+            <option value="standard">Standard</option>
+            <option value="action">Aktion (Button)</option>
+          </select>
+        </div>
+
+        <div class="assignment-row">
+          <label>2. Haupttitel</label>
+          <div class="element-desc">Die wichtigste Überschrift der Seite</div>
+          <select id="select-title" onchange="updatePreview()">
+            <option value="">Stil wählen...</option>
+            <option value="primary">Primär (H1)</option>
+            <option value="secondary">Sekundär (H2)</option>
+            <option value="meta">Meta / Eyebrow</option>
+            <option value="standard">Standard</option>
+            <option value="action">Aktion (Button)</option>
+          </select>
+        </div>
+
+        <div class="assignment-row">
+          <label>3. Untertitel</label>
+          <div class="element-desc">Ergänzende Überschrift unter dem Haupttitel</div>
+          <select id="select-subtitle" onchange="updatePreview()">
+            <option value="">Stil wählen...</option>
+            <option value="primary">Primär (H1)</option>
+            <option value="secondary">Sekundär (H2)</option>
+            <option value="meta">Meta / Eyebrow</option>
+            <option value="standard">Standard</option>
+            <option value="action">Aktion (Button)</option>
+          </select>
+        </div>
+
+        <div class="assignment-row">
+          <label>4. Fließtext</label>
+          <div class="element-desc">Der normale Textinhalt / Body</div>
+          <select id="select-body" onchange="updatePreview()">
+            <option value="">Stil wählen...</option>
+            <option value="primary">Primär (H1)</option>
+            <option value="secondary">Sekundär (H2)</option>
+            <option value="meta">Meta / Eyebrow</option>
+            <option value="standard">Standard</option>
+            <option value="action">Aktion (Button)</option>
+          </select>
+        </div>
+
+        <div class="assignment-row">
+          <label>5. Aktions-Element</label>
+          <div class="element-desc">Call-to-Action / Handlungsaufforderung</div>
+          <select id="select-cta" onchange="updatePreview()">
+            <option value="">Stil wählen...</option>
+            <option value="primary">Primär (H1)</option>
+            <option value="secondary">Sekundär (H2)</option>
+            <option value="meta">Meta / Eyebrow</option>
+            <option value="standard">Standard</option>
+            <option value="action">Aktion (Button)</option>
+          </select>
+        </div>
+
+        <div class="check-btn-row">
+          <button class="btn btn-primary" onclick="checkSolution()">Lösung überprüfen</button>
+        </div>
+
+        <div id="check-feedback" class="feedback-box info" style="margin-top: 16px; display: none;">
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Right: Live Preview -->
+      <div class="preview-panel">
+        <h3>Live-Vorschau</h3>
+        <div class="preview-card">
+          <div class="preview-eyebrow unstyled" id="prev-eyebrow">Fachbereich Gestaltung · 12. Mai 2026</div>
+          <div class="preview-title unstyled" id="prev-title">Symposium 2026</div>
+          <div class="preview-subtitle unstyled" id="prev-subtitle">Die Zukunft der Interfaces</div>
+          <div class="preview-body unstyled" id="prev-body">Künstliche Intelligenz verändert die Gestaltung digitaler Produkte grundlegend. Im Symposium diskutieren führende Designer und Entwickler, wie sich UX-Design, Typografie und visuelle Kommunikation in den nächsten Jahren entwickeln werden.</div>
+          <div class="preview-cta unstyled" id="prev-cta">Melden Sie sich jetzt an</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stil-Legende -->
+    <div class="legende-section">
+      <h2 class="section-heading">Stil-Legende</h2>
+      <div class="legende-grid">
+        <div class="legende-item">
+          <div class="legende-preview">
+            <span style="font-size: 22px; font-weight: 700; color: var(--purple);">Aa</span>
+          </div>
+          <div class="legende-name">Primär (H1)</div>
+          <div class="legende-desc">32px, Bold, Lila. Für die wichtigste Überschrift.</div>
+        </div>
+        <div class="legende-item">
+          <div class="legende-preview">
+            <span style="font-size: 18px; font-weight: 700; color: var(--text-primary);">Aa</span>
+          </div>
+          <div class="legende-name">Sekundär (H2)</div>
+          <div class="legende-desc">22px, Bold. Für Unterüberschriften.</div>
+        </div>
+        <div class="legende-item">
+          <div class="legende-preview">
+            <span style="font-size: 10px; font-weight: 600; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em;">META</span>
+          </div>
+          <div class="legende-name">Meta / Eyebrow</div>
+          <div class="legende-desc">12px, Uppercase, Lila. Für Kontext-Infos.</div>
+        </div>
+        <div class="legende-item">
+          <div class="legende-preview">
+            <span style="font-size: 13px; color: var(--text-secondary);">Fließtext</span>
+          </div>
+          <div class="legende-name">Standard</div>
+          <div class="legende-desc">15px, Regular. Normaler Fließtext.</div>
+        </div>
+        <div class="legende-item">
+          <div class="legende-preview">
+            <span style="font-size: 11px; font-weight: 600; color: white; background: var(--purple); padding: 6px 14px; border-radius: 6px;">Button</span>
+          </div>
+          <div class="legende-name">Aktion (Button)</div>
+          <div class="legende-desc">14px, Bold, Lila-Hintergrund. Für CTAs.</div>
+        </div>
+      </div>
+    </div>
+
+  </div></main>
+  <script src="js/sidebar.js"></script>
+  <script>renderSidebar('ex6');</script>
+  <script>
+    const styleClassMap = {
+      'primary': 'style-primary',
+      'secondary': 'style-secondary',
+      'meta': 'style-meta',
+      'standard': 'style-standard',
+      'action': 'style-action'
+    };
+
+    const elementMap = {
+      'select-eyebrow': 'prev-eyebrow',
+      'select-title': 'prev-title',
+      'select-subtitle': 'prev-subtitle',
+      'select-body': 'prev-body',
+      'select-cta': 'prev-cta'
+    };
+
+    function updatePreview() {
+      Object.keys(elementMap).forEach(selectId => {
+        const selectEl = document.getElementById(selectId);
+        const previewEl = document.getElementById(elementMap[selectId]);
+        const value = selectEl.value;
+
+        // Remove all style classes
+        previewEl.className = previewEl.className.replace(/style-\w+/g, '').replace(/unstyled/g, '').trim();
+
+        if (value && styleClassMap[value]) {
+          previewEl.classList.add(styleClassMap[value]);
+        } else {
+          previewEl.classList.add('unstyled');
+        }
+      });
+    }
+
+    const correctAnswers = {
+      'select-eyebrow': 'meta',
+      'select-title': 'primary',
+      'select-subtitle': 'secondary',
+      'select-body': 'standard',
+      'select-cta': 'action'
+    };
+
+    function checkSolution() {
+      const feedbackBox = document.getElementById('check-feedback');
+      feedbackBox.style.display = 'flex';
+
+      let correct = 0;
+      let total = Object.keys(correctAnswers).length;
+      let wrong = [];
+
+      Object.keys(correctAnswers).forEach(selectId => {
+        const selectEl = document.getElementById(selectId);
+        const value = selectEl.value;
+
+        if (value === correctAnswers[selectId]) {
+          correct++;
+          selectEl.style.borderColor = '#22C55E';
+        } else {
+          selectEl.style.borderColor = value === '' ? '#E5E7EB' : '#EF4444';
+          const label = selectEl.closest('.assignment-row').querySelector('label').textContent;
+          wrong.push(label);
+        }
+      });
+
+      if (correct === total) {
+        feedbackBox.className = 'feedback-box success';
+        feedbackBox.querySelector('span').innerHTML = '<strong>Perfekt!</strong> Alle Stile sind korrekt zugewiesen. Die visuelle Hierarchie ist klar: Eyebrow-Meta oben, dominanter Haupttitel, unterstützender Untertitel, ruhiger Fließtext und ein auffälliger CTA.';
+      } else if (correct >= 3) {
+        feedbackBox.className = 'feedback-box warning';
+        feedbackBox.querySelector('span').innerHTML = '<strong>' + correct + ' von ' + total + ' richtig.</strong> Fast geschafft! Überprüfen Sie: ' + wrong.join(', ') + '.';
+      } else if (correct >= 1) {
+        feedbackBox.className = 'feedback-box warning';
+        feedbackBox.querySelector('span').innerHTML = '<strong>' + correct + ' von ' + total + ' richtig.</strong> Überlegen Sie, welches Element die größte Aufmerksamkeit verdient und welches nur Kontext liefert.';
+      } else {
+        feedbackBox.className = 'feedback-box error';
+        feedbackBox.querySelector('span').innerHTML = 'Noch kein Stil korrekt zugewiesen. Denken Sie an die Hierarchie: Was sieht der Leser zuerst? Was ist die Hauptinformation?';
+      }
+    }
+
+    // Initialize
+    updatePreview();
+  </script>
+</body>
+</html>
