@@ -276,6 +276,12 @@ a { text-decoration: none; color: inherit; }
   position: absolute; top: -10px; right: 30px;
   font-size: 180px; font-weight: 700; color: var(--bg-muted);
   line-height: 1; pointer-events: none; user-select: none;
+  z-index: 0;
+}
+/* Inhalt liegt immer über dem Zier-Buchstaben */
+.decorative-letter ~ * { position: relative; z-index: 1; }
+@media (max-width: 768px) {
+  .decorative-letter { font-size: 120px; right: 16px; top: 0; }
 }
 
 .main-heading {
