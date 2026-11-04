@@ -112,14 +112,12 @@ function renderPager(nav, activePage, base) {
   if (i < 0) return;
   const prev = pages[i - 1], next = pages[i + 1];
   const name = (n) => n.label.replace(/^\d+\.\s*/, '');
-  const arrowL = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>';
-  const arrowR = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
   const nav_ = document.createElement('nav');
   nav_.className = 'pager';
   nav_.setAttribute('aria-label', 'Lektionen blättern');
   nav_.innerHTML =
-    (prev ? `<a class="pager-prev" href="${base}${prev.href}" rel="prev">${arrowL}<span><small>Zurück</small>${name(prev)}</span></a>` : '<span></span>') +
-    (next ? `<a class="pager-next" href="${base}${next.href}" rel="next"><span><small>${/^ex/.test(next.id) ? 'Nächste Lektion' : 'Weiter'}</small>${name(next)}</span>${arrowR}</a>` : '');
+    (prev ? `<a class="pager-prev" href="${base}${prev.href}" rel="prev"><small><span aria-hidden="true">←</span> Zurück</small><b>${name(prev)}</b></a>` : '<span></span>') +
+    (next ? `<a class="pager-next" href="${base}${next.href}" rel="next"><small>${/^ex/.test(next.id) ? 'Nächste Lektion' : 'Weiter'} <span aria-hidden="true">→</span></small><b>${name(next)}</b></a>` : '');
   card.appendChild(nav_);
 }
 
