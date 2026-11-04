@@ -455,6 +455,61 @@ function initBarrierefreiheit() {
     const r = C.contrast(g, '#FFFFFF'), lvl = r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : r >= 3 ? 'nur groß' : 'zu schwach';
     return `<div class="fg-ramp-i"><span class="fg-ramp-t" style="color:${g}">Aa</span><span class="mono small">${g}</span><b class="small">${ratioText(r)}</b><span class="fg-badge ${r >= 4.5 ? 'ok' : r >= 3 ? 'mid' : 'bad'}">${lvl}</span></div>`;
   }).join('');
+
+  // Kontrast-Labor: Farben selbst einstellen und nach WCAG prüfen
+  const LAB_DEF = { fg: '#8A94A6', bg: '#FFFFFF', ac: '#93C5FD' };
+  const LAB_NAME = { fg: 'Textfarbe', bg: 'Hintergrund', ac: 'Akzentfarbe' };
+  const LAB_TASKS = [
+    { t: 'Kräftiger Farbhintergrund: Hintergrund mit mindestens 50 % Sättigung, Fließtext erreicht AA.', ok: (c) => c.hsl.bg[1] >= 50 && c.r >= 4.5 },
+    { t: 'Fließtext nach AAA ohne Schwarz, Weiß oder Grau: beide Farben mit mindestens 15 % Sättigung und einer Helligkeit zwischen 5 und 95 %.', ok: (c) => c.r >= 7 && ['fg', 'bg'].every((k) => c.hsl[k][1] >= 15 && c.hsl[k][2] >= 5 && c.hsl[k][2] <= 95) },
+    { t: 'Dunkelmodus: Hintergrund mit höchstens 20 % Helligkeit, Fließtext erreicht AA und Akzent mindestens 3 : 1.', ok: (c) => c.hsl.bg[2] <= 20 && c.r >= 4.5 && c.ra >= 3 }
+  ];
+  const lab = store.get('lab', { ...LAB_DEF });
+  const labDone = store.get('lab-done', []);
+  let labKey = 'fg';
+  const hs = { h: $('#lab-h'), s: $('#lab-s'), l: $('#lab-l') };
+  const labCtrl = () => {
+    const [h, s, l] = C.hex2hsl(lab[labKey]).map(Math.round);
+    hs.h.value = h; hs.s.value = s; hs.l.value = l;
+    $('#lab-name').textContent = LAB_NAME[labKey];
+    $('#lab-pick').setAttribute('aria-label', LAB_NAME[labKey] + ' im Farbwähler einstellen');
+    for (const k of ['h', 's', 'l']) hs[k].setAttribute('aria-label', `${{ h: 'Farbton', s: 'Sättigung', l: 'Helligkeit' }[k]} der ${LAB_NAME[labKey]}`);
+    $('#lab-hex').value = lab[labKey]; $('#lab-hex').removeAttribute('aria-invalid');
+  };
+  const labDraw = (announce) => {
+    const { fg, bg, ac } = lab, h = +hs.h.value, s = +hs.s.value, l = +hs.l.value;
+    $('#lab-pick').value = lab[labKey].toLowerCase();
+    $('#lab-h-o').textContent = h + '°'; $('#lab-s-o').textContent = s + ' %'; $('#lab-l-o').textContent = l + ' %';
+    hs.h.style.setProperty('--track', `linear-gradient(90deg, ${[0, 60, 120, 180, 240, 300, 360].map((x) => C.hsl2hex(x, Math.max(s, 35), clamp(l, 25, 75))).join(', ')})`);
+    hs.s.style.setProperty('--track', `linear-gradient(90deg, ${C.hsl2hex(h, 0, l)}, ${C.hsl2hex(h, 100, l)})`);
+    hs.l.style.setProperty('--track', `linear-gradient(90deg, #000, ${C.hsl2hex(h, s, 50)}, #fff)`);
+    const smp = $('#lab-sample'); smp.style.color = fg; smp.style.background = bg; smp.style.setProperty('--ac', ac);
+    const r = C.contrast(fg, bg), ra = C.contrast(ac, bg);
+    $('#lab-ratio').textContent = ratioText(r);
+    const row = (t, v, min, lvl) => `<li class="${v >= min ? 'ok' : 'bad'}"><span>${v >= min ? '✓ erfüllt' : '✕ nicht erfüllt'}</span>${t} <small>${ratioText(v)} · ${lvl} mind. ${fmt(min, 1)} : 1</small></li>`;
+    $('#lab-res').innerHTML = row('Fließtext', r, 4.5, 'AA') + row('Fließtext', r, 7, 'AAA') + row('Große Schrift', r, 3, 'AA') + row('Große Schrift', r, 4.5, 'AAA') + row('Button-Rahmen und Icon (Akzent : Grund)', ra, 3, 'AA');
+    const ctx = { r, ra, hsl: { fg: C.hex2hsl(fg), bg: C.hex2hsl(bg), ac: C.hex2hsl(ac) } };
+    const fresh = [];
+    LAB_TASKS.forEach((task, i) => { if (!labDone.includes(i) && task.ok(ctx)) { labDone.push(i); fresh.push(i); } });
+    $('#lab-tasks').innerHTML = LAB_TASKS.map((task, i) => { const d = labDone.includes(i); return `<li class="${d ? 'ok' : ''}"><span>${d ? '✓ gelöst' : '○ offen'}</span>${i + 1}. ${task.t}</li>`; }).join('');
+    if (fresh.length) {
+      store.set('lab-done', labDone);
+      $('#lab-status').textContent = `Aufgabe ${fresh.map((i) => i + 1).join(' und ')} gelöst. ${labDone.length} von ${LAB_TASKS.length} Aufgaben erledigt.`;
+    } else if (announce) $('#lab-status').textContent = `${labDone.length} von ${LAB_TASKS.length} Aufgaben erledigt.`;
+    store.set('lab', lab);
+  };
+  for (const k of ['h', 's', 'l']) hs[k].addEventListener('input', () => {
+    lab[labKey] = C.hsl2hex(+hs.h.value, +hs.s.value, +hs.l.value);
+    $('#lab-hex').value = lab[labKey]; $('#lab-hex').removeAttribute('aria-invalid'); labDraw();
+  });
+  $('#lab-pick').addEventListener('input', (e) => { lab[labKey] = e.target.value.toUpperCase(); labCtrl(); labDraw(); });
+  $('#lab-hex').addEventListener('input', (e) => {
+    const v = e.target.value.trim(), rgb = C.hex2rgb(v);
+    if (rgb && v.replace('#', '').length === 6) { lab[labKey] = C.rgb2hex(...rgb); const [h, s, l] = C.hex2hsl(lab[labKey]).map(Math.round); hs.h.value = h; hs.s.value = s; hs.l.value = l; e.target.removeAttribute('aria-invalid'); labDraw(); } else e.target.setAttribute('aria-invalid', 'true');
+  });
+  $('#lab-target').addEventListener('click', (e) => { const b = e.target.closest('[data-k]'); if (!b) return; pressGroup($('#lab-target'), b); labKey = b.dataset.k; labCtrl(); labDraw(); });
+  $('#lab-reset').addEventListener('click', () => { Object.assign(lab, LAB_DEF); labCtrl(); labDraw(true); });
+  labCtrl(); labDraw(true);
 }
 
 /* ================================================================

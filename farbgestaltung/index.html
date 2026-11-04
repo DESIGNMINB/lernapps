@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="styles.css?v=20261104c">
+<link rel="stylesheet" href="styles.css?v=20261104d">
 </head>
 <body>
 <a class="skip" href="#main">Zum Hauptinhalt</a>
@@ -516,6 +516,37 @@
           <p class="small muted" style="margin-top:10px">Grautöne auf Weiß. Ab #767676 ist normaler Text nach AA erlaubt.</p>
         </div>
 
+        <h2>Selbst ausprobieren: das Kontrast-Labor</h2>
+        <p>Stellen Sie Textfarbe, Hintergrund und Akzentfarbe selbst ein. Das Labor misst jede Kombination nach WCAG 2.2 und zeigt sofort, welche Anforderungen erfüllt sind.</p>
+        <div class="demo fg-lab">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Welche Farbe bearbeiten?" id="lab-target"><button type="button" data-k="fg" aria-pressed="true">Text</button><button type="button" data-k="bg" aria-pressed="false">Hintergrund</button><button type="button" data-k="ac" aria-pressed="false">Akzent</button></div>
+            <button class="btn" type="button" id="lab-reset">Zurücksetzen</button>
+          </div>
+          <div class="fg-cc">
+            <div class="fg-cc-in">
+              <div class="field"><label for="lab-hex"><span id="lab-name">Textfarbe</span> als HEX</label><div class="fg-colorrow"><input type="color" id="lab-pick" aria-label="Farbe im Farbwähler einstellen"><input type="text" id="lab-hex" maxlength="7" spellcheck="false" class="mono"></div></div>
+              <div class="field"><label for="lab-h">Farbton <output id="lab-h-o"></output></label><input type="range" id="lab-h" min="0" max="359" style="--track:#ccc"></div>
+              <div class="field"><label for="lab-s">Sättigung <output id="lab-s-o"></output></label><input type="range" id="lab-s" min="0" max="100" style="--track:#ccc"></div>
+              <div class="field"><label for="lab-l">Helligkeit <output id="lab-l-o"></output></label><input type="range" id="lab-l" min="0" max="100" style="--track:#ccc"></div>
+            </div>
+            <div class="fg-cc-out">
+              <div class="fg-cc-sample fg-lab-sample" id="lab-sample">
+                <b>Anmeldung geöffnet</b>
+                <span>Melden Sie sich bis Freitag für das Projektmodul an. Alle Infos finden Sie im <u>Modulhandbuch</u>.</span>
+                <span class="fg-lab-ui"><i class="fg-lab-btn">Jetzt anmelden</i><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke-width="2.4"/><path d="M8 12.5l3 3 5-6" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </div>
+              <div class="fg-cc-ratio"><b id="lab-ratio">–</b><span class="label">Text : Grund</span></div>
+              <ul class="fg-cc-res" id="lab-res"></ul>
+            </div>
+          </div>
+          <div class="fg-lab-tasks">
+            <span class="label">Aufgaben</span>
+            <ul class="fg-cc-res fg-lab-list" id="lab-tasks"></ul>
+            <p class="small" id="lab-status" role="status"></p>
+          </div>
+        </div>
+
         <h2>Farbe nie als einziges Merkmal</h2>
         <p>WCAG-Kriterium 1.4.1 verlangt: Information darf nicht allein über Farbe vermittelt werden. Ein rot markiertes Pflichtfeld braucht zusätzlich ein Sternchen oder einen Text, ein Diagramm zusätzlich Beschriftungen oder Muster, ein Link im Fließtext zusätzlich eine Unterstreichung.</p>
         <div class="grid g2">
@@ -809,6 +840,6 @@
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261104c"></script>
+<script src="app.js?v=20261104d"></script>
 </body>
 </html>
