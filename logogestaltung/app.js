@@ -520,6 +520,12 @@ function extent(s) {
   return { ex: (s.w / 2) * c + (s.h / 2) * n, ey: (s.w / 2) * n + (s.h / 2) * c };
 }
 
+const PK_COLORS = [
+  [null, 'Schwarz', '#161412'], ['#64378C', 'IWI-Lila', '#64378C'], ['#DE6A10', 'Orange', '#DE6A10'],
+  ['#1E6FD9', 'Blau', '#1E6FD9'], ['#2E9E5B', 'Grün', '#2E9E5B'], ['#D7263D', 'Rot', '#D7263D'], ['#F2B705', 'Gelb', '#F2B705']
+];
+const shapeStyle = (s) => (s.c && !s.neg ? ` style="--c:${s.c}"` : '');
+
 function initBaukasten() {
   const svg = $('#pk-svg');
   let shapes = store.get('pk-shapes', null);
@@ -556,7 +562,7 @@ function initBaukasten() {
   const find = (id) => shapes.find((s) => s.id === id);
   const save = () => store.set('pk-shapes', shapes.map(({ id, ...rest }) => rest));
 
-  const markup = () => shapes.map((s) => `<g class="pk-shape${s.neg ? ' neg' : ''}" data-id="${s.id}" transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('');
+  const markup = () => shapes.map((s) => `<g class="pk-shape${s.neg ? ' neg' : ''}" data-id="${s.id}"${shapeStyle(s)} transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('');
 
   function render() {
     $('#pk-shapes').innerHTML = markup();
@@ -569,6 +575,13 @@ function initBaukasten() {
       $('#pk-h').value = s.h; $('#pk-h-o').textContent = s.h;
       $('#pk-r').value = s.r; $('#pk-r-o').textContent = s.r + '°';
       $('#pk-neg').checked = !!s.neg;
+      const known = PK_COLORS.find(([v]) => v === (s.c || null));
+      $('#pk-colors').querySelectorAll('[data-c]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.c === (s.c || ''))));
+      const own = $('#pk-c-own'); own.value = s.c || '#161412';
+      own.parentElement.setAttribute('aria-checked', String(!known));
+      own.parentElement.style.setProperty('--own', known ? 'transparent' : s.c);
+      $('#pk-colors').classList.toggle('disabled', !!s.neg);
+      $('#pk-c-o').textContent = s.neg ? 'Aussparung' : known ? known[1] : s.c.toUpperCase();
     }
   }
   function renderPreviews() {
@@ -583,12 +596,14 @@ function initBaukasten() {
     shapes.forEach((s) => { const { ex, ey } = extent(s); minX = Math.min(minX, s.x - ex); maxX = Math.max(maxX, s.x + ex); minY = Math.min(minY, s.y - ey); maxY = Math.max(maxY, s.y + ey); });
     const span = n ? Math.max(maxX - minX, maxY - minY) : 0;
     const neg = shapes.some((s) => s.neg);
+    const cols = new Set(shapes.filter((s) => !s.neg).map((s) => s.c || '#161412'));
     const items = [
       [n >= 2 && n <= 10 ? 'ok' : 'warn', n === 0 ? 'Noch keine Form auf der Fläche.' : n <= 10 ? `Aus ${n} Grundform${n === 1 ? '' : 'en'} gebaut. Gut reduziert.` : `${n} Formen. Lässt sich etwas weglassen?`],
       [n && !out ? 'ok' : 'warn', out ? `${out} Form${out === 1 ? ' ragt' : 'en ragen'} in den Schutzraum (gestrichelte Linie).` : 'Alles liegt innerhalb des Schutzraums.'],
       [span >= 26 ? 'ok' : 'warn', span >= 26 ? 'Das Zeichen nutzt die Fläche gut aus.' : 'Das Zeichen ist recht klein. Nutzen Sie die Fläche bis zur Keyline.'],
       [neg ? 'ok' : '', neg ? 'Aussparung genutzt: Figur und Grund arbeiten zusammen.' : 'Tipp: Eine Aussparung erzeugt Details ohne zusätzliche Form.'],
-      ['', 'Selbstcheck: Ist das Zeichen bei 16 px und negativ noch erkennbar?']
+      ...(cols.size > 1 ? [[cols.size <= 3 ? 'ok' : 'warn', cols.size <= 3 ? `${cols.size} Farben: sparsam eingesetzt.` : `${cols.size} Farben. Piktogramme wirken mit ein bis zwei Farben meist klarer.`]] : []),
+      ['', cols.size > 1 ? 'Selbstcheck: Funktioniert das Zeichen auch einfarbig? Die Negativ-Vorschau zeigt es ohne Farbe.' : 'Selbstcheck: Ist das Zeichen bei 16 px und negativ noch erkennbar?']
     ];
     $('#pk-checks').innerHTML = items.map(([st, t]) => `<li><span class="st ${st}">${st === 'ok' ? '✓' : st === 'warn' ? '!' : '·'}</span><span>${t}</span></li>`).join('');
   }
@@ -627,6 +642,11 @@ function initBaukasten() {
   const bindRange = (id, key) => $(id).addEventListener('input', (e) => { const s = find(sel); if (!s) return; s[key] = +e.target.value; commit(); });
   bindRange('#pk-w', 'w'); bindRange('#pk-h', 'h'); bindRange('#pk-r', 'r');
   $('#pk-neg').addEventListener('change', (e) => { const s = find(sel); if (!s) return; s.neg = e.target.checked; commit(); });
+  $('#pk-colors').innerHTML = PK_COLORS.map(([v, name, hex]) => `<button type="button" class="swatch" role="radio" data-c="${v || ''}" style="--sw:${hex}" title="${name}" aria-label="${name}"></button>`).join('')
+    + '<label class="swatch swatch-own" role="radio" title="Eigene Farbe" aria-label="Eigene Farbe"><input type="color" id="pk-c-own" value="#161412"></label>';
+  const setColor = (c) => { const s = find(sel); if (!s) return; s.c = c || undefined; if (!c) delete s.c; s.neg = false; commit(); };
+  $('#pk-colors').addEventListener('click', (e) => { const b = e.target.closest('[data-c]'); if (b) setColor(b.dataset.c); });
+  $('#pk-c-own').addEventListener('input', (e) => setColor(e.target.value));
   $('#pk-front').addEventListener('click', () => { const s = find(sel); if (!s) return; shapes = shapes.filter((x) => x !== s).concat(s); commit(); });
   $('#pk-back').addEventListener('click', () => { const s = find(sel); if (!s) return; shapes = [s].concat(shapes.filter((x) => x !== s)); commit(); });
   $('#pk-dup').addEventListener('click', () => { const s = find(sel); if (!s) return; const c = { ...s, id: 's' + (++counter), x: clamp(s.x + 2, 0, 48), y: clamp(s.y + 2, 0, 48) }; shapes.push(c); sel = c.id; commit(); });
@@ -641,7 +661,7 @@ function initBaukasten() {
   $('#pk-gallery').addEventListener('click', (e) => { const b = e.target.closest('[data-ex-i]'); if (b) loadExample(+b.dataset.exI); });
   $('#pk-clear').addEventListener('click', () => { shapes = []; sel = null; commit(); });
   $('#pk-copy').addEventListener('click', async () => {
-    const body = shapes.map((s) => `  <path d="${shapePath(s)}" fill="${s.neg ? '#ffffff' : '#000000'}"/>`).join('\n');
+    const body = shapes.map((s) => `  <path d="${shapePath(s)}" fill="${s.neg ? '#ffffff' : (s.c || '#000000')}"/>`).join('\n');
     const code = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="480" height="480">\n  <title>${esc(BRIEFS[brief][0])}</title>\n${body}\n</svg>`;
     const fb = $('#pk-fallback');
     try { await navigator.clipboard.writeText(code); fb.hidden = true; toast('SVG-Code kopiert'); }
