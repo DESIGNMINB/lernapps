@@ -227,13 +227,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 .content-card {
-  background: var(--bg-white);
+  /* Lesespalte wie im Logo-Lernmodul: zentriert, Übungen 1080 px, Textseiten 880 px */
+  background: transparent;
   padding: 48px 64px 60px;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
-  max-width: none;
+  max-width: calc(1080px + 128px);
+  margin: 0 auto;
 }
+.content-card.narrow { max-width: calc(880px + 128px); }
 
 /* ===== PAGE HEADER (Exercise pages) ===== */
 .lektion-badge {
