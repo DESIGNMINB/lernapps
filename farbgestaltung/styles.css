@@ -723,7 +723,8 @@ body, .gl-tools { background: var(--page-bg); }
 }
 .home-back svg { width: 16px; height: 16px; flex: none; color: rgba(255,255,255,.75); stroke-width: 2.2; transition: transform .15s, color .15s; }
 .home-back-logo {
-  flex: none; width: 30px; height: 30px; border-radius: 8px; background: #fff; color: #64378C;
+  flex: none; width: 27px; height: 27px; margin: 6px 6px 0 0; border-radius: 7px; background: #fff; color: #64378C;
+  box-shadow: 3px -3px 0 rgba(255,255,255,.55), 6px -6px 0 rgba(255,255,255,.28);
   display: grid; place-items: center; font: 700 14px/1 var(--f-body);
 }
 .home-back-text { display: flex; flex-direction: column; font: 700 14px/1.15 var(--f-body); }

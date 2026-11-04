@@ -32,13 +32,19 @@
     .top-gradient { height: 3px; background: linear-gradient(90deg, #DE6A10, #E99A5C, #DE6A10); }
     .wrap { max-width: 1080px; margin: 0 auto; padding: clamp(28px, 5vw, 64px) clamp(20px, 4vw, 40px) 48px; }
 
-    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: clamp(32px, 5vw, 48px); }
-    .brand-logo {
-      width: 40px; height: 40px; border-radius: 10px; background: var(--purple); color: #fff;
+    .brand { display: flex; align-items: center; gap: 18px; margin-bottom: clamp(32px, 5vw, 48px); }
+    /* Stapel-Zeichen: mehrere Karten hintereinander = Sammlung aller Lern-Apps */
+    .brand-logo { position: relative; flex: none; width: 54px; height: 54px; }
+    .brand-logo span { position: absolute; width: 42px; height: 42px; border-radius: 11px; }
+    .brand-logo span:nth-child(1) { left: 12px; top: 0; background: #C8A8DE; }
+    .brand-logo span:nth-child(2) { left: 6px; top: 6px; background: #9254D1; }
+    .brand-logo span:nth-child(3) {
+      left: 0; top: 12px; background: var(--purple); color: #fff;
       display: grid; place-items: center; font-weight: 700; font-size: 18px;
+      box-shadow: 0 0 0 2px var(--bg-main);
     }
-    .brand-name { font-size: 20px; font-weight: 700; line-height: 1.2; }
-    .brand-sub { display: block; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+    .brand-name { font-size: clamp(24px, 3.2vw, 28px); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; }
+    .brand-sub { display: block; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin-top: 5px; }
 
     .hero {
       position: relative; overflow: hidden;
@@ -108,8 +114,8 @@
   <div class="top-gradient"></div>
   <div class="wrap">
     <div class="brand">
-      <span class="brand-logo" aria-hidden="true">L</span>
-      <span class="brand-name">Lern-Apps<span class="brand-sub">Gestaltung &amp; UX · IWI</span></span>
+      <span class="brand-logo" aria-hidden="true"><span></span><span></span><span>L</span></span>
+      <span class="brand-name">Lern-Apps<span class="brand-sub">Gestaltung &amp; UX · Fakultät IWI · HKA</span></span>
     </div>
 
     <header class="hero">
