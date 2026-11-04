@@ -528,12 +528,20 @@ const shapeStyle = (s) => (s.c && !s.neg ? ` style="--c:${s.c}"` : '');
 
 function initBaukasten() {
   const svg = $('#pk-svg');
-  let shapes = store.get('pk-shapes', null);
-  if (!Array.isArray(shapes)) shapes = EXAMPLES[0].map((s) => ({ ...s }));
-  let counter = 0;
-  shapes.forEach((s) => { s.id = 's' + (++counter); });
-  let sel = null, drag = null;
+  // Jede Aufgabe hat ihre eigene Zeichnung
   let brief = store.get('pk-brief', 0);
+  if (!(brief >= 0 && brief < BRIEFS.length)) brief = 0;
+  const key = (i) => 'pk-shapes-' + i;
+  let counter = 0;
+  const withIds = (arr) => arr.map((s) => ({ ...s, id: 's' + (++counter) }));
+  const loadFor = (i, legacy = false) => {
+    let a = store.get(key(i), null);
+    if (!Array.isArray(a) && legacy) a = store.get('pk-shapes', null); // ältere Fassung: eine Zeichnung für alle
+    if (!Array.isArray(a)) a = i === 0 ? EXAMPLES[0] : [];
+    return withIds(a);
+  };
+  let shapes = loadFor(brief, true);
+  let sel = null, drag = null;
 
   // Raster
   let g = '';
@@ -547,7 +555,13 @@ function initBaukasten() {
     $('#brief-name').textContent = BRIEFS[brief][0];
     $('#brief-hint').textContent = BRIEFS[brief][1];
   };
-  $('#brief-select').addEventListener('change', (e) => { brief = +e.target.value; store.set('pk-brief', brief); setBrief(); });
+  $('#brief-select').addEventListener('change', (e) => {
+    save();
+    brief = +e.target.value; store.set('pk-brief', brief);
+    shapes = loadFor(brief); sel = null;
+    setBrief(); commit();
+    toast(shapes.length ? `Ihre Zeichnung zu „${BRIEFS[brief][0]}“ geladen` : `Neue Aufgabe „${BRIEFS[brief][0]}“: leere Fläche`);
+  });
   setBrief();
 
   // Werkzeugleiste
@@ -560,7 +574,7 @@ function initBaukasten() {
   });
 
   const find = (id) => shapes.find((s) => s.id === id);
-  const save = () => store.set('pk-shapes', shapes.map(({ id, ...rest }) => rest));
+  const save = () => store.set(key(brief), shapes.map(({ id, ...rest }) => rest));
 
   const markup = () => shapes.map((s) => `<g class="pk-shape${s.neg ? ' neg' : ''}" data-id="${s.id}"${shapeStyle(s)} transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('');
 
@@ -653,7 +667,8 @@ function initBaukasten() {
   $('#pk-del').addEventListener('click', () => { shapes = shapes.filter((x) => x.id !== sel); sel = null; commit(); });
   $('#pk-guides').addEventListener('change', (e) => $('#pk-stage').classList.toggle('hide-guides', !e.target.checked));
   const loadExample = (i) => {
-    shapes = EXAMPLES[i].map((s) => ({ ...s, id: 's' + (++counter) })); sel = null;
+    if (i !== brief) save();
+    shapes = withIds(EXAMPLES[i]); sel = null;
     brief = i; store.set('pk-brief', i); setBrief(); commit(); toast(`Beispiel „${BRIEFS[i][0]}“ geladen`);
   };
   $('#pk-example').addEventListener('click', () => loadExample(brief));
