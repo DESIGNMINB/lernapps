@@ -665,8 +665,19 @@ function initHarmonie() {
     const [, title, sub] = HB[st.brief];
     const bg = pal[0], tc = pal[1] || C.onColor(bg), acc = pal.slice(1);
     const subc = C.onColor(bg);
+    // Lange Titel auf zwei Zeilen verteilen, am Wortzwischenraum nahe der Mitte
+    const words = title.split(' ');
+    let lines = [title];
+    if (title.length > 11 && words.length > 1) {
+      let best = 1, diff = Infinity;
+      for (let k = 1; k < words.length; k++) { const d = Math.abs(words.slice(0, k).join(' ').length - words.slice(k).join(' ').length); if (d < diff) { diff = d; best = k; } }
+      lines = [words.slice(0, best).join(' '), words.slice(best).join(' ')];
+    }
     const shapes = acc.map((c, i) => [`<circle cx="${300 - i * 40}" cy="${90 + i * 30}" r="${70 - i * 12}" fill="${c}"/>`, `<rect x="${20 + i * 30}" y="${300 + i * 12}" width="${120 - i * 20}" height="${120 - i * 20}" fill="${c}" transform="rotate(${-8 + i * 10} 80 360)"/>`][i % 2]).join('');
-    $('#hw-poster').innerHTML = `<svg viewBox="0 0 400 520" role="img" aria-label="Plakatentwurf ${esc(title)} mit der gewählten Palette"><rect width="400" height="520" fill="${bg}"/>${shapes}<text x="28" y="250" font-family="Inter, sans-serif" font-weight="800" font-size="52" fill="${tc}" letter-spacing="-1">${esc(title)}</text><text x="30" y="290" font-family="Inter, sans-serif" font-weight="600" font-size="18" fill="${subc}">${esc(sub)}</text></svg>`;
+    $('#hw-poster').innerHTML = `<svg viewBox="0 0 400 520" role="img" aria-label="Plakatentwurf ${esc(title)} mit der gewählten Palette"><rect width="400" height="520" fill="${bg}"/>${shapes}<text class="fg-poster-title" x="28" y="${lines.length > 1 ? 215 : 250}" font-family="Inter, sans-serif" font-weight="800" font-size="52" fill="${tc}" letter-spacing="-1">${lines.map((t, k) => `<tspan x="28" dy="${k ? 56 : 0}">${esc(t)}</tspan>`).join('')}</text><text x="30" y="${lines.length > 1 ? 306 : 290}" font-family="Inter, sans-serif" font-weight="600" font-size="18" fill="${subc}">${esc(sub)}</text></svg>`;
+    // Titel darf nicht aus dem Plakat laufen: notfalls Schrift verkleinern
+    const tEl = $('#hw-poster .fg-poster-title');
+    try { const w = tEl.getBBox().width; if (w > 344) tEl.setAttribute('font-size', String(Math.floor(52 * 344 / w))); } catch (e) { /* nicht gerendert */ }
     const cr = C.contrast(tc, bg);
     $('#hw-contrast').innerHTML = `Titel auf Hintergrund: <strong>${ratioText(cr)}</strong> · ${cr >= 4.5 ? '✓ gut lesbar' : cr >= 3 ? '✓ ausreichend für große Schrift (mind. 3 : 1)' : '✕ zu schwach: Helligkeit ändern oder Rollen tauschen'}`;
     $('#hw-pal').innerHTML = pal.map((c, i) => swatch(c, ['Hintergrund', 'Titel', 'Akzent', 'Akzent 2'][i])).join('');
