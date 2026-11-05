@@ -852,3 +852,6 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .feedback-link:focus-visible { outline: 3px solid #9254D1; outline-offset: 2px; }
 .side-foot .feedback-link { color: var(--side-muted); margin: -4px 0 6px; }
 .side-foot .feedback-link:hover { background: var(--side-hover); color: var(--side-fg); }
+
+/* Deaktivierte Buttons lesbar statt verblasst (Schrift ≥ 4,5 : 1) */
+.btn[disabled], .btn-primary[disabled], .btn-dark[disabled] { opacity: 1; background: var(--surface); border-color: var(--line); color: #5B6270; }
