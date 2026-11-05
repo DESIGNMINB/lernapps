@@ -967,8 +967,8 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
 @media (prefers-reduced-motion: reduce) { .tile .art img.bg { transition: none; } }
 
 /* ===== Buttons und Übungs-Pills im Inhaltsbereich: Orange (in allen Lern-Apps gleich) =====
-   #B9550A statt #DE6A10, damit weiße Schrift ≥ 4,5 : 1 erreicht (WCAG 1.4.3) */
-:root { --cta: #B9550A; --cta-hover: #9A4508; }
+   #CC4E00 statt #DE6A10, damit weiße Schrift ≥ 4,5 : 1 erreicht (WCAG 1.4.3) */
+:root { --cta: #CC4E00; --cta-hover: #A84000; }
 .btn-primary { background: var(--cta); border-color: var(--cta); color: #fff; }
 .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
 .tile .tag-ex { background: var(--cta); }
