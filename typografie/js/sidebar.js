@@ -1,9 +1,4 @@
-// Apply saved dark mode immediately (before render) to prevent flash
-(function () {
-  if (localStorage.getItem('typolab-theme') === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-})();
+// Dunkelmodus: gemeinsam für alle Lern-Apps in ../theme.js
 
 // Shared sidebar component for all pages
 function renderSidebar(activePage) {
@@ -92,7 +87,7 @@ function renderSidebar(activePage) {
 
   html += `</div>
     <div class="sidebar-footer">
-      <button class="dark-toggle" id="dark-toggle-btn" aria-label="Dunkelmodus umschalten">
+      <button type="button" class="dark-toggle" id="dark-toggle-btn" data-theme-toggle aria-pressed="false">
         ${sunIcon}
         <span class="dark-toggle-label">Dunkelmodus</span>
         <span class="toggle-track"><span class="toggle-thumb"></span></span>
@@ -166,16 +161,7 @@ function initMobileNav(sidebar) {
 function initDarkMode() {
   const btn = document.getElementById('dark-toggle-btn');
   if (!btn) return;
-  btn.addEventListener('click', () => {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('typolab-theme', 'light');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('typolab-theme', 'dark');
-    }
-  });
+  if (window.LernTheme) window.LernTheme.sync();
 }
 
 // Tab functionality

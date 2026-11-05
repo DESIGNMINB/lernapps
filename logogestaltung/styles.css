@@ -827,3 +827,19 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 #p-home .progress-band .bar span { background: var(--mod); }
 #p-home .home-section-label { border-bottom: 0; padding-bottom: 0; margin: 40px 4px 14px; }
 #p-home .home-section-label h2 { font-size: 11.5px !important; letter-spacing: .1em; color: var(--muted); }
+
+/* ===== Dunkelmodus-Schalter (gemeinsam für alle Lern-Apps, siehe ../theme.js) ===== */
+.dark-toggle { display: flex; align-items: center; gap: 10px; width: 100%; margin: 0 0 4px; padding: 9px 10px; border: 0; border-radius: 8px; background: transparent; color: var(--side-muted); font: 500 13px/1 var(--f-body); cursor: pointer; }
+.dark-toggle:hover { background: var(--side-hover); }
+.dark-toggle:focus-visible { outline: 3px solid #9254D1; outline-offset: 2px; }
+.dark-toggle-label { flex: 1; text-align: left; }
+.toggle-track { position: relative; flex: none; width: 40px; height: 22px; border-radius: 11px; background: var(--line); transition: background .25s; }
+.toggle-thumb { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); transition: transform .25s; }
+[data-theme="dark"] .toggle-track { background: #9254D1; }
+[data-theme="dark"] .toggle-thumb { transform: translateX(18px); }
+@media (prefers-reduced-motion: reduce) { .toggle-track, .toggle-thumb { transition: none; } }
+/* Startseite: Farben aus den Variablen, damit sie im Dunkelmodus mitwechseln */
+.home-hero h1 { color: var(--accent-ink) !important; }
+.ptile .go { background: var(--accent-soft); color: var(--accent-ink); }
+.ptile:hover .go, .ptile:focus-visible .go { background: var(--accent); color: #fff; }
+[data-theme="dark"] .ptile:hover, [data-theme="dark"] .ptile:focus-visible { border-color: #9254D1; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
