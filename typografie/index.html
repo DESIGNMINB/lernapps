@@ -44,7 +44,9 @@
     .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; list-style: none; }
     .tile { display: block; text-decoration: none; color: inherit; border-radius: 12px; }
     .tile .art { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; transition: transform .25s ease, box-shadow .25s; }
-    .tile .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .tile .art { background: #3B194D; }
+    .tile .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .tile .art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,17,56,.7) 0%, rgba(42,17,56,.35) 45%, transparent 80%); }
     .tile:hover .art, .tile:focus-visible .art { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(17,24,39,.04), 0 6px 20px rgba(17,24,39,.12); }
     .tile .num {
       position: absolute; left: 14px; bottom: 6px; z-index: 1; font-size: clamp(56px, 7vw, 84px); font-weight: 900; line-height: 1;
@@ -107,26 +109,7 @@
   <script src="js/sidebar.js?v=20261105b"></script>
   <script>renderSidebar('intro');</script>
   <script>
-    // Kachelgrafiken: jede Kachel zeigt ihr Thema mit typografischen Mitteln
-    const W = 'rgba(255,255,255,', SERIF = 'Georgia, \'Times New Roman\', serif', SANS = 'Inter, Arial, sans-serif';
-    const bars = (x, y, widths, h, gap, a) => widths.map((w, i) => `<rect x="${x}" y="${y + i * gap}" width="${w}" height="${h}" rx="${h / 2}" fill="${W}${a})"/>`).join('');
-    const ART = {
-      ex1: ['#5A2576', bars(150, 34, [210, 200, 214, 170], 10, 22, .9) + bars(150, 140, [210, 196, 214, 150], 10, 40, .55) + `<path d="M130 140v40M124 146l6-6 6 6M124 174l6 6 6-6" stroke="${W}.8)" stroke-width="2.5" fill="none"/>`],
-      ex2: ['#64378C', bars(36, 40, [330, 330, 330], 8, 20, .35) + bars(36, 120, [96, 96, 96, 96, 70], 8, 20, .9) + bars(152, 120, [96, 96, 96, 96, 60], 8, 20, .9) + bars(268, 120, [96, 96, 96, 70], 8, 20, .9)],
-      ex3: ['#3B194D', `<text x="364" y="112" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="64" fill="${W}.45)" letter-spacing="-6">TRACK</text><text x="364" y="196" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="56" fill="${W}.92)" letter-spacing="14">TRACK</text>`],
-      ex4: ['#7440A2', `<rect x="150" y="30" width="220" height="170" rx="10" fill="none" stroke="${W}.45)" stroke-width="2" stroke-dasharray="6 6"/><rect x="180" y="58" width="160" height="114" rx="8" fill="${W}.18)"/><rect x="204" y="80" width="112" height="70" rx="4" fill="${W}.85)"/><path d="M165 115h15M340 115h15M260 44v14" stroke="${W}.8)" stroke-width="2"/>`],
-      ex5: ['#5A2576', Array.from({ length: 12 }, (_, i) => `<rect x="${30 + i * 29}" y="24" width="21" height="252" fill="${W}${i < 8 ? .16 : .3})"/>`).join('') + `<rect x="30" y="40" width="224" height="76" rx="4" fill="${W}.85)"/><rect x="262" y="40" width="108" height="76" rx="4" fill="${W}.55)"/>`],
-      ex6: ['#64378C', `<rect x="150" y="34" width="220" height="34" rx="4" fill="${W}.95)"/><rect x="150" y="84" width="160" height="16" rx="4" fill="${W}.65)"/>` + bars(150, 120, [220, 210, 220, 180, 120], 7, 16, .38)],
-      ex7: ['#3B194D', `<text x="210" y="160" text-anchor="end" font-family="${SERIF}" font-style="italic" font-size="130" fill="${W}.92)">Aa</text><text x="226" y="160" font-family="${SANS}" font-weight="800" font-size="118" fill="${W}.5)">Aa</text>`],
-      ex8: ['#7440A2', `<circle cx="250" cy="112" r="78" fill="#DE6A10"/><circle cx="318" cy="150" r="70" fill="#C8A8DE" opacity=".9"/><text x="282" y="160" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="96" fill="#fff">A</text>`],
-      ex9: ['#1F2937', `<rect x="200" y="0" width="200" height="300" fill="#E6DCEF"/><text x="200" y="170" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="110" fill="#fff">Aa</text><text x="204" y="170" font-family="${SANS}" font-weight="800" font-size="110" fill="#1F2937">Aa</text><text x="300" y="250" text-anchor="middle" font-family="${SANS}" font-weight="700" font-size="22" fill="#15803D">7 : 1</text>`],
-      glossar: ['#5A2576', `<text x="150" y="88" font-family="${SANS}" font-weight="800" font-size="34" fill="${W}.95)">Geviert</text>` + bars(150, 104, [210, 180], 7, 16, .45) + `<text x="150" y="182" font-family="${SANS}" font-weight="800" font-size="34" fill="${W}.95)">Ligatur</text>` + bars(150, 198, [200, 150], 7, 16, .45)],
-      din: ['#64378C', `<text x="372" y="168" text-anchor="end" font-family="${SERIF}" font-size="150" fill="${W}.9)">Rg</text><path d="M150 176h222" stroke="${W}.5)" stroke-width="1.5"/><path d="M150 76h222" stroke="${W}.35)" stroke-width="1.5" stroke-dasharray="4 4"/>`],
-      rechtschreibung: ['#3B194D', `<text x="372" y="196" text-anchor="end" font-family="${SERIF}" font-size="150" fill="${W}.9)">„ß“</text>`],
-      wiss: ['#7440A2', bars(150, 50, [220, 214, 200, 220, 130], 8, 22, .45) + `<text x="372" y="240" text-anchor="end" font-family="${SERIF}" font-size="72" fill="${W}.92)">[1]</text>`],
-      design: ['#5A2576', `<rect x="150" y="40" width="64" height="64" rx="12" fill="#C8A8DE"/><rect x="226" y="40" width="64" height="64" rx="12" fill="#9254D1"/><rect x="302" y="40" width="64" height="64" rx="12" fill="#DE6A10"/><text x="150" y="190" font-family="${SANS}" font-weight="800" font-size="64" fill="${W}.9)">Aa</text><rect x="262" y="146" width="104" height="40" rx="20" fill="${W}.9)"/>`],
-      quiz: ['#64378C', [0, 1, 2].map((i) => `<rect x="150" y="${40 + i * 56}" width="220" height="40" rx="8" fill="${W}${i === 1 ? .92 : .2})"/><circle cx="174" cy="${60 + i * 56}" r="9" fill="none" stroke="${i === 1 ? '#64378C' : 'rgba(255,255,255,.8)'}" stroke-width="2.5"/>${i === 1 ? `<path d="M169 ${60 + i * 56}l4 4 7-8" stroke="#64378C" stroke-width="2.5" fill="none"/>` : ''}<rect x="196" y="${56 + i * 56}" width="${[140, 120, 150][i]}" height="8" rx="4" fill="${i === 1 ? '#64378C' : 'rgba(255,255,255,.7)'}"/>`).join('')],
-    };
+    // Kachelfotos in Lila-Duotone (Magnific), je Kapitel ein eigenes Motiv
     const TILES = {
       ex: [
         ['ex1', 'exercise-01.html', '01', 'Zeilenabstand', 'Leading & Grauwert'],
@@ -151,9 +134,8 @@
     let visited = [];
     try { visited = JSON.parse(localStorage.getItem('typolab-visited') || '[]'); } catch (e) {}
     const tile = ([id, href, num, title, sub]) => {
-      const [bg, motif] = ART[id];
       const done = id.startsWith('ex') && visited.includes(id);
-      return `<li><a class="tile" href="${href}"><div class="art"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="${bg}"/>${motif}</svg><span class="num" aria-hidden="true">${num}</span>${done ? '<span class="tag-done">Besucht</span>' : ''}</div><h3>${title}</h3><p>${sub}</p></a></li>`;
+      return `<li><a class="tile" href="${href}"><div class="art"><img src="img/tile-${id}.jpg" alt="" loading="lazy" width="800" height="600"><span class="num" aria-hidden="true">${num}</span>${done ? '<span class="tag-done">Besucht</span>' : ''}</div><h3>${title}</h3><p>${sub}</p></a></li>`;
     };
     for (const k of ['ex', 'ref', 'quiz']) document.getElementById('tiles-' + k).innerHTML = TILES[k].map(tile).join('');
     const n = TILES.ex.filter((t) => visited.includes(t[0])).length;
