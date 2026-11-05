@@ -123,7 +123,7 @@ function tileArt(id) {
 }
 
 function renderTiles() {
-  const mk = (p, num) => `<a class="tile" href="#${p.id}" data-tile="${p.id}"><div class="art">${tileArt(p.id)}<span class="num">${num}</span>${p.ex ? '<span class="tag-ex">Übung</span><span class="tag-done" hidden>Erledigt</span>' : ''}</div><h3>${esc(p.t)}</h3><p>${esc(p.sub)}</p></a>`;
+  const mk = (p, num) => `<a class="ptile" href="#${p.id}" data-tile="${p.id}"><div class="art">${tileArt(p.id)}${p.ex ? '<span class="tag-ex">Übung</span><span class="tag-done" hidden>Erledigt</span>' : ''}<span class="chip-num" aria-hidden="true">${num}</span></div><div class="tile-body"><h3>${esc(p.t)}</h3><p>${esc(p.sub)}</p><span class="go">${p.ex ? 'Übung starten' : 'Kapitel öffnen'}</span></div></a>`;
   const theory = PAGES.slice(1, 11);
   $('#tiles-theory').innerHTML = theory.map((p, i) => mk(p, String(i + 1).padStart(2, '0'))).join('');
   $('#tiles-ex').innerHTML = PAGES.filter((p) => p.ex).map((p) => mk(p, 'Ü' + p.ex)).join('');
