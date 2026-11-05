@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261105dl">
+  <link rel="stylesheet" href="css/style.css?v=20261105dl2">
   <style>
     /* Startseite im Aufbau der Lernmodule Logogestaltung und Farbgestaltung */
     .home { max-width: calc(1024px + 128px); margin: 0 auto; padding: 48px 64px 60px; }
@@ -50,6 +50,13 @@
     .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .btn-primary { background: var(--cta); border-color: var(--cta); color: #fff; }
     .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+    /* Grüner Download-Button für die PDF-Zusammenfassung (weiß auf #15803D ≈ 5,0 : 1) */
+    .hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    .btn-download { background: #15803D; border-color: #15803D; color: #fff; }
+    .btn-download:hover { background: var(--cta-hover); border-color: var(--cta-hover); color: #fff; }
+    .btn-download .dl-meta { font-weight: 400; }
+    @media (max-width: 760px) { .hero-actions { align-items: flex-start; } }
+
     .progress-band { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; background: var(--bg-muted); border-radius: 12px; padding: 16px 20px; margin: 36px 0 48px; }
     .progress-band .label { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
     .progress-band .bar { height: 6px; background: var(--border-color); border-radius: 6px; overflow: hidden; }
@@ -101,9 +108,12 @@
         <h1>Typo&shy;grafie<span>lernen</span></h1>
         <div class="hero-sub">
           <p>Typografie ist das unsichtbare Rückgrat jeder Oberfläche: Sie ordnet, lenkt und vermittelt. In neun Laborübungen erproben Sie Zeilenabstand, Zeilenlänge, Laufweite, Raster, Hierarchie, Schriftpaarungen, Farbwirkung und Barrierefreiheit. Dazu kommen Glossar, DIN 16518 und ein Quiz.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="exercise-01.html">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="btn" href="einfuehrung.html">Zur Einführung</a>
+          <div class="hero-actions">
+            <a class="btn btn-download" href="downloads/typografie-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta">(2 Seiten, 230 KB)</span></a>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="exercise-01.html">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn" href="einfuehrung.html">Zur Einführung</a>
+            </div>
           </div>
         </div>
       </div>
@@ -125,7 +135,7 @@
     </div>
   </main>
 
-  <script src="js/sidebar.js?v=20261105dl"></script>
+  <script src="js/sidebar.js?v=20261105dl2"></script>
   <script>renderSidebar('intro');</script>
   <script>
     // Kachelfotos in Lila-Duotone (Magnific), je Kapitel ein eigenes Motiv

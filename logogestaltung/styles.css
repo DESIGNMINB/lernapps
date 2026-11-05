@@ -784,3 +784,10 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .dl-card p { margin: 6px 0 0; }
 .dl-card .btn { flex: none; }
 .dl-card .dl-meta { font-weight: 400; }
+
+/* Grüner Download-Button für die PDF-Zusammenfassung (weiß auf #15803D ≈ 5,0 : 1) */
+.hero-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.btn-download { background: #15803D; border-color: #15803D; color: #fff; }
+.btn-download:hover { background: var(--cta-hover); border-color: var(--cta-hover); color: #fff; }
+.btn-download .dl-meta { font-weight: 400; }
+@media (max-width: 760px) { .hero-actions { align-items: flex-start; } }
