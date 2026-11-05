@@ -20,7 +20,20 @@
       font-size: clamp(44px, 10vw, 112px); font-weight: 900; line-height: .86; letter-spacing: -.03em;
       text-transform: uppercase; color: var(--purple-ink); hyphens: manual;
     }
-    .hero h1 span { display: block; color: #858C98; }
+    .hero h1 span { display: block; }
+
+    /* ===== Startseite: Unterzeile „lernen“ als schwarze Outline (in allen Lern-Apps gleich) =====
+       Barrierefrei: echter Text bleibt erhalten; Kontur mind. 2 px in fast Schwarz (≈ 17 : 1 zum Hintergrund);
+       ohne Text-Stroke-Unterstützung, bei erhöhtem Kontrast oder erzwungenen Farben wird die Schrift voll gefüllt. */
+    .hero h1 span { color: var(--text-dark); }
+    @supports (-webkit-text-stroke: 1px black) {
+      .hero h1 span { color: transparent; -webkit-text-stroke: max(2px, .03em) var(--text-dark); }
+    }
+    @media (prefers-contrast: more), (forced-colors: active) {
+      .hero h1 span { color: var(--text-dark); -webkit-text-stroke: 0; }
+    }
+    @media (forced-colors: active) { .hero h1 span { color: CanvasText; } }
+    
     .hero-sub { display: flex; gap: 28px; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; margin-top: 28px; }
     .hero-sub p { max-width: 46ch; color: var(--text-secondary); font-size: 17px; line-height: 1.6; }
     .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
