@@ -642,3 +642,27 @@ input[type="range"]::-webkit-slider-thumb {
 .dl-card .cta-button { margin: 0; flex: none; }
 .dl-card .dl-meta { font-weight: 400; }
 .dl-card svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ===== Einleitung (analog zu Logo- und Farb-Lernmodul) ===== */
+.intro-eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+.intro-lead { font-size: 19px; line-height: 1.6; color: var(--text-secondary); max-width: 64ch; margin: 0; }
+.intro-rule { border: 0; border-top: 1px solid var(--border-color); margin: 32px 0; }
+.intro-media { margin: 0 0 40px; }
+.intro-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; background: var(--bg-muted); }
+.intro-media figcaption { font-size: 13px; color: var(--text-muted); margin-top: 10px; }
+.intro-h2 { font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 44px 0 16px; }
+.intro-grid { display: grid; gap: 16px; }
+.intro-grid.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.intro-card { border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; background: var(--bg-white); font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); }
+.intro-card h3 { font-size: 18px; font-weight: 700; color: var(--purple-ink); margin: 0; }
+.intro-card p { margin: 10px 0 0; }
+.intro-card .intro-sub { margin-top: 2px; font-size: 13px; color: var(--text-muted); }
+.intro-card .intro-q { font-weight: 600; color: var(--text-primary); }
+.intro-card.soft { background: var(--bg-muted); border-color: transparent; }
+.intro-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-primary); }
+.intro-list { margin: 0 0 8px 20px; font-size: 15px; line-height: 1.75; color: var(--text-secondary); }
+.intro-list li::marker { color: var(--purple-light); }
+.intro-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 24px; padding: 16px 20px; border-radius: 12px; background: var(--purple-soft); font-size: 14.5px; line-height: 1.6; color: var(--text-primary); }
+.intro-note p { margin: 0; }
+.intro-badge { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--purple); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+@media (max-width: 900px) { .intro-grid.g3 { grid-template-columns: minmax(0, 1fr); } .intro-lead { font-size: 17px; } }

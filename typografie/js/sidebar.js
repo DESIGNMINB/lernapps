@@ -14,7 +14,7 @@ function renderSidebar(activePage) {
   } catch (e) {}
   const nav = [
     { id: 'intro', label: 'Übersicht', href: 'index.html', icon: 'grid' },
-    { id: 'einf', label: 'Einführung', href: 'einfuehrung.html', icon: 'book-open' },
+    { id: 'einf', label: 'Einleitung', href: 'einfuehrung.html', icon: 'book-open' },
     { type: 'section', label: 'Laborübungen' },
     { id: 'ex1', label: '01. Zeilenabstand', href: 'exercise-01.html', icon: 'align-left' },
     { id: 'ex2', label: '02. Zeilenlänge', href: 'exercise-02.html', icon: 'columns' },
