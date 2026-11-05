@@ -624,3 +624,12 @@ input[type="range"]::-webkit-slider-thumb {
   .pager b { font-size: 16px; hyphens: auto; }
   .pager small { font-size: 11px; }
 }
+
+/* ===== Buttons im Inhaltsbereich: Orange (in allen Lern-Apps gleich) =====
+   #B9550A statt #DE6A10, damit weiße Schrift ≥ 4,5 : 1 erreicht (WCAG 1.4.3) */
+:root { --cta: #B9550A; --cta-hover: #9A4508; }
+.btn-primary { background: var(--cta); border-color: var(--cta); color: #fff; }
+.btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+.cta-button { background: var(--cta); color: #fff; }
+.cta-button:hover { background: var(--cta-hover); }
+.filter-tag.active { background: var(--cta); border-color: var(--cta); color: #fff; }

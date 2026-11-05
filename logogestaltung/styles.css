@@ -751,3 +751,10 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .tile:hover .art img.bg, .tile:focus-visible .art img.bg { filter: grayscale(1) contrast(1.1); }
 .tile:hover .art::before, .tile:focus-visible .art::before { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .tile .art img.bg, .tile .art::before { transition: none; } }
+
+/* ===== Buttons und Übungs-Pills im Inhaltsbereich: Orange (in allen Lern-Apps gleich) =====
+   #B9550A statt #DE6A10, damit weiße Schrift ≥ 4,5 : 1 erreicht (WCAG 1.4.3) */
+:root { --cta: #B9550A; --cta-hover: #9A4508; }
+.btn-primary { background: var(--cta); border-color: var(--cta); color: #fff; }
+.btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+.tile .tag-ex { background: var(--cta); }
