@@ -92,6 +92,9 @@
       transition: max-width 0.3s ease, columns 0.3s ease;
       column-gap: 32px;
     }
+    .controls-area .unit-note { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--purple-soft, #F1EEF4); font-size: 13px; line-height: 1.55; color: var(--text-secondary); max-width: none; }
+    .unit-note strong { color: var(--text-primary); }
+    .unit-note code { background: var(--bg-white); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
     .preview-area .fit-note { margin: 12px 0 0; line-height: 1.5; font-size: 12px; color: var(--text-muted); }
     #preview-columns p {
       margin-bottom: 1em;
@@ -139,6 +142,7 @@
           <span class="optimal">&#9650; 45–75 ch (optimal)</span>
           <span>120 ch (zu weit)</span>
         </div>
+        <p class="unit-note"><strong>Was bedeutet „ch“?</strong> Die CSS-Einheit <code>ch</code> (von <em>character</em>, Zeichen) entspricht der Breite der Ziffer „0“ in der verwendeten Schrift. 65&nbsp;ch sind also etwa 65 Zeichen pro Zeile. Weil sich die Einheit nach der Schrift richtet, bleibt die Zeichenzahl auch bei anderer Schriftart oder Schriftgröße ungefähr gleich.</p>
 
         <div class="control-row" style="margin-top: 20px;">
           <span class="control-label" id="col-label">Spaltensatz</span>
