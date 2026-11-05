@@ -70,9 +70,20 @@
     }
     .hero h1 {
       position: relative; z-index: 1;
-      font-size: clamp(32px, 5vw, 48px); font-weight: 700; line-height: 1.15; letter-spacing: -.02em;
-      color: var(--purple); margin-bottom: 16px;
+      font-size: clamp(34px, 5vw, 60px); font-weight: 700; line-height: .95; letter-spacing: -.02em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 22px; hyphens: manual;
     }
+    /* Zweite Zeile als schwarze Outline wie auf den Startseiten der Lern-Apps.
+       Barrierefrei: echter Text, Kontur mind. 2 px in fast Schwarz; bei erhöhtem Kontrast,
+       erzwungenen Farben oder ohne Text-Stroke-Unterstützung voll gefüllt. */
+    .hero h1 span { display: block; color: #111827; }
+    @supports (-webkit-text-stroke: 1px black) {
+      .hero h1 span { color: transparent; -webkit-text-stroke: max(2px, .03em) #111827; }
+    }
+    @media (prefers-contrast: more), (forced-colors: active) {
+      .hero h1 span { color: #111827; -webkit-text-stroke: 0; }
+    }
+    @media (forced-colors: active) { .hero h1 span { color: CanvasText; } }
     .hero p { position: relative; z-index: 1; max-width: 62ch; color: var(--text-secondary); font-size: 17px; }
 
     .section-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin: 0 4px 14px; }
@@ -126,7 +137,7 @@
       <div class="hero-icon" aria-hidden="true">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 014 4v12a3 3 0 00-3-3H2zM22 4h-6a4 4 0 00-4 4v12a3 3 0 013-3h7z"/></svg>
       </div>
-      <h1>Interaktive Lernmodule</h1>
+      <h1>Inter&shy;aktive<span>Lern&shy;module</span></h1>
       <p>Vier Module zum Ausprobieren, Üben und Nachschlagen – von Typografie über UX-Design und Logogestaltung bis zur Farbgestaltung.</p>
       </div>
       <figure class="hero-media">
