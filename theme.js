@@ -62,4 +62,47 @@
   });
 
   window.LernTheme = { set: set, sync: sync, isDark: function () { return root.getAttribute('data-theme') === 'dark'; } };
+
+  /* Nutzungsstatistik mit GoatCounter: ohne Cookies, ohne Speicherung persönlicher Daten.
+     Gezählt werden Seitenaufrufe, Kapitelwechsel in den Apps (#kapitel bzw. Ansicht im UX-Lab),
+     PDF-Downloads und Feedback-Klicks. Auf localhost wird nichts gezählt.
+     Eigene Aufrufe ausschließen: einmal eine Seite mit #toggle-goatcounter am Ende öffnen. */
+  var GC_CODE = ''; // GoatCounter-Code, z. B. 'lernapps' → https://lernapps.goatcounter.com
+  var queue = [], ready = false, last = '';
+  function send(o) {
+    if (ready && window.goatcounter && window.goatcounter.count) window.goatcounter.count(o);
+    else queue.push(o);
+  }
+  function view(path) {
+    path = path || (location.pathname + (location.hash && location.hash !== '#toggle-goatcounter' ? location.hash : ''));
+    if (path === last) return; // keine Doppelzählung (z. B. pageshow nach load)
+    last = path;
+    send({ path: path, title: document.title.replace(/\s+/g, ' ').trim() });
+  }
+  function event(name, title) { send({ path: name, title: title || name, event: true }); }
+  window.LernTrack = { view: view, event: event };
+
+  if (GC_CODE) {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://gc.zgo.at/count.js';
+    s.setAttribute('data-goatcounter', 'https://' + GC_CODE + '.goatcounter.com/count');
+    s.setAttribute('data-goatcounter-settings', '{"no_onload": true}');
+    s.onload = function () { ready = true; var q = queue; queue = []; for (var i = 0; i < q.length; i++) send(q[i]); };
+    document.head.appendChild(s);
+  }
+  // Startseite, Typo-Seiten, Logo-/Farb-Lab: Aufruf zählen. Das UX-Lab meldet seine Ansichten selbst.
+  if (!/\/ux-grundlagen\//.test(location.pathname)) {
+    // erst nach dem Laden zählen, damit der Seitentitel feststeht
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { view(); });
+    else view();
+    window.addEventListener('hashchange', function () { view(); });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href], [data-feedback]');
+    if (!a) return;
+    if (a.hasAttribute('data-feedback')) { event('feedback', 'Feedback: ' + location.pathname); return; }
+    var href = a.getAttribute('href') || '';
+    if (/\.pdf($|\?)/i.test(href)) event('download/' + href.split('/').pop().split('?')[0], 'PDF-Download');
+  });
 })();
