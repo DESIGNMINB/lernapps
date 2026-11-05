@@ -958,3 +958,13 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
 .fg-lab-list li > span:first-child { color: var(--muted); white-space: nowrap; }
 .fg-lab-list li.ok > span:first-child { color: var(--ok); }
 @media (max-width: 480px) { .fg-lab-list li { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===== Kachelfotos: farbig, beim Überfahren Lila-Duotone (in allen Lern-Apps gleich) ===== */
+.tile .art { isolation: isolate; }
+.tile .art img.bg { filter: none; transition: filter .35s ease; }
+.tile .art:has(img.bg)::before { content: ""; position: absolute; inset: 0; z-index: 1; background: #7A45AE; mix-blend-mode: color; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.tile .art:has(img.bg)::after { z-index: 1; }
+.tile .num, .tile .tag-ex, .tile .tag-done { z-index: 2; }
+.tile:hover .art img.bg, .tile:focus-visible .art img.bg { filter: grayscale(1) contrast(1.1); }
+.tile:hover .art::before, .tile:focus-visible .art::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .tile .art img.bg, .tile .art::before { transition: none; } }

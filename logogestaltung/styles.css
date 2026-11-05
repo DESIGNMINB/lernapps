@@ -741,3 +741,13 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .checklist .st.ok, .checklist .st.warn { color: #fff; }
 [data-theme="dark"] .checklist .st.ok { color: #0F1117; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .checklist .st.ok { color: #0F1117; } }
+
+/* ===== Kachelfotos: farbig, beim Überfahren Lila-Duotone (in allen Lern-Apps gleich) ===== */
+.tile .art { isolation: isolate; }
+.tile .art img.bg { filter: none; transition: filter .35s ease; }
+.tile .art:has(img.bg)::before { content: ""; position: absolute; inset: 0; z-index: 1; background: #7A45AE; mix-blend-mode: color; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.tile .art:has(img.bg)::after { z-index: 1; }
+.tile .num, .tile .tag-ex, .tile .tag-done { z-index: 2; }
+.tile:hover .art img.bg, .tile:focus-visible .art img.bg { filter: grayscale(1) contrast(1.1); }
+.tile:hover .art::before, .tile:focus-visible .art::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .tile .art img.bg, .tile .art::before { transition: none; } }
