@@ -67,7 +67,7 @@
      Gezählt werden Seitenaufrufe, Kapitelwechsel in den Apps (#kapitel bzw. Ansicht im UX-Lab),
      PDF-Downloads und Feedback-Klicks. Auf localhost wird nichts gezählt.
      Eigene Aufrufe ausschließen: einmal eine Seite mit #toggle-goatcounter am Ende öffnen. */
-  var GC_CODE = ''; // GoatCounter-Code, z. B. 'lernapps' → https://lernapps.goatcounter.com
+  var GC_CODE = 'dualtom'; // GoatCounter-Code, z. B. 'lernapps' → https://lernapps.goatcounter.com
   var queue = [], ready = false, last = '';
   function send(o) {
     if (ready && window.goatcounter && window.goatcounter.count) window.goatcounter.count(o);
