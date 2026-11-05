@@ -46,6 +46,9 @@
     .tile .art { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; transition: transform .25s ease, box-shadow .25s; }
     .tile .art { background: #3B194D; }
     .tile .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    /* Duotone im Ruhezustand, beim Überfahren erscheint das Foto in voller Farbe */
+    .tile .art img.duo { transition: opacity .35s ease; }
+    .tile:hover .art img.duo, .tile:focus-visible .art img.duo { opacity: 0; }
     .tile .art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,17,56,.7) 0%, rgba(42,17,56,.35) 45%, transparent 80%); }
     .tile:hover .art, .tile:focus-visible .art { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(17,24,39,.04), 0 6px 20px rgba(17,24,39,.12); }
     .tile .num {
@@ -66,7 +69,7 @@
       .progress-band { grid-template-columns: 1fr auto; }
       .progress-band .bar { grid-column: 1 / -1; order: 3; }
     }
-    @media (prefers-reduced-motion: reduce) { .tile .art, .progress-band .bar span { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .tile .art img.duo, .tile .art, .progress-band .bar span { transition: none; } }
   </style>
 </head>
 <body>
@@ -135,7 +138,7 @@
     try { visited = JSON.parse(localStorage.getItem('typolab-visited') || '[]'); } catch (e) {}
     const tile = ([id, href, num, title, sub]) => {
       const done = id.startsWith('ex') && visited.includes(id);
-      return `<li><a class="tile" href="${href}"><div class="art"><img src="img/tile-${id}.jpg" alt="" loading="lazy" width="800" height="600"><span class="num" aria-hidden="true">${num}</span>${done ? '<span class="tag-done">Besucht</span>' : ''}</div><h3>${title}</h3><p>${sub}</p></a></li>`;
+      return `<li><a class="tile" href="${href}"><div class="art"><img class="color" src="img/tile-${id}-color.jpg" alt="" loading="lazy" width="800" height="600"><img class="duo" src="img/tile-${id}.jpg" alt="" loading="lazy" width="800" height="600"><span class="num" aria-hidden="true">${num}</span>${done ? '<span class="tag-done">Besucht</span>' : ''}</div><h3>${title}</h3><p>${sub}</p></a></li>`;
     };
     for (const k of ['ex', 'ref', 'quiz']) document.getElementById('tiles-' + k).innerHTML = TILES[k].map(tile).join('');
     const n = TILES.ex.filter((t) => visited.includes(t[0])).length;
