@@ -6,68 +6,159 @@
   <title>Typografie Lern App – TypoLab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261105a">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261105b">
+  <style>
+    /* Startseite im Aufbau der Lernmodule Logogestaltung und Farbgestaltung */
+    .home { max-width: calc(1024px + 128px); margin: 0 auto; padding: 48px 64px 60px; }
+    .home-head { display: flex; justify-content: flex-end; }
+    .home-mod { text-align: right; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    .home-mod .label { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text-primary); }
+    .home-mod .topic { font-size: 21px; font-weight: 800; line-height: 1.2; text-transform: uppercase; color: var(--text-secondary); margin-top: 4px; }
+    .hero { margin: 48px 0 18px; }
+    .hero h1 {
+      font-size: clamp(44px, 10vw, 112px); font-weight: 900; line-height: .86; letter-spacing: -.03em;
+      text-transform: uppercase; color: var(--purple-ink); hyphens: manual;
+    }
+    .hero h1 span { display: block; color: #858C98; }
+    .hero-sub { display: flex; gap: 28px; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; margin-top: 28px; }
+    .hero-sub p { max-width: 46ch; color: var(--text-secondary); font-size: 17px; line-height: 1.6; }
+    .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px;
+      border: 1px solid var(--border-color); background: var(--bg-white); color: var(--text-primary);
+      font-size: 14px; font-weight: 600; text-decoration: none; transition: background .15s, border-color .15s;
+    }
+    .btn:hover { border-color: var(--text-secondary); }
+    .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-primary { background: var(--purple-brand); border-color: var(--purple-brand); color: #fff; }
+    .btn-primary:hover { background: var(--purple-dark); border-color: var(--purple-dark); }
+    .progress-band { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; background: var(--bg-muted); border-radius: 12px; padding: 16px 20px; margin: 36px 0 48px; }
+    .progress-band .label { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+    .progress-band .bar { height: 6px; background: var(--border-color); border-radius: 6px; overflow: hidden; }
+    .progress-band .bar span { display: block; height: 100%; width: 0; background: var(--purple-brand); transition: width .4s; }
+    .progress-band b { font: 700 14px/1 ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+    .home-section-label { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 56px 0 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+    .home-section-label h2 { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-primary); }
+    .home-section-label span { font-size: 14px; color: var(--text-secondary); }
+    .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; list-style: none; }
+    .tile { display: block; text-decoration: none; color: inherit; border-radius: 12px; }
+    .tile .art { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; transition: transform .25s ease, box-shadow .25s; }
+    .tile .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .tile:hover .art, .tile:focus-visible .art { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(17,24,39,.04), 0 6px 20px rgba(17,24,39,.12); }
+    .tile .num {
+      position: absolute; left: 14px; bottom: 6px; z-index: 1; font-size: clamp(56px, 7vw, 84px); font-weight: 900; line-height: 1;
+      letter-spacing: -.03em; color: rgba(255,255,255,.92); font-variant-numeric: tabular-nums; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+    }
+    .tile .tag-done { position: absolute; top: 12px; left: 12px; background: #15803D; color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
+    .tile h3 { font-size: 19px; font-weight: 800; line-height: 1.15; text-transform: uppercase; margin: 16px 0 5px; color: var(--text-primary); }
+    .tile p { font-size: 11.5px; font-weight: 600; line-height: 1.45; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+    .tile:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 4px; }
+    .footer-note { margin-top: 72px; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 18px; }
+    @media (max-width: 1100px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 768px) {
+      .home { padding: 24px 20px 48px; }
+      .home-mod .topic { font-size: 17px; }
+      .hero { margin-top: 32px; }
+      .tiles { grid-template-columns: minmax(0, 1fr); }
+      .progress-band { grid-template-columns: 1fr auto; }
+      .progress-band .bar { grid-column: 1 / -1; order: 3; }
+    }
+    @media (prefers-reduced-motion: reduce) { .tile .art, .progress-band .bar span { transition: none; } }
+  </style>
 </head>
 <body>
   <nav id="sidebar" class="sidebar"></nav>
 
   <main class="main">
-    <div class="content-card">
-      <div class="decorative-letter">A</div>
-
-      <div class="hero-icon">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+    <div class="home">
+      <div class="home-head">
+        <div class="home-mod"><div class="label">Lernmodul 01</div><div class="topic">Schrift, Satz &amp; Lesbarkeit</div></div>
       </div>
 
-      <h1 class="main-heading">Willkommen zur Vorlesung.</h1>
-
-      <p class="main-text">
-        Guten Tag, liebe Studierende der Medieninformatik. Ich freue mich, Sie in diesem interaktiven Labor für Typografie begrüßen zu dürfen.
-      </p>
-      <p class="main-text">
-        Als angehende Informatiker:innen neigen Sie vielleicht dazu, Code als das einzig Wahre zu betrachten. Doch ein brillantes Backend nützt wenig, wenn das Frontend unlesbar oder unstrukturiert ist. Typografie ist das unsichtbare Rückgrat der Informationsarchitektur. Sie ordnet, lenkt und vermittelt.
-      </p>
-      <p class="main-text">
-        In den folgenden Lektionen werden wir die wichtigsten Werkzeuge der Typografie und Gestaltung praktisch erproben – von Laufweite und Zeilenabstand über visuelle Hierarchie bis hin zu Barrierefreiheit. Ergänzend finden Sie im Referenzbereich ein Glossar, die DIN-16518-Klassifikation, Rechtschreibregeln sowie einen Leitfaden zum wissenschaftlichen Schreiben.
-      </p>
-
-      <!-- Laborübungen -->
-      <div class="section-card">
-        <h2>Laborübungen</h2>
-        <ol class="exercise-list">
-          <li class="exercise-item"><span class="exercise-number">01</span><div><span class="exercise-label">Zeilenabstand (Leading):</span><span class="exercise-desc"> Warum graue Textblöcke schwer lesbar sind und wie man Luft zum Atmen in Fließtexten schafft.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">02</span><div><span class="exercise-label">Zeilenlänge &amp; Spaltensatz:</span><span class="exercise-desc"> Wie die Breite eines Textblocks die Lesbarkeit beeinflusst und wann ein Mehrspaltensatz die elegantere Lösung ist.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">03</span><div><span class="exercise-label">Laufweite (Tracking):</span><span class="exercise-desc"> Wie der Abstand zwischen Buchstaben das Wortbild beeinflusst und wann wir diesen Raum manipulieren müssen.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">04</span><div><span class="exercise-label">Innen- und Außenabstände:</span><span class="exercise-desc"> Padding und Margin richtig einsetzen – für Lesbarkeit, visuelle Gruppierung und harmonische Layouts.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">05</span><div><span class="exercise-label">Spalten &amp; Rastersysteme:</span><span class="exercise-desc"> Das 12-Spalten-Raster, Gutter-Abstände und responsive Grid-Systeme für moderne Webgestaltung.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">06</span><div><span class="exercise-label">Visuelle Hierarchie:</span><span class="exercise-desc"> Wie Sie den Blick des Nutzers durch gezielte Kontraste (Gewicht, Größe, Raum) lenken.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">07</span><div><span class="exercise-label">Schriftpaarungen (Type Pairing):</span><span class="exercise-desc"> Wie zwei Schriften harmonisch zusammenwirken und warum Kontrast ohne Konflikt das entscheidende Prinzip ist.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">08</span><div><span class="exercise-label">Farbwirkung:</span><span class="exercise-desc"> Wie Farbkombinationen die Wirkung von Typografie verändern und welche Kontraste für Lesbarkeit sorgen.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number">09</span><div><span class="exercise-label">Barrierefreiheit:</span><span class="exercise-desc"> Gesetzliche Grundlagen (BFSG, WCAG, BITV), Kontrast-Checks nach WCAG AA und die korrekte Formulierung von Alternativtexten.</span></div></li>
-        </ol>
+      <div class="hero">
+        <h1>Typo&shy;grafie<span>lernen</span></h1>
+        <div class="hero-sub">
+          <p>Typografie ist das unsichtbare Rückgrat jeder Oberfläche: Sie ordnet, lenkt und vermittelt. In neun Laborübungen erproben Sie Zeilenabstand, Zeilenlänge, Laufweite, Raster, Hierarchie, Schriftpaarungen, Farbwirkung und Barrierefreiheit. Dazu kommen Glossar, DIN 16518 und ein Quiz.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="exercise-01.html">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn" href="einfuehrung.html">Zur Einführung</a>
+          </div>
+        </div>
       </div>
 
-      <!-- Referenzbereich -->
-      <div class="section-card">
-        <h2>Referenzbereich</h2>
-        <ol class="exercise-list">
-          <li class="exercise-item"><span class="exercise-number" style="color:var(--purple-light);font-size:11px;">REF</span><div><span class="exercise-label">Glossar:</span><span class="exercise-desc"> Die wichtigsten typografischen Fachbegriffe auf einen Blick -- von Geviert bis Versalhöhe.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number" style="color:var(--purple-light);font-size:11px;">REF</span><div><span class="exercise-label">DIN 16518:</span><span class="exercise-desc"> Die elf Klassen der Schriftklassifikation mit Beispielschriften, gerendert in der jeweiligen Schriftart.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number" style="color:var(--purple-light);font-size:11px;">REF</span><div><span class="exercise-label">Rechtschreibung:</span><span class="exercise-desc"> Häufige Rechtschreibregeln, Abkürzungen und typografische Konventionen im deutschsprachigen Raum.</span></div></li>
-          <li class="exercise-item"><span class="exercise-number" style="color:var(--purple-light);font-size:11px;">REF</span><div><span class="exercise-label">Wissenschaftliches Schreiben:</span><span class="exercise-desc"> Richtig zitieren, Quellenangaben (auch für Webseiten, Videos und Social Media), Zitierstile im Vergleich (APA, Harvard, Chicago, IEEE) und formale Grundregeln.</span></div></li>
-        </ol>
+      <div class="progress-band" aria-live="polite">
+        <span class="label">Ihr Fortschritt</span>
+        <div class="bar"><span id="home-bar"></span></div>
+        <b id="home-count">0 / 9 Lektionen</b>
       </div>
 
-      <!-- CTA Button -->
-      <a href="exercise-01.html" class="cta-button">
-        Starten Sie mit Lektion 01
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <div class="home-section-label"><h2>Laborübungen</h2><span>Lektion 01–09</span></div>
+      <ul class="tiles" id="tiles-ex"></ul>
+      <div class="home-section-label"><h2>Referenz</h2><span>Nachschlagen</span></div>
+      <ul class="tiles" id="tiles-ref"></ul>
+      <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
+      <ul class="tiles" id="tiles-quiz"></ul>
+
+      <p class="footer-note">© 2026 TypoLab · Lernmodul 01 · Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
     </div>
   </main>
 
-  <script src="js/sidebar.js?v=20261105a"></script>
+  <script src="js/sidebar.js?v=20261105b"></script>
   <script>renderSidebar('intro');</script>
+  <script>
+    // Kachelgrafiken: jede Kachel zeigt ihr Thema mit typografischen Mitteln
+    const W = 'rgba(255,255,255,', SERIF = 'Georgia, \'Times New Roman\', serif', SANS = 'Inter, Arial, sans-serif';
+    const bars = (x, y, widths, h, gap, a) => widths.map((w, i) => `<rect x="${x}" y="${y + i * gap}" width="${w}" height="${h}" rx="${h / 2}" fill="${W}${a})"/>`).join('');
+    const ART = {
+      ex1: ['#5A2576', bars(150, 34, [210, 200, 214, 170], 10, 22, .9) + bars(150, 140, [210, 196, 214, 150], 10, 40, .55) + `<path d="M130 140v40M124 146l6-6 6 6M124 174l6 6 6-6" stroke="${W}.8)" stroke-width="2.5" fill="none"/>`],
+      ex2: ['#64378C', bars(36, 40, [330, 330, 330], 8, 20, .35) + bars(36, 120, [96, 96, 96, 96, 70], 8, 20, .9) + bars(152, 120, [96, 96, 96, 96, 60], 8, 20, .9) + bars(268, 120, [96, 96, 96, 70], 8, 20, .9)],
+      ex3: ['#3B194D', `<text x="364" y="112" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="64" fill="${W}.45)" letter-spacing="-6">TRACK</text><text x="364" y="196" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="56" fill="${W}.92)" letter-spacing="14">TRACK</text>`],
+      ex4: ['#7440A2', `<rect x="150" y="30" width="220" height="170" rx="10" fill="none" stroke="${W}.45)" stroke-width="2" stroke-dasharray="6 6"/><rect x="180" y="58" width="160" height="114" rx="8" fill="${W}.18)"/><rect x="204" y="80" width="112" height="70" rx="4" fill="${W}.85)"/><path d="M165 115h15M340 115h15M260 44v14" stroke="${W}.8)" stroke-width="2"/>`],
+      ex5: ['#5A2576', Array.from({ length: 12 }, (_, i) => `<rect x="${30 + i * 29}" y="24" width="21" height="252" fill="${W}${i < 8 ? .16 : .3})"/>`).join('') + `<rect x="30" y="40" width="224" height="76" rx="4" fill="${W}.85)"/><rect x="262" y="40" width="108" height="76" rx="4" fill="${W}.55)"/>`],
+      ex6: ['#64378C', `<rect x="150" y="34" width="220" height="34" rx="4" fill="${W}.95)"/><rect x="150" y="84" width="160" height="16" rx="4" fill="${W}.65)"/>` + bars(150, 120, [220, 210, 220, 180, 120], 7, 16, .38)],
+      ex7: ['#3B194D', `<text x="210" y="160" text-anchor="end" font-family="${SERIF}" font-style="italic" font-size="130" fill="${W}.92)">Aa</text><text x="226" y="160" font-family="${SANS}" font-weight="800" font-size="118" fill="${W}.5)">Aa</text>`],
+      ex8: ['#7440A2', `<circle cx="250" cy="112" r="78" fill="#DE6A10"/><circle cx="318" cy="150" r="70" fill="#C8A8DE" opacity=".9"/><text x="282" y="160" text-anchor="middle" font-family="${SANS}" font-weight="900" font-size="96" fill="#fff">A</text>`],
+      ex9: ['#1F2937', `<rect x="200" y="0" width="200" height="300" fill="#E6DCEF"/><text x="200" y="170" text-anchor="end" font-family="${SANS}" font-weight="800" font-size="110" fill="#fff">Aa</text><text x="204" y="170" font-family="${SANS}" font-weight="800" font-size="110" fill="#1F2937">Aa</text><text x="300" y="250" text-anchor="middle" font-family="${SANS}" font-weight="700" font-size="22" fill="#15803D">7 : 1</text>`],
+      glossar: ['#5A2576', `<text x="150" y="88" font-family="${SANS}" font-weight="800" font-size="34" fill="${W}.95)">Geviert</text>` + bars(150, 104, [210, 180], 7, 16, .45) + `<text x="150" y="182" font-family="${SANS}" font-weight="800" font-size="34" fill="${W}.95)">Ligatur</text>` + bars(150, 198, [200, 150], 7, 16, .45)],
+      din: ['#64378C', `<text x="372" y="168" text-anchor="end" font-family="${SERIF}" font-size="150" fill="${W}.9)">Rg</text><path d="M150 176h222" stroke="${W}.5)" stroke-width="1.5"/><path d="M150 76h222" stroke="${W}.35)" stroke-width="1.5" stroke-dasharray="4 4"/>`],
+      rechtschreibung: ['#3B194D', `<text x="372" y="196" text-anchor="end" font-family="${SERIF}" font-size="150" fill="${W}.9)">„ß“</text>`],
+      wiss: ['#7440A2', bars(150, 50, [220, 214, 200, 220, 130], 8, 22, .45) + `<text x="372" y="240" text-anchor="end" font-family="${SERIF}" font-size="72" fill="${W}.92)">[1]</text>`],
+      design: ['#5A2576', `<rect x="150" y="40" width="64" height="64" rx="12" fill="#C8A8DE"/><rect x="226" y="40" width="64" height="64" rx="12" fill="#9254D1"/><rect x="302" y="40" width="64" height="64" rx="12" fill="#DE6A10"/><text x="150" y="190" font-family="${SANS}" font-weight="800" font-size="64" fill="${W}.9)">Aa</text><rect x="262" y="146" width="104" height="40" rx="20" fill="${W}.9)"/>`],
+      quiz: ['#64378C', [0, 1, 2].map((i) => `<rect x="150" y="${40 + i * 56}" width="220" height="40" rx="8" fill="${W}${i === 1 ? .92 : .2})"/><circle cx="174" cy="${60 + i * 56}" r="9" fill="none" stroke="${i === 1 ? '#64378C' : 'rgba(255,255,255,.8)'}" stroke-width="2.5"/>${i === 1 ? `<path d="M169 ${60 + i * 56}l4 4 7-8" stroke="#64378C" stroke-width="2.5" fill="none"/>` : ''}<rect x="196" y="${56 + i * 56}" width="${[140, 120, 150][i]}" height="8" rx="4" fill="${i === 1 ? '#64378C' : 'rgba(255,255,255,.7)'}"/>`).join('')],
+    };
+    const TILES = {
+      ex: [
+        ['ex1', 'exercise-01.html', '01', 'Zeilenabstand', 'Leading & Grauwert'],
+        ['ex2', 'exercise-02.html', '02', 'Zeilenlänge', 'Zeichen pro Zeile & Spalten'],
+        ['ex3', 'exercise-03.html', '03', 'Laufweite', 'Tracking & Wortbild'],
+        ['ex4', 'exercise-04.html', '04', 'Abstände', 'Padding & Margin'],
+        ['ex5', 'exercise-05.html', '05', 'Spalten & Raster', '12-Spalten-Grid'],
+        ['ex6', 'exercise-06.html', '06', 'Visuelle Hierarchie', 'Gewicht, Größe, Raum'],
+        ['ex7', 'exercise-07.html', '07', 'Schriftpaarungen', 'Kontrast ohne Konflikt'],
+        ['ex8', 'exercise-08.html', '08', 'Farbwirkung', 'Farbe & Lesbarkeit'],
+        ['ex9', 'exercise-09.html', '09', 'Barrierefreiheit', 'WCAG, BFSG & Alt-Texte'],
+      ],
+      ref: [
+        ['glossar', 'glossary.html', 'A–Z', 'Glossar', 'Fachbegriffe von Geviert bis Versalhöhe'],
+        ['din', 'din16518.html', 'DIN', 'DIN 16518', 'Schriftklassifikation'],
+        ['rechtschreibung', 'rechtschreibung.html', 'R', 'Rechtschreibung', 'Regeln & Konventionen'],
+        ['wiss', 'wissenschaftliches-schreiben.html', 'W', 'Wiss. Schreiben', 'Zitieren & Quellen'],
+        ['design', 'design-system.html', 'DS', 'Design System', 'Farben, Schrift, Komponenten'],
+      ],
+      quiz: [['quiz', 'quiz.html', '?', 'Typografie-Quiz', 'Wissen überprüfen']],
+    };
+    let visited = [];
+    try { visited = JSON.parse(localStorage.getItem('typolab-visited') || '[]'); } catch (e) {}
+    const tile = ([id, href, num, title, sub]) => {
+      const [bg, motif] = ART[id];
+      const done = id.startsWith('ex') && visited.includes(id);
+      return `<li><a class="tile" href="${href}"><div class="art"><svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="${bg}"/>${motif}</svg><span class="num" aria-hidden="true">${num}</span>${done ? '<span class="tag-done">Besucht</span>' : ''}</div><h3>${title}</h3><p>${sub}</p></a></li>`;
+    };
+    for (const k of ['ex', 'ref', 'quiz']) document.getElementById('tiles-' + k).innerHTML = TILES[k].map(tile).join('');
+    const n = TILES.ex.filter((t) => visited.includes(t[0])).length;
+    document.getElementById('home-count').textContent = `${n} / 9 Lektionen`;
+    document.getElementById('home-bar').style.width = (n / 9 * 100) + '%';
+  </script>
 </body>
 </html>
