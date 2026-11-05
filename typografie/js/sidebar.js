@@ -67,7 +67,7 @@ function renderSidebar(activePage) {
       <div class="sidebar-logo">T</div>
       <div class="sidebar-brand">
         <span class="sidebar-brand-name">TypoLab</span>
-        <span class="sidebar-brand-subtitle">Grundlagen der Gestaltung</span>
+        <span class="sidebar-brand-subtitle">01 · Typografie</span>
       </div>
     </a>
     <div class="sidebar-nav">`;
