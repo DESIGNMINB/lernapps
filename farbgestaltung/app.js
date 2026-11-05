@@ -648,7 +648,7 @@ function initUeKontraste() {
   // Teil B: eigene Beispielgrafiken, nicht dieselben wie in Kapitel 06
   const EX = [
     { k: 'farbe', svg: `<rect width="400" height="240" fill="#F4E300"/><circle cx="130" cy="120" r="80" fill="#D7262B"/><rect x="230" y="40" width="130" height="160" fill="#1F5EA8"/>`, hint: 'Rote Kreisfläche und blaues Rechteck auf gelbem Grund.' },
-    { k: 'helldunkel', svg: `<rect width="400" height="240" fill="#F5F0E6"/><rect x="40" y="40" width="320" height="160" fill="#1B1B1B"/><text x="200" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="56" fill="#F5F0E6">NACHT</text>`, hint: 'Schriftzug „NACHT“ in Cremeweiß auf einer schwarzen Fläche mit cremeweißem Rand.' },
+    { k: 'helldunkel', svg: `<rect width="400" height="240" fill="#F5F0E6"/><rect x="40" y="40" width="320" height="160" fill="#1B1B1B"/><text x="200" y="140" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-weight="800" font-size="56" fill="#F5F0E6">NACHT</text>`, hint: 'Schriftzug „NACHT“ in Cremeweiß auf einer schwarzen Fläche mit cremeweißem Rand.' },
     { k: 'kaltwarm', svg: `<rect width="400" height="240" fill="#2C6E7F"/><path d="M0 170 120 90l90 60 80-50 110 70v70H0z" fill="#1E5260"/><circle cx="300" cy="70" r="38" fill="#F26A21"/>`, hint: 'Petrolfarbene Berglandschaft mit einer orangeroten Sonne.' },
     { k: 'komplementaer', svg: `<rect width="400" height="240" fill="#1F5EA8"/><rect x="120" y="50" width="160" height="140" rx="70" fill="#F18A00"/>`, hint: 'Orangefarbene, abgerundete Form mittig auf blauem Grund.' },
     { k: 'simultan', svg: `<rect width="400" height="240" fill="#F4E300"/><rect x="200" width="200" height="240" fill="#44358F"/><circle cx="100" cy="120" r="44" fill="#9A9A9A"/><circle cx="300" cy="120" r="44" fill="#9A9A9A"/>`, hint: 'Zwei graue Kreise, einer auf gelbem, einer auf violettem Grund.' },
@@ -729,7 +729,7 @@ function initHarmonie() {
       lines = [words.slice(0, best).join(' '), words.slice(best).join(' ')];
     }
     const shapes = acc.map((c, i) => [`<circle cx="${300 - i * 40}" cy="${90 + i * 30}" r="${70 - i * 12}" fill="${c}"/>`, `<rect x="${20 + i * 30}" y="${300 + i * 12}" width="${120 - i * 20}" height="${120 - i * 20}" fill="${c}" transform="rotate(${-8 + i * 10} 80 360)"/>`][i % 2]).join('');
-    $('#hw-poster').innerHTML = `<svg viewBox="0 0 400 520" role="img" aria-label="Plakatentwurf ${esc(title)} mit der gewählten Palette"><rect width="400" height="520" fill="${bg}"/>${shapes}<text class="fg-poster-title" x="28" y="${lines.length > 1 ? 215 : 250}" font-family="Inter, sans-serif" font-weight="800" font-size="52" fill="${tc}" letter-spacing="-1">${lines.map((t, k) => `<tspan x="28" dy="${k ? 56 : 0}">${esc(t)}</tspan>`).join('')}</text><text x="30" y="${lines.length > 1 ? 306 : 290}" font-family="Inter, sans-serif" font-weight="600" font-size="18" fill="${subc}">${esc(sub)}</text></svg>`;
+    $('#hw-poster').innerHTML = `<svg viewBox="0 0 400 520" role="img" aria-label="Plakatentwurf ${esc(title)} mit der gewählten Palette"><rect width="400" height="520" fill="${bg}"/>${shapes}<text class="fg-poster-title" x="28" y="${lines.length > 1 ? 215 : 250}" font-family="IBM Plex Sans, sans-serif" font-weight="800" font-size="52" fill="${tc}" letter-spacing="-1">${lines.map((t, k) => `<tspan x="28" dy="${k ? 56 : 0}">${esc(t)}</tspan>`).join('')}</text><text x="30" y="${lines.length > 1 ? 306 : 290}" font-family="IBM Plex Sans, sans-serif" font-weight="600" font-size="18" fill="${subc}">${esc(sub)}</text></svg>`;
     // Titel darf nicht aus dem Plakat laufen: notfalls Schrift verkleinern
     const tEl = $('#hw-poster .fg-poster-title');
     try { const w = tEl.getBBox().width; if (w > 344) tEl.setAttribute('font-size', String(Math.floor(52 * 344 / w))); } catch (e) { /* nicht gerendert */ }
@@ -806,7 +806,7 @@ function initCheck() {
         <svg viewBox="0 0 340 170" role="img" aria-label="Liniendiagramm mit zwei Linien: Website steigt, App schwankt">
           <polyline points="${pts1}" fill="none" stroke="#2E9E4F" stroke-width="4"/>
           <polyline points="${pts2}" fill="none" stroke="#D9372B" stroke-width="4" ${fix ? 'stroke-dasharray="10 7"' : ''}/>
-          ${fix ? '<text x="278" y="44" font-size="14" font-family="Inter, sans-serif" fill="#1F2937">Website</text><text x="278" y="114" font-size="14" font-family="Inter, sans-serif" fill="#1F2937">App</text>' : ''}
+          ${fix ? '<text x="278" y="44" font-size="14" font-family="IBM Plex Sans, sans-serif" fill="#1F2937">Website</text><text x="278" y="114" font-size="14" font-family="IBM Plex Sans, sans-serif" fill="#1F2937">App</text>' : ''}
         </svg>
         <div class="fg-cvd-leg"><span><i style="background:#2E9E4F"></i>${fix ? '— durchgezogen: ' : ''}Website</span><span><i style="background:#D9372B"></i>${fix ? '- - gestrichelt: ' : ''}App</span></div>
       </div>
