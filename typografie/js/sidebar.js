@@ -93,6 +93,7 @@ function renderSidebar(activePage) {
         <span class="toggle-track"><span class="toggle-thumb"></span></span>
         ${moonIcon}
       </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
     </div>`;
 
   const sidebar = document.getElementById('sidebar');

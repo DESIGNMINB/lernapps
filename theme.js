@@ -45,5 +45,21 @@
   // Rückkehr in einen Tab, der im Hintergrund lag
   document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
 
+  /* Feedback per E-Mail: Die Adresse steht nicht im HTML, sondern wird erst beim Klick
+     aus Zeichencodes zusammengesetzt (für Adress-Sammler nicht lesbar). */
+  var FB = [116,104,111,109,97,115,46,104,105,110,122,64,104,45,107,97,46,100,101];
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('[data-feedback]');
+    if (!el) return;
+    e.preventDefault();
+    var to = String.fromCharCode.apply(null, FB);
+    var title = document.title.replace(/\s+/g, ' ').trim();
+    var subject = 'Feedback Lern-Apps: ' + title;
+    var body = 'Seite: ' + title + '\n' + location.href + '\n\n'
+      + 'Art: [ ] Fehler   [ ] Verbesserungsvorschlag\n\n'
+      + 'Beschreibung:\n\n';
+    location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
   window.LernTheme = { set: set, sync: sync, isDark: function () { return root.getAttribute('data-theme') === 'dark'; } };
 })();
