@@ -750,7 +750,6 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .tile .art img.bg { filter: none; }
 code.mono { font-size: .9em; background: var(--surface); padding: 1px 6px; border-radius: 5px; }
-.fg-hero-strip { height: 12px; border-radius: 999px; margin: 0 0 28px; background: linear-gradient(90deg, #D7262B, #F18A00, #F4E300, #3BA935, #00909A, #1F5EA8, #6E2B87, #A9246E); }
 
 /* Farbregler: Spur zeigt den Farbverlauf */
 input[type="range"].fg-range-hue { --track: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); }
