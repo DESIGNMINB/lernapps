@@ -777,3 +777,10 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 
 /* Schrittnummern im Prozess: dunkler für ausreichenden Kontrast (≈ 5,4 : 1, WCAG 1.4.3) */
 .step .n { color: #636A77; }
+
+/* Download-Karte für die PDF-Zusammenfassung in der Einleitung */
+.dl-card { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin: 28px 0 8px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
+.dl-card > div { flex: 1 1 320px; }
+.dl-card p { margin: 6px 0 0; }
+.dl-card .btn { flex: none; }
+.dl-card .dl-meta { font-weight: 400; }
