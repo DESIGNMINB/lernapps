@@ -973,7 +973,7 @@ const GL = [
   ['Dark Mode', 'Interface', 'Dunkle Darstellungsvariante einer Oberfläche mit eigenen, abgestimmten Farbwerten.', 'interface'],
   ['Delta E (ΔE)', 'Modelle', 'Maß für den empfundenen Abstand zweier Farben im Lab-Raum. Ab etwa 2 für geübte Augen sichtbar.', 'ue-mischer'],
   ['Design Token', 'Interface', 'Benannte Variable für eine Gestaltungsentscheidung, z. B. --color-primary.', 'interface'],
-  ['Deuteranopie', 'Barrierefreiheit', 'Ausfall der grünempfindlichen M-Zapfen. Häufigste Ursache der Rot-Grün-Schwäche.', 'barrierefreiheit'],
+  ['Deuteranopie', 'Barrierefreiheit', 'Ausfall der grünempfindlichen M-Zapfen. Zusammen mit der schwächeren Form, der Deuteranomalie, die häufigste Rot-Grün-Schwäche.', 'barrierefreiheit'],
   ['Display P3', 'Modelle', 'Farbraum mit größerem Gamut als sRGB, verbreitet bei modernen Displays.', 'modelle'],
   ['Farbe-an-sich-Kontrast', 'Kontraste', 'Kontrast reiner, ungetrübter Farben, am stärksten bei Gelb, Rot und Blau.', 'kontraste'],
   ['Farbkonstanz', 'Licht', 'Fähigkeit des Sehsystems, Objektfarben trotz wechselnder Beleuchtung gleich wahrzunehmen.', 'wahrnehmung'],
