@@ -972,3 +972,8 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
 .btn-primary { background: var(--cta); border-color: var(--cta); color: #fff; }
 .btn-primary:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
 .tile .tag-ex { background: var(--cta); }
+/* Dunkle Buttons, aktive Umschalter und Chips ebenfalls Orange, Hover grau */
+.btn-dark { background: var(--cta); border-color: var(--cta); color: #fff; }
+.btn-dark:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+.toggle button[aria-pressed="true"] { background: var(--cta); color: #fff; }
+.chip[aria-pressed="true"] { background: var(--cta); border-color: var(--cta); color: #fff; }
