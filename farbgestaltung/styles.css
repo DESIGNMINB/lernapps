@@ -990,3 +990,6 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
 }
 @media (forced-colors: active) { .hero h1 span { color: CanvasText; } }
 .hero { --outline-ink: var(--ink); }
+
+/* Schrittnummern im Prozess: dunkler für ausreichenden Kontrast (≈ 5,4 : 1, WCAG 1.4.3) */
+.step .n { color: #636A77; }
