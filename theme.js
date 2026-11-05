@@ -29,10 +29,21 @@
     set(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
   document.addEventListener('DOMContentLoaded', sync);
-  // Wechsel in einem anderen Tab übernehmen
-  window.addEventListener('storage', function (e) {
-    if (e.key === KEY && e.newValue) { root.setAttribute('data-theme', e.newValue); sync(); }
-  });
+  // Gespeicherte Wahl erneut übernehmen, falls sie inzwischen auf einer anderen Seite geändert wurde
+  function refresh() {
+    var t = stored() === 'dark' ? 'dark' : 'light';
+    if (root.getAttribute('data-theme') !== t) {
+      root.setAttribute('data-theme', t);
+      sync();
+      window.dispatchEvent(new CustomEvent('lernapps-theme', { detail: t }));
+    }
+  }
+  // Wechsel in einem anderen Tab
+  window.addEventListener('storage', function (e) { if (e.key === KEY) refresh(); });
+  // Zurück-Taste: Seite kommt aus dem Browser-Cache und hätte sonst den alten Modus
+  window.addEventListener('pageshow', refresh);
+  // Rückkehr in einen Tab, der im Hintergrund lag
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
 
   window.LernTheme = { set: set, sync: sync, isDark: function () { return root.getAttribute('data-theme') === 'dark'; } };
 })();
