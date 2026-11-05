@@ -68,6 +68,7 @@
       transition: all 0.15s;
     }
     .col-btn:hover:not(:disabled) { border-color: var(--purple); }
+    .col-note { margin-top: 12px; font-size: 14px; line-height: 1.6; color: var(--text-secondary); }
     .col-btn.active { background: var(--cta); color: white; border-color: var(--cta); }
     .col-btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .preview-area {
@@ -93,7 +94,7 @@
       font-size: 15px;
       line-height: 1.7;
       color: var(--text-secondary);
-      transition: max-width 0.3s ease, columns 0.3s ease;
+      transition: max-width 0.3s ease;
       column-gap: 32px;
     }
     .controls-area .unit-note { margin: 16px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--purple-soft, #F1EEF4); font-size: 13px; line-height: 1.55; color: var(--text-secondary); max-width: none; }
@@ -151,11 +152,12 @@
         <div class="control-row" style="margin-top: 20px;">
           <span class="control-label" id="col-label">Spaltensatz</span>
           <div class="column-toggle" role="group" aria-labelledby="col-label">
-            <button class="col-btn active" id="col-1" data-cols="1">1 Spalte</button>
-            <button class="col-btn" id="col-2" data-cols="2" disabled>2 Spalten</button>
-            <button class="col-btn" id="col-3" data-cols="3" disabled>3 Spalten</button>
+            <button type="button" class="col-btn active" id="col-1" data-cols="1" aria-pressed="true">1 Spalte</button>
+            <button type="button" class="col-btn" id="col-2" data-cols="2" aria-pressed="false" disabled>2 Spalten</button>
+            <button type="button" class="col-btn" id="col-3" data-cols="3" aria-pressed="false" disabled>3 Spalten</button>
           </div>
         </div>
+        <p class="col-note" id="col-note" aria-live="polite">Mehrspaltensatz wird ab einer Textbreite über 80&nbsp;ch freigeschaltet.</p>
       </div>
 
       <!-- Preview Area -->
@@ -208,39 +210,58 @@
 
     let currentCols = 1;
 
+    // Breite eines „ch“ und des Spaltenabstands in Pixeln messen
+    function measure() {
+      const probe = document.createElement('span');
+      probe.textContent = '0'.repeat(100);
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+      previewColumns.appendChild(probe);
+      const chPx = probe.getBoundingClientRect().width / 100;
+      probe.remove();
+      const gapPx = parseFloat(getComputedStyle(previewColumns).columnGap) || 0;
+      return { chPx, gapPx };
+    }
+
+    // Tatsächliche Zeilenlänge: Bei mehreren Spalten teilt sich die Textbreite
+    // abzüglich der Spaltenabstände auf die Spalten auf.
+    function lineLength(total, cols) {
+      if (cols === 1) return total;
+      const { chPx, gapPx } = measure();
+      return Math.max(1, Math.round((total * chPx - (cols - 1) * gapPx) / cols / chPx));
+    }
+
+    function setBadge(len) {
+      if (len < 45) { chBadge.className = 'ch-badge red'; chBadge.textContent = 'Zu schmal'; }
+      else if (len <= 75) { chBadge.className = 'ch-badge green'; chBadge.textContent = 'Optimal'; }
+      else if (len <= 80) { chBadge.className = 'ch-badge orange'; chBadge.textContent = 'Leicht zu weit'; }
+      else { chBadge.className = 'ch-badge red'; chBadge.textContent = 'Zu weit'; }
+    }
+
     function updateChPreview() {
       const val = parseInt(chSlider.value);
-      chValueDisplay.textContent = val + ' ch';
-      chCounter.textContent = val + ' ch';
+      // Mehrspaltensatz nur bei breiten Textflächen sinnvoll
+      const multi = val > 80;
+      col2.disabled = col3.disabled = !multi;
+      if (!multi && currentCols > 1) applyColumns(1);
+
       previewColumns.style.maxWidth = val + 'ch';
       fitPreview(val);
 
-      // Update badge
-      if (val < 45) {
-        chBadge.className = 'ch-badge red';
-        chBadge.textContent = 'Zu schmal';
-      } else if (val <= 75) {
-        chBadge.className = 'ch-badge green';
-        chBadge.textContent = 'Optimal';
-      } else if (val <= 80) {
-        chBadge.className = 'ch-badge orange';
-        chBadge.textContent = 'Leicht zu weit';
+      const len = lineLength(val, currentCols);
+      chValueDisplay.textContent = val + ' ch';
+      setBadge(len);
+      const note = document.getElementById('col-note');
+      if (currentCols === 1) {
+        chCounter.textContent = val + ' ch';
+        note.textContent = multi
+          ? 'Die Zeile ist zu lang. Teilen Sie die Textbreite auf 2 oder 3 Spalten auf.'
+          : 'Mehrspaltensatz wird ab einer Textbreite über 80 ch freigeschaltet.';
       } else {
-        chBadge.className = 'ch-badge red';
-        chBadge.textContent = 'Zu weit';
-      }
-
-      // Enable/disable column buttons
-      if (val > 80) {
-        col2.disabled = false;
-        col3.disabled = false;
-      } else {
-        col2.disabled = true;
-        col3.disabled = true;
-        // Reset to 1 column if currently multi-column
-        if (currentCols > 1) {
-          setColumns(1);
-        }
+        chCounter.textContent = `${len} ch je Spalte`;
+        note.textContent = `Textbreite ${val} ch, aufgeteilt auf ${currentCols} Spalten mit Abstand: Jede Zeile hat etwa ${len} Zeichen. `
+          + (len < 45 ? 'Das ist zu schmal – wählen Sie weniger Spalten oder mehr Textbreite.'
+            : len <= 75 ? 'Das liegt im optimalen Bereich.'
+            : 'Das ist noch zu lang – wählen Sie mehr Spalten.');
       }
     }
 
@@ -251,12 +272,7 @@
       const avail = previewColumns.parentElement.clientWidth
         - parseFloat(getComputedStyle(previewColumns.parentElement).paddingLeft)
         - parseFloat(getComputedStyle(previewColumns.parentElement).paddingRight);
-      const probe = document.createElement('span');
-      probe.textContent = '0'.repeat(100);
-      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
-      previewColumns.appendChild(probe);
-      const chPx = probe.getBoundingClientRect().width / 100;
-      probe.remove();
+      const { chPx } = measure();
       const base = parseFloat(getComputedStyle(previewColumns).fontSize);
       const shrink = matchMedia('(max-width: 640px)').matches && val * chPx > avail;
       if (shrink) {
@@ -264,16 +280,17 @@
       }
       document.getElementById('fit-note').hidden = !shrink;
     }
-    window.addEventListener('resize', () => fitPreview(parseInt(chSlider.value)));
+    window.addEventListener('resize', updateChPreview);
 
-    function setColumns(n) {
+    function applyColumns(n) {
       currentCols = n;
       previewColumns.style.columnCount = n;
-      [col1, col2, col3].forEach(btn => btn.classList.remove('active'));
-      if (n === 1) col1.classList.add('active');
-      else if (n === 2) col2.classList.add('active');
-      else if (n === 3) col3.classList.add('active');
+      [col1, col2, col3].forEach((btn, i) => {
+        btn.classList.toggle('active', i + 1 === n);
+        btn.setAttribute('aria-pressed', String(i + 1 === n));
+      });
     }
+    function setColumns(n) { applyColumns(n); updateChPreview(); }
 
     col1.addEventListener('click', () => setColumns(1));
     col2.addEventListener('click', () => { if (!col2.disabled) setColumns(2); });
