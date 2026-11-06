@@ -8,3 +8,4 @@ Startseite und Lern-Apps, veröffentlicht über GitHub Pages.
 | `ux-grundlagen/` | `~/Dev/Grundlagen UX Modern Design` (Vite) | `npx vite build --base=./ --outDir <hier>/ux-grundlagen --emptyOutDir` |
 | `logogestaltung/` | `~/Dev/lernapps/Logogestaltung/logo-lernmodul` (statisch) | Ordner hierher kopieren |
 | `farbgestaltung/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css`, `app.js`, `media/`) | Direkt in diesem Ordner bearbeiten |
+| `ux-evaluation/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Farb-App, `ue.css`, `app.js`, `media/`) | Direkt in diesem Ordner bearbeiten |
