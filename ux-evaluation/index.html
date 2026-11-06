@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css?v=20261106a">
-<link rel="stylesheet" href="ue.css?v=20261106b">
+<link rel="stylesheet" href="ue.css?v=20261106c">
 </head>
 <body>
 <a class="skip" href="#main">Zum Hauptinhalt</a>
@@ -475,8 +475,21 @@
           <div class="card soft"><div class="label">Berechnung</div><p style="margin-top:10px">Ungerade Aussagen: Antwort − 1.<br>Gerade Aussagen: 5 − Antwort.<br>Summe aller zehn Werte × 2,5 = SUS-Score von 0 bis 100.</p></div>
           <div class="card soft"><div class="label">Einordnung</div><p style="margin-top:10px">Etwa 68 ist Durchschnitt (Sauro). Nach Bangor u. a. (2009) gelten Werte um 71 als „gut“, ab etwa 85 als „ausgezeichnet“. Der Score ist kein Prozentwert.</p></div>
         </div>
-        <h3 style="margin-top:28px">Ausprobieren: SUS-Rechner</h3>
-        <p class="small muted">Stellen Sie für jede Aussage eine Antwort von 1 bis 5 ein.</p>
+        <h3 style="margin-top:28px">Beispiel zum Ausfüllen</h3>
+        <p>Jonas (P2) hat nach dem Test der CampusMensa-App den Fragebogen so ausgefüllt. Rechnen Sie jede Antwort in einen Wert von 0 bis 4 um, bilden Sie die Summe und daraus den SUS-Score. Übernehmen Sie danach die Antworten in den SUS-Rechner und vergleichen Sie.</p>
+        <div class="demo">
+          <div class="table-wrap"><table class="ue-sx-table" id="sx-table"></table></div>
+          <div class="ue-sx-sum">
+            <label>Summe <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="sx-sum" aria-label="Summe der zehn umgerechneten Werte"></label>
+            <span aria-hidden="true">× 2,5 =</span>
+            <label>SUS-Score <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="sx-score" aria-label="SUS-Score"></label>
+          </div>
+          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="sx-check">Rechnung prüfen</button><button class="btn" type="button" id="sx-take">In den SUS-Rechner übernehmen</button><button class="btn" type="button" id="sx-reset">Zurücksetzen</button></div>
+          <div id="sx-fb" style="margin-top:14px"></div>
+        </div>
+
+        <h3 style="margin-top:28px" id="sus-rechner">Ausprobieren: SUS-Rechner</h3>
+        <p class="small muted">Stellen Sie für jede Aussage eine Antwort von 1 bis 5 ein, oder übernehmen Sie oben das Beispiel.</p>
         <div class="demo">
           <div id="m-sus" class="ue-mini-grid"></div>
           <p class="ue-sus-result" id="m-sus-out" role="status"></p>
@@ -739,6 +752,6 @@
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261106b"></script>
+<script src="app.js?v=20261106c"></script>
 </body>
 </html>

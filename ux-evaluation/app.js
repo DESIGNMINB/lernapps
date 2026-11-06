@@ -624,9 +624,41 @@ function initTestplan() {
   });
 }
 
-/* Kapitel 09: kleiner SUS-Rechner */
+/* Kapitel 09: Beispiel zum Ausfüllen + kleiner SUS-Rechner */
+const SX_ANSWERS = [4, 2, 5, 1, 4, 2, 4, 1, 4, 3]; // Summe 32, SUS 80
+const LIKERT = ['', 'stimme gar nicht zu', 'stimme eher nicht zu', 'teils, teils', 'stimme eher zu', 'stimme voll zu'];
 function initMessen() {
   const vals = Array(10).fill(3);
+  const contrib = (i, v) => (i % 2 === 0 ? v - 1 : 5 - v);
+  const num = (el) => parseFloat(String(el.value).trim().replace(',', '.'));
+  $('#sx-table').innerHTML = `<thead><tr><th>Nr.</th><th>Aussage</th><th>Antwort</th><th>Regel</th><th>Wert</th></tr></thead><tbody>${SX_ANSWERS.map((v, i) => `<tr><td class="mono">${i + 1}</td><td>${esc(SUS_ITEMS[i])}</td><td><strong class="mono">${v}</strong><span class="small muted"> · ${esc(LIKERT[v])}</span></td><td class="mono small">${i % 2 === 0 ? 'Antwort − 1' : '5 − Antwort'}</td><td><input type="text" inputmode="numeric" autocomplete="off" class="ue-num ue-sx-in" data-sx="${i}" aria-label="Umgerechneter Wert für Aussage ${i + 1}"></td></tr>`).join('')}</tbody>`;
+  const saved = store.get('sx', {});
+  for (const el of $$('[data-sx]')) el.value = (saved.v || [])[+el.dataset.sx] ?? '';
+  $('#sx-sum').value = saved.sum || ''; $('#sx-score').value = saved.score || '';
+  const save = () => store.set('sx', { v: $$('[data-sx]').map((el) => el.value), sum: $('#sx-sum').value, score: $('#sx-score').value });
+  $('#sx-table').closest('.demo').addEventListener('input', (e) => { if (e.target.matches('input')) { e.target.classList.remove('is-ok', 'is-bad'); save(); } });
+  const mark = (el, ok) => { el.classList.toggle('is-ok', ok); el.classList.toggle('is-bad', !ok); };
+  $('#sx-check').addEventListener('click', () => {
+    let right = 0;
+    for (const el of $$('[data-sx]')) { const ok = num(el) === contrib(+el.dataset.sx, SX_ANSWERS[+el.dataset.sx]); mark(el, ok); if (ok) right++; }
+    const sum = SX_ANSWERS.reduce((a, v, i) => a + contrib(i, v), 0), score = sum * 2.5;
+    const okSum = num($('#sx-sum')) === sum, okScore = Math.abs(num($('#sx-score')) - score) < 0.01;
+    mark($('#sx-sum'), okSum); mark($('#sx-score'), okScore);
+    const all = right === 10 && okSum && okScore;
+    $('#sx-fb').innerHTML = `<div class="feedback ${all ? 'ok' : 'bad'}" role="status">${all
+      ? `<p><strong>Richtig gerechnet: SUS = ${fmt(score, 1)}.</strong> Das liegt über dem Durchschnitt von etwa 68 und gilt als ${esc(susGrade(score)[0])}. Übernehmen Sie die Antworten in den Rechner und prüfen Sie das Ergebnis.</p>`
+      : `<p><strong>${right} von 10 Werten richtig${okSum ? ', Summe stimmt' : ''}${okScore ? ', Score stimmt' : ''}.</strong></p><p>Tipp: Bei ungeraden Aussagen ziehen Sie 1 von der Antwort ab, bei geraden rechnen Sie 5 minus Antwort. Jeder Wert liegt zwischen 0 und 4.</p>`}</div>`;
+  });
+  $('#sx-take').addEventListener('click', () => {
+    SX_ANSWERS.forEach((v, i) => { vals[i] = v; const r = $(`[data-m="${i}"]`); r.value = v; r.nextElementSibling.textContent = v; });
+    out();
+    $('#sus-rechner').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    toast('Beispiel in den SUS-Rechner übernommen');
+  });
+  $('#sx-reset').addEventListener('click', () => {
+    for (const el of $$('#sx-table input, #sx-sum, #sx-score')) { el.value = ''; el.classList.remove('is-ok', 'is-bad'); }
+    $('#sx-fb').innerHTML = ''; store.set('sx', {});
+  });
   $('#m-sus').innerHTML = vals.map((v, i) => `<label class="ue-mini"><span class="mono">F${i + 1}</span><input type="range" min="1" max="5" value="3" data-m="${i}" aria-label="Antwort auf Frage ${i + 1}: ${esc(SUS_ITEMS[i])}"><output>3</output></label>`).join('');
   const out = () => { const s = susScore(vals); $('#m-sus-out').textContent = `SUS = ${fmt(s, 1)} · ${susGrade(s)[0]}`; };
   $('#m-sus').addEventListener('input', (e) => { const r = e.target.closest('[data-m]'); if (!r) return; vals[+r.dataset.m] = +r.value; r.nextElementSibling.textContent = r.value; out(); });

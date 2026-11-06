@@ -98,3 +98,11 @@ ol.steps { list-style: none; padding: 0; margin: 0 0 20px; }
 .ue-dl-d { font-size: 14px; color: var(--muted); }
 .ue-dl-m { margin-top: auto; font: 600 12px/1.2 var(--f-mono); color: #CC4E00; text-transform: uppercase; letter-spacing: .04em; }
 .ue-dl-m::before { content: "↓ "; }
+
+/* ---------- Kapitel 09: SUS-Beispiel zum Ausfüllen ---------- */
+.ue-sx-table td, .ue-sx-table th { vertical-align: middle; }
+.ue-sx-table td:nth-child(2) { min-width: 220px; }
+.ue-sx-table .ue-num { width: 64px; text-align: center; }
+.ue-sx-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 16px; font-weight: 600; }
+.ue-sx-sum label { display: flex; align-items: center; gap: 8px; }
+.ue-sus-result { margin-top: 22px; }
