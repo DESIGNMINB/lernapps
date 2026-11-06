@@ -88,3 +88,13 @@ ol.steps { list-style: none; padding: 0; margin: 0 0 20px; }
   .ue-sus-table td:first-child, .ue-sus-table td:last-child { grid-column: 1 / -1; text-align: left; }
   .ue-sus-table td:last-child input { width: 100%; }
 }
+
+/* ---------- Downloads: Fragebogen-Vorlagen ---------- */
+.ue-dl-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.ue-dl { list-style: none; padding: 0; margin: 16px 0 24px; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.ue-dl a { display: grid; gap: 6px; height: 100%; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); text-decoration: none; }
+.ue-dl a:hover, .ue-dl a:focus-visible { border-color: #CC4E00; box-shadow: 0 0 0 2px #FDE7D9; }
+.ue-dl-t { font-weight: 600; }
+.ue-dl-d { font-size: 14px; color: var(--muted); }
+.ue-dl-m { margin-top: auto; font: 600 12px/1.2 var(--f-mono); color: #CC4E00; text-transform: uppercase; letter-spacing: .04em; }
+.ue-dl-m::before { content: "↓ "; }
