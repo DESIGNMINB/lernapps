@@ -485,6 +485,83 @@ const TP_FIELDS = [
   ['metriken', 'Was messen Sie?', 'z. B. „Erfolgsquote je Aufgabe, Zeit, SUS-Fragebogen, Beobachtungen beim lauten Denken“'],
   ['ablauf', 'Ort, Ablauf und Rollen', 'z. B. „Seminarraum, 30 Min.: Begrüßung, Einwilligung, 4 Aufgaben, SUS, Abschlussfragen. Moderation: A, Protokoll: B“']
 ];
+/* ---------- Kleiner PDF-Schreiber (A4, Helvetica, WinAnsi) ohne externe Bibliothek ---------- */
+const HELV_W = [278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+const WIN_ANSI = { '€': 128, '‚': 130, '„': 132, '…': 133, '‘': 145, '’': 146, '“': 147, '”': 148, '•': 149, '–': 150, '—': 151, '→': 0 };
+function pdfChar(ch) {
+  if (ch === '→') return '->';
+  if (WIN_ANSI[ch]) return String.fromCharCode(WIN_ANSI[ch]);
+  const c = ch.charCodeAt(0);
+  if (c === 9) return ' ';
+  return c < 256 ? ch : '?';
+}
+const pdfText = (t) => [...String(t)].map(pdfChar).join('');
+function textWidth(t, size, bold) {
+  let w = 0;
+  for (const ch of t) { const c = ch.charCodeAt(0); w += (c >= 32 && c <= 126 ? HELV_W[c - 32] : 556); }
+  return w * size / 1000 * (bold ? 1.08 : 1);
+}
+function wrap(t, size, max, bold) {
+  const out = [];
+  for (const para of String(t).split('\n')) {
+    let line = '';
+    for (const word of para.split(/ +/)) {
+      const test = line ? line + ' ' + word : word;
+      if (textWidth(test, size, bold) <= max || !line) line = test; else { out.push(line); line = word; }
+    }
+    out.push(line);
+  }
+  return out;
+}
+function makePdf(blocks, footer) {
+  const W = 595.28, H = 841.89, M = 56, maxW = W - 2 * M;
+  const pages = []; let ops = [], y = H - M;
+  const esc = (t) => t.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+  const newPage = () => { pages.push(ops); ops = []; y = H - M; };
+  const need = (h) => { if (y - h < M + 24) newPage(); };
+  const text = (t, x, size, bold, rgb = '0.12 0.16 0.22') => ops.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf ${rgb} rg ${x.toFixed(2)} ${y.toFixed(2)} Td (${esc(t)}) Tj ET`);
+  for (const b of blocks) {
+    const size = b.size || 10.5, lh = size * 1.42, x = M + (b.indent || 0);
+    if (b.space) y -= b.space;
+    if (b.rule) { need(8); ops.push(`0.39 0.22 0.55 RG 1.6 w ${M} ${y.toFixed(2)} m ${W - M} ${y.toFixed(2)} l S`); y -= 14; continue; }
+    const lines = wrap(pdfText(b.text), size, maxW - (b.indent || 0) - (b.box ? 18 : 0), b.bold);
+    if (b.keep) need(lh * Math.min(lines.length, 2) + 30);
+    lines.forEach((ln, i) => {
+      need(lh);
+      if (b.box && i === 0) {
+        ops.push(`0.22 0.25 0.32 RG 0.9 w ${x} ${(y - 1.5).toFixed(2)} 9 9 re S`);
+        if (b.checked) ops.push(`0.08 0.5 0.24 RG 1.4 w ${x + 2} ${(y + 3).toFixed(2)} m ${x + 4} ${(y + 0.5).toFixed(2)} l ${x + 7.5} ${(y + 6).toFixed(2)} l S`);
+      }
+      text(ln, x + (b.box ? 18 : 0), size, b.bold, b.rgb);
+      y -= lh;
+    });
+    y -= b.after || 0;
+  }
+  pages.push(ops);
+  const objs = [];
+  const add = (o) => { objs.push(o); return objs.length; };
+  add('<< /Type /Catalog /Pages 2 0 R >>');
+  add(null);
+  const f1 = add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
+  const f2 = add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+  const kids = [];
+  pages.forEach((p, i) => {
+    const foot = `BT /F1 8 Tf 0.29 0.33 0.39 rg ${M} 30 Td (${esc(pdfText(footer))}) Tj ET BT /F1 8 Tf ${W - M - 40} 30 Td (${esc(`Seite ${i + 1}/${pages.length}`)}) Tj ET`;
+    const stream = p.concat(foot).join('\n');
+    const c = add(`<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`);
+    kids.push(add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /Font << /F1 ${f1} 0 R /F2 ${f2} 0 R >> >> /Contents ${c} 0 R >>`));
+  });
+  objs[1] = `<< /Type /Pages /Kids [${kids.map((k) => k + ' 0 R').join(' ')}] /Count ${kids.length} >>`;
+  let out = '%PDF-1.4\n%\xE2\xE3\xCF\xD3\n'; const offs = [];
+  objs.forEach((o, i) => { offs.push(out.length); out += `${i + 1} 0 obj\n${o}\nendobj\n`; });
+  const xref = out.length;
+  out += `xref\n0 ${objs.length + 1}\n0000000000 65535 f \n` + offs.map((o) => String(o).padStart(10, '0') + ' 00000 n \n').join('');
+  out += `trailer\n<< /Size ${objs.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  const bytes = new Uint8Array(out.length);
+  for (let i = 0; i < out.length; i++) bytes[i] = out.charCodeAt(i) & 255;
+  return new Blob([bytes], { type: 'application/pdf' });
+}
+
 function initTestplan() {
   const st = store.get('tp', {});
   $('#tp-form').innerHTML = TP_FIELDS.map(([k, l, ph]) => `<label class="ue-tp-field"><span class="label">${esc(l)}</span>${k === 'aufgaben' || k === 'ablauf' ? `<textarea rows="4" data-tp="${k}" placeholder="${esc(ph)}"></textarea>` : `<input type="text" data-tp="${k}" placeholder="${esc(ph)}">`}</label>`).join('') +
@@ -517,6 +594,30 @@ function initTestplan() {
     const blob = new Blob([md()], { type: 'text/markdown' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'testplan.md'; a.click(); URL.revokeObjectURL(a.href);
     toast('Testplan als testplan.md gespeichert');
+  });
+  $('#tp-pdf').addEventListener('click', () => {
+    const tasks = (st.aufgaben || '').split('\n').map((x) => x.trim()).filter(Boolean);
+    const P = '0.39 0.22 0.55';
+    const sec = (t) => ({ text: t, bold: true, size: 11.5, rgb: P, space: 10, after: 3, keep: true });
+    const body = (t) => ({ text: (t || '').trim() || '–', after: 2 });
+    const blocks = [
+      { text: 'LERNMODUL 05 · UX & EVALUATION · TESTPLAN', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
+      { text: 'Usability-Testplan: ' + ((st.app || '').trim() || '…'), bold: true, size: 18, rgb: P, space: 10, after: 6 },
+      { rule: true },
+      sec('Testziel'), body(st.ziel),
+      sec('Teilnehmende'), body(st.persona),
+      sec('Prototyp und Gerät'), body(st.prototyp),
+      sec('Aufgaben'),
+      ...(tasks.length ? tasks.map((t, i) => ({ text: `${i + 1}.  ${t}`, after: 3 })) : [body('')]),
+      sec('Messgrößen'), body(st.metriken),
+      sec('Ablauf und Rollen'), body(st.ablauf),
+      sec('Checkliste vor dem Test'),
+      ...['Einwilligungserklärung vorbereitet (Aufzeichnung, Datenschutz)', 'Pilottest mit einer Person aus dem Team', 'Prototyp auf dem Testgerät geprüft', 'Protokollvorlage für die Beobachtung'].map((c, i) => ({ text: c, box: true, checked: !!(st.c || [])[i], after: 3 }))
+    ];
+    const d = new Date().toLocaleDateString('de-DE');
+    const blob = makePdf(blocks, `Erstellt am ${d} · Lernmodul 05 UX & Evaluation · designminb.github.io/lernapps`);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'testplan.pdf'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast('Testplan als testplan.pdf gespeichert');
   });
   $('#tp-copy').addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(md()); toast('Testplan in die Zwischenablage kopiert'); } catch (e) { toast('Kopieren nicht möglich, bitte „Herunterladen“ nutzen'); }
