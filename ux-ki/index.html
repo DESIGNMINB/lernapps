@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="utf-8">
+<script src="../theme.js?v=7"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+<title>UX & KI Lernmodul</title>
+<meta name="description" content="Interaktives Lernmodul UX und KI für Studierende der Medieninformatik: Bildmodelle, KI im UX-Prozess, Prompting, visuelle Regie, Bildbewertung, generative Bildbearbeitung, Workflows, App-Design, Recht und Ethik – Prof. Dipl. Des. T. Hinz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261106a">
+<link rel="stylesheet" href="ki.css?v=20261106a">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="home-back" href="../" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <a class="brand" href="#home">
+      <span class="brand-mark">KI</span>
+      <span class="brand-name">Lernmodul<small>07 · UX &amp; KI</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <button type="button" class="dark-toggle" data-theme-toggle aria-pressed="false">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span class="dark-toggle-label">Dunkelmodus</span>
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>UX-KI v1.0 · Stand 11/2026</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px" aria-hidden="true">KI</span>
+      <span class="t">UX &amp; KI</span>
+    </div>
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home" style="--mod:#7A2862">
+      <div class="wrap-wide">
+        <div class="home-hero" style="--mod:#7A2862">
+          <div>
+            <div class="mod-chip" aria-hidden="true">KI</div>
+            <p class="hero-eyebrow">Lernmodul 07 · Studiengang Medieninformatik</p>
+            <h1>UX &amp; KI</h1>
+            <p class="hero-lead">Generative KI erzeugt in Sekunden Bilder, Screens und Texte. Ob daraus gute Gestaltung wird, entscheiden weiterhin Sie: mit einem klaren Briefing, einem geschulten Blick und Verantwortung für das Ergebnis. Dieses Modul zeigt, wie Bildmodelle arbeiten, wo KI im UX-Prozess hilft, wie Sie Bilder präzise beauftragen, prüfen und bearbeiten und was Recht und Ethik verlangen. Alle Beispielbilder dieses Moduls sind selbst mit KI entstanden, Fehler inklusive.</p>
+            <div class="hero-actions">
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="btn" href="#prompting">Zum Prompt-Baukasten</a>
+              </div>
+              <a class="btn btn-download" href="downloads/ux-ki-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta" id="dl-meta">(2 Seiten, 214 KB)</span></a>
+            </div>
+            <p class="hero-meta"><span><b>10</b> Kapitel</span><span><b>6</b> Übungen</span><span><b>15</b> Testfragen</span></p>
+          </div>
+          <figure class="hero-media ki-hero-media">
+            <video id="hero-video" muted playsinline loop preload="metadata" poster="media/einleitung.jpg" width="1280" height="720" aria-label="Kurzes Video: Zwei Studierende vergleichen am Monitor KI-generierte Bildvarianten"><source src="media/hero.mp4" type="video/mp4"></video>
+            <button type="button" class="ki-vid-btn" id="hero-video-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Video abspielen</span></button>
+          </figure>
+        </div>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Grundlagen &amp; Gestaltung</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Einschätzen · Briefen · Sehen · Prüfen · Bearbeiten · Dokumentieren</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Lernmodul 07 · UX &amp; KI · Fotos und Video KI-generiert mit Magnific (Prompt-Protokoll unter „Literatur“), alle Beispiel-Apps sind fiktiv. Inhalte nach dem Skript „Design und künstliche Intelligenz“, Stand 10/2026. Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 01 · Einleitung</span>
+        <h1>KI als Partnerin in der Gestaltung</h1>
+        <p class="lead">Generative KI ist kein weiteres Filter-Menü. Sie liefert in Sekunden Varianten, auf die man früher Stunden gewartet hätte. Damit verschiebt sich die Arbeit: weg vom reinen Herstellen, hin zum Beauftragen, Auswählen, Prüfen und Verantworten. Die Rolle wandelt sich von der Kreation zur Creative Direction.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Zwei Studierende sitzen an einem hellen Arbeitsplatz und vergleichen KI-generierte Bildvarianten auf einem Monitor und einem Tablet" loading="lazy" width="1600" height="893"><figcaption>Generieren ist schnell, Auswählen braucht Urteilskraft. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Drei Phasen digitaler Gestaltungswerkzeuge</h2>
+        <div class="ki-eras">
+          <div class="ki-era"><span class="yr">1980er–2000er</span><h3>Werkzeug</h3><p>Programme wie Photoshop, Illustrator und InDesign setzen um, was der Mensch Pixel für Pixel vorgibt.</p></div>
+          <div class="ki-era"><span class="yr">2010–2021</span><h3>Assistenz</h3><p>Automatisierung übernimmt Teilschritte: inhaltsbasiertes Füllen (2010), Auto Layout, erste neuronale Filter.</p></div>
+          <div class="ki-era now"><span class="yr">seit 2022</span><h3>Ko-Kreation</h3><p>Im Dialog entstehen ganze Bilder und Screens. Die KI generiert, der Mensch kuratiert und verantwortet.</p></div>
+        </div>
+
+        <h2>Worum es in diesem Modul geht</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Bilder</h3><p>Generieren, beauftragen, beurteilen und bearbeiten: von der Diffusion über die Bildsprache aus Fotografie und Film bis zu Inpainting und Relighting.</p></div>
+          <div class="card key"><h3>Prozesse</h3><p>Wo KI im Human-Centered Design wirklich hilft, wie Workflows mit mehreren Werkzeugen aussehen und wie Sie KI-Screens auf Barrierefreiheit prüfen.</p></div>
+          <div class="card key"><h3>Urteil</h3><p>Woran Sie gute von generischen KI-Bildern unterscheiden und welche Fehler typisch sind, auch wenn das Ergebnis perfekt aussieht.</p></div>
+          <div class="card key"><h3>Verantwortung</h3><p>Urheberrecht, Kennzeichnungspflicht nach EU AI Act, Herkunftsnachweise mit C2PA, Bias und eine saubere Dokumentation Ihres Prozesses.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Zum Nachlesen:</strong> Einen Überblick, wie KI die UX-Arbeit insgesamt verändert, gibt das Kapitel „Future of Design“ im <a href="../ux-grundlagen/#ai_ux">Lernmodul 04 · UX-Grundlagen</a>. Wie Sie KI-gestützte Entwürfe mit echten Menschen testen, zeigt das <a href="../ux-evaluation/">Lernmodul 05 · UX &amp; Evaluation</a>.</p></div>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>erklären, wie Diffusions- und Sprachmodelle Bilder erzeugen und warum Fehler systembedingt sind,</li>
+          <li>einschätzen, für welche Aufgaben KI stark und für welche sie überraschend schwach ist (Jagged Frontier),</li>
+          <li>KI an der richtigen Stelle im Human-Centered-Design-Prozess einsetzen,</li>
+          <li>Bilder nach dem (R)MARE(Z)-Prinzip und mit Fachbegriffen aus Fotografie und Film beauftragen,</li>
+          <li>KI-Bilder nach gestalterischen und technischen Kriterien beurteilen und typische Fehler finden,</li>
+          <li>generative Bildbearbeitung gezielt einsetzen, ohne die Aussage eines Bildes zu verfälschen,</li>
+          <li>passende Werkzeuge und Workflows wählen und KI-Screens auf Barrierefreiheit prüfen,</li>
+          <li>rechtliche Pflichten kennen und Ihren KI-Einsatz nachvollziehbar dokumentieren.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen und ausprobieren</div><p style="margin-top:10px">Jedes Kapitel hat ein interaktives Beispiel: ein Diffusionsregler, ein Prompt-Baukasten, ein Regiepult für Kameraeinstellungen und Vorher-nachher-Vergleiche.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen vom Einschätzen der KI-Stärken bis zur Fehlersuche in einem echten KI-Bild. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Anwenden</div><p style="margin-top:10px">In Übung 6 dokumentieren Sie ein KI-Bild aus Ihrem eigenen Projekt und laden die Dokumentation als PDF oder Markdown herunter.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 02 MODELLE ================= -->
+    <section class="page" id="p-modelle" data-page="modelle">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02 · Grundlagen</span>
+        <h1>Wie Bildmodelle arbeiten</h1>
+        <p class="lead">KI-Systeme verstehen nicht, was sie zeigen. Sie berechnen Wahrscheinlichkeiten. Bildmodelle lernen aus Milliarden Bild-Text-Paaren, Sprachmodelle aus Billionen Textbausteinen. Das Ergebnis ist plausibel, aber nicht automatisch richtig. Wer das weiß, prüft anders.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/modelle.jpg" alt="Ein Monitor zeigt eine Bildfolge, in der aus buntem Rauschen schrittweise ein scharfes Bild eines Bergsees entsteht" loading="lazy" width="1600" height="893"><figcaption>Vom Rauschen zum Bild in vielen kleinen Schritten. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Diffusion: Ein Bild entsteht aus Rauschen</h2>
+        <p>Diffusionsmodelle starten mit zufälligem Rauschen und entfernen es in 20 bis 50 Schritten. In jedem Schritt schätzt das Modell, welcher Anteil Rauschen ist, gelenkt durch den Text Ihres Prompts. Zuerst entstehen grobe Formen und Farbflächen, zuletzt feine Details.</p>
+        <div class="demo">
+          <div class="ki-diff">
+            <canvas id="diff-canvas" width="600" height="400" role="img" aria-label="Vereinfachte Veranschaulichung: Ein Foto erscheint je nach Schritt mehr oder weniger verrauscht"></canvas>
+            <div class="info">
+              <label class="ki-range">Schritt <span><b class="big" id="diff-step">0</b> von 30</span><input type="range" id="diff-range" min="0" max="30" value="0"></label>
+              <p class="small" id="diff-text" role="status" style="margin:0"></p>
+              <div class="row-btns"><button type="button" class="btn btn-primary btn-sm" id="diff-play">Entrauschen abspielen</button><button type="button" class="btn btn-sm" id="diff-reset">Zurück auf Rauschen</button></div>
+            </div>
+          </div>
+          <p class="small muted" style="margin:12px 0 0">Vereinfachte Veranschaulichung: Ein echtes Modell rechnet nicht mit fertigen Pixeln, sondern im latenten Raum, und kennt das Zielbild vorher nicht.</p>
+        </div>
+
+        <h2>Der latente Raum</h2>
+        <p>Stellen Sie sich eine riesige Bibliothek vor, in der Bücher nicht nach Titel, sondern nach Inhalt und Stimmung sortiert sind. „Katze mit Hut“ steht neben „Tier mit Accessoire“, aber weit weg von „Industrieanlage“. Der latente Raum ist diese Bibliothek als hochdimensionaler Vektorraum. Diffusionsmodelle wie Stable Diffusion arbeiten in einer komprimierten Fassung dieses Raums, etwa 64 × 64 statt 512 × 512 Werte. Das macht sie schnell.</p>
+        <div class="grid g3">
+          <div class="card"><h3>Nachbarschaft</h3><p class="small muted">Ähnliche Prompts führen zu ähnlichen Bildern. Kleine Änderungen im Prompt verschieben das Ergebnis nur ein wenig.</p></div>
+          <div class="card"><h3>Mischen</h3><p class="small muted">Zwischen zwei Konzepten lässt sich interpolieren, zum Beispiel „70 % Foto, 30 % Illustration“.</p></div>
+          <div class="card"><h3>Rollen</h3><p class="small muted">„Du bist Fotografin“ lenkt in andere Regionen des Raums als „Du bist Illustratorin“. Klare Ziele wirken aber meist stärker als die Rolle.</p></div>
+        </div>
+
+        <h2>Ausprobieren: Das wahrscheinlichste nächste Wort</h2>
+        <p>Sprachmodelle sagen Token für Token voraus, was am wahrscheinlichsten folgt. Seit 2025 erzeugen multimodale Modelle wie GPT Image oder Gemini auch Bilder auf diese Weise: autoregressiv, Stück für Stück, statt durch Entrauschen. Wählen Sie die Fortsetzung. Die Wahrscheinlichkeiten sind ausgedacht, das Prinzip nicht.</p>
+        <div class="demo">
+          <div class="ki-token">
+            <div class="sent" id="tok-sent" aria-live="polite"></div>
+            <div class="cands" id="tok-cands"></div>
+            <div class="row-btns"><button type="button" class="btn btn-sm" id="tok-reset">Neu beginnen</button></div>
+          </div>
+        </div>
+        <p>Das wahrscheinlichste Wort ist nicht immer das richtige. Darum klingen KI-Antworten oft überzeugend, auch wenn sie falsch sind. Bei Bildern heißt das: Ein Bild kann perfekt aussehen und trotzdem sechs Finger, eine unmögliche Spiegelung oder erfundenen Text enthalten.</p>
+
+        <h2>Die Jagged Frontier</h2>
+        <p>Eine Studie der Harvard Business School mit Beratenden der Boston Consulting Group (Dell’Acqua, Mollick u. a., 2023) zeigt: Die Grenze dessen, was KI kann, verläuft gezackt. KI übertrifft Menschen bei Aufgaben, die schwer erscheinen, und scheitert an Aufgaben, die einfach wirken.</p>
+        <div class="ki-frontier">
+          <div class="card good"><h3>Überraschend gut</h3><ul class="list"><li>erste Entwürfe von Briefings, Konzepten und Prompts</li><li>viele Varianten in kurzer Zeit</li><li>Texte vereinfachen und umformulieren</li><li>große Textmengen strukturieren und zusammenfassen</li><li>Standardaufgaben wie Wireframes und Moodboards</li><li>Code nach klarer Spezifikation</li></ul></div>
+          <div class="card weak"><h3>Überraschend schwach</h3><ul class="list"><li>räumliches Denken und physikalische Konsistenz</li><li>zuverlässiges Zählen von Buchstaben oder Objekten</li><li>Kreativität jenseits des Trainingsdurchschnitts</li><li>Beurteilen, ob etwas zur Marke und Zielgruppe passt</li><li>Aufgaben ohne Vorbild in den Trainingsdaten</li><li>ethische Abwägung und Verantwortung</li></ul></div>
+        </div>
+
+        <h2>Die vier Grundregeln der KI-Arbeit</h2>
+        <div class="ki-rules">
+          <div class="ki-rule"><b>1</b><h3>Partnerin, nicht Packesel</h3><p>Im Dialog iterieren statt einen einzigen Prompt abzuschicken.</p></div>
+          <div class="ki-rule"><b>2</b><h3>Klare Absicht</h3><p>Ziel und Kontext beschreiben statt Mikroanweisungen.</p></div>
+          <div class="ki-rule"><b>3</b><h3>Immer prüfen</h3><p>Halluzinationen und Bildfehler sind normal, nicht die Ausnahme.</p></div>
+          <div class="ki-rule"><b>4</b><h3>Passendes Werkzeug</h3><p>Jedes Modell hat seine Stärken (Kapitel 08).</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 03 PROZESS ================= -->
+    <section class="page" id="p-prozess" data-page="prozess">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03 · Prozess</span>
+        <h1>KI im UX-Prozess</h1>
+        <p class="lead">KI-Werkzeuge ersetzen keine Designmethodik. Human-Centered Design legt fest, wofür Sie etwas generieren, nicht die Maschine. Wer ohne verstandenes Problem Bilder erzeugt, bekommt schnell viele, aber beliebige Ergebnisse.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/prozess.jpg" alt="Drei Studierende stehen an einer Whiteboard-Wand mit Haftnotizen, einem gezeichneten Double-Diamond-Diagramm und Persona-Karten" loading="lazy" width="1600" height="893"><figcaption>Erst das Problem verstehen, dann generieren. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Ausprobieren: KI im Double Diamond</h2>
+        <p>Wählen Sie eine Phase. Sie sehen, wobei KI dort hilft und was Sie selbst verantworten.</p>
+        <div class="demo">
+          <div class="ki-dd" role="group" aria-label="Phase im Double Diamond" id="dd"></div>
+          <div class="ki-dd-legend" aria-hidden="true"><span>← Problemraum</span><span>Lösungsraum →</span></div>
+          <div class="ki-panel" id="dd-panel" aria-live="polite"></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Merkregel:</strong> Bildgenerierung setzt im Schritt „Develop“ an. Erst wenn das Problem in „Define“ klar formuliert ist, lohnt es sich, Bilder zu erzeugen. Zu früher KI-Einsatz ohne dieses Fundament führt zu generischen Ergebnissen.</p></div>
+
+        <h2>Der Mobile-Design-Workflow mit KI</h2>
+        <p>Für Apps gilt dasselbe im Kleinen. Apps sind keine verkleinerten Websites: Sie werden in kurzen Momenten genutzt, unterwegs, oft mit einer Hand. KI unterstützt auf drei Ebenen: strategisch (Szenarien, Flows), gestalterisch (Varianten, Microcopy) und prüfend (Barrierefreiheit, Konsistenz).</p>
+        <div class="demo">
+          <div class="ki-flow" role="group" aria-label="Schritt im Mobile-Design-Workflow" id="mf"></div>
+          <div class="ki-panel" id="mf-panel" aria-live="polite"></div>
+        </div>
+
+        <h2>Gute und schlechte Fragen an die KI</h2>
+        <div class="grid g2">
+          <div class="card"><div class="label" style="color:var(--bad)">Schlechte Frage</div><p style="margin-top:8px">„Wie bekommen wir alle Inhalte auf die Startseite?“</p><p class="small muted">Die Startseite wird zum Sammelbecken statt zur Entscheidungshilfe.</p></div>
+          <div class="card"><div class="label" style="color:var(--ok)">Gute Frage</div><p style="margin-top:8px">„Was braucht die Nutzerin in den ersten fünf Sekunden, um ihre Aufgabe zu beginnen?“</p><p class="small muted">Ergebnis: klare Priorität und ein besserer Informationsrhythmus.</p></div>
+        </div>
+        <p>KI erzeugt Flow-Varianten in Sekunden. Prüfen müssen Sie, ob jeder Screen benannt ist, ob Aktionen und Systemfeedback klar sind, ob Fehlerzustände existieren und ob man abbrechen und zurückspringen kann. Diese Prüfung ist Ihre Aufgabe, genau wie der Test mit echten Menschen.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 04 PROMPTING ================= -->
+    <section class="page" id="p-prompting" data-page="prompting">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04 · Briefing</span>
+        <h1>Prompting als Briefing</h1>
+        <p class="lead">Prompting ist weniger Zauberspruch als präzise Creative Direction. Ein guter Prompt ist ein gutes Briefing: Er sagt, warum etwas entsteht, was genau zu tun ist, wie das Ergebnis aussehen soll und woran man sich orientieren kann.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/prompting.jpg" alt="Blick über die Schulter einer Gestalterin, die an einem Laptop ein strukturiertes Briefing in ein Chatfenster tippt, daneben ein Notizbuch mit Stichpunkten" loading="lazy" width="1600" height="893"><figcaption>Erst denken, dann prompten. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Das (R)MARE(Z)-Prinzip</h2>
+        <div class="ki-mare">
+          <div class="opt"><b class="c-r">R</b><h3>Rolle (optional)</h3><p>Welche Funktion soll die KI einnehmen?</p></div>
+          <div><b class="c-m">M</b><h3>Motivation</h3><p>Warum mache ich das? Kontext und Ziel.</p></div>
+          <div><b class="c-a">A</b><h3>Aufgabe</h3><p>Was genau soll die KI tun?</p></div>
+          <div><b class="c-res">R</b><h3>Resultat</h3><p>Format, Länge, Tonalität des Ergebnisses.</p></div>
+          <div><b class="c-e">E</b><h3>Exempel</h3><p>Beispiele oder Referenzbilder für den Stil.</p></div>
+          <div class="opt"><b class="c-z">Z</b><h3>Zusatzinfo (optional)</h3><p>Hintergrund, Leitlinien, Material.</p></div>
+        </div>
+
+        <h2>Ausprobieren: Prompt-Baukasten</h2>
+        <p>Füllen Sie die Bausteine aus oder laden Sie das Beispiel aus dem Skript: ein Onboarding-Flow für eine E-Bike-Sharing-App. Rechts sehen Sie den zusammengesetzten Prompt, farbig nach Baustein.</p>
+        <div class="demo">
+          <div class="row-btns" style="margin-bottom:14px"><button type="button" class="btn btn-sm" id="pb-example">Beispiel laden</button><button type="button" class="btn btn-sm" id="pb-clear">Leeren</button></div>
+          <div class="ki-builder">
+            <div id="pb-form"></div>
+            <div class="ki-out">
+              <div class="label">Ihr Prompt</div>
+              <div class="ki-meter" id="pb-meter" aria-hidden="true"></div>
+              <p class="small" id="pb-status" role="status" style="margin:0 0 10px"></p>
+              <div class="txt" id="pb-out"></div>
+              <div class="row-btns" style="margin-top:12px"><button type="button" class="btn btn-primary btn-sm" id="pb-copy">Prompt kopieren</button></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Prompting im Wandel</h2>
+        <p>Aktuelle Modelle brauchen weniger Formeln und mehr Kontext. Das Skript stützt sich hier auf Einschätzungen aus der Softwareentwicklung (N. Steenfatt, 2026) und auf Anthropics Hinweise zum „Context Engineering“ (2025). Ob sie für Bildmodelle gelten, prüfen Sie am besten im eigenen Vergleich.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Bisher</th><th>Heute</th><th>Für die Gestaltung</th></tr></thead>
+          <tbody>
+            <tr><td>Jeden Schritt genau vorgeben</td><td>Ziel, Kontext und Qualitätskriterien beschreiben, den Weg wählt das Modell</td><td>Wirkung, Zielgruppe und Einsatz zuerst nennen, Fachvokabular gezielt nachreichen</td></tr>
+            <tr><td>Lange Prompt-Formeln</td><td>Kurz starten, nur bei Abweichung nachschärfen</td><td>Kurz- und Langprompt vergleichen, bevor eine Vorlage festgeschrieben wird</td></tr>
+            <tr><td>Alles in einem Chat</td><td>Pro Thema ein eigener Verlauf</td><td>Moodboard, Logo und Screens in getrennten Chats</td></tr>
+            <tr><td>Regeln als immer längerer Fließtext</td><td>Wenige Regeln, Prüfbares als feste Checks</td><td>Corporate Design als Tokens, Vorlagen und Referenzbilder</td></tr>
+            <tr><td>Jede Zeile von Hand prüfen</td><td>Kriteriengeleitet prüfen, Verantwortung bleibt beim Menschen</td><td>Mit Checklisten prüfen und entscheiden, was nicht umgesetzt wird</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>So arbeitet man heute: Briefing im Dialog</h2>
+        <p>Sie liefern Ziel, Wirkung und harte Vorgaben. Den modellgerechten Prompt kann ein Sprachmodell wie Claude schreiben und über Schnittstellen direkt an ein Bildwerkzeug geben (Kapitel 08).</p>
+        <div class="ki-chat">
+          <p class="you"><b>Sie</b>Ich brauche ein Hero-Bild für die Startseite unserer Banking-App. Zielgruppe: Studierende. Wirkung: ruhig und vertrauenswürdig. Links muss Platz für die Headline bleiben.</p>
+          <p class="ai"><b>KI</b>Drei Rückfragen: Foto oder Illustration? Wo erscheint das Bild? Gibt es Referenzbilder oder Markenvorgaben?</p>
+          <p class="you"><b>Sie</b>Foto, Website-Header im Format 3:2. Anbei zwei Bilder aus unserer letzten Kampagne.</p>
+          <p class="ai"><b>KI</b>Ich erzeuge vier Varianten und nutze Ihre Bilder als Stilreferenz. Variante 2 lässt links am meisten Platz, in Variante 4 steht ein Schriftzug im Hintergrund.</p>
+          <p class="you"><b>Sie</b>Variante 2, Hintergrund etwas wärmer, sonst nichts ändern.</p>
+        </div>
+        <div class="grid g2">
+          <div class="card"><h3>Absicht vor Anweisung</h3><p class="small muted">Beschreiben Sie Zweck, Wirkung und Zielgruppe. Fachbegriffe setzen Sie gezielt ein, wenn das Ergebnis die Wirkung verfehlt.</p></div>
+          <div class="card"><h3>Schlank starten, gezielt schärfen</h3><p class="small muted">Erst ein kurzer Prompt, dann bewerten und nachsteuern. Ändern Sie gezielt („nur X ändern, alles andere gleich lassen“) statt neu zu generieren.</p></div>
+          <div class="card"><h3>Regeln prüfbar machen</h3><p class="small muted">Was messbar ist, wird gemessen: Farbwerte als Tokens, Kontrast mit Prüfwerkzeugen, Referenzbilder für den Stil.</p></div>
+          <div class="card"><h3>Urteilen und verantworten</h3><p class="small muted">Sie entscheiden, was umgesetzt wird und was nicht, nach klaren Kriterien.</p></div>
+        </div>
+
+        <h2>Formulierung nach Modelltyp</h2>
+        <div class="ki-stand"><span class="label">Stand 10/2026 · ändert sich laufend</span>
+          <p><strong>GPT Image (OpenAI):</strong> Zweck nennen (Anzeige, UI-Mockup, Infografik), Text im Bild in Anführungszeichen, bei Änderungen „nur X ändern, alles andere gleich lassen“.</p>
+          <p><strong>Nano Banana (Google Gemini):</strong> die Szene erzählen statt Stichworte aufzählen, Kamerabegriffe statt „schön“, Abwesenheit positiv beschreiben („leere Straße“ statt „keine Autos“).</p>
+          <p><strong>Midjourney:</strong> präzise, längere Sätze, frühe Wörter wiegen stärker, Stil über Style-Reference und Moodboards.</p>
+          <p><strong>Lokale Modelle:</strong> SDXL arbeitet mit Stichworten, Gewichtung und Negativ-Prompts, FLUX mit natürlichen Sätzen. Seed, Sampler und Steps steuern die Wiederholbarkeit.</p>
+          <p class="small muted">Fazit: MARE bleibt das Briefing. Die Formulierung passen Sie dem Modell an, und Referenzbilder sind das stärkste „Exempel“.</p>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 05 REGIE ================= -->
+    <section class="page" id="p-regie" data-page="regie">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05 · Bildsprache</span>
+        <h1>Visuelle Regie: Fotografie und Film im Prompt</h1>
+        <p class="lead">Gute Bildprompts entstehen aus Bildkompetenz. Wer weiß, wie Brennweite, Perspektive und Licht wirken, kann sie gezielt anfordern. Fachbegriffe sind präziser als Adjektive wie „schön“ oder „modern“. Sie sind Werkzeuge, um Blick, Raum, Stimmung und Material zu steuern.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/regie.jpg" alt="Ein kleines Fotostudio mit Softbox, einer Kamera auf einem Stativ, Objektiven auf einem Holztisch und Referenzfotos an einer Pinnwand" loading="lazy" width="1600" height="893"><figcaption>Prompten heißt Regie führen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Ausprobieren: Das Regiepult</h2>
+        <p>Dasselbe Motiv, sechs Anweisungen. Bis auf den markierten Teil war der Prompt jedes Mal gleich: eine junge Frau mit kurzen roten Haaren in gelber Regenjacke neben ihrem grünen Fahrrad.</p>
+        <div class="demo">
+          <div class="ki-tabs" role="group" aria-label="Kameraeinstellung wählen" id="rg-tabs"></div>
+          <div class="ki-regie">
+            <img id="rg-img" src="media/k-24.jpg" alt="" width="1200" height="805">
+            <div class="ki-panel" id="rg-panel" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <h2>Fachbegriffe aus der Fotografie</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Bereich</th><th>Begriff im Prompt</th><th>Wirkung</th></tr></thead>
+          <tbody>
+            <tr><td>Kamera und Perspektive</td><td>24mm · 35mm · 50mm · 85mm · low angle · top shot</td><td>räumlich und dynamisch · dokumentarisch · normal · Porträt, verdichtet · heroisch · analytisch, grafisch</td></tr>
+            <tr><td>Blende und Schärfe</td><td>f/1.4–f/1.8 · f/2.8 · f/8–f/11 · shallow depth of field · deep focus</td><td>starke Unschärfe · Porträtlook · viel Schärfe · Fokus lenken · Kontext erhalten</td></tr>
+            <tr><td>Licht</td><td>soft window light · golden hour · rim light · low-key · high-key · studio softbox</td><td>natürlich, intim · warm, emotional · Kontur und Tiefe · dramatisch · hell, clean · kontrolliert</td></tr>
+            <tr><td>Look und Material</td><td>film grain · macro photography · product photography · editorial photography</td><td>analog · Detail · sachlich · redaktionell</td></tr>
+          </tbody>
+        </table></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Tiefenschärfe in vier Sätzen:</strong> Je weiter die Blende geöffnet ist (kleine Blendenzahl), desto geringer die Schärfentiefe. Je länger die Brennweite, desto geringer die Schärfentiefe. Je größer der Sensor, desto geringer die Schärfentiefe. Je weiter das Motiv entfernt ist, desto größer die Schärfentiefe.</p></div>
+
+        <h2>Fachbegriffe aus Film und Video</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Shot-Typen</h3><p class="small muted"><strong>Establishing Shot</strong> führt Ort und Situation ein, <strong>Close-up</strong> zeigt Emotion und Detail, <strong>Medium Shot</strong> Person und Umgebung, <strong>Over-the-Shoulder</strong> Dialog und Subjektivität.</p></div>
+          <div class="card"><h3>Kamera und Bewegung</h3><p class="small muted"><strong>handheld</strong> wirkt dokumentarisch, <strong>tracking shot</strong> dynamisch, <strong>anamorphic lens</strong> nach Kino, <strong>motion blur</strong> nach Geschwindigkeit.</p></div>
+          <div class="card"><h3>Farbdramaturgie</h3><p class="small muted"><strong>cinematic color grading</strong>, <strong>teal and orange</strong>, <strong>muted documentary palette</strong> oder <strong>warm nostalgic grade</strong> geben die Grundstimmung vor.</p></div>
+        </div>
+        <p>Für Video-KI kommen Anfangs- und Endzustand, Kamera- und Motivbewegung, Timing, Schnitt und Kontinuität hinzu. Mehr zu Bewegung im Interface finden Sie im <a href="../ux-animation/">Lernmodul 06 · UX &amp; Animation</a>.</p>
+
+        <h2>Zehn Bausteine für Bildprompts</h2>
+        <p>Eine Checkliste, kein Pflichtformular: Starten Sie mit Ziel und Kontext und ergänzen Sie gezielt.</p>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Ziel und Kontext</h3><p>Wofür wird das Bild gebraucht?</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Motiv und Inhalt</h3><p>Was ist zu sehen?</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Szene und Handlung</h3><p>Was passiert?</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Komposition</h3><p>Bildausschnitt, Perspektive, Raum für Text.</p></div></li>
+          <li class="step"><span class="n">05</span><div><h3>Licht, Farbe, Stimmung</h3><p>Die Atmosphäre steuern.</p></div></li>
+          <li class="step"><span class="n">06</span><div><h3>Stil und Medium</h3><p>Foto, Illustration, 3D, Editorial.</p></div></li>
+          <li class="step"><span class="n">07</span><div><h3>Technik</h3><p>Kamera, Brennweite, Blende, Format.</p></div></li>
+          <li class="step"><span class="n">08</span><div><h3>Zielgruppe und Marke</h3><p>Tonalität, Werte, Bildsprache.</p></div></li>
+          <li class="step"><span class="n">09</span><div><h3>Ausschlüsse</h3><p>Keine Logos, kein Text, keine Artefakte.</p></div></li>
+          <li class="step"><span class="n">10</span><div><h3>Output</h3><p>Seitenverhältnis, Varianten, Transparenz.</p></div></li>
+        </ol>
+
+        <h2>Praxistest: Ein Motiv, drei Prompt-Stile</h2>
+        <p>Hero-Bild für eine Banking-App, getestet am 21.10.2026 mit Magnific, je ein Durchlauf. Wählen Sie einen Stil.</p>
+        <div class="demo">
+          <div class="ki-tabs" role="group" aria-label="Prompt-Stil wählen" id="ps-tabs"></div>
+          <div class="ki-styles">
+            <img id="ps-img" src="media/p-a.jpg" alt="" width="1600" height="1067">
+            <div class="ki-panel" id="ps-panel" aria-live="polite"></div>
+          </div>
+        </div>
+        <p><strong>Fazit:</strong> Nicht die Länge entscheidet, sondern die Absicht plus harte Vorgaben. Ein Durchlauf ist nicht repräsentativ. Mit einem weiteren Versuch können die Ergebnisse anders ausfallen. Prüfen bleibt bei Ihnen.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 BEWERTUNG ================= -->
+    <section class="page" id="p-bewertung" data-page="bewertung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06 · Urteilskraft</span>
+        <h1>KI-Bilder beurteilen</h1>
+        <p class="lead">Ohne Urteilskraft entstehen viele Varianten, aber keine besseren Entscheidungen. KI-Fehler werden seltener, aber subtiler. Ein Bild kann technisch perfekt und trotzdem falsch, generisch oder unpassend für die Marke sein.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/bewertung.jpg" alt="Zwei Studierende betrachten große ausgedruckte Fotos auf einem Tisch, eine prüft ein Detail mit einer Lupe, der andere markiert mit einem roten Stift" loading="lazy" width="1600" height="893"><figcaption>Bilder auswählen heißt Bilder prüfen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Acht Kriterien für ein gutes KI-Bild</h2>
+        <div class="ki-crit">
+          <div><h3>Komposition</h3><p>Ist der Bildaufbau klar und spannungsvoll?</p></div>
+          <div><h3>Hierarchie</h3><p>Was wird zuerst wahrgenommen?</p></div>
+          <div><h3>Licht</h3><p>Unterstützt die Lichtführung die Botschaft?</p></div>
+          <div><h3>Farbe</h3><p>Passt die Farbdramaturgie zur Marke?</p></div>
+          <div><h3>Narration</h3><p>Erzählt das Bild etwas?</p></div>
+          <div><h3>Originalität</h3><p>Eigenständig oder generischer KI-Look?</p></div>
+          <div><h3>Fehlerfreiheit</h3><p>Anatomie, Text, Perspektive, Artefakte.</p></div>
+          <div><h3>Nutzung</h3><p>Funktioniert das Bild im Layout?</p></div>
+        </div>
+
+        <h2>Ausprobieren: Der 3-Sekunden-Test</h2>
+        <p>Auf einer Website oder in einer App entscheidet der erste Eindruck. Starten Sie den Test, betrachten Sie das Bild drei Sekunden und beantworten Sie dann die Frage.</p>
+        <div class="demo">
+          <div class="ki-two">
+            <div class="ki-3s" id="t3-stage"><p class="ph">Das Bild erscheint für drei Sekunden.</p></div>
+            <div>
+              <div class="row-btns"><button type="button" class="btn btn-primary" id="t3-start">Test starten</button></div>
+              <div id="t3-q" style="margin-top:14px"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Typische Bildfehler</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Fehlerart</th><th>Woran Sie ihn erkennen</th><th>Prüfschritt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Anatomie</strong></td><td>Sechs Finger, falsch verbundene Gelenke, gespiegelte Körperteile, besonders bei Nahaufnahmen und Gesten</td><td>Hände und Augen einzeln ansehen</td></tr>
+            <tr><td><strong>Text</strong></td><td>Lesbare Buchstaben mischen sich mit sinnlosen Zeichen. Kurze Headlines gelingen heute meist, lange Texte, kleine Schrift und Umlaute seltener</td><td>Buchstabe für Buchstabe lesen</td></tr>
+            <tr><td><strong>Physik und Maßstab</strong></td><td>Schatten in falscher Richtung, schwebende Objekte, unstimmige Größenverhältnisse</td><td>Schatten, Kontaktpunkte, Proportionen</td></tr>
+            <tr><td><strong>Doppelte Elemente</strong></td><td>Zwei linke Hände, Brillen mit vier Gläsern, verschmolzene Objekte</td><td>Symmetrie und Anzahl prüfen</td></tr>
+            <tr><td><strong>Artefakte</strong></td><td>Hintergrund wie gemalt, Vordergrund fotorealistisch, Brüche an Kanten</td><td>Auf 200 % zoomen</td></tr>
+            <tr><td><strong>Serien</strong></td><td>Gleicher Prompt, aber anderes Licht, andere Figur oder anderes Produkt</td><td>Seed und Referenzbilder nutzen</td></tr>
+          </tbody>
+        </table></div>
+        <div class="grid g3">
+          <div class="card"><div class="label" style="color:var(--ok)">Deutlich besser</div><p class="small" style="margin-top:8px">kurze Texte und Headlines, Hände in Standardposen, Fotorealismus und Licht, gezieltes Ändern im Dialog</p></div>
+          <div class="card"><div class="label" style="color:var(--bad)">Bleibt kritisch</div><p class="small" style="margin-top:8px">Hände beim Greifen, Physik von Kontakt und Gießen, lange Texte und Sonderzeichen, Identitätsdrift über mehrere Bearbeitungen</p></div>
+          <div class="card"><div class="label">Neu im Fokus</div><p class="small" style="margin-top:8px">inhaltlich falsche Infografiken mit perfekter Typografie, KI-Look (glatte Haut, Studiolicht, Symmetrie), erfundene Marken, Klischees</p></div>
+        </div>
+
+        <h2>Prüfen in fünf Schritten</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Aufmerksam betrachten</h3><p>Erster Eindruck: Wirkung, Hauptmotiv, 3-Sekunden-Test.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Fehlerarten durchgehen</h3><p>Anatomie, Text, Physik, Duplikate, Artefakte, Serie.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Auf 200 % zoomen</h3><p>Kanten, Texturen und Kleinschrift prüfen.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Mit Wissen und Referenzen abgleichen</h3><p>Stimmt das Produkt, der Ort, die Fakten?</p></div></li>
+          <li class="step"><span class="n">05</span><div><h3>Erst dann weiterverarbeiten</h3><p>Markencheck, rechtliche Dokumentation, Freigabe.</p></div></li>
+        </ol>
+        <p>In <a href="#ue-fehler">Übung 4</a> suchen Sie die Fehler in einem Bild, das für dieses Modul generiert wurde.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 07 BEARBEITUNG ================= -->
+    <section class="page" id="p-bearbeitung" data-page="bearbeitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07 · Bildbearbeitung</span>
+        <h1>Generative Bildbearbeitung</h1>
+        <p class="lead">KI verändert nicht nur Pixel, sie erzeugt neue Inhalte passend zum Bildkontext. Das macht Retusche schnell und mächtig. Gerade deshalb gilt: KI darf ein Bild verbessern, aber nicht seine wesentliche Aussage, die Identität eines Produkts oder die dokumentarische Wahrheit verfälschen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/bearbeitung.jpg" alt="Hand mit Stift auf einem Grafiktablett vor einem Monitor, der ein Landschaftsfoto mit Auswahlmaske und erweitertem Bildrand zeigt" loading="lazy" width="1600" height="893"><figcaption>Maskieren, generieren, prüfen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Ausprobieren: Fünf Bearbeitungen an einem Foto</h2>
+        <p>Ausgangsbild war ein KI-generiertes Produktfoto einer Teekanne. Jede Bearbeitung wurde mit einem anderen Magnific-Werkzeug ausgeführt. Ziehen Sie den Regler, um vorher und nachher zu vergleichen. Achten Sie auf die Hinweise darunter: Nicht alles ist gelungen.</p>
+        <div class="demo">
+          <div class="ki-tabs" role="group" aria-label="Bearbeitung wählen" id="ba-tabs"></div>
+          <div id="ba-stage"></div>
+          <div id="ba-info" aria-live="polite"></div>
+        </div>
+
+        <h2>Weitere Techniken</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Technik</th><th>Was passiert</th><th>Typischer Einsatz</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Inpainting</strong></td><td>Ein maskierter Bereich wird nach Prompt neu erzeugt</td><td>Detail ersetzen, Gegenstand austauschen</td></tr>
+            <tr><td><strong>Outpainting</strong></td><td>Die Bildfläche wird über den Rand hinaus erweitert</td><td>anderes Format, Platz für Text</td></tr>
+            <tr><td><strong>Object Removal</strong></td><td>Störende Elemente werden entfernt und der Hintergrund ergänzt</td><td>Kabel, Mülleimer, Passanten</td></tr>
+            <tr><td><strong>Background Replacement</strong></td><td>Das Motiv bleibt, die Umgebung wird neu erzeugt</td><td>Produkt in verschiedenen Szenen</td></tr>
+            <tr><td><strong>Relighting</strong></td><td>Lichtrichtung und Lichtstimmung werden geändert</td><td>einheitliche Stimmung in einer Serie</td></tr>
+            <tr><td><strong>Upscaling</strong></td><td>Auflösung und Details werden erhöht, teils durch erfundene Details</td><td>Druck, große Formate</td></tr>
+            <tr><td><strong>Style Transfer</strong></td><td>Die ästhetische Richtung eines Bildes wird übertragen</td><td>Moodboards, Illustrationsstil</td></tr>
+            <tr><td><strong>Compositing</strong></td><td>Mehrere Quellen werden zu einem Bild verbunden</td><td>Kampagnenmotive</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>Der Bearbeitungs-Workflow</h2>
+        <div class="grid g3">
+          <div class="card key"><div class="label">1 · Analyse und Schutz</div><ul class="list small" style="margin-top:8px"><li>Originalfoto prüfen</li><li>Produkt, Person oder Hauptmotiv schützen</li><li>Bereiche sauber maskieren</li><li>Referenzen und Rechtslage klären</li></ul></div>
+          <div class="card key"><div class="label">2 · Generative Korrektur</div><ul class="list small" style="margin-top:8px"><li>Hintergrund ersetzen</li><li>Objekte entfernen oder ergänzen</li><li>Bild erweitern</li><li>Licht oder Atmosphäre anpassen</li></ul></div>
+          <div class="card key"><div class="label">3 · Qualitätsprüfung</div><ul class="list small" style="margin-top:8px"><li>Kanten, Masken, Schatten, Spiegelungen</li><li>Perspektive und Maßstab</li><li>Produktdetails mit dem Original vergleichen</li><li>Export und Dokumentation</li></ul></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">!</span><p><strong>Leitsatz:</strong> Bei Produkt-, Personen- und Dokumentationsbildern darf KI keine relevanten Eigenschaften verfälschen. Die Teekanne aus dem Beispiel oben darf im Shop nicht beige erscheinen, wenn sie grau ist.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 08 WORKFLOWS ================= -->
+    <section class="page" id="p-workflows" data-page="workflows">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08 · Werkzeuge</span>
+        <h1>Werkzeuge und Workflows</h1>
+        <p class="lead">Der Markt ändert sich wöchentlich. Eine Liste der besten Tools ist darum schnell veraltet. Hilfreicher ist die Frage, wie ein Werkzeug arbeitet und wo es in Ihren Workflow passt. Entscheidend ist nicht das einzelne Tool, sondern die Kette vom Briefing bis zum fertigen Asset.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/workflows.jpg" alt="Arbeitsplatz mit leistungsstarkem Rechner und breitem Monitor, auf dem ein knotenbasierter Workflow mit verbundenen Kästen und Bildvorschauen zu sehen ist" loading="lazy" width="1600" height="893"><figcaption>Pipelines statt Einzelbilder. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Kategorien statt Tool-Listen</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Dialogische Generatoren</h3><p class="small muted">Iteratives Prompting, Kontextverständnis, Bearbeitung im Chat. Beispiele: ChatGPT mit GPT Image, Gemini.</p></div>
+          <div class="card"><h3>Ästhetische Generatoren</h3><p class="small muted">Atmosphäre, Kampagnenlook, Moodboards. Beispiel: Midjourney.</p></div>
+          <div class="card"><h3>Creative-Cloud-Workflow</h3><p class="small muted">Retusche, Generative Fill, Reinzeichnung, Content Credentials. Beispiel: Adobe Firefly in Photoshop und Illustrator.</p></div>
+          <div class="card"><h3>Offen und lokal</h3><p class="small muted">Kontrolle, Datenschutz, eigene Stile (LoRA). Beispiele: FLUX, Stable Diffusion mit ComfyUI.</p></div>
+          <div class="card"><h3>Schnittstellen (API)</h3><p class="small muted">Automatisierung und Integration ins Produkt. Beispiele: fal.ai, Replicate, OpenAI, Google.</p></div>
+          <div class="card"><h3>Plattformen mit Modellauswahl</h3><p class="small muted">Viele Modelle in einer Oberfläche, gut für Vergleiche. Beispiel: Magnific (ehemals Freepik).</p></div>
+        </div>
+
+        <h2>Welches Werkzeug für welche Aufgabe?</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Aufgabe</th><th>Geeignet</th><th>Begründung</th></tr></thead>
+          <tbody>
+            <tr><td>Schnelle Ideen</td><td>dialogische Generatoren</td><td>niedrige Einstiegshürde, Änderungen im Gespräch</td></tr>
+            <tr><td>Hochwertiges Moodboard</td><td>ästhetische Generatoren</td><td>Bildqualität und Atmosphäre</td></tr>
+            <tr><td>Professionelle Retusche</td><td>Photoshop mit Firefly</td><td>Masken, Ebenen, Reinzeichnung</td></tr>
+            <tr><td>UI- und App-Screens</td><td>Figma AI, Figma Make, Sprachmodelle</td><td>Layoutideen, Komponenten, Prototypen</td></tr>
+            <tr><td>Lokale Experimente</td><td>ComfyUI mit SD oder FLUX</td><td>Parameter, LoRA, Datenschutz</td></tr>
+            <tr><td>Automatisierung</td><td>APIs</td><td>Skalierung, Stapelverarbeitung, Produktintegration</td></tr>
+          </tbody>
+        </table></div>
+        <div class="ki-stand"><span class="label">Stand 10/2026 · Versionen ändern sich laufend</span>
+          <p>Für Ästhetik gilt Midjourney (V8.x) als stark, für Text im Bild GPT Image (2/2.5), für den Adobe-Workflow Firefly Image 5, für Realismus und Konsistenz FLUX 2. Adobe gibt an, Firefly mit lizenzierten und gemeinfreien Inhalten trainiert zu haben. DALL·E 3 wurde am 12.05.2026 abgeschaltet.</p>
+        </div>
+
+        <h2>Workflow A: Vom Briefing zum Hero-Bild</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Briefing klären</h3><p>Ziel, Zielgruppe, Medium, Marke.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Bildstrategie</h3><p>Stimmung, Komposition, Raum für Text.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Prompt erstellen</h3><p>Motiv, Kamera, Licht, Stil, Ausschlüsse.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Varianten generieren</h3><p>Grob erkunden, nicht zu früh optimieren.</p></div></li>
+          <li class="step"><span class="n">05</span><div><h3>Bewerten</h3><p>Marke, Zielgruppe, Hierarchie, Fehler, Originalität.</p></div></li>
+          <li class="step"><span class="n">06</span><div><h3>Bearbeiten</h3><p>Inpainting, Outpainting, Retusche, Farblook.</p></div></li>
+          <li class="step"><span class="n">07</span><div><h3>Reinzeichnen</h3><p>In Photoshop, Figma oder im Layout, Beschnitt, Export.</p></div></li>
+          <li class="step"><span class="n">08</span><div><h3>Dokumentieren</h3><p>Tool, Modell, Prompt, Referenzen, KI-Anteil.</p></div></li>
+        </ol>
+
+        <h2>Workflow C: Lokale KI mit ComfyUI</h2>
+        <p>ComfyUI ist ein knotenbasierter Editor: Sie bauen die Pipeline als Graph, statt Formulare auszufüllen. Das passt zur Medieninformatik. Lokale Modelle schützen sensible Kundendaten, kosten nach der Hardware nichts pro Bild und lassen jeden Parameter offen. Empfohlen sind mindestens 8 GB Grafikspeicher, besser 12 bis 16 GB. Apple Silicon funktioniert über das MPS-Backend, langsamer als NVIDIA.</p>
+        <div class="ki-pipe" aria-label="Beispiel einer ComfyUI-Pipeline">
+          <div><b>Checkpoint laden</b>Modell, z. B. FLUX oder SDXL</div><span aria-hidden="true">→</span>
+          <div><b>Text-Encoder</b>Prompt und Negativ-Prompt</div><span aria-hidden="true">→</span>
+          <div><b>Sampler</b>Seed, Steps 20–30, CFG 5–7</div><span aria-hidden="true">→</span>
+          <div><b>VAE-Decoder</b>vom latenten Raum zum Bild</div><span aria-hidden="true">→</span>
+          <div><b>Speichern</b>Upscale, Export</div>
+        </div>
+        <p>Für Markenkonsistenz lässt sich ein <strong>LoRA</strong> trainieren, ein kleines Zusatzmodell aus etwa 15 bis 30 Referenzbildern. Beachten Sie die Lizenz des Modells: Manche offene Gewichte sind nur nicht-kommerziell nutzbar.</p>
+
+        <h2>Workflow D: Ein Sprachmodell als Schaltzentrale</h2>
+        <p>Sprachmodelle wie Claude erzeugen selbst keine Fotos, können aber andere Werkzeuge über das <strong>Model Context Protocol (MCP)</strong> ansteuern, einen offenen Standard für Konnektoren. Sie melden sich mit Ihrem eigenen Konto beim Anbieter an, Kosten laufen über dieses Konto. So sind auch die Bilder dieses Moduls entstanden.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Schritt</th><th>Wer</th><th>Was</th></tr></thead>
+          <tbody>
+            <tr><td>1 · Briefing</td><td><span class="ki-who c">Sprachmodell</span></td><td>Ziel, Zielgruppe und Bildwirkung nach MARE im Chat beschreiben</td></tr>
+            <tr><td>2 · Prompt und Modell</td><td><span class="ki-who c">Sprachmodell</span></td><td>modellgerechten Prompt formulieren, Modell vorschlagen</td></tr>
+            <tr><td>3 · Generieren</td><td><span class="ki-who m">Bildwerkzeug</span></td><td>Varianten erzeugen, Kosten vorher abfragen</td></tr>
+            <tr><td>4 · Auswählen und prüfen</td><td><span class="ki-who h">Mensch</span></td><td>Bildfehler-Check: Hände, Text, Physik, KI-Look, Marke</td></tr>
+            <tr><td>5 · Nachbearbeiten</td><td><span class="ki-who m">Bildwerkzeug</span></td><td>Hochskalieren, freistellen, zuschneiden</td></tr>
+            <tr><td>6 · Einsetzen</td><td><span class="ki-who p">Layout</span></td><td>in Folie, Screen oder Website setzen</td></tr>
+            <tr><td>7 · Dokumentieren</td><td><span class="ki-who h">Mensch</span></td><td>Tool, Modell, Prompt und KI-Anteil notieren, ggf. kennzeichnen</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>KI und Corporate Design</h2>
+        <p>Modelle erzeugen im Stil des Trainingsdurchschnitts, nicht im Stil Ihrer Marke. Vier Gegenmittel, nach Aufwand sortiert:</p>
+        <div class="grid g2">
+          <div class="card"><h3>Style Reference</h3><p class="small muted">Markenbilder als Referenz mitgeben. Schnellste Methode ohne Training. Aufwand: niedrig.</p></div>
+          <div class="card"><h3>Prompt-Vorlage mit CI-Ankern</h3><p class="small muted">Feste Bausteine für Farbe, Bildstil und Tonalität in jedem Prompt. Aufwand: niedrig.</p></div>
+          <div class="card"><h3>LoRA-Training</h3><p class="small muted">Eigenes Zusatzmodell aus Markenbildern, reproduzierbar konsistent. Aufwand: mittel.</p></div>
+          <div class="card"><h3>Reinzeichnung</h3><p class="small muted">KI liefert den Rohling, Farben, Logos und Schriften werden in Figma oder Photoshop CI-konform nachgezogen. Aufwand: hoch, aber verbindlich.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 09 APP-DESIGN ================= -->
+    <section class="page" id="p-appdesign" data-page="appdesign">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09 · App-Design</span>
+        <h1>KI-Screens und Barrierefreiheit</h1>
+        <p class="lead">KI-generierte Screens wirken oft hochwertig, sind aber nicht automatisch konsistent, bedienbar oder barrierefrei. KI kann helfen, Barrieren zu erkennen. Sie garantiert aber keine barrierefreie Nutzung. Designer:innen müssen die Nutzung beweisen, nicht nur behaupten.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/appdesign.jpg" alt="Hände halten ein Smartphone mit einer App-Oberfläche mit großen Schaltflächen, daneben Wireframe-Skizzen und eine ausgedruckte Kontrast-Checkliste" loading="lazy" width="1600" height="893"><figcaption>Gut aussehen reicht nicht, bedienbar muss es sein. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Was KI bei der Prüfung kann und was nicht</h2>
+        <div class="ki-frontier">
+          <div class="card good"><h3>KI kann gut</h3><ul class="list"><li>offensichtliche Muster finden</li><li>Checklisten vorbereiten</li><li>Alt-Text-Entwürfe schreiben</li><li>Fehlertexte verbessern</li><li>Semantik und Lesereihenfolge beschreiben</li></ul></div>
+          <div class="card weak"><h3>KI kann nicht sicher</h3><ul class="list"><li>echte Screenreader-Erfahrung ersetzen</li><li>Kontext immer richtig verstehen</li><li>Zielgruppenverständnis garantieren</li><li>komplexe ARIA-Umsetzungen verifizieren</li></ul></div>
+        </div>
+        <p>Darum gilt <strong>Human in the Loop</strong>: KI liefert Diagnosevorschläge, Sie messen mit Werkzeugen, testen mit Tastatur, VoiceOver und TalkBack, testen mit Menschen und dokumentieren die Korrekturen. Die Grundlagen der WCAG 2.2 finden Sie in den Lernmodulen <a href="../ux-grundlagen/#accessibility">04</a> und <a href="../ux-evaluation/">05</a>.</p>
+
+        <h2>Prompt-Vorlagen für ein Accessibility-Review</h2>
+        <p>Gute Prompts machen Kriterien prüfbar. Sie sagen der KI, was genau sie ansehen soll.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Thema</th><th>Prompt</th></tr></thead>
+          <tbody>
+            <tr><td>Kontrast</td><td>„Prüfe Text-, Button-, Icon- und Zustandskontraste nach WCAG 2.2 AA.“</td></tr>
+            <tr><td>Fokus</td><td>„Beschreibe Tab-Reihenfolge, Fokuszustände und mögliche Fokusfallen.“</td></tr>
+            <tr><td>Touch</td><td>„Markiere zu kleine oder zu eng platzierte Touch-Ziele.“</td></tr>
+            <tr><td>Formulare</td><td>„Prüfe Labels, Pflichtfelder, Fehlertexte, Autovervollständigung und Tastaturtypen.“</td></tr>
+            <tr><td>Screenreader</td><td>„Simuliere Lesereihenfolge, Rollen, Labels und Statusmeldungen.“</td></tr>
+            <tr><td>Sprache</td><td>„Formuliere die Texte einfach, direkt und fachlich korrekt.“</td></tr>
+          </tbody>
+        </table></div>
+        <p>Wichtig: Die Hinweise der KI anschließend messen, im Prototyp prüfen und mit Menschen testen.</p>
+
+        <h2>Ausprobieren: Welcher Alt-Text passt?</h2>
+        <p>Nicht jedes Bild braucht dieselbe Beschreibung. Entscheidend ist die Funktion im Kontext. Die Leitfrage lautet: Welche Information oder Funktion würde fehlen, wenn das Bild nicht sichtbar wäre? Wählen Sie ein Beispiel.</p>
+        <div class="demo">
+          <div class="ki-tabs" role="group" aria-label="Beispielbild wählen" id="alt-tabs"></div>
+          <div class="ki-panel" id="alt-panel" aria-live="polite"></div>
+        </div>
+
+        <h2>Einfache Sprache</h2>
+        <div class="grid g2">
+          <div class="card"><div class="label" style="color:var(--bad)">Vorher</div><p style="margin-top:8px">„Die Transaktion konnte aufgrund inkonsistenter Authentifizierungsdaten nicht abgeschlossen werden.“</p></div>
+          <div class="card"><div class="label" style="color:var(--ok)">Nachher</div><p style="margin-top:8px">„Die Zahlung hat nicht geklappt. Bitte prüfen Sie den Freigabe-Code aus Ihrer Banking-App. Versuchen Sie es dann noch einmal.“</p></div>
+        </div>
+        <p>Kurze Sätze, aktive Sprache, direkte Ansprache, eine Aussage pro Satz, Handlung klar benennen. Statt „Ungültige Eingabe.“ besser: „Bitte geben Sie die Telefonnummer mit Ländervorwahl ein, z. B. +49 171 1234567.“ Statt „OK“, „Mehr“ oder „Weiter“ besser eindeutige Namen wie „Profil bearbeiten“ oder „Zahlung bestätigen“. Das hilft auch bei der Sprachsteuerung.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 10 RECHT ================= -->
+    <section class="page" id="p-recht" data-page="recht">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10 · Verantwortung</span>
+        <h1>Recht, Ethik und die neue Rolle</h1>
+        <p class="lead">Bei KI-Bildern gehört die Prozessdokumentation zur professionellen Gestaltung. Sie entscheidet mit darüber, ob ein Werk geschützt ist, ob Kennzeichnungspflichten erfüllt sind und ob Sie im Streitfall Ihre Eigenleistung nachweisen können.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/recht.jpg" alt="Eine Studentin mit Kopftuch und ein älterer Dozent besprechen in einer Bibliothek ein ausgedrucktes Bild, daneben Gesetzbücher und eine kleine Waage" loading="lazy" width="1600" height="893"><figcaption>Gestalten heißt auch verantworten. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Hinweis:</strong> Dieses Kapitel gibt den Stand des Skripts vom Oktober 2026 wieder und ist keine Rechtsberatung. Gesetze und Rechtsprechung entwickeln sich weiter.</p></div>
+
+        <h2>Urheberrecht: Wem gehört das KI-Bild?</h2>
+        <p>Nach § 2 des Urheberrechtsgesetzes sind nur persönliche geistige Schöpfungen geschützt. Eine KI kann keine Urheberin sein. Reine KI-Ausgaben sind deshalb in der Regel nicht geschützt.</p>
+        <div class="ki-scale">
+          <div class="no"><span class="lvl">Kein Schutz</span><h3>Reiner KI-Output</h3><p>Nur ein Prompt. Kein Urheberrecht, aber Rechte Dritter beachten.</p></div>
+          <div class="grey"><span class="lvl">Grauzone</span><h3>Wesentliche Bearbeitung</h3><p>Komplexe Anweisungskette plus manuelle Eingriffe. Möglicherweise geschützt.</p></div>
+          <div class="yes"><span class="lvl">Geschützt</span><h3>Menschliche Eigenleistung</h3><p>KI als Basis plus eigene gestalterische Arbeit mit Schöpfungshöhe.</p></div>
+        </div>
+        <p><strong>Praxistipp:</strong> Dokumentieren Sie Ihren kreativen Prozess, damit Sie die menschliche Eigenleistung nachweisen können.</p>
+
+        <h2>EU AI Act: Kennzeichnungspflicht</h2>
+        <ol class="ki-time">
+          <li><b>Februar 2025</b>Verbote unannehmbarer KI-Praktiken, etwa Social Scoring</li>
+          <li><b>August 2025</b>Governance und Transparenzpflichten für Anbieter von KI-Modellen mit allgemeinem Verwendungszweck</li>
+          <li class="now"><b>August 2026</b>Transparenzpflichten nach Art. 50 gelten. Hochrisiko-Regeln wurden per „Digital Omnibus“ verschoben (Anhang III auf 12/2027, Anhang I auf 08/2028)</li>
+          <li><b>August 2027</b>Übergangsfrist für Modelle, die vor August 2025 auf den Markt kamen, endet</li>
+        </ol>
+        <div class="grid g2">
+          <div class="card key"><h3>Für Sie als Gestaltende</h3><p class="small muted">Deepfakes, also täuschend echte Darstellungen realer Personen, Orte oder Ereignisse, müssen sichtbar offengelegt werden (Art. 50 Abs. 4).</p></div>
+          <div class="card key"><h3>Für Anbieter der Werkzeuge</h3><p class="small muted">KI-Ausgaben müssen maschinenlesbar markiert sein, etwa mit C2PA-Metadaten oder Wasserzeichen (Art. 50 Abs. 2). Für Bestandssysteme gilt eine Übergangsfrist bis 2.12.2026.</p></div>
+        </div>
+        <p>Bei Verstößen drohen Bußgelder von bis zu 15 Mio. € oder 3 % des weltweiten Jahresumsatzes.</p>
+
+        <h2>C2PA und Content Credentials</h2>
+        <p>Die Coalition for Content Provenance and Authenticity, 2021 unter anderem von Adobe, Arm, BBC, Intel, Microsoft und Truepic gegründet, hat einen offenen Standard für Herkunftsnachweise entwickelt. Kryptografisch signierte Metadaten in der Datei halten fest, wer ein Bild erstellt hat, mit welchen Werkzeugen, ob KI beteiligt war und welche Bearbeitungen folgten. Manipulationen brechen die Signatur. Die Metadaten lassen sich aber entfernen.</p>
+        <div class="grid g3">
+          <div class="card"><div class="label">Ebene 1</div><h3>Metadaten</h3><p class="small muted">Signierte C2PA-Angaben direkt in der Datei.</p></div>
+          <div class="card"><div class="label">Ebene 2</div><h3>Unsichtbare Wasserzeichen</h3><p class="small muted">Veränderungen in den Pixeln, die Komprimierung überstehen.</p></div>
+          <div class="card"><div class="label">Ebene 3</div><h3>Fingerprints und Protokolle</h3><p class="small muted">Rückfalloption zur nachträglichen Prüfung.</p></div>
+        </div>
+
+        <h2>Was Sie dokumentieren und prüfen</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Dokumentieren</h3><ul class="list small"><li>Tool, Modell und Datum</li><li>Prompt-Versionen und Varianten</li><li>Referenzbilder und Quellen</li><li>manuelle Bearbeitungsschritte</li><li>Lizenzen und Nutzungsrechte</li></ul></div>
+          <div class="card"><h3>Sensibel prüfen</h3><ul class="list small"><li>reale Personen und Persönlichkeitsrechte</li><li>Markenlogos und geschützte Designs</li><li>Stilnähe zu lebenden Künstler:innen</li><li>Deepfake- und Täuschungsrisiken</li><li>Wahrheit von Produkt und Dokumentation</li></ul></div>
+          <div class="card"><h3>Transparent machen</h3><ul class="list small"><li>Content Credentials erhalten</li><li>KI-Anteil bei Bedarf kennzeichnen</li><li>Quellenliste im Projekt führen</li><li>Herkunft nachvollziehbar halten</li></ul></div>
+        </div>
+
+        <h2>Die dunkle Seite</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Visuelle Monokultur</h3><p class="small muted">Wenn alle den wahrscheinlichsten Durchschnitt nutzen, sieht alles gleich aus. Gute Gestaltung liegt im Abweichen.</p></div>
+          <div class="card"><h3>Bias</h3><p class="small muted">KI spiegelt Vorurteile aus ihren Daten. „Professor“ ergibt oft einen älteren weißen Mann. Steuern Sie bewusst gegen: Herkunft, Alter, Körper.</p></div>
+          <div class="card"><h3>Ressourcen</h3><p class="small muted">Eine KI-Anfrage verbraucht deutlich mehr Strom als eine Websuche. Wägen Sie ab, wann ein klassischer Weg effizienter ist.</p></div>
+        </div>
+
+        <h2>Die neue Rolle: Von der Kreation zur Creative Direction</h2>
+        <div class="grid g2">
+          <div class="card"><div class="label">Was KI übernimmt</div><p class="small" style="margin-top:8px">Freistellen, Retusche, Varianten, technische Optimierung, Hintergründe.</p></div>
+          <div class="card key"><div class="label">Was Menschen bleibt</div><p class="small" style="margin-top:8px">Empathie und Nutzerverständnis, Strategie, Storytelling und Markenführung, ethische Entscheidungen, Bewerten und Prüfen, und die Entscheidung, was nicht umgesetzt wird.</p></div>
+        </div>
+        <p class="quote">„Wird die KI Ihren Job übernehmen? Nein. Aber eine Person, die KI besser nutzt als Sie, vielleicht.“<cite>Merksatz aus dem Skript „Design und künstliche Intelligenz“</cite></p>
+        <p>Jon Kolko beschreibt in seinem Essay „A Design Turn“, wie Design sich vom spezialisierten Handwerk zu einer Kulturtechnik wandelt, vergleichbar mit Schreiben. Wertvoll bleibt das Urteil: zu wissen, was gut ist und warum.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 FRONTIER ================= -->
+    <section class="page" id="p-ue-frontier" data-page="ue-frontier">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Einschätzen</span>
+        <h1>Stark oder schwach?</h1>
+        <p class="lead">Zehn Aufgaben aus einem App-Projekt. Schätzen Sie ein, ob KI sie zuverlässig gut erledigt oder ob Sie besonders genau prüfen müssen.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Zehn Aufgaben</span><span><i></i>Kapitel 02</span></div>
+        <figure class="media media-ex"><img src="media/ue-frontier.jpg" alt="Eine Studentin sortiert Papierkarten auf zwei Stapel, einen mit grünem und einen mit orangefarbenem Aufkleber" loading="lazy" width="1600" height="893"><figcaption>Was kann KI, was nicht? KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Ordnen Sie jede Aufgabe einer Seite der Jagged Frontier zu. Bestanden ist die Übung bei mindestens acht richtigen Einschätzungen.</p></div>
+        <div class="demo">
+          <div id="fr-list" class="ki-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="fr-check">Einschätzung prüfen</button><button type="button" class="btn" id="fr-reset">Zurücksetzen</button></div>
+          <div id="fr-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-frontier"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 MARE ================= -->
+    <section class="page" id="p-ue-mare" data-page="ue-mare">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Briefen</span>
+        <h1>Prompt zerlegen</h1>
+        <p class="lead">Ein Prompt für das Hero-Bild einer Mensa-App, zerlegt in acht Sätze. Zu welchem Baustein des (R)MARE(Z)-Prinzips gehört jeder Satz?</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Acht Sätze</span><span><i></i>Kapitel 04</span></div>
+        <figure class="media media-ex"><img src="media/ue-mare.jpg" alt="Eine junge Frau mit Brille heftet bunte Papierstreifen mit Notizen in Spalten an eine Pinnwand" loading="lazy" width="1600" height="893"><figcaption>Ein Briefing hat Struktur. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie für jeden Satz den passenden Baustein. Bestanden ist die Übung bei mindestens sechs richtigen Zuordnungen.</p></div>
+        <div class="demo">
+          <div id="mr-list" class="ki-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="mr-check">Zuordnung prüfen</button><button type="button" class="btn" id="mr-reset">Zurücksetzen</button></div>
+          <div id="mr-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-mare"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 KAMERA ================= -->
+    <section class="page" id="p-ue-kamera" data-page="ue-kamera">
+      <div class="wrap">
+        <span class="eyebrow">Übung 3 · Sehen</span>
+        <h1>Kamerasprache erkennen</h1>
+        <p class="lead">Sechs Bilder, ein Motiv. Jedes wurde mit einer anderen Kamera- oder Lichtanweisung generiert. Welche war es?</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Sechs Bilder</span><span><i></i>Kapitel 05</span></div>
+        <figure class="media media-ex"><img src="media/ue-kamera.jpg" alt="Mehrere Kameraobjektive mit unterschiedlichen Brennweiten auf einem dunklen Holztisch neben einem Kontaktbogen" loading="lazy" width="1600" height="893"><figcaption>Brennweite, Perspektive, Licht. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie für jedes Bild den Teil des Prompts, der es geprägt hat. Jede Anweisung kommt genau einmal vor. Bestanden ist die Übung bei mindestens fünf richtigen Zuordnungen.</p></div>
+        <div class="demo">
+          <div id="km-list" class="ki-ex-grid"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="km-check">Zuordnung prüfen</button><button type="button" class="btn" id="km-reset">Zurücksetzen</button></div>
+          <div id="km-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-kamera"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 FEHLER ================= -->
+    <section class="page" id="p-ue-fehler" data-page="ue-fehler">
+      <div class="wrap">
+        <span class="eyebrow">Übung 4 · Prüfen</span>
+        <h1>Bildfehler finden</h1>
+        <p class="lead">Dieses Bild wurde für das Modul mit folgendem Prompt generiert: Nahaufnahme der Hände eines Baristas, der Milch in einen Cappuccino gießt, im Hintergrund trägt ein Kellner drei Gläser, dahinter eine Kreidetafel mit dem Text „Frühstück täglich bis 14 Uhr – hausgemachte Brötchen, Müsli und Rührei mit Schnittlauch“.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>Acht Aussagen</span><span><i></i>Kapitel 06</span></div>
+        <div class="task"><span class="label">Aufgabe</span><p>Sehen Sie sich das Bild genau an. Öffnen Sie es in voller Größe und zoomen Sie hinein. Kreuzen Sie dann alle Aussagen an, die einen echten Fehler beschreiben. Bestanden ist die Übung, wenn mindestens sieben von acht Entscheidungen stimmen.</p></div>
+        <div class="demo">
+          <div class="ki-err" id="er-img"><img src="media/fehler.jpg" alt="Café-Szene: Im Vordergrund gießen die Hände eines Baristas Milch in eine braune Tasse, links trägt ein Kellner ein Glas auf einem Teller, dahinter eine Kreidetafel mit Frühstückstext und ein rotes Leuchtschild" width="1600" height="1073"></div>
+          <p class="small" style="margin:10px 0 0"><a href="media/fehler.jpg" target="_blank" rel="noopener">Bild in voller Größe öffnen (neuer Tab)</a></p>
+          <div class="ki-checks" id="er-list"></div>
+          <div class="row-btns" style="margin-top:6px"><button type="button" class="btn btn-primary" id="er-check">Auswahl prüfen</button><button type="button" class="btn" id="er-reset">Zurücksetzen</button></div>
+          <div id="er-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-fehler"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 BEARBEITUNG ================= -->
+    <section class="page" id="p-ue-bearbeitung" data-page="ue-bearbeitung">
+      <div class="wrap">
+        <span class="eyebrow">Übung 5 · Bearbeiten</span>
+        <h1>Welche Bearbeitung passt?</h1>
+        <p class="lead">Sieben Anfragen aus Projekten. Wählen Sie die passende generative Technik, oder lehnen Sie ab, wenn die Bearbeitung die Aussage des Bildes verfälschen würde.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Sieben Anfragen</span><span><i></i>Kapitel 07</span></div>
+        <figure class="media media-ex"><img src="media/ue-bearbeitung.jpg" alt="Zwei ausgedruckte Produktfotos derselben Teekanne, einmal vor neutralem Hintergrund und einmal in einer Küchenszene, eine Hand mit Stift vergleicht sie" loading="lazy" width="1600" height="893"><figcaption>Verbessern, nicht verfälschen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie für jede Anfrage eine Technik oder „Ablehnen“. Bestanden ist die Übung bei mindestens sechs richtigen Antworten.</p></div>
+        <div class="demo">
+          <div id="bb-list" class="ki-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="bb-check">Antworten prüfen</button><button type="button" class="btn" id="bb-reset">Zurücksetzen</button></div>
+          <div id="bb-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-bearbeitung"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 DOKU ================= -->
+    <section class="page" id="p-ue-doku" data-page="ue-doku">
+      <div class="wrap">
+        <span class="eyebrow">Übung 6 · Dokumentieren</span>
+        <h1>KI-Bild-Dokumentation</h1>
+        <p class="lead">Dokumentieren Sie ein KI-Bild aus Ihrem eigenen Projekt so, dass eine andere Person nachvollziehen kann, wie es entstanden ist, was Sie selbst beigetragen haben und ob es gekennzeichnet werden muss.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>Eigenes Projekt</span><span><i></i>Kapitel 04–10</span></div>
+        <figure class="media media-ex"><img src="media/ue-doku.jpg" alt="Ein aufgeschlagener Projektordner mit ausgefüllten Dokumentationsblättern und angehefteten Bildvarianten neben einem Laptop und einem Füller" loading="lazy" width="1600" height="893"><figcaption>Was dokumentiert ist, ist nachvollziehbar. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Füllen Sie das Formular aus. Mit „Dokumentation prüfen“ erhalten Sie Hinweise. Ist alles vollständig, gilt die Übung als erledigt. Ihre Eingaben bleiben nur in diesem Browser gespeichert.</p></div>
+        <div class="demo">
+          <div id="dk-form" class="ki-doc"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="dk-check">Dokumentation prüfen</button><button type="button" class="btn" id="dk-pdf">Als PDF herunterladen</button><button type="button" class="btn" id="dk-md">Als Markdown herunterladen</button><button type="button" class="btn" id="dk-copy">Kopieren</button></div>
+          <div id="dk-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-doku"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Fünfzehn Fragen quer durch das Modul. Nach jeder Frage erhalten Sie eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Studierende in einem hellen Hörsaal beantworten ein Quiz auf Smartphones und Laptops, eine Studentin meldet sich" loading="lazy" width="1600" height="893"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Weiterlesen</span>
+        <h1>Literatur</h1>
+        <p class="lead">Studien, Standards und Quellen zu generativer KI in der Gestaltung, chronologisch geordnet. Dazu das Protokoll der Bilder dieses Moduls.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Ein Stapel Fachbücher mit pflaumenfarbenen und orangefarbenen Buchrücken auf einem Bibliothekstisch, daneben ein aufgeschlagener Fotoband und ein Tablet" loading="lazy" width="1600" height="893"><figcaption>Zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <h2 id="bildnachweis">Bildnachweis und Prompt-Protokoll</h2>
+        <p>Dieses Modul macht vor, was es lehrt: Hier ist dokumentiert, wie die Lehrbilder entstanden sind. Alle Fotos und das Video wurden am 06.11.2026 mit Magnific erzeugt und von einem Sprachmodell (Claude) über den Magnific-Konnektor beauftragt. Ausgewählt, geprüft und eingesetzt hat sie ein Mensch.</p>
+        <div class="table-wrap"><table class="ki-credits">
+          <thead><tr><th>Bild</th><th>Werkzeug</th><th>Prompt oder Bearbeitung</th></tr></thead>
+          <tbody id="credits"></tbody>
+        </table></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Ein aufgeschlagenes Notizbuch mit alphabetischen Registerreitern in Pflaume und Orange neben einem Bleistift und einem Smartphone" loading="lazy" width="1600" height="893"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Diffusion" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <nav class="az" id="gl-az" aria-label="Alphabet"></nav>
+        </div>
+        <p class="small muted" id="gl-count" role="status"></p>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=20261106a"></script>
+</body>
+</html>

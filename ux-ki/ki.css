@@ -1,0 +1,214 @@
+/* ================================================================
+   Lernmodul 07 · UX & KI – Ergänzungen zu styles.css
+   ================================================================ */
+:root { --ki-mod: #7A2862; --ki-cta: #CC4E00; --ki-plum: #7A2862; --ki-plum-soft: #F6ECF2; --ki-card: #F3F4F6; }
+:root[data-theme="dark"] { --ki-plum: #E59AC9; --ki-plum-soft: #2B1A25; --ki-card: #252836; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ki-plum: #E59AC9; --ki-plum-soft: #2B1A25; --ki-card: #252836; } }
+
+.step .n { font-size: 26px; }
+
+/* ---------- Hero-Video ---------- */
+.ki-hero-media { position: relative; }
+.ki-hero-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ki-vid-btn { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 0; border-radius: 999px; background: rgba(17, 24, 39, .78); color: #fff; font: 600 13px/1 var(--f-body); cursor: pointer; }
+.ki-vid-btn:hover, .ki-vid-btn:focus-visible { background: #4B5563; outline: 2px solid #fff; outline-offset: 2px; }
+.ki-vid-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ---------- allgemeine Bausteine ---------- */
+.ki-pre { margin: 14px 0 22px; padding: 16px 18px; border-radius: 12px; background: #1F2937; color: #F3F4F6; overflow-x: auto; white-space: pre-wrap; font: 400 13.5px/1.6 var(--f-mono); }
+.ki-tag { display: inline-block; padding: 2px 9px; border-radius: 999px; background: var(--ki-plum-soft); color: var(--ki-plum); font: 600 12.5px/1.6 var(--f-body); }
+.ki-stand { border: 1px dashed var(--ki-plum); border-radius: 12px; padding: 14px 18px; margin: 22px 0; background: var(--paper); }
+.ki-stand .label { color: var(--ki-plum); }
+.ki-stand p { margin: 6px 0 0; font-size: 14.5px; }
+.ki-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.ki-tabs button { min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink); font: 600 14px/1.2 var(--f-body); cursor: pointer; }
+.ki-tabs button:hover { background: #4B5563; border-color: #4B5563; color: #fff; }
+.ki-tabs button[aria-pressed="true"] { background: var(--ki-plum); border-color: var(--ki-plum); color: #fff; }
+:root[data-theme="dark"] .ki-tabs button[aria-pressed="true"] { color: #171514; }
+.ki-panel { border: 1px solid var(--line); border-radius: 14px; background: var(--paper); padding: 18px 20px; }
+.ki-panel h3 { margin: 0 0 8px; }
+.ki-panel p { margin: 0 0 10px; }
+.ki-panel ul { margin: 0; padding-left: 20px; }
+.ki-two { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+
+/* ---------- Kapitel 01: drei Ären ---------- */
+.ki-eras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 18px 0 26px; counter-reset: era; }
+.ki-era { position: relative; border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--paper); }
+.ki-era .yr { font: 600 12.5px/1 var(--f-mono); color: var(--muted); }
+.ki-era h3 { margin: 8px 0 6px; font-size: 17px; }
+.ki-era p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.ki-era.now { border: 2px solid var(--ki-plum); background: var(--ki-plum-soft); }
+
+/* ---------- Kapitel 02: Diffusion ---------- */
+.ki-diff { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+.ki-diff canvas { width: 100%; height: auto; border-radius: 12px; background: #000; display: block; }
+.ki-diff .info { display: grid; gap: 10px; }
+.ki-diff .info b.big { font: 700 28px/1 var(--f-body); color: var(--ki-plum); }
+.ki-range { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+.ki-range input { width: 100%; accent-color: var(--ki-cta); }
+.ki-token { display: grid; gap: 12px; }
+.ki-token .sent { font: 500 18px/1.5 var(--f-body); padding: 14px 16px; border-radius: 12px; background: var(--surface); min-height: 56px; }
+.ki-token .sent mark { background: var(--ki-plum-soft); color: var(--ki-plum); padding: 0 4px; border-radius: 4px; }
+.ki-token .cands { display: grid; gap: 8px; }
+.ki-token .cand { display: grid; grid-template-columns: 150px minmax(0, 1fr) 52px; gap: 10px; align-items: center; width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: 500 14.5px/1.2 var(--f-body); text-align: left; cursor: pointer; }
+.ki-token .cand:hover { border-color: #4B5563; }
+.ki-token .cand .bar { height: 10px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
+.ki-token .cand .bar i { display: block; height: 100%; background: var(--ki-plum); }
+.ki-token .cand .p { font: 600 13px/1 var(--f-mono); text-align: right; }
+.ki-frontier { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ki-frontier .card h3 { margin-top: 0; }
+.ki-frontier .good { border-top: 4px solid var(--ok); }
+.ki-frontier .weak { border-top: 4px solid var(--bad); }
+.ki-rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.ki-rule { border-radius: 14px; padding: 16px; background: var(--ki-plum-soft); }
+.ki-rule b { display: block; font: 700 30px/1 var(--f-body); color: var(--ki-plum); margin-bottom: 8px; }
+.ki-rule h3 { margin: 0 0 4px; font-size: 16px; }
+.ki-rule p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+
+/* ---------- Kapitel 03: Double Diamond ---------- */
+.ki-dd { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 10px 0 14px; }
+.ki-dd button { position: relative; min-height: 92px; border: 0; background: transparent; cursor: pointer; color: var(--ink); font: 700 15px/1.2 var(--f-body); padding: 0; }
+.ki-dd button svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ki-dd button svg path { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.ki-dd button span { position: relative; display: block; }
+.ki-dd button small { position: relative; display: block; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 3px; }
+.ki-dd button:hover svg path { fill: var(--surface-2); }
+.ki-dd button[aria-pressed="true"] svg path { fill: var(--ki-plum-soft); stroke: var(--ki-plum); stroke-width: 2.5; }
+.ki-dd-legend { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
+.ki-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin: 12px 0 14px; }
+.ki-flow button { min-height: 48px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink); font: 600 14px/1.2 var(--f-body); cursor: pointer; }
+.ki-flow button:hover { border-color: #4B5563; }
+.ki-flow button[aria-pressed="true"] { background: var(--ki-plum); border-color: var(--ki-plum); color: #fff; }
+:root[data-theme="dark"] .ki-flow button[aria-pressed="true"] { color: #171514; }
+
+/* ---------- Kapitel 04: Prompt-Baukasten ---------- */
+.ki-mare { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 16px 0 24px; }
+.ki-mare div { border-radius: 12px; padding: 14px; border: 1px solid var(--line); background: var(--paper); }
+.ki-mare b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; color: #fff; font: 700 16px/1 var(--f-body); margin-bottom: 8px; }
+.ki-mare h3 { margin: 0 0 4px; font-size: 15px; }
+.ki-mare p { margin: 0; font-size: 13px; color: var(--muted); }
+.ki-mare .opt { border-style: dashed; }
+.c-r { background: #4B5563; } .c-m { background: #7A2862; } .c-a { background: #A63F00; } .c-res { background: #1D6B52; } .c-e { background: #3E4C9A; } .c-z { background: #6B5B2E; }
+.ki-builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.ki-builder label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
+.ki-builder label span.k { display: inline-flex; align-items: center; gap: 8px; }
+.ki-builder label span.k i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.ki-builder textarea, .ki-doc input, .ki-doc select, .ki-doc textarea { width: 100%; padding: 9px 10px; border: 1px solid var(--control-border, #858C98); border-radius: 8px; background: var(--paper); color: var(--ink); font: 400 14.5px/1.45 var(--f-body); resize: vertical; }
+.ki-out { position: sticky; top: 76px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); padding: 16px; }
+.ki-out .txt { font: 400 14.5px/1.6 var(--f-body); white-space: pre-wrap; min-height: 120px; }
+.ki-out .txt span { border-bottom: 3px solid; padding-bottom: 1px; }
+.ki-meter { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin: 12px 0 6px; }
+.ki-meter i { height: 8px; border-radius: 4px; background: var(--surface-2); }
+.ki-meter i.on { background: var(--ki-plum); }
+.ki-chat { display: grid; gap: 10px; margin: 16px 0 24px; max-width: 70ch; }
+.ki-chat p { margin: 0; padding: 12px 14px; border-radius: 14px; font-size: 14.5px; max-width: 85%; }
+.ki-chat .you { justify-self: end; background: var(--ki-plum); color: #fff; border-bottom-right-radius: 4px; }
+:root[data-theme="dark"] .ki-chat .you { color: #171514; }
+.ki-chat .ai { justify-self: start; background: var(--surface); border-bottom-left-radius: 4px; }
+.ki-chat b { display: block; font-size: 12px; opacity: .85; margin-bottom: 3px; }
+
+/* ---------- Kapitel 05: Regiepult ---------- */
+.ki-regie { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.ki-regie img, .ki-styles img { width: 100%; height: auto; display: block; border-radius: 12px; }
+.ki-regie .ki-panel .mono { display: block; margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: var(--surface); font-size: 13px; line-height: 1.5; }
+.ki-styles { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+
+/* ---------- Kapitel 06: 3-Sekunden-Test ---------- */
+.ki-3s { position: relative; aspect-ratio: 3 / 2; border-radius: 12px; overflow: hidden; background: var(--surface); display: grid; place-items: center; }
+.ki-3s img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ki-3s .count { position: absolute; top: 10px; right: 10px; padding: 6px 12px; border-radius: 999px; background: rgba(17,24,39,.8); color: #fff; font: 700 15px/1 var(--f-mono); }
+.ki-3s .ph { padding: 20px; text-align: center; color: var(--muted); }
+.ki-crit { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.ki-crit div { border: 1px solid var(--line); border-top: 4px solid var(--ki-plum); border-radius: 12px; padding: 14px; background: var(--paper); }
+.ki-crit h3 { margin: 0 0 4px; font-size: 15.5px; }
+.ki-crit p { margin: 0; font-size: 13.5px; color: var(--muted); }
+
+/* ---------- Kapitel 07: Vorher/Nachher ---------- */
+.ki-ba { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--surface); user-select: none; }
+.ki-ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.ki-ba .after-wrap { position: absolute; inset: 0; clip-path: inset(0 0 0 50%); }
+.ki-ba .line { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.3); pointer-events: none; }
+.ki-ba .lb { position: absolute; top: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(17,24,39,.8); color: #fff; font: 600 12.5px/1.4 var(--f-body); }
+.ki-ba .lb.l { left: 10px; } .ki-ba .lb.r { right: 10px; }
+.ki-ba-range { display: grid; gap: 6px; margin-top: 10px; font-size: 13.5px; font-weight: 600; }
+.ki-ba-range input { width: 100%; accent-color: var(--ki-cta); }
+.ki-side { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4fr); gap: 10px; align-items: end; }
+.ki-side figure { margin: 0; }
+.ki-side img { width: 100%; display: block; border-radius: 10px; }
+.ki-side figcaption { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.ki-obs { border-left: 4px solid var(--ki-cta); padding: 10px 14px; background: var(--surface); border-radius: 0 10px 10px 0; font-size: 14.5px; margin-top: 12px; }
+.ki-obs.warn { border-left-color: var(--bad); }
+
+/* ---------- Kapitel 08: Pipeline ---------- */
+.ki-pipe { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 22px; }
+.ki-pipe div { flex: 1 1 120px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--paper); font-size: 13.5px; }
+.ki-pipe div b { display: block; font-size: 13px; color: var(--ki-plum); }
+.ki-pipe span { color: var(--muted); font-weight: 700; }
+.ki-who { display: inline-block; min-width: 82px; padding: 2px 8px; border-radius: 6px; font: 600 12.5px/1.6 var(--f-body); color: #fff; text-align: center; }
+.ki-who.c { background: #7A2862; } .ki-who.m { background: #1D6B52; } .ki-who.h { background: #A63F00; } .ki-who.p { background: #3E4C9A; }
+
+/* ---------- Kapitel 10: Recht ---------- */
+.ki-scale { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 16px 0 22px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.ki-scale div { padding: 16px; background: var(--paper); }
+.ki-scale div + div { border-left: 1px solid var(--line); }
+.ki-scale .lvl { font: 700 12px/1 var(--f-mono); text-transform: uppercase; letter-spacing: .06em; }
+.ki-scale h3 { margin: 8px 0 6px; font-size: 16px; }
+.ki-scale p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.ki-scale .no .lvl { color: var(--bad); } .ki-scale .grey .lvl { color: #A63F00; } .ki-scale .yes .lvl { color: var(--ok); }
+:root[data-theme="dark"] .ki-scale .grey .lvl { color: #FF9A55; }
+.ki-time { list-style: none; margin: 16px 0 24px; padding: 0 0 0 22px; border-left: 3px solid var(--ki-plum); display: grid; gap: 14px; }
+.ki-time li { position: relative; }
+.ki-time li::before { content: ""; position: absolute; left: -30px; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ki-plum); }
+.ki-time li.now::before { background: var(--ki-plum); }
+.ki-time b { display: block; font: 700 13px/1.4 var(--f-mono); color: var(--ki-plum); }
+
+/* ---------- Übungen ---------- */
+.ki-ex-list { display: grid; gap: 12px; }
+.ki-ex-item { border: 1px solid var(--line); border-radius: 12px; background: var(--paper); padding: 14px 16px; display: grid; gap: 10px; }
+.ki-ex-item.is-ok { border-color: var(--ok); }
+.ki-ex-item.is-bad { border-color: var(--bad); }
+.ki-ex-item h3 { margin: 0; font-size: 16px; font-weight: 600; }
+.ki-ex-item select { width: 100%; padding: 9px 10px; border: 1px solid var(--control-border, #858C98); border-radius: 8px; background: var(--paper); color: var(--ink); font: 400 14.5px/1.3 var(--f-body); }
+.ki-ex-item .why { font-size: 13.5px; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: 8px; }
+.ki-ex-item .why b.ok { color: var(--ok); } .ki-ex-item .why b.bad { color: var(--bad); }
+.ki-ex-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ki-ex-grid .ki-ex-item img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.ki-err { position: relative; border-radius: 12px; overflow: hidden; }
+.ki-err img { width: 100%; height: auto; display: block; }
+.ki-err .mk { position: absolute; width: 13%; aspect-ratio: 1; margin: -6.5% 0 0 -6.5%; border: 3px solid #FF3B30; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,.85); display: grid; place-items: center; }
+.ki-err .mk b { position: absolute; top: -12px; right: -12px; width: 26px; height: 26px; border-radius: 50%; background: #FF3B30; color: #fff; font: 700 13px/26px var(--f-body); text-align: center; }
+.ki-checks { display: grid; gap: 8px; margin: 14px 0; }
+.ki-checks label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); font-size: 14.5px; cursor: pointer; }
+.ki-checks label.is-ok { border-color: var(--ok); } .ki-checks label.is-bad { border-color: var(--bad); }
+.ki-checks input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--ki-plum); }
+.ki-checks .why { grid-column: 2; font-size: 13px; color: var(--ink-2); }
+.ki-doc { display: grid; gap: 18px; }
+.ki-doc fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 16px; margin: 0; display: grid; gap: 12px; background: var(--paper); }
+.ki-doc legend { font-weight: 700; padding: 0 6px; }
+.ki-doc .g { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ki-doc .g2s { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ki-doc label { display: grid; gap: 6px; font-size: 13.5px; color: var(--ink-2); font-weight: 600; }
+.ki-doc .cb { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.ki-doc .cb label { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 14px; color: var(--ink); }
+.ki-doc .cb input { width: 18px; height: 18px; accent-color: var(--ki-plum); }
+.ki-credits { font-size: 13.5px; }
+.ki-credits td { vertical-align: top; }
+
+@media (max-width: 960px) {
+  .ki-rules, .ki-crit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ki-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .ki-diff, .ki-builder, .ki-regie, .ki-styles, .ki-two { grid-template-columns: minmax(0, 1fr); }
+  .ki-out { position: static; }
+  .ki-eras, .ki-scale { grid-template-columns: minmax(0, 1fr); }
+  .ki-scale div + div { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+  .ki-dd { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .ki-dd-legend { display: none; }
+  .ki-frontier, .ki-ex-grid, .ki-rules, .ki-crit, .ki-side { grid-template-columns: minmax(0, 1fr); }
+  .ki-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ki-doc .g, .ki-doc .g2s { grid-template-columns: minmax(0, 1fr); }
+  .ki-token .cand { grid-template-columns: 110px minmax(0, 1fr) 46px; }
+}
