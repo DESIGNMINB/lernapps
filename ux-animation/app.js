@@ -1098,7 +1098,7 @@ function initSpec() {
     const sec = (t) => ({ text: t, bold: true, size: 11.5, rgb: P, space: 10, after: 3, keep: true });
     const row = (l, v) => ({ text: `${l}: ${s(v) || '–'}`, after: 2 });
     const blocks = [
-      { text: 'LERNMODUL 06 · UX & ANIMATION · MOTION-SPEZIFIKATION', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
+      { text: 'LERNMODUL 07 · UX & ANIMATION · MOTION-SPEZIFIKATION', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
       { text: 'Motion-Spezifikation: ' + (s(st.pr) || '…'), bold: true, size: 18, rgb: P, space: 10, after: 6 },
       { rule: true },
       row('Plattform', st.pl), row('Bewegungscharakter', st.ch),
@@ -1107,7 +1107,7 @@ function initSpec() {
       ...st.a.flatMap((a, i) => [sec(`Animation ${i + 1}: ${s(a.el) || '…'}`), row('Zweck', a.zw), row('Verlauf', a.mv), row('Dauer', a.du ? `${a.du} (${tok(a.du)} ms)` : ''), row('Easing', a.ea), row('Reduzierte Bewegung', a.rm)]),
       { text: 'Bei eingeschalteter Systemeinstellung „Bewegung reduzieren“ (prefers-reduced-motion) gilt jeweils die Angabe „Reduzierte Bewegung“.', size: 9, rgb: '0.36 0.38 0.44', space: 14 }
     ];
-    const blob = makePdf(blocks, `Erstellt am ${new Date().toLocaleDateString('de-DE')} · Lernmodul 06 UX & Animation · designminb.github.io/lernapps`);
+    const blob = makePdf(blocks, `Erstellt am ${new Date().toLocaleDateString('de-DE')} · Lernmodul 07 UX & Animation · designminb.github.io/lernapps`);
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'motion-spezifikation.pdf'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     toast('Als motion-spezifikation.pdf gespeichert');
   });

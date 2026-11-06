@@ -1,0 +1,176 @@
+/* ================================================================
+   Lernmodul 02 · Layout und Raster – Ergänzungen zu styles.css
+   ================================================================ */
+:root { --lr-mod: #7D45AE; --lr-guide: rgba(200, 40, 200, .55); --lr-guide-soft: rgba(200, 40, 200, .10); --lr-cyan: #0E8FA8; --lr-paper: #FFFFFF; --lr-block: #2B2440; --lr-text: #B9B2C6; --lr-img: #C8A8DE; --lr-acc: #DE6A10; }
+:root[data-theme="dark"] { --lr-guide: rgba(240, 120, 240, .6); --lr-guide-soft: rgba(240, 120, 240, .12); --lr-cyan: #4CC3DA; --lr-paper: #ECE8F2; }
+
+.lr-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.lr-two-wide { grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); }
+.lr-dl { display: grid; gap: 4px; margin: 12px 0 0; }
+.lr-dl div { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; border-bottom: 1px solid var(--line); padding: 4px 0; }
+.lr-dl dt { color: var(--ink-2); font-weight: 600; }
+.lr-dl dd { margin: 0; font-family: var(--f-mono); font-size: 13.5px; text-align: right; }
+.lr-formula { font: 600 15px/1.5 var(--f-mono); background: var(--accent-soft); color: var(--accent-ink); padding: 12px 16px; border-radius: 10px; }
+.lr-pre { margin: 14px 0 22px; padding: 16px 18px; border-radius: 12px; background: #1F2937; color: #F3F4F6; overflow-x: auto; white-space: pre-wrap; font: 400 13.5px/1.6 var(--f-mono); }
+.lr-steps { counter-reset: s; list-style: none; padding: 0; margin: 14px 0 24px; display: grid; gap: 10px; }
+.lr-steps li { counter-increment: s; position: relative; padding: 12px 14px 12px 52px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); font-size: 15px; }
+.lr-steps li::before { content: counter(s); position: absolute; left: 14px; top: 11px; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font: 700 13px/1 var(--f-body); }
+.lr-steps b { color: var(--ink); }
+
+/* SVG-Grundfarben */
+.lr-intro, .lr-spread, .lr-page, .lr-eye { display: block; width: 100%; height: auto; }
+.lr-page { max-width: 340px; margin: 0 auto; }
+.lr-spread { max-width: 680px; margin: 0 auto; }
+.lr-intro, .lr-eye { max-width: 760px; margin: 0 auto; }
+svg .pg { fill: var(--lr-paper); stroke: var(--line); stroke-width: 1; }
+svg .shadow { fill: rgba(0, 0, 0, .06); }
+svg .ss { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+svg .guide { fill: none; stroke: var(--lr-guide); stroke-width: 1; }
+svg .guide-f { fill: var(--lr-guide-soft); stroke: var(--lr-guide); stroke-width: .6; }
+svg .diag { stroke: var(--lr-cyan); stroke-width: .8; stroke-dasharray: 3 2; fill: none; }
+svg .blk { fill: var(--lr-block); }
+svg .txt { fill: var(--lr-text); }
+svg .img { fill: var(--lr-img); }
+svg .acc { fill: var(--lr-acc); }
+svg .lbl { fill: var(--ink-2); font: 600 11px var(--f-body); }
+svg .lbl-s { fill: var(--muted); font: 500 9px var(--f-mono); }
+svg .eye-path { fill: none; stroke: var(--lr-acc); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+svg .eye-dot { fill: var(--lr-acc); }
+svg .eye-n { fill: #fff; font: 700 13px var(--f-body); text-anchor: middle; dominant-baseline: central; }
+svg .third { stroke: var(--lr-cyan); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.lr-intro .el { transition: transform .5s ease; }
+@media (prefers-reduced-motion: reduce) { .lr-intro .el { transition: none; } }
+
+/* Kapitel 04: Grundlinienraster */
+.lr-bl { --bl: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px; background: var(--lr-paper); border-radius: 10px; color: #1F1A24; position: relative; }
+.lr-bl.lines { background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--bl) - 1px), rgba(14, 143, 168, .45) calc(var(--bl) - 1px), rgba(14, 143, 168, .45) var(--bl)); background-position: 0 calc(24px + 5px); }
+.lr-bl p { margin: 0 0 var(--bl) !important; font: 400 15px/var(--bl) var(--f-body) !important; color: #1F1A24 !important; }
+.lr-bl h3 { font: 700 21px/30px var(--f-body) !important; margin: 10px 0 6px !important; color: #64378C !important; }
+.lr-bl.on h3 { line-height: var(--bl) !important; margin: var(--bl) 0 0 !important; }
+.lr-bl.on h3 + p { margin-top: 0 !important; }
+
+/* Kapitel 05: Modulare Kompositionen */
+.lr-mod-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.lr-mod-row svg { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: var(--shadow); }
+
+/* Kapitel 06: Video */
+.lr-video video { aspect-ratio: 16 / 9; }
+
+/* Kapitel 07: responsives Raster */
+.lr-rw-frame { overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 10px; }
+.lr-rw { margin: 0 auto; background: var(--lr-paper); border-radius: 6px; position: relative; overflow: hidden; transition: width .2s; }
+.lr-rw .cols { position: absolute; inset: 0; display: grid; pointer-events: none; }
+.lr-rw .cols span { background: var(--lr-guide-soft); border-left: 1px solid var(--lr-guide); border-right: 1px solid var(--lr-guide); }
+.lr-rw .content { position: relative; display: grid; }
+.lr-rw .content > div { border-radius: 4px; min-height: 34px; display: grid; place-items: center; font: 600 11px/1.2 var(--f-body); color: #fff; text-align: center; padding: 4px; overflow: hidden; }
+.lr-rw .hero { background: var(--lr-block); min-height: 70px !important; }
+.lr-rw .card { background: #7D45AE; border: 0; min-height: 56px !important; }
+.lr-rw .navb { background: #4B5563; }
+@media (prefers-reduced-motion: reduce) { .lr-rw { transition: none; } }
+.lr-bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 70px; gap: 10px; margin: 14px 0 24px; }
+.lr-bento span { border-radius: 14px; background: var(--accent-soft); color: var(--accent-ink); display: grid; place-items: center; font: 600 13px/1.2 var(--f-body); }
+.lr-bento .a { grid-column: span 2; grid-row: span 2; background: var(--accent); color: #fff; }
+.lr-bento .c { grid-row: span 2; }
+.lr-bento .e { grid-column: span 2; }
+
+/* Kapitel 08: object-fit */
+.lr-fit { display: grid; grid-template-columns: 2.2fr 1fr .75fr; gap: 14px; align-items: end; margin-top: 8px; }
+.lr-fit figure { margin: 0; }
+.lr-fit .box { background: repeating-conic-gradient(var(--surface-2) 0 25%, var(--surface) 0 50%) 0 0 / 16px 16px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.lr-fit img { display: block; width: 100%; height: 100%; }
+.lr-fit figcaption { font: 600 12.5px/1.3 var(--f-body); color: var(--muted); margin-top: 6px; }
+
+/* Kapitel 10: Vorher/Nachher */
+.lr-ba { position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 1312 / 736; }
+.lr-ba > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lr-ba-before { position: absolute; inset: 0; display: block; background: repeating-conic-gradient(#d9d9d9 0 25%, #f4f4f4 0 50%) 0 0 / 20px 20px; opacity: 0; transition: opacity .2s; }
+/* Das Original liegt dort, wo es im erweiterten Bild steht (gemessen am Gesicht) */
+.lr-ba-before img { height: 100%; width: auto; display: block; margin-left: 10.7%; }
+.lr-ba-tag { position: absolute; bottom: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(17, 24, 39, .8); color: #fff; font: 600 12px/1.4 var(--f-body); }
+.lr-ba-tag.l { left: 10px; } .lr-ba-tag.r { right: 10px; }
+.lr-ba .ov { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.6%; padding: 0 3%; pointer-events: none; }
+.lr-ba .ov span { background: rgba(200, 40, 200, .16); border-inline: 1px solid rgba(255, 120, 255, .7); }
+.lr-ba .zone { position: absolute; left: 58.8%; top: 22%; width: 38.2%; padding: 14px; background: rgba(17, 12, 30, .55); border: 2px dashed #fff; border-radius: 8px; color: #fff; font: 700 clamp(14px, 2.4vw, 26px)/1.15 var(--f-body); text-shadow: 0 1px 3px rgba(0, 0, 0, .6); }
+.lr-ba .zone small { display: block; font: 500 12px/1.4 var(--f-body); margin-top: 6px; }
+
+/* Übung 2 */
+.lr-calc { display: grid; gap: 14px; }
+.lr-calc .item { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--paper); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+.lr-calc .item.ok { border-color: var(--ok); background: var(--ok-soft); }
+.lr-calc .item h3 { margin: 0 0 6px; font-size: 16px; }
+.lr-calc .item p { margin: 0 0 8px; font-size: 14.5px; }
+.lr-calc .ans { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lr-calc .ans input { width: 110px; font: 600 15px var(--f-mono); padding: 8px 10px; border: 1px solid var(--control-border, var(--line)); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.lr-calc .res { font-size: 13.5px; font-weight: 600; }
+.lr-calc .res.ok { color: var(--ok); } .lr-calc .res.bad { color: var(--bad); }
+.lr-calc svg { width: 100%; height: auto; display: block; }
+.lr-gen-prev { display: grid; gap: 4px; min-height: 160px; padding: 10px; border-radius: 10px; background: var(--lr-paper); border: 1px solid var(--line); }
+.lr-gen-prev span { background: var(--lr-guide-soft); border-inline: 1px solid var(--lr-guide); }
+
+/* Übung 3 */
+.lr-pl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.lr-pl-ctrl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-top: 14px; }
+.lr-pl-ctrl .field { margin: 0; }
+.lr-pl-ctrl select { width: 100%; }
+.lr-poster { --pad: 6%; position: relative; aspect-ratio: 210 / 297; max-width: 380px; margin: 0 auto; background: #F6F1EA; border-radius: 4px; box-shadow: var(--shadow); padding: var(--pad); }
+.lr-poster .gridl, .lr-poster .els { position: absolute; inset: var(--pad); display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(8, 1fr); gap: 2.4%; }
+.lr-poster .gridl span { background: rgba(200, 40, 200, .08); outline: 1px solid rgba(200, 40, 200, .45); }
+.lr-poster.noguides .gridl { display: none; }
+.lr-poster .el { border-radius: 2px; display: grid; place-items: center; font: 700 12px/1.2 var(--f-body); text-align: center; padding: 4px; overflow: hidden; outline: 2px solid transparent; outline-offset: 2px; transition: outline-color .15s; }
+.lr-poster .el.sel { outline-color: var(--lr-acc); }
+.lr-poster .el.h { background: #2B2440; color: #fff; font-size: clamp(13px, 2vw, 20px); }
+.lr-poster .el.i { background: linear-gradient(135deg, #9254D1, #C8A8DE); color: #fff; }
+.lr-poster .el.t { background: repeating-linear-gradient(to bottom, #8A8396 0 2px, transparent 2px 9px); color: transparent; }
+.lr-poster .el.a { background: #DE6A10; color: #fff; }
+.lr-poster .el.bad { outline: 2px dashed #C3301A; }
+
+/* Übung 4 */
+.lr-u4-ctrl { display: grid; gap: 10px; }
+.lr-u4-ctrl .field { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) 110px; align-items: center; gap: 10px; }
+.lr-u4-ctrl select { width: 100%; }
+.lr-u4-frame { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 10px; overflow: hidden; }
+.lr-u4 { position: relative; margin: 0 auto; background: var(--lr-paper); border-radius: 6px; overflow: hidden; }
+.lr-u4 .cols { position: absolute; inset: 0; display: grid; pointer-events: none; }
+.lr-u4 .cols span { background: var(--lr-guide-soft); border-inline: 1px solid var(--lr-guide); }
+.lr-u4 .content { position: relative; display: grid; }
+.lr-u4 .content > div { border-radius: 4px; display: grid; place-items: center; color: #fff; font: 600 11px/1.2 var(--f-body); min-height: 44px; text-align: center; padding: 2px; }
+.lr-u4 .hero { background: #2B2440; min-height: 70px !important; }
+.lr-u4 .card { background: #7D45AE; border: 0; }
+.lr-u4 .card.bad, .lr-u4 .hero.bad { background: #C3301A; }
+
+/* Übung 5 */
+.lr-crop-wrap { display: grid; place-items: center; background: var(--surface); border-radius: 12px; padding: 14px; min-height: 380px; }
+.lr-crop { position: relative; overflow: hidden; height: 360px; max-width: 100%; border-radius: 4px; box-shadow: var(--shadow); background: #000; }
+.lr-crop img { position: absolute; max-width: none; display: block; }
+.lr-crop-thirds { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lr-crop-thirds path { stroke: rgba(255, 255, 255, .85); stroke-width: .4; fill: none; vector-effect: non-scaling-stroke; }
+.lr-crop-thirds.off { display: none; }
+.lr-crop-saved { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.lr-crop-saved figure { margin: 0; }
+.lr-crop-saved .lr-crop { height: 120px; }
+.lr-crop-saved figcaption { font: 600 12px/1.3 var(--f-body); color: var(--ok); margin-top: 4px; }
+
+/* Übung 6 */
+.lr-pb { display: grid; gap: 12px; }
+.lr-pb .row { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--paper); }
+.lr-pb .row.ok { border-color: var(--ok); background: var(--ok-soft); }
+.lr-pb .row.bad { border-color: var(--bad); background: var(--bad-soft); }
+.lr-pb .row h3 { margin: 0 0 8px; font-size: 15px; }
+.lr-pb .row .why { margin: 8px 0 0; font-size: 13.5px; }
+
+@media (max-width: 900px) {
+  .lr-two, .lr-two-wide, .lr-pl, .lr-calc .item { grid-template-columns: 1fr; }
+  .lr-mod-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .lr-fit { grid-template-columns: 1fr 1fr; }
+  .lr-fit figure:first-child { grid-column: 1 / -1; }
+  .lr-bl { grid-template-columns: 1fr 1fr; gap: 14px; padding: 16px; }
+  .lr-bl p { font-size: 13px !important; }
+  .lr-crop { height: 300px; }
+  /* Vorschau vor die Regler, damit Änderungen ohne Scrollen sichtbar sind */
+  .lr-pl > :last-child, .lr-two > .lr-crop-wrap { order: -1; }
+  .lr-crop-wrap { min-height: 0; }
+}
+@media (max-width: 560px) {
+  .lr-bento { grid-template-columns: repeat(2, 1fr); }
+  .lr-pl-ctrl { grid-template-columns: 1fr 1fr; }
+}

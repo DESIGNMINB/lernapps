@@ -605,7 +605,7 @@ function initTestplan() {
     const sec = (t) => ({ text: t, bold: true, size: 11.5, rgb: P, space: 10, after: 3, keep: true });
     const body = (t) => ({ text: (t || '').trim() || '–', after: 2 });
     const blocks = [
-      { text: 'LERNMODUL 05 · UX & EVALUATION · TESTPLAN', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
+      { text: 'LERNMODUL 06 · UX & EVALUATION · TESTPLAN', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
       { text: 'Usability-Testplan: ' + ((st.app || '').trim() || '…'), bold: true, size: 18, rgb: P, space: 10, after: 6 },
       { rule: true },
       sec('Testziel'), body(st.ziel),
@@ -619,7 +619,7 @@ function initTestplan() {
       ...['Einwilligungserklärung vorbereitet (Aufzeichnung, Datenschutz)', 'Pilottest mit einer Person aus dem Team', 'Prototyp auf dem Testgerät geprüft', 'Protokollvorlage für die Beobachtung'].map((c, i) => ({ text: c, box: true, checked: !!(st.c || [])[i], after: 3 }))
     ];
     const d = new Date().toLocaleDateString('de-DE');
-    const blob = makePdf(blocks, `Erstellt am ${d} · Lernmodul 05 UX & Evaluation · designminb.github.io/lernapps`);
+    const blob = makePdf(blocks, `Erstellt am ${d} · Lernmodul 06 UX & Evaluation · designminb.github.io/lernapps`);
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'testplan.pdf'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     toast('Testplan als testplan.pdf gespeichert');
   });

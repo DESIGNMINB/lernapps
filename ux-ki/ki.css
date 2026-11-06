@@ -1,5 +1,5 @@
 /* ================================================================
-   Lernmodul 07 · UX & KI – Ergänzungen zu styles.css
+   Lernmodul 08 · UX & KI – Ergänzungen zu styles.css
    ================================================================ */
 :root { --ki-mod: #7A2862; --ki-cta: #CC4E00; --ki-plum: #7A2862; --ki-plum-soft: #F6ECF2; --ki-card: #F3F4F6; }
 :root[data-theme="dark"] { --ki-plum: #E59AC9; --ki-plum-soft: #2B1A25; --ki-card: #252836; }

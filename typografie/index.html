@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <script src="../theme.js?v=7"></script>
+  <script src="../theme.js?v=8"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../favicon.ico?v=2" sizes="any">
   <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
@@ -141,25 +141,25 @@
           <div class="mod-chip" aria-hidden="true">T</div>
           <p class="hero-eyebrow">Lernmodul 01 · Schrift, Satz &amp; Lesbarkeit</p>
           <h1>Typo&shy;grafie</h1>
-          <p class="hero-lead">Typografie ist das unsichtbare Rückgrat jeder Oberfläche: Sie ordnet, lenkt und vermittelt. In neun Laborübungen erproben Sie Zeilenabstand, Zeilenlänge, Laufweite, Raster, Hierarchie, Schriftpaarungen, Farbwirkung und Barrierefreiheit. Dazu kommen Glossar, DIN 16518 und ein Quiz.</p>
+          <p class="hero-lead">Typografie ist das unsichtbare Rückgrat jeder Oberfläche: Sie ordnet, lenkt und vermittelt. In acht Laborübungen erproben Sie Zeilenabstand, Zeilenlänge, Laufweite, Abstände, Hierarchie, Schriftpaarungen, Farbwirkung und Barrierefreiheit. Dazu kommen Glossar, DIN 16518 und ein Quiz.</p>
           <div class="hero-actions">
             <div class="hero-cta">
               <a class="btn btn-primary" href="exercise-01.html">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
               <a class="btn" href="einfuehrung.html">Zur Einleitung</a>
             </div>
-            <a class="btn btn-download" href="downloads/typografie-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta">(2 Seiten, 230 KB)</span></a>
+            <a class="btn btn-download" href="downloads/typografie-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta">(2 Seiten, 226 KB)</span></a>
           </div>
-          <p class="hero-meta"><span><b>9</b> Laborübungen</span><span><b>5</b> Referenzen</span><span><b>15</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
+          <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>5</b> Referenzen</span><span><b>15</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
         </div>
         <figure class="hero-media"><img src="img/einleitung.jpg" alt="" width="1600" height="893"></figure>
       </div>
       <div class="progress-band" aria-live="polite">
         <span class="label">Ihr Fortschritt</span>
         <div class="bar"><span id="home-bar"></span></div>
-        <b id="home-count">0 / 9 Lektionen</b>
+        <b id="home-count">0 / 8 Lektionen</b>
       </div>
 
-      <div class="home-section-label"><h2>Laborübungen</h2><span>Lektion 01–09</span></div>
+      <div class="home-section-label"><h2>Laborübungen</h2><span>Lektion 01–08</span></div>
       <ul class="tiles" id="tiles-ex"></ul>
       <div class="home-section-label"><h2>Referenz</h2><span>Nachschlagen</span></div>
       <ul class="tiles" id="tiles-ref"></ul>
@@ -170,7 +170,7 @@
     </div>
   </main>
 
-  <script src="js/sidebar.js?v=20261105n"></script>
+  <script src="js/sidebar.js?v=20261106a"></script>
   <script>renderSidebar('intro');</script>
   <script>
     // Kachelfotos in Lila-Duotone (Magnific), je Kapitel ein eigenes Motiv
@@ -180,11 +180,10 @@
         ['ex2', 'exercise-02.html', '02', 'Zeilenlänge', 'Zeichen pro Zeile & Spalten'],
         ['ex3', 'exercise-03.html', '03', 'Laufweite', 'Tracking & Wortbild'],
         ['ex4', 'exercise-04.html', '04', 'Abstände', 'Padding & Margin'],
-        ['ex5', 'exercise-05.html', '05', 'Spalten & Raster', '12-Spalten-Grid'],
-        ['ex6', 'exercise-06.html', '06', 'Visuelle Hierarchie', 'Gewicht, Größe, Raum'],
-        ['ex7', 'exercise-07.html', '07', 'Schriftpaarungen', 'Kontrast ohne Konflikt'],
-        ['ex8', 'exercise-08.html', '08', 'Farbwirkung', 'Farbe & Lesbarkeit'],
-        ['ex9', 'exercise-09.html', '09', 'Barrierefreiheit', 'WCAG, BFSG & Alt-Texte'],
+        ['ex6', 'exercise-06.html', '05', 'Visuelle Hierarchie', 'Gewicht, Größe, Raum'],
+        ['ex7', 'exercise-07.html', '06', 'Schriftpaarungen', 'Kontrast ohne Konflikt'],
+        ['ex8', 'exercise-08.html', '07', 'Farbwirkung', 'Farbe & Lesbarkeit'],
+        ['ex9', 'exercise-09.html', '08', 'Barrierefreiheit', 'WCAG, BFSG & Alt-Texte'],
       ],
       ref: [
         ['glossar', 'glossary.html', 'A–Z', 'Glossar', 'Fachbegriffe von Geviert bis Versalhöhe'],
@@ -204,8 +203,8 @@
     };
     for (const k of ['ex', 'ref', 'quiz']) document.getElementById('tiles-' + k).innerHTML = TILES[k].map(tile).join('');
     const n = TILES.ex.filter((t) => visited.includes(t[0])).length;
-    document.getElementById('home-count').textContent = `${n} / 9 Lektionen`;
-    document.getElementById('home-bar').style.width = (n / 9 * 100) + '%';
+    document.getElementById('home-count').textContent = `${n} / ${TILES.ex.length} Lektionen`;
+    document.getElementById('home-bar').style.width = (n / TILES.ex.length * 100) + '%';
   </script>
 </body>
 </html>

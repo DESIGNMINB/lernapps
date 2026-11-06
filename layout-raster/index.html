@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="utf-8">
+<script src="../theme.js?v=8"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+<title>Layout und Raster Lernmodul</title>
+<meta name="description" content="Interaktives Lernmodul Layout und Raster für Studierende der Medieninformatik: Satzspiegel, Spalten-, Grundlinien- und modulares Raster, Komposition, responsives 12-Spalten-Raster, Bild im Layout sowie Generierung und Bearbeitung von Bildern mit KI – Prof. Dipl. Des. T. Hinz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261106a">
+<link rel="stylesheet" href="lr.css?v=20261106a">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="home-back" href="../" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <a class="brand" href="#home">
+      <span class="brand-mark">LR</span>
+      <span class="brand-name">Lernmodul<small>02 · Layout und Raster</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <button type="button" class="dark-toggle" data-theme-toggle aria-pressed="false">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span class="dark-toggle-label">Dunkelmodus</span>
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>Layout-Lab v1.0 · Stand 11/2026</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px" aria-hidden="true">LR</span>
+      <span class="t">Layout und Raster</span>
+    </div>
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home" style="--mod:#7D45AE">
+      <div class="wrap-wide">
+        <div class="home-hero" style="--mod:#7D45AE">
+          <div>
+            <div class="mod-chip" aria-hidden="true">LR</div>
+            <p class="hero-eyebrow">Lernmodul 02 · Grundlagen der Mediengestaltung</p>
+            <h1>Layout und Raster</h1>
+            <p class="hero-lead">Ein gutes Layout fällt kaum auf: Man findet sofort, was wichtig ist, und liest ohne Mühe. Dahinter steckt fast immer ein Raster. Dieses Modul führt vom Satzspiegel im Buch über Spalten-, Grundlinien- und modulare Raster bis zum responsiven 12-Spalten-Raster im Web. Dazu kommt das Bild im Layout, auch wenn Sie es mit KI erzeugen oder bearbeiten. Mit sechs Übungen, in denen Sie konstruieren, rechnen, platzieren und zuschneiden.</p>
+            <div class="hero-actions">
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="btn" href="#ue-raster">Zum Rasterrechner</a>
+              </div>
+              <a class="btn btn-download" href="downloads/layout-raster-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta" id="dl-meta">(2 Seiten, 220 KB)</span></a>
+            </div>
+            <p class="hero-meta"><span><b>10</b> Kapitel</span><span><b>6</b> Übungen</span><span><b>15</b> Testfragen</span></p>
+          </div>
+          <figure class="hero-media"><img src="media/einleitung.jpg" alt="" width="1600" height="900"></figure>
+        </div>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Theorie &amp; Grundlagen</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Konstruieren · Rechnen · Platzieren</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Layout-Lab · Lernmodul 02 · Fotos und Video KI-generiert mit Magnific, alle Raster und Konstruktionen aus exakten Maßen berechnet. Prof. Dipl. Des. T. Hinz</p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 01 · Einleitung</span>
+        <h1>Warum Layout und Raster?</h1>
+        <p class="lead">Layout heißt: Text, Bild und Fläche auf einem Format so anordnen, dass eine Botschaft schnell und richtig ankommt. Ein Raster ist das unsichtbare Gerüst dafür. Es legt Ränder, Spalten und Abstände fest, bevor das erste Element platziert wird. Das klingt nach Einschränkung, ist aber vor allem eine Entlastung: Viele Entscheidungen sind dann schon getroffen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Schreibtisch von oben mit aufgeschlagenen Magazinen in mehrspaltigem Layout, Transparentpapier mit Rasterlinien, Stahllineal und Bleistift" loading="lazy" width="1600" height="900"><figcaption>Magazinseiten, Lineal und ein gezeichnetes Raster auf Transparentpapier. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Dieselben Elemente, zwei Wirkungen</h2>
+        <p>Beide Entwürfe enthalten exakt dieselben Elemente: Überschrift, Bild, zwei Textblöcke und eine Infozeile. Schalten Sie um und achten Sie darauf, wie schnell Sie die Reihenfolge erfassen.</p>
+        <div class="demo">
+          <div class="demo-head">
+            <span class="label">Demo · Ohne und mit Raster</span>
+            <div class="toggle" role="group" aria-label="Entwurf wählen" id="intro-mode">
+              <button type="button" data-m="free" aria-pressed="true">Frei platziert</button>
+              <button type="button" data-m="grid" aria-pressed="false">Am Raster</button>
+            </div>
+          </div>
+          <svg class="lr-intro" id="intro-svg" viewBox="0 0 600 400" role="img" aria-labelledby="intro-cap"></svg>
+          <label class="check" style="margin-top:10px"><input type="checkbox" id="intro-guides"> Rasterlinien einblenden</label>
+          <p class="small" id="intro-cap" role="status"></p>
+        </div>
+
+        <h2>Vier Aufgaben eines Rasters</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Ordnen</h3><p>Gleiche Kanten und Abstände verbinden, was zusammengehört, und trennen, was verschieden ist. Das Auge findet Linien, denen es folgen kann.</p></div>
+          <div class="card key"><h3>Gewichten</h3><p>Größe und Position im Raster zeigen die Rangfolge: Was mehr Spalten bekommt, ist wichtiger. So entsteht Hierarchie ohne zusätzliche Effekte.</p></div>
+          <div class="card key"><h3>Wiederholen</h3><p>Über viele Seiten, Screens oder Folien bleibt das Erscheinungsbild gleich. Leserinnen und Nutzer lernen, wo sie was finden.</p></div>
+          <div class="card key"><h3>Beschleunigen</h3><p>Im Team arbeiten alle mit denselben Maßen. Design und Code sprechen eine Sprache, etwa mit dem 12-Spalten-Raster und dem 8-px-Raster.</p></div>
+        </div>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>Formate, Satzspiegel und Stege benennen und einen Satzspiegel konstruieren,</li>
+          <li>Spaltenbreiten aus Satzspiegel, Spaltenzahl und Spaltenabstand berechnen,</li>
+          <li>Grundlinienraster und Registerhaltigkeit erklären und anwenden,</li>
+          <li>mit modularen Rastern unterschiedliche, aber verwandte Layouts entwerfen,</li>
+          <li>Weißraum, Ausrichtung und Blickführung bewusst einsetzen,</li>
+          <li>ein responsives 12-Spalten-Raster mit Breakpoints und 8-px-Abständen aufbauen,</li>
+          <li>Bildausschnitt, Format und Anschnitt für ein Layout festlegen,</li>
+          <li>Bilder mit KI passend zum Layout generieren und generativ bearbeiten, mit Blick auf Qualität, Recht und Kennzeichnung.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen</div><p style="margin-top:10px">Kapitel 02–05 behandeln die klassischen Raster, 06–07 Komposition und Web, 08–10 das Bild im Layout.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen vom Satzspiegel bis zum KI-Bild. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Prüfen</div><p style="margin-top:10px">Der Wissenstest mit 15 Fragen fasst das Modul zusammen. Ihr Fortschritt bleibt in diesem Browser gespeichert.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Verwandte Module:</strong> Zeilenlänge, Spaltensatz und Abstände vertiefen die Lektionen 2 und 4 im <a href="../typografie/exercise-02.html">Lernmodul 01 Typografie</a>. Prompting und generative Bildbearbeitung im Detail finden Sie im <a href="../ux-ki/#prompting">Lernmodul 08 UX &amp; KI</a>.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 02 FORMAT & SATZSPIEGEL ================= -->
+    <section class="page" id="p-satzspiegel" data-page="satzspiegel">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02</span>
+        <h1>Format und Satzspiegel</h1>
+        <p class="lead">Jedes Layout beginnt mit zwei Entscheidungen: Welches Format hat die Fläche, und wie viel Rand bleibt frei? Die bedruckte oder genutzte Fläche innerhalb der Ränder heißt Satzspiegel. Seine Lage bestimmt, ob eine Seite ruhig, großzügig, sparsam oder gedrängt wirkt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/satzspiegel.jpg" alt="Aufgeschlagenes Buch mit breiten Rändern, auf der rechten Seite liegt Transparentpapier mit gezeichneten Diagonalen und Hilfslinien, daneben Zirkel und Bleistift" loading="lazy" width="1600" height="900"><figcaption>Klassische Buchseite mit Konstruktionslinien auf Transparentpapier. KI-generiert mit Magnific. Die Linien im Bild sind nicht maßgenau.</figcaption></figure>
+
+        <h2>Formate: die DIN-A-Reihe</h2>
+        <p>Die Papierformate nach DIN EN ISO 216 haben ein Seitenverhältnis von 1 : √2 (etwa 1 : 1,414). Halbiert man ein Blatt an der langen Seite, entsteht das nächstkleinere Format mit demselben Verhältnis. A0 hat eine Fläche von genau einem Quadratmeter.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Format</th><th>Maße in mm</th><th>Typischer Einsatz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A2</strong></td><td>420 × 594</td><td>Plakat</td></tr>
+              <tr><td><strong>A3</strong></td><td>297 × 420</td><td>kleines Plakat, Zeichnung</td></tr>
+              <tr><td><strong>A4</strong></td><td>210 × 297</td><td>Brief, Bericht, Magazin</td></tr>
+              <tr><td><strong>A5</strong></td><td>148 × 210</td><td>Flyer, Broschüre, Notizbuch</td></tr>
+              <tr><td><strong>A6</strong></td><td>105 × 148</td><td>Postkarte</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px">Am Bildschirm gibt es kein festes Format. Dort spricht man von Viewports und Seitenverhältnissen wie 16 : 9 oder 9 : 16. Wie man damit umgeht, zeigt Kapitel 07.</p>
+
+        <h2>Satzspiegel und Stege</h2>
+        <p>Die vier Ränder einer Seite heißen <strong>Stege</strong>. In einer Doppelseite liegen sie spiegelbildlich: Der Bundsteg liegt zur Heftung hin, der Außensteg zum Blattrand.</p>
+        <div class="grid g2">
+          <div class="card"><h3>Bundsteg</h3><p class="small muted">Innenrand an der Bindung. Im Buch meist der schmalste Steg, weil sich die beiden Bundstege einer Doppelseite optisch addieren.</p></div>
+          <div class="card"><h3>Kopfsteg</h3><p class="small muted">Oberer Rand. Hier stehen oft der lebende Kolumnentitel oder die Paginierung.</p></div>
+          <div class="card"><h3>Außensteg</h3><p class="small muted">Rand zur Blattkante. Er bietet Platz für Daumen und Marginalien.</p></div>
+          <div class="card"><h3>Fußsteg</h3><p class="small muted">Unterer Rand, traditionell der breiteste. Er gibt dem Satzspiegel optischen Halt, damit er nicht nach unten „rutscht“.</p></div>
+        </div>
+
+        <h2>Klassische Konstruktionen</h2>
+        <p>Wählen Sie eine Konstruktion. Die Doppelseite zeigt ein A4-Format, die Maße werden exakt berechnet.</p>
+        <div class="demo">
+          <div class="demo-head">
+            <span class="label">Demo · Satzspiegel konstruieren</span>
+            <div class="toggle" role="group" aria-label="Konstruktion wählen" id="ss-mode">
+              <button type="button" data-k="9" aria-pressed="true">Neunerteilung</button>
+              <button type="button" data-k="12" aria-pressed="false">Zwölferteilung</button>
+              <button type="button" data-k="mod" aria-pressed="false">Modern gleichmäßig</button>
+            </div>
+          </div>
+          <svg class="lr-spread" id="ss-svg" viewBox="0 0 460 330" role="img" aria-labelledby="ss-text"></svg>
+          <p class="small" id="ss-text" role="status"></p>
+          <dl class="lr-dl" id="ss-vals"></dl>
+        </div>
+        <div class="grid g3">
+          <div class="card"><h3>Neunerteilung</h3><p class="small">Breite und Höhe werden in neun Teile geteilt. Bund- und Kopfsteg erhalten je einen Teil, Außen- und Fußsteg je zwei. Das Ergebnis entspricht der Diagonalkonstruktion nach Villard de Honnecourt und J. A. van de Graaf, die Jan Tschichold bekannt machte.</p></div>
+          <div class="card"><h3>Zwölferteilung</h3><p class="small">Wie die Neunerteilung, aber mit zwölf Teilen. Die Ränder werden schmaler, der Satzspiegel größer. Das ist wirtschaftlicher und passt zu Sachbüchern und Zeitschriften.</p></div>
+          <div class="card"><h3>Modern gleichmäßig</h3><p class="small">Viele Broschüren und Berichte nutzen einfache, fast gleiche Ränder, zum Beispiel 20 mm, unten etwas mehr. Das wirkt sachlich und lässt Platz für Bilder im Anschnitt.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-satzspiegel">Übung 1</a> konstruieren Sie Neuner- und Zwölferteilung selbst mit Reglern.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 03 SPALTENRASTER ================= -->
+    <section class="page" id="p-spalten" data-page="spalten">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03</span>
+        <h1>Das Spaltenraster</h1>
+        <p class="lead">Innerhalb des Satzspiegels teilen Spalten die Fläche senkrecht auf. Das Spaltenraster ist das häufigste Raster überhaupt: in Zeitungen, Magazinen, Präsentationen und auf fast jeder Website. Drei Größen bestimmen es: die Breite des Satzspiegels, die Zahl der Spalten und der Abstand dazwischen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/spalten.jpg" alt="Mehrere aufgeschlagene Zeitungsseiten mit fünf- und sechsspaltigem Layout, Fotos und dunklen Überschriftenbalken" loading="lazy" width="1600" height="900"><figcaption>Zeitungen arbeiten seit jeher mit vielen schmalen Spalten. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Begriffe</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Spalte</h3><p class="small muted">Senkrechter Streifen für Text oder Bild. Elemente können eine oder mehrere Spalten belegen.</p></div>
+          <div class="card"><h3>Spaltenabstand</h3><p class="small muted">Freiraum zwischen zwei Spalten, auch Zwischenschlag oder englisch Gutter. Im Druck meist 4–6 mm, im Web 16–32 px.</p></div>
+          <div class="card"><h3>Marginalspalte</h3><p class="small muted">Schmale Spalte am Rand für Bildunterschriften, Anmerkungen oder Zitate. Typisch für Fachbücher und Berichte.</p></div>
+        </div>
+
+        <h2>Die Spaltenformel</h2>
+        <p>Die Breite einer Spalte ergibt sich aus der Satzspiegelbreite minus allen Spaltenabständen, geteilt durch die Zahl der Spalten:</p>
+        <p class="lr-formula">Spaltenbreite = (Satzspiegelbreite − (Spalten − 1) × Spaltenabstand) ÷ Spalten</p>
+        <p>Beispiel A4 mit 20 mm Rand links und rechts: Der Satzspiegel ist 170 mm breit. Bei drei Spalten und 5 mm Abstand ergibt sich (170 − 2 × 5) ÷ 3 = 53,3 mm pro Spalte.</p>
+
+        <div class="demo">
+          <div class="demo-head"><span class="label">Demo · Spalten und Zeilenlänge</span></div>
+          <div class="lr-two">
+            <div>
+              <div class="field"><label for="sp-n">Spalten <output id="sp-n-o">2</output></label><input type="range" id="sp-n" min="1" max="6" value="2"></div>
+              <div class="field"><label for="sp-g">Spaltenabstand <output id="sp-g-o">5 mm</output></label><input type="range" id="sp-g" min="2" max="12" value="5"></div>
+              <div class="field"><label for="sp-f">Schriftgröße <output id="sp-f-o">9 pt</output></label><input type="range" id="sp-f" min="7" max="12" value="9"></div>
+              <dl class="lr-dl" id="sp-vals"></dl>
+              <p class="small" id="sp-rate" role="status"></p>
+            </div>
+            <svg class="lr-page" id="sp-svg" viewBox="0 0 210 297" role="img" aria-label="A4-Seite mit dem eingestellten Spaltenraster"></svg>
+          </div>
+        </div>
+        <p class="small muted">Die Zeichenzahl ist eine Näherung: Bei einer Grotesk ist ein durchschnittliches Zeichen etwa eine halbe Schriftgröße breit. 1 pt entspricht 0,353 mm.</p>
+
+        <h2>Wie viele Spalten?</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Spalten</th><th>Wirkung</th><th>Typischer Einsatz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1</strong></td><td>ruhig, buchartig, lange Zeilen</td><td>Roman, Brief, Abschlussarbeit</td></tr>
+              <tr><td><strong>2</strong></td><td>sachlich, gut lesbar, symmetrisch</td><td>Fachzeitschrift, Bericht</td></tr>
+              <tr><td><strong>3–4</strong></td><td>flexibel, Bilder über 1–4 Spalten</td><td>Magazin, Broschüre, Folien</td></tr>
+              <tr><td><strong>5–6</strong></td><td>dicht, viele Kombinationen</td><td>Zeitung, Katalog, Plakatreihe</td></tr>
+              <tr><td><strong>12</strong></td><td>maximal teilbar (1, 2, 3, 4, 6, 12)</td><td>Website, App, Design-System</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px">Ein Trick der Profis: Man legt <strong>mehr Spalten an, als man für Text braucht</strong>. Ein sechsspaltiges Raster erlaubt Text über zwei oder drei Spalten und Bilder über eine bis sechs Spalten. So bleibt der Text gut lesbar und das Layout trotzdem abwechslungsreich.</p>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Zeilenlänge:</strong> Gut lesbar sind etwa 45–75 Zeichen pro Zeile. Mehr dazu in <a href="../typografie/exercise-02.html">Lektion 2 der Typografie-App</a>. In <a href="#ue-raster">Übung 2</a> berechnen Sie Spaltenbreiten selbst.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 04 GRUNDLINIENRASTER ================= -->
+    <section class="page" id="p-grundlinie" data-page="grundlinie">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04</span>
+        <h1>Das Grundlinienraster</h1>
+        <p class="lead">Spalten teilen die Fläche senkrecht, das Grundlinienraster teilt sie waagerecht. Es besteht aus gleichmäßig verteilten Linien im Abstand des Zeilenabstands. Alle Textzeilen stehen auf diesen Linien. So laufen die Zeilen benachbarter Spalten auf derselben Höhe, und das Layout wirkt geordnet, auch wenn man den Grund dafür nicht sofort sieht.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/grundlinie.jpg" alt="Nahaufnahme einer bedruckten Seite mit unlesbaren Textzeilen, darüber eine Folie mit dünnen türkisfarbenen Hilfslinien" loading="lazy" width="1600" height="900"><figcaption>Textzeilen auf Hilfslinien. KI-generiert mit Magnific. Die Linien im Bild sind nicht maßgenau, im Demo unten schon.</figcaption></figure>
+
+        <h2>Registerhaltigkeit</h2>
+        <p>Ein Satz heißt <strong>registerhaltig</strong>, wenn alle Zeilen auf einem gemeinsamen Grundlinienraster stehen. Das hat zwei Vorteile:</p>
+        <ul class="list">
+          <li><strong>Nebeneinander:</strong> Die Zeilen benachbarter Spalten fluchten. Das Auge springt ruhig von Spalte zu Spalte.</li>
+          <li><strong>Hintereinander:</strong> Bei dünnem Papier liegen die Zeilen von Vorder- und Rückseite übereinander. Der Text der Rückseite scheint nicht zwischen den Zeilen durch.</li>
+        </ul>
+
+        <div class="demo">
+          <div class="demo-head">
+            <span class="label">Demo · Zwischenüberschrift im Raster</span>
+            <div class="toggle" role="group" aria-label="Abstände wählen" id="bl-mode">
+              <button type="button" data-m="off" aria-pressed="true">Abstände frei</button>
+              <button type="button" data-m="on" aria-pressed="false">Abstände im Raster</button>
+            </div>
+          </div>
+          <div class="lr-bl" id="bl-stage">
+            <div class="lr-bl-col">
+              <p>Raster helfen, Entscheidungen früh zu treffen. Wer Ränder, Spalten und Zeilenabstand festlegt, muss später weniger nachdenken und kann sich auf den Inhalt konzentrieren.</p>
+              <h3>Zwischenüberschrift</h3>
+              <p>Steht die Überschrift mit freien Abständen im Text, verschieben sich alle folgenden Zeilen gegenüber der Nachbarspalte.</p>
+            </div>
+            <div class="lr-bl-col">
+              <p>In dieser Spalte gibt es keine Überschrift. Ihre Zeilen laufen gleichmäßig weiter und zeigen, wo das Raster liegt. Vergleichen Sie die Zeilen links und rechts auf gleicher Höhe.</p>
+              <p>Mit Abständen im Raster sind Überschrift und Absätze immer ein Vielfaches der Grundlinie hoch. Dann fluchten die Zeilen wieder.</p>
+            </div>
+          </div>
+          <label class="check" style="margin-top:12px"><input type="checkbox" id="bl-lines" checked> Grundlinien einblenden</label>
+          <p class="small" id="bl-cap" role="status"></p>
+        </div>
+
+        <h2>So legen Sie ein Grundlinienraster an</h2>
+        <ol class="lr-steps">
+          <li><b>Grundschrift festlegen.</b> Zum Beispiel 9 pt mit 12 pt Zeilenabstand. Der Zeilenabstand ist das Rastermaß.</li>
+          <li><b>Satzspiegelhöhe anpassen.</b> Sie sollte ein ganzes Vielfaches des Rastermaßes sein, damit die letzte Zeile genau auf dem Fußsteg steht.</li>
+          <li><b>Überschriften einpassen.</b> Ihr Zeilenabstand und ihre Abstände nach oben und unten ergeben zusammen ein Vielfaches des Rastermaßes, z. B. 24 pt.</li>
+          <li><b>Bilder einpassen.</b> Bildoberkanten stehen auf der Versalhöhe der ersten Zeile, Unterkanten auf einer Grundlinie.</li>
+          <li><b>Halbe Schritte erlauben.</b> Für Bildunterschriften und Fußnoten darf ein halbes Rastermaß gelten. Sie treffen dann jede zweite Linie.</li>
+        </ol>
+
+        <h2>Im Web: das 4- und 8-px-Raster</h2>
+        <p>Browser kennen kein echtes Grundlinienraster. Viele Design-Systeme arbeiten deshalb mit einem <strong>vertikalen Rhythmus</strong>: Zeilenhöhen und Abstände sind Vielfache von 4 oder 8 px, zum Beispiel 16 px Schrift mit 24 px Zeilenhöhe und 24 oder 32 px Abstand zwischen Absätzen. CSS bietet mit <code class="mono">text-box-trim</code> und <code class="mono">lh</code>-Einheiten neue Werkzeuge, um Text genauer auf ein Raster zu setzen.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 05 MODULARES RASTER ================= -->
+    <section class="page" id="p-modular" data-page="modular">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05</span>
+        <h1>Das modulare Raster</h1>
+        <p class="lead">Kombiniert man Spalten mit waagerechten Teilungen, entstehen Rasterfelder, auch Module genannt. Jedes Element belegt ein oder mehrere Felder. Das modulare Raster wurde in der Schweizer Typografie der 1950er- und 1960er-Jahre zur Methode, vor allem durch Josef Müller-Brockmann. Es ist streng und erlaubt doch erstaunlich viele Varianten.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/modular.jpg" alt="Galeriewand mit einer Serie von Plakaten im Schweizer Stil: Flächen in Schwarz, Rot und Violett und Schwarzweißfotos in einem strengen Feldraster" loading="lazy" width="1600" height="900"><figcaption>Eine Plakatserie, ein Raster, viele Kompositionen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Aufbau</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Rasterfeld</h3><p class="small">Kleinste Einheit, begrenzt von Spalten und Zeilen, getrennt durch Abstände. Bei Müller-Brockmann ist die Feldhöhe ein Vielfaches der Zeilenhöhe, das Feld also auch mit dem Grundlinienraster verbunden.</p></div>
+          <div class="card"><h3>Feldkombination</h3><p class="small">Bilder und Textblöcke belegen 1, 2, 4, 6 … Felder. Weil alle Kanten auf den Feldgrenzen liegen, passen unterschiedliche Größen zusammen.</p></div>
+          <div class="card"><h3>Anzahl der Felder</h3><p class="small">Wenige Felder (z. B. 4 oder 6) erzeugen ruhige, plakative Layouts. Viele Felder (z. B. 20 oder 32) erlauben feine Abstufungen, erfordern aber mehr Disziplin.</p></div>
+          <div class="card"><h3>Weißraum als Element</h3><p class="small">Leere Felder sind keine Lücken, sondern Teil der Komposition. Sie geben den gefüllten Feldern Spannung.</p></div>
+        </div>
+
+        <h2>Ausprobieren: viele Layouts, ein Raster</h2>
+        <p>Wählen Sie ein Raster und erzeugen Sie neue Kompositionen. Jede besteht aus Überschrift, Bild, Text und Akzent, und jede hält sich exakt an die Felder.</p>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Raster wählen" id="mod-grid">
+              <button type="button" data-g="2x3" aria-pressed="false">2 × 3 Felder</button>
+              <button type="button" data-g="3x4" aria-pressed="true">3 × 4 Felder</button>
+              <button type="button" data-g="4x6" aria-pressed="false">4 × 6 Felder</button>
+            </div>
+            <button class="btn btn-dark" type="button" id="mod-new">Neue Komposition</button>
+          </div>
+          <div class="lr-mod-row" id="mod-row"></div>
+          <label class="check" style="margin-top:10px"><input type="checkbox" id="mod-guides" checked> Rasterfelder einblenden</label>
+        </div>
+        <blockquote class="quote">„Die Verwendung des Rasters als Ordnungssystem ist Ausdruck einer bestimmten geistigen Haltung.“<cite>Josef Müller-Brockmann, Rastersysteme für die visuelle Gestaltung (1981)</cite></blockquote>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-platzieren">Übung 3</a> setzen Sie Elemente selbst auf ein modulares Plakatraster.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 KOMPOSITION ================= -->
+    <section class="page" id="p-komposition" data-page="komposition">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06</span>
+        <h1>Komposition und Hierarchie</h1>
+        <p class="lead">Das Raster sagt, wo Elemente stehen dürfen. Die Komposition entscheidet, wo sie tatsächlich stehen. Gute Kompositionen haben einen klaren Einstieg, eine erkennbare Rangfolge und genug Weißraum. Viele dieser Regeln sind Gestaltgesetze, die Sie aus der Wahrnehmungspsychologie kennen.</p>
+        <hr class="rule">
+        <figure class="media lr-video">
+          <video id="komp-video" src="media/layout-legen.mp4" muted loop playsinline controls preload="metadata" poster="media/layout-legen-poster.jpg" width="1280" height="720" aria-label="Hände legen Papierflächen, einen schwarzen Balken, graue Streifen und ein Foto nacheinander auf ein Rasterpapier, bis eine ausgewogene Komposition entsteht"></video>
+          <figcaption>Komponieren mit Papier auf einem Raster: erst die großen Flächen, dann die Details. KI-generiertes Video mit Magnific, ohne Ton.</figcaption>
+        </figure>
+
+        <h2>Fünf Werkzeuge der Komposition</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Weißraum</h3><p>Freie Fläche lenkt den Blick auf das, was da ist. Viel Weißraum wirkt hochwertig und ruhig, wenig Weißraum dicht und laut. Weißraum muss nicht weiß sein, gemeint ist jede ungefüllte Fläche.</p></div>
+          <div class="card key"><h3>Nähe</h3><p>Was nah beieinander steht, gehört zusammen (Gesetz der Nähe). Der Abstand zwischen Bild und Bildunterschrift muss deutlich kleiner sein als der zum nächsten Element.</p></div>
+          <div class="card key"><h3>Ausrichtung</h3><p>Gemeinsame Kanten verbinden Elemente über Distanz. Je weniger verschiedene Kanten ein Layout hat, desto ruhiger wirkt es.</p></div>
+          <div class="card key"><h3>Kontrast</h3><p>Größe, Gewicht, Farbe und Fläche zeigen die Rangfolge. Ein klarer Kontrast zwischen erstem und zweitem Rang ist wirksamer als viele kleine Abstufungen.</p></div>
+          <div class="card key"><h3>Wiederholung</h3><p>Gleiche Abstände, Bildformate und Auszeichnungen machen ein Layout lernbar. Abweichungen fallen dann auf und können gezielt betonen.</p></div>
+          <div class="card key"><h3>Rasterbruch</h3><p>Wer die Regeln beherrscht, darf sie brechen: Ein Bild, das bewusst aus dem Raster ragt, wirkt nur, weil alles andere im Raster steht.</p></div>
+        </div>
+
+        <h2>Blickführung</h2>
+        <p>In Leserichtung von links oben nach rechts unten tastet das Auge eine Fläche in typischen Mustern ab. Sie helfen, wichtige Inhalte richtig zu platzieren.</p>
+        <div class="demo">
+          <div class="demo-head">
+            <span class="label">Demo · Lesemuster</span>
+            <div class="toggle" role="group" aria-label="Muster wählen" id="eye-mode">
+              <button type="button" data-m="z" aria-pressed="true">Z-Muster</button>
+              <button type="button" data-m="f" aria-pressed="false">F-Muster</button>
+              <button type="button" data-m="third" aria-pressed="false">Drittelregel</button>
+            </div>
+          </div>
+          <svg class="lr-eye" id="eye-svg" viewBox="0 0 600 340" role="img" aria-labelledby="eye-cap"></svg>
+          <p class="small" id="eye-cap" role="status"></p>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Goldener Schnitt und Drittelregel:</strong> Der Goldene Schnitt teilt eine Strecke im Verhältnis 1 : 1,618. Die Drittelregel ist seine einfache Näherung. Beides sind Ausgangspunkte für spannungsvolle Teilungen, keine Gesetze. Ein mittig gesetztes Motiv kann genauso stark sein, wenn Ruhe und Symmetrie gewollt sind.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 07 RESPONSIVE ================= -->
+    <section class="page" id="p-responsive" data-page="responsive">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07</span>
+        <h1>Das responsive 12-Spalten-Raster</h1>
+        <p class="lead">Eine Website hat kein festes Format. Sie wird auf Smartphones mit 360 px Breite genauso gelesen wie auf Monitoren mit 2.560 px. Ein responsives Raster ändert deshalb an festgelegten Breiten, den Breakpoints, die Zahl der Spalten und die Abstände. Die Inhalte fließen neu, die Ordnung bleibt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/responsive.jpg" alt="Laptop, Tablet und Smartphone nebeneinander zeigen dieselbe Website mit Karten in drei, zwei und einer Spalte" loading="lazy" width="1600" height="900"><figcaption>Ein Inhalt, drei Raster: drei Spalten am Laptop, zwei am Tablet, eine am Smartphone. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Warum zwölf Spalten?</h2>
+        <p>Zwölf ist durch 1, 2, 3, 4, 6 und 12 teilbar. Ein Element kann also die ganze Breite, die Hälfte, ein Drittel, ein Viertel oder ein Sechstel belegen, ohne dass Reste bleiben. Darum nutzen Bootstrap, viele Design-Systeme und Vorlagen in Figma ein 12-Spalten-Raster. Material Design reduziert die Spaltenzahl auf kleinen Bildschirmen.</p>
+
+        <div class="demo">
+          <div class="demo-head"><span class="label">Demo · Viewport-Breite ändern</span><span class="small muted" id="rw-bp" role="status"></span></div>
+          <div class="field"><label for="rw-w">Viewport-Breite <output id="rw-w-o">1280 px</output></label><input type="range" id="rw-w" min="320" max="1440" step="8" value="1280"></div>
+          <div class="lr-rw-frame"><div class="lr-rw" id="rw-stage"></div></div>
+          <dl class="lr-dl" id="rw-vals"></dl>
+        </div>
+
+        <h2>Bausteine eines Web-Rasters</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Breakpoint</th><th>Breite ab</th><th>Spalten</th><th>Gutter</th><th>Rand</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Mobil</strong></td><td>0 px</td><td>4</td><td>16 px</td><td>16 px</td></tr>
+              <tr><td><strong>Tablet</strong></td><td>600 px</td><td>8</td><td>24 px</td><td>32 px</td></tr>
+              <tr><td><strong>Desktop</strong></td><td>1024 px</td><td>12</td><td>24 px</td><td>auto, Inhalt max. 1200 px</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:10px">Beispielwerte, angelehnt an Material Design 3 und gängige Design-Systeme. Jedes Projekt legt eigene Werte fest.</p>
+
+        <h2>Das 8-px-Raster</h2>
+        <p>Für Abstände und Größen nutzen viele Teams ein Basismaß von 8 px: 8, 16, 24, 32, 48, 64 … Für feine Abstände innerhalb von Komponenten ist 4 px erlaubt. Der Vorteil: Weniger Werte, weniger Diskussion, und die Maße skalieren sauber auf Displays mit 1,5- und 2-facher Pixeldichte.</p>
+
+        <h2>Im Code: CSS Grid</h2>
+        <pre class="fg-code" tabindex="0"><code>.layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* mobil */
+  gap: 16px;
+  padding-inline: 16px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+@media (min-width: 600px) {
+  .layout { grid-template-columns: repeat(8, 1fr); gap: 24px; padding-inline: 32px; }
+}
+@media (min-width: 1024px) {
+  .layout { grid-template-columns: repeat(12, 1fr); }
+}
+.hero   { grid-column: 1 / -1; }      /* volle Breite */
+.teaser { grid-column: span 4; }      /* 1 von 3 auf Desktop */</code></pre>
+
+        <h2>Bento-Grid</h2>
+        <p>Ein aktueller Trend sind <strong>Bento-Grids</strong>: Kacheln unterschiedlicher Größe, die wie Fächer einer japanischen Bento-Box ein Rechteck füllen. Auch sie folgen einem modularen Raster. Auf dem Smartphone werden sie meist zu einer einspaltigen Liste, deshalb muss die Reihenfolge der Kacheln auch linear Sinn ergeben.</p>
+        <div class="lr-bento" aria-hidden="true"><span class="a">Hauptfunktion</span><span class="b">Zahl</span><span class="c">Bild</span><span class="d">Zitat</span><span class="e">Aktion</span></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-responsive">Übung 4</a> legen Sie fest, wie viele Spalten Hero und Karten an drei Breakpoints belegen.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 08 BILD IM LAYOUT ================= -->
+    <section class="page" id="p-bild" data-page="bild">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08</span>
+        <h1>Das Bild im Layout</h1>
+        <p class="lead">Bilder werden vor dem Text gesehen. Sie setzen den Ton, wecken Interesse und führen den Blick. Im Layout zählt dabei nicht nur, was ein Bild zeigt, sondern auch wie: welcher Ausschnitt, welches Format, wie groß, in welche Richtung und ob es an den Rand stößt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/bild.jpg" alt="Aufgeschlagenes Magazin: links ein randabfallendes Berglandschaftsfoto, rechts ein Bild einer Hütte und eine schmale Textspalte mit viel Weißraum" loading="lazy" width="1600" height="900"><figcaption>Links ein Bild im Anschnitt, rechts ein Bild im Satzspiegel. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Ausschnitt und Format</h2>
+        <p>Ein Foto ist selten genau so, wie das Layout es braucht. Der <strong>Bildausschnitt</strong> entscheidet über Aussage und Wirkung: Eng geschnitten wirkt ein Motiv nah und emotional, weit geschnitten zeigt es den Zusammenhang. Das <strong>Format</strong> sollte zur Rasterfläche passen, nicht umgekehrt.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Seitenverhältnis</th><th>Wirkung</th><th>Typischer Einsatz</th></tr></thead>
+            <tbody>
+              <tr><td><strong>16 : 9</strong></td><td>weit, filmisch, ruhig</td><td>Website-Hero, Video, Präsentation</td></tr>
+              <tr><td><strong>3 : 2 / 4 : 3</strong></td><td>klassisch fotografisch</td><td>Magazin, Bericht, Galerie</td></tr>
+              <tr><td><strong>1 : 1</strong></td><td>neutral, statisch, konzentriert</td><td>Profilbild, Social-Media-Post, Raster aus Kacheln</td></tr>
+              <tr><td><strong>4 : 5</strong></td><td>hoch, nah, präsent</td><td>Instagram-Feed, Porträt</td></tr>
+              <tr><td><strong>9 : 16</strong></td><td>sehr hoch, bildschirmfüllend mobil</td><td>Story, Reel, mobiles Vollbild</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="demo" style="margin-top:20px">
+          <div class="demo-head">
+            <span class="label">Demo · Ein Bild, verschiedene Rahmen</span>
+            <div class="toggle" role="group" aria-label="Darstellung wählen" id="fit-mode">
+              <button type="button" data-f="cover" aria-pressed="true">Füllen (cover)</button>
+              <button type="button" data-f="contain" aria-pressed="false">Einpassen (contain)</button>
+            </div>
+          </div>
+          <div class="field"><label for="fit-x">Fokuspunkt waagerecht (object-position) <output id="fit-x-o">50 %</output></label><input type="range" id="fit-x" min="0" max="100" value="50"></div>
+          <div class="lr-fit" id="fit-row"></div>
+          <p class="small" id="fit-cap" role="status"></p>
+        </div>
+
+        <h2>Regeln für Bilder im Layout</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Blickrichtung</h3><p class="small">Menschen, Fahrzeuge und Tiere sollen in das Layout hinein blicken oder fahren, nicht hinaus. In Bewegungsrichtung braucht ein Motiv mehr Raum als dahinter.</p></div>
+          <div class="card"><h3>Anschnitt</h3><p class="small">Randabfallende Bilder reichen bis zur Blattkante und wirken großzügig. Im Druck legt man sie 3 mm über das Endformat hinaus an (Beschnittzugabe), damit nach dem Schneiden kein weißer Blitzer bleibt.</p></div>
+          <div class="card"><h3>Größe zeigt Rang</h3><p class="small">Ein großes Bild und mehrere kleine wirken stärker als viele gleich große. Das Leitbild einer Seite sollte klar zu erkennen sein.</p></div>
+          <div class="card"><h3>Kanten im Raster</h3><p class="small">Bildkanten liegen auf Spalten- und Feldgrenzen. Dann stehen Bilder und Text in Beziehung, auch wenn sie unterschiedlich groß sind.</p></div>
+          <div class="card"><h3>Text auf Bild</h3><p class="small">Nur auf ruhigen Bildflächen oder mit Verlauf, Abdunklung oder Fläche dahinter. Der Kontrast muss die WCAG-Werte erreichen (Lernmodul 03, Kapitel 10).</p></div>
+          <div class="card"><h3>Auflösung</h3><p class="small">Druck: etwa 300 ppi in Endgröße. Web: Bilder für hochauflösende Displays in doppelter Pixelbreite liefern, mit <code class="mono">srcset</code> und modernen Formaten wie WebP oder AVIF.</p></div>
+        </div>
+
+        <h2>Bild und Text in Beziehung setzen</h2>
+        <ul class="list">
+          <li><strong>Bildunterschrift</strong> direkt am Bild, in kleinerer Schrift, mit kleinem Abstand. Sie wird oft vor dem Fließtext gelesen.</li>
+          <li><strong>Alternativtext</strong> für alle inhaltlich relevanten Bilder im Web: Er beschreibt, was das Bild in diesem Zusammenhang aussagt.</li>
+          <li><strong>Bildsprache</strong> einheitlich halten: gleiche Lichtstimmung, ähnliche Farbwelt, gleiche Perspektive in einer Serie.</li>
+        </ul>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Üben:</strong> In <a href="#ue-ausschnitt">Übung 5</a> schneiden Sie ein Foto für drei Formate zu und achten auf Drittelregel und Blickrichtung.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 09 KI-GENERIERUNG ================= -->
+    <section class="page" id="p-ki-generierung" data-page="ki-generierung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09</span>
+        <h1>Bilder für das Layout generieren</h1>
+        <p class="lead">Bildgeneratoren liefern in Sekunden Motive, die es nicht gibt oder die zu teuer wären. Für ein Layout reicht ein schönes Bild aber nicht: Es muss in eine bestimmte Rasterfläche passen, Platz für Text lassen und zu den anderen Bildern passen. Wer das Layout zuerst plant, bekommt bessere Bilder.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/ki-generierung.jpg" alt="Gestalter vor einem Monitor mit vier generierten Varianten derselben Küstenlandschaft, daneben ein Skizzenbuch mit Layout-Skizzen" loading="lazy" width="1600" height="900"><figcaption>Vier Varianten, eine Auswahl: Das Layout entscheidet, welche passt. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Erst das Layout, dann das Bild</h2>
+        <ol class="lr-steps">
+          <li><b>Rasterfläche festlegen.</b> Welche Spalten und Felder belegt das Bild? Daraus folgt das Seitenverhältnis, zum Beispiel 16 : 9 für einen Hero über 12 Spalten.</li>
+          <li><b>Textzone markieren.</b> Wo stehen Überschrift und Button? Diese Fläche muss im Bild ruhig und kontrastarm bleiben.</li>
+          <li><b>Motiv positionieren.</b> Das Hauptmotiv auf die Gegenseite der Textzone legen, möglichst auf einen Drittelpunkt, Blickrichtung zum Text.</li>
+          <li><b>Bildsprache definieren.</b> Licht, Farbwelt, Perspektive und Stil so beschreiben, dass eine ganze Serie zusammenpasst.</li>
+          <li><b>Generieren, auswählen, prüfen.</b> Mehrere Varianten erzeugen, im echten Layout testen, auf Fehler prüfen (Hände, Schrift, Perspektive, Details).</li>
+        </ol>
+
+        <h2>Layout-Anforderungen in Prompt-Sprache</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Layout braucht …</th><th>im Prompt</th><th>Hinweis</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Format der Rasterfläche</strong></td><td>Seitenverhältnis als Einstellung, z. B. 16 : 9</td><td>Nicht nur im Text erwähnen: Die meisten Werkzeuge haben ein eigenes Feld dafür.</td></tr>
+              <tr><td><strong>Platz für Text</strong></td><td>„viel ruhiger, leerer Himmel in der linken Bildhälfte“, „negative space on the left“</td><td>Beschreiben, was dort zu sehen sein soll, nicht nur, dass es leer sein soll.</td></tr>
+              <tr><td><strong>Motivposition</strong></td><td>„Person im rechten Bilddrittel, blickt nach links“</td><td>Blick- und Bewegungsrichtung zur Textzone hin.</td></tr>
+              <tr><td><strong>Einheitliche Serie</strong></td><td>gleiche Formulierungen zu Licht, Farbe, Perspektive; Referenzbild oder Stilreferenz</td><td>Prompt-Baustein für die Bildsprache einmal festlegen und wiederverwenden.</td></tr>
+              <tr><td><strong>Keine Schrift im Bild</strong></td><td>„ohne Text, ohne Buchstaben, ohne Logos“</td><td>Schrift gehört ins Layout: lesbar, übersetzbar, barrierefrei, änderbar.</td></tr>
+              <tr><td><strong>Druck oder Retina</strong></td><td>höchste Auflösung wählen, danach hochskalieren</td><td>Für Druck in Endgröße 300 ppi prüfen.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Beispiel: Hero für eine Hochschulseite</h2>
+        <p>Layout: Hero über 12 Spalten, 16 : 9. Überschrift und Button stehen links über den Spalten 1–5.</p>
+        <pre class="lr-pre" tabindex="0">Breites Foto im Format 16:9: Eine Studentin mit Laptop sitzt auf einer
+Treppe vor einem modernen Hochschulgebäude, im rechten Bilddrittel,
+Blick leicht nach links. Die linke Bildhälfte zeigt ruhige, helle
+Betonfläche und unscharfen Hintergrund. Weiches Morgenlicht, warme,
+natürliche Farben, Augenhöhe, 35 mm. Ohne Text, ohne Logos.</pre>
+        <p>Der Prompt folgt dem Aufbau aus Motiv, Aktion, Rahmen und Einstellungen, wie ihn das <a href="../ux-ki/#prompting">MARE-Prinzip im Lernmodul 08</a> beschreibt, und ergänzt die Anforderungen des Layouts.</p>
+
+        <h2>Prüfen, bevor es ins Layout geht</h2>
+        <ul class="list">
+          <li>Passt das Bild in die Rasterfläche, ohne dass Wichtiges angeschnitten wird?</li>
+          <li>Erreicht der Text auf der Textzone ausreichenden Kontrast?</li>
+          <li>Gibt es Bildfehler: Hände, Gesichter, Perspektive, scheinbare Schrift, doppelte Objekte?</li>
+          <li>Passt das Bild zu den anderen Bildern der Seite oder Serie?</li>
+          <li>Ist es als KI-generiert gekennzeichnet, wo das nötig ist (Kapitel 10)?</li>
+        </ul>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 10 KI-BEARBEITUNG ================= -->
+    <section class="page" id="p-ki-bearbeitung" data-page="ki-bearbeitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10</span>
+        <h1>Bilder mit KI bearbeiten</h1>
+        <p class="lead">Oft gibt es schon ein passendes Foto, es hat nur das falsche Format, einen störenden Gegenstand oder zu wenig Auflösung. Generative Bildbearbeitung löst solche Layoutprobleme schnell. Sie erfindet dabei aber immer neue Pixel. Darum gilt: Ergebnis prüfen, Grenzen kennen, transparent bleiben.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/ki-bearbeitung.jpg" alt="Monitor mit Bildbearbeitungsprogramm: ein hochformatiges Seefoto steht in einer breiten Arbeitsfläche, die leeren Flächen links und rechts sind als Schachbrettmuster dargestellt" loading="lazy" width="1600" height="900"><figcaption>Ein Hochformat soll ins Querformat: Die leeren Flächen füllt generatives Erweitern. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die wichtigsten Techniken</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Technik</th><th>Was passiert</th><th>Layoutproblem, das sie löst</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Erweitern (Outpainting)</strong></td><td>Das Bild wird über seine Ränder hinaus fortgesetzt.</td><td>Hochformat soll in ein Querformat, Platz für Text fehlt, Anschnitt braucht Beschnittzugabe.</td></tr>
+              <tr><td><strong>Retusche (Inpainting)</strong></td><td>Ein markierter Bereich wird neu erzeugt oder entfernt.</td><td>Störende Objekte, Kabel, Schilder oder Passanten in der Textzone.</td></tr>
+              <tr><td><strong>Freistellen</strong></td><td>Das Motiv wird vom Hintergrund getrennt.</td><td>Motiv soll über Rasterkanten ragen oder auf einer Farbfläche stehen.</td></tr>
+              <tr><td><strong>Hochskalieren (Upscaling)</strong></td><td>Die Auflösung wird erhöht, Details werden ergänzt.</td><td>Bild ist für Druck oder großes Format zu klein.</td></tr>
+              <tr><td><strong>Licht und Farbe angleichen (Relighting)</strong></td><td>Lichtrichtung und Farbstimmung werden verändert.</td><td>Bilder einer Serie passen nicht zusammen.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Vorher und nachher: aus 4 : 5 wird 16 : 9</h2>
+        <p>Das Porträt unten war für einen Social-Media-Post gedacht. Für einen Website-Hero wurde es mit Magnific auf 16 : 9 erweitert. Ziehen Sie den Regler und prüfen Sie, was die KI ergänzt hat.</p>
+        <div class="demo">
+          <div class="lr-ba" id="ba">
+            <img src="media/outpaint-nachher.jpg" alt="Nachher: Die Studentin steht links im Bild, rechts hat die KI Backsteingebäude, Bäume, Tische und Pflanzkübel ergänzt" width="1312" height="736" loading="lazy">
+            <div class="lr-ba-before" id="ba-before"><img src="media/outpaint-vorher.jpg" alt="" width="725" height="900" loading="lazy"></div>
+            <span class="lr-ba-tag l">Vorher 4 : 5</span><span class="lr-ba-tag r">Nachher 16 : 9</span>
+          </div>
+          <div class="field" style="margin-top:12px"><label for="ba-r">Original einblenden <output id="ba-r-o">0 %</output></label><input type="range" id="ba-r" min="0" max="100" value="0"></div>
+          <label class="check"><input type="checkbox" id="ba-grid"> 12-Spalten-Raster und Textzone einblenden</label>
+          <p class="small" id="ba-cap" role="status"></p>
+        </div>
+        <div class="grid g2">
+          <div class="card"><h3>Was gut funktioniert</h3><p class="small">Licht, Schattenrichtung und Perspektive setzen sich glaubwürdig fort. Die Person bleibt unverändert, weil die Originalpixel erhalten bleiben.</p></div>
+          <div class="card"><h3>Was Sie prüfen müssen</h3><p class="small">Die ergänzte rechte Seite ist unruhig: Fassaden, Tische, Pflanzkübel. Text darauf ist nur mit Abdunklung lesbar (Raster einblenden). Besser wäre ein zweiter Durchgang mit Prompt, zum Beispiel „ruhige, unscharfe Grünfläche“.</p></div>
+        </div>
+
+        <h2>Recht und Kennzeichnung</h2>
+        <ul class="list">
+          <li><strong>Bildrechte am Ausgangsbild:</strong> Bearbeiten Sie nur Bilder, an denen Sie die nötigen Rechte haben. Eine Bearbeitung macht ein fremdes Bild nicht zu Ihrem.</li>
+          <li><strong>Personen:</strong> Gesichter, Körper und Umgebung realer Menschen nicht verfälschen. Für Personenbilder gilt das Recht am eigenen Bild.</li>
+          <li><strong>Kennzeichnung:</strong> Die KI-Verordnung der EU (AI Act, Art. 50) verlangt, dass täuschend echte KI-Inhalte erkennbar sind. Kennzeichnen Sie generierte und stark bearbeitete Bilder in der Bildunterschrift oder im Bildnachweis, so wie in diesem Modul.</li>
+          <li><strong>Herkunftsdaten:</strong> Viele Werkzeuge schreiben Content Credentials (C2PA) in die Datei. Entfernen Sie sie nicht.</li>
+        </ul>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Vertiefung:</strong> Inpainting, Outpainting und Relighting mit eigenen Beispielen, dazu Urheberrecht und Ethik, behandelt das <a href="../ux-ki/#bearbeitung">Lernmodul 08 UX &amp; KI</a>. In <a href="#ue-ki">Übung 6</a> wenden Sie beides auf ein Layout an.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 SATZSPIEGEL ================= -->
+    <section class="page" id="p-ue-satzspiegel" data-page="ue-satzspiegel">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Satzspiegel</span>
+        <h1>Satzspiegel konstruieren</h1>
+        <p class="lead">Stellen Sie die vier Stege einer rechten A4-Seite (210 × 297 mm) so ein, dass zwei klassische Satzspiegel entstehen. Die Diagonalen helfen beim Prüfen: Bei der Neunerteilung liegen zwei Ecken des Satzspiegels genau auf ihnen.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>2 Konstruktionen</span><span><i></i>Toleranz ± 1,5 mm</span></div>
+        <figure class="media media-ex"><img src="media/ue-satzspiegel.jpg" alt="Hände ziehen mit Stahllineal und Bleistift Diagonalen über eine leere Doppelseite" loading="lazy" width="1600" height="900"><figcaption>Konstruieren mit Lineal und Bleistift. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie das Ziel, berechnen Sie die Stege und stellen Sie sie mit den Reglern ein. Erst wenn alle vier Stege stimmen, gilt die Konstruktion als gelöst. Lösen Sie beide.</p></div>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Ziel wählen" id="u1-target">
+              <button type="button" data-t="9" aria-pressed="true">Ziel A · Neunerteilung</button>
+              <button type="button" data-t="12" aria-pressed="false">Ziel B · Zwölferteilung</button>
+            </div>
+            <span class="small muted" id="u1-score" role="status">Gelöst: 0 von 2</span>
+          </div>
+          <div class="lr-two">
+            <div>
+              <div class="field"><label for="u1-in">Bundsteg (innen, links) <output id="u1-in-o"></output></label><input type="range" id="u1-in" min="5" max="60" step="0.5" value="20"></div>
+              <div class="field"><label for="u1-top">Kopfsteg (oben) <output id="u1-top-o"></output></label><input type="range" id="u1-top" min="5" max="80" step="0.5" value="20"></div>
+              <div class="field"><label for="u1-out">Außensteg (rechts) <output id="u1-out-o"></output></label><input type="range" id="u1-out" min="5" max="80" step="0.5" value="20"></div>
+              <div class="field"><label for="u1-bot">Fußsteg (unten) <output id="u1-bot-o"></output></label><input type="range" id="u1-bot" min="5" max="100" step="0.5" value="20"></div>
+              <label class="check"><input type="checkbox" id="u1-diag" checked> Diagonalen einblenden</label>
+              <ul class="fg-checks lr-checks" id="u1-checks" style="margin-top:14px"></ul>
+              <div class="row-btns" style="margin-top:12px"><button class="btn btn-dark" type="button" id="u1-check">Konstruktion prüfen</button><button class="btn" type="button" id="u1-hint">Rechenweg zeigen</button></div>
+            </div>
+            <svg class="lr-page" id="u1-svg" viewBox="0 0 210 297" role="img" aria-label="A4-Seite mit dem eingestellten Satzspiegel"></svg>
+          </div>
+          <div id="u1-fb" role="status"></div>
+        </div>
+        <div class="task"><span class="label">Reflexion</span><p>Wie viel Prozent der Seitenfläche nimmt der Satzspiegel jeweils ein? Für welche Publikation würden Sie welche Teilung wählen?</p></div>
+        <div class="ex-done" data-ex="ue-satzspiegel"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 RASTER RECHNEN ================= -->
+    <section class="page" id="p-ue-raster" data-page="ue-raster">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Spaltenraster</span>
+        <h1>Raster berechnen</h1>
+        <p class="lead">Gestaltungsprogramme rechnen Spaltenbreiten automatisch aus. Wer die Formel kennt, versteht aber, warum ein Raster passt oder nicht, und kann es in CSS übertragen. Drei Aufträge, drei Rechnungen.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>3 Aufgaben</span><span><i></i>Spaltenformel</span></div>
+        <figure class="media media-ex"><img src="media/ue-raster.jpg" alt="Monitor mit einem Layoutprogramm, das eine leere A4-Seite mit magentafarbenen Spalten- und Randhilfslinien zeigt" loading="lazy" width="1600" height="900"><figcaption>Hilfslinien im Layoutprogramm. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Berechnen Sie für jeden Auftrag die gesuchte Größe und tragen Sie sie ein (auf eine Nachkommastelle, Komma oder Punkt). Die Vorschau zeigt das Raster, sobald Ihr Wert stimmt. Alle drei richtig: Übung bestanden.</p>
+          <details class="fg-tip"><summary>Formel einblenden</summary><p class="small">Spaltenbreite = (Satzspiegelbreite − (Spalten − 1) × Abstand) ÷ Spalten. Satzspiegelbreite = Formatbreite − Bundsteg − Außensteg.</p></details>
+        </div>
+        <div class="lr-calc" id="u2-list"></div>
+        <p class="small lr-checks" id="u2-status" role="status" style="margin-top:12px"></p>
+
+        <h2>Raster-Generator</h2>
+        <p>Übertragen Sie Ihr Raster ins Web. Der Generator rechnet ein Druckraster in ein CSS-Grid um.</p>
+        <div class="demo">
+          <div class="lr-two">
+            <div>
+              <div class="field"><label for="g-w">Satzspiegel bzw. Container <output id="g-w-o"></output></label><input type="range" id="g-w" min="320" max="1440" step="8" value="1200"></div>
+              <div class="field"><label for="g-n">Spalten <output id="g-n-o"></output></label><input type="range" id="g-n" min="2" max="16" value="12"></div>
+              <div class="field"><label for="g-g">Gutter <output id="g-g-o"></output></label><input type="range" id="g-g" min="0" max="48" step="4" value="24"></div>
+              <dl class="lr-dl" id="g-vals"></dl>
+            </div>
+            <div class="lr-gen-prev" id="g-prev" aria-hidden="true"></div>
+          </div>
+          <label for="g-css" class="visually-hidden">CSS-Code des Rasters</label>
+          <textarea id="g-css" class="mono small fg-export" readonly style="height:150px;margin-top:14px"></textarea>
+          <div class="row-btns" style="margin-top:10px"><button class="btn" type="button" id="g-copy">CSS kopieren</button></div>
+        </div>
+        <div class="ex-done" data-ex="ue-raster"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 PLATZIEREN ================= -->
+    <section class="page" id="p-ue-platzieren" data-page="ue-platzieren">
+      <div class="wrap">
+        <span class="eyebrow">Übung 3 · Modulares Raster</span>
+        <h1>Plakat aufs Raster setzen</h1>
+        <p class="lead">Ein Plakat für den Tag der offenen Tür der Fakultät. Das Raster hat 6 Spalten und 8 Zeilen. Setzen Sie vier Elemente so, dass alle Regeln erfüllt sind. Es gibt viele richtige Lösungen.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>4 Elemente · 6 Regeln</span><span><i></i>Entwurf wird im Browser gespeichert</span></div>
+        <figure class="media media-ex"><img src="media/ue-platzieren.jpg" alt="Plakatentwurf auf einem Tisch: Foto, schwarzer Balken und graue Textstreifen auf einem gezeichneten Feldraster, Hände schieben das Foto in ein Feld" loading="lazy" width="1600" height="900"><figcaption>Elemente in Rasterfelder schieben. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie ein Element und stellen Sie Startspalte, Breite, Startzeile und Höhe ein. Die Regeln rechts werden sofort geprüft. Mit „Zufällig mischen“ beginnen Sie neu.</p></div>
+        <div class="lr-pl">
+          <div class="card">
+            <div class="chips" role="group" aria-label="Element wählen" id="u3-pick"></div>
+            <div class="lr-pl-ctrl" id="u3-ctrl"></div>
+            <div class="row-btns" style="margin-top:12px"><button class="btn" type="button" id="u3-shuffle">Zufällig mischen</button><button class="btn" type="button" id="u3-sample">Beispiellösung</button></div>
+            <h3 style="margin-top:18px">Regeln</h3>
+            <ul class="fg-checks lr-checks" id="u3-checks"></ul>
+          </div>
+          <div>
+            <div class="lr-poster" id="u3-poster" role="img" aria-label="Plakatentwurf auf einem Raster mit 6 Spalten und 8 Zeilen"></div>
+            <label class="check" style="margin-top:10px"><input type="checkbox" id="u3-guides" checked> Raster einblenden</label>
+            <p class="small lr-checks" id="u3-status" role="status"></p>
+          </div>
+        </div>
+        <div class="task"><span class="label">Reflexion</span><p>Vergleichen Sie Ihre Lösung mit der Beispiellösung. Welche wirkt dynamischer, welche ruhiger, und warum?</p></div>
+        <div class="ex-done" data-ex="ue-platzieren"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 RESPONSIVE ================= -->
+    <section class="page" id="p-ue-responsive" data-page="ue-responsive">
+      <div class="wrap">
+        <span class="eyebrow">Übung 4 · Responsives Raster</span>
+        <h1>Breakpoints planen</h1>
+        <p class="lead">Die Startseite einer Mensa-App hat einen Hero und vier Karten. Legen Sie für Mobil, Tablet und Desktop fest, wie viele Spalten jedes Element belegt.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>3 Breakpoints</span><span><i></i>4 · 8 · 12 Spalten</span></div>
+        <figure class="media media-ex"><img src="media/ue-responsive.jpg" alt="Papier-Wireframes für Desktop, Tablet und Smartphone nebeneinander auf einem Tisch, dazu Smartphone, Tablet und Haftnotizen" loading="lazy" width="1600" height="900"><figcaption>Erst skizzieren, dann umsetzen: drei Breakpoints. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Erfüllen Sie an jedem Breakpoint diese Regeln: Der Hero belegt die volle Breite. Jede Karte ist zwischen 260 und 480 px breit. Die Karten sind gleich breit und füllen ihre Zeilen ohne Lücke.</p></div>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Breakpoint wählen" id="u4-bp"></div>
+            <span class="small muted" id="u4-score" role="status"></span>
+          </div>
+          <div class="lr-two lr-two-wide">
+            <div>
+              <div class="lr-u4-ctrl" id="u4-ctrl"></div>
+              <ul class="fg-checks lr-checks" id="u4-checks" style="margin-top:14px"></ul>
+            </div>
+            <div><div class="lr-u4-frame" id="u4-frame"><div class="lr-u4" id="u4-stage"></div></div><p class="small muted" id="u4-meta" style="margin-top:8px"></p></div>
+          </div>
+        </div>
+        <div class="ex-done" data-ex="ue-responsive"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 AUSSCHNITT ================= -->
+    <section class="page" id="p-ue-ausschnitt" data-page="ue-ausschnitt">
+      <div class="wrap">
+        <span class="eyebrow">Übung 5 · Bild im Layout</span>
+        <h1>Bildausschnitt wählen</h1>
+        <p class="lead">Ein Querformat soll in drei Hoch- und Quadratformate für Social Media. Schneiden Sie es so zu, dass der Radfahrer gut platziert ist und in Fahrtrichtung Raum hat.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>3 Formate</span><span><i></i>Drittelregel · Blickrichtung</span></div>
+        <figure class="media media-ex"><img src="media/ue-ausschnitt.jpg" alt="Kontaktbogen auf einem Leuchttisch mit rot eingezeichneten Bildausschnitten und einer Lupe" loading="lazy" width="1600" height="900"><figcaption>Ausschnitte markieren wie auf dem Kontaktbogen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie ein Format und verschieben und vergrößern Sie den Ausschnitt. Der Radfahrer soll (1) vollständig im Bild sein, (2) nahe einem Drittelpunkt stehen und (3) mehr Raum vor sich als hinter sich haben. Er fährt nach links. Speichern Sie jeden gelungenen Ausschnitt.</p></div>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Format wählen" id="u5-fmt"></div>
+            <span class="small muted" id="u5-score" role="status"></span>
+          </div>
+          <div class="lr-two">
+            <div>
+              <div class="field"><label for="u5-z">Vergrößerung <output id="u5-z-o"></output></label><input type="range" id="u5-z" min="100" max="260" value="100"></div>
+              <div class="field"><label for="u5-x">Ausschnitt waagerecht <output id="u5-x-o"></output></label><input type="range" id="u5-x" min="0" max="100" value="50"></div>
+              <div class="field"><label for="u5-y">Ausschnitt senkrecht <output id="u5-y-o"></output></label><input type="range" id="u5-y" min="0" max="100" value="50"></div>
+              <label class="check"><input type="checkbox" id="u5-thirds" checked> Drittellinien einblenden</label>
+              <ul class="fg-checks lr-checks" id="u5-checks" style="margin-top:14px"></ul>
+              <div class="row-btns" style="margin-top:12px"><button class="btn btn-dark" type="button" id="u5-save">Ausschnitt speichern</button></div>
+            </div>
+            <div class="lr-crop-wrap"><div class="lr-crop" id="u5-crop"><img id="u5-img" src="media/ue-crop-motiv.jpg" alt="Ausschnitt des Fotos: ein Radfahrer in oranger Jacke auf einer langen Brücke über einem Fluss bei Sonnenaufgang" width="1920" height="1080"><svg class="lr-crop-thirds" id="u5-th" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M33.33 0V100M66.67 0V100M0 33.33H100M0 66.67H100"/></svg></div></div>
+          </div>
+          <div class="lr-crop-saved" id="u5-saved"></div>
+          <div id="u5-fb" role="status"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-ausschnitt"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 KI-BILD ================= -->
+    <section class="page" id="p-ue-ki" data-page="ue-ki">
+      <div class="wrap">
+        <span class="eyebrow">Übung 6 · KI im Layout</span>
+        <h1>Ein KI-Bild fürs Layout</h1>
+        <p class="lead">Für die Website des Studiengangs braucht es ein Hero-Bild über 12 Spalten. Überschrift und Button stehen links über den Spalten 1–5. In Teil A bauen Sie den Prompt, in Teil B wählen Sie die passende Bearbeitung für typische Layoutprobleme.</p>
+        <div class="ex-meta"><span><i></i>ca. 20 Minuten</span><span><i></i>Prompt-Baukasten</span><span><i></i>5 Bearbeitungsfälle</span></div>
+        <figure class="media media-ex"><img src="media/ue-ki.jpg" alt="Student am Laptop arbeitet an einem breiten Website-Banner mit Landschaftsfoto und eingeblendetem Spaltenraster, daneben eine Layoutskizze" loading="lazy" width="1600" height="900"><figcaption>Erst das Raster, dann das Bild. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Teil A · Prompt bauen</span><p>Wählen Sie in jeder Zeile den Baustein, der am besten zum Layout passt. Der Prompt entsteht unten. Prüfen Sie, wenn alle Zeilen gewählt sind.</p></div>
+        <div class="lr-pb" id="u6-pb"></div>
+        <label for="u6-prompt" class="visually-hidden">Zusammengesetzter Prompt</label>
+        <textarea id="u6-prompt" class="mono small fg-export" readonly style="height:120px;margin-top:14px"></textarea>
+        <div class="row-btns" style="margin-top:10px"><button class="btn btn-dark" type="button" id="u6-check">Prompt prüfen</button><button class="btn" type="button" id="u6-copy">Prompt kopieren</button></div>
+        <div id="u6-fb" role="status"></div>
+
+        <div class="task" style="margin-top:28px"><span class="label">Teil B · Bearbeitung wählen</span><p>Welche Technik löst das jeweilige Problem am besten? Ab 4 von 5 richtigen Zuordnungen ist Teil B bestanden.</p></div>
+        <div class="fg-kq" id="u6-cases"></div>
+        <div class="row-btns" style="margin-top:14px"><button class="btn btn-dark" type="button" id="u6-bcheck">Zuordnung prüfen</button><button class="btn" type="button" id="u6-breset">Zurücksetzen</button></div>
+        <div id="u6-bfb" role="status"></div>
+        <div class="task"><span class="label">Reflexion</span><p>Generieren Sie den Prompt aus Teil A mit einem Werkzeug Ihrer Wahl. Legen Sie das Bild in ein 12-Spalten-Raster und prüfen Sie Textzone, Kontrast und Bildfehler. Wie kennzeichnen Sie das Bild?</p></div>
+        <div class="ex-done" data-ex="ue-ki"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Fünfzehn Fragen quer durch das Modul. Nach jeder Frage erhalten Sie eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Schreibtisch mit einem Antwortbogen zum Ankreuzen, einem violetten Bleistift, einem karierten Notizbuch und einer Tasse Tee" loading="lazy" width="1600" height="900"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Bibliothek</span>
+        <h1>Literatur und Quellen</h1>
+        <p class="lead">Grundlagenwerke und Standards zu Layout und Raster, chronologisch geordnet. Zur Vertiefung und für Hausarbeiten.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Bibliothekstisch mit einem Bücherstapel und einem aufgeschlagenen Buch mit rasterbasiertem Layout und Schwarzweißfotos" loading="lazy" width="1600" height="900"><figcaption>Grundlagenwerke zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <h2>Bildnachweis</h2>
+        <p class="small">Alle Fotos und das Video in diesem Modul sind mit Magnific (ehemals Freepik) KI-generiert, das Vorher-nachher-Beispiel in Kapitel 10 mit der Funktion „Erweitern“. Alle Raster, Satzspiegel und Diagramme werden im Browser aus exakten Maßen berechnet.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Alte Holz-Karteibox mit bunten Registerreitern, daneben Lupe, Lineal und Geodreieck auf einem Leuchttisch" loading="lazy" width="1600" height="900"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Satzspiegel" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <nav class="az" id="gl-az" aria-label="Alphabet"></nav>
+        </div>
+        <p class="small muted" id="gl-count" role="status"></p>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=20261106a"></script>
+</body>
+</html>

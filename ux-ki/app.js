@@ -295,7 +295,7 @@ const DD = [
   { id: 'discover', label: 'Discover', sub: 'Entdecken', path: 'M0 30 L100 0 L100 60 Z', m: 'Empathie, User Research, Contextual Inquiry', ki: ['Interviews transkribieren und erste Muster finden', 'Fragebögen und Leitfäden entwerfen', 'Persona-Entwürfe aus echten Daten verdichten'], you: 'Gespräche selbst führen. KI-generierte Personas ersetzen nie echte Menschen, sie fassen höchstens zusammen, was Sie erhoben haben.' },
   { id: 'define', label: 'Define', sub: 'Definieren', path: 'M0 0 L100 30 L0 60 Z', m: 'Synthese, Point of View, „How might we …?“', ki: ['Erkenntnisse clustern', 'SWOT-Analysen vorbereiten', 'Problem Statements formulieren lassen und vergleichen'], you: 'Entscheiden, welches Problem gelöst wird. Das ist die wichtigste Entscheidung im ganzen Prozess, und sie bleibt bei Ihnen.' },
   { id: 'develop', label: 'Develop', sub: 'Entwickeln', path: 'M0 30 L100 0 L100 60 Z', m: 'Ideenfindung, Prototyping, Moodboards', ki: ['viele Varianten in kurzer Zeit', 'Wireframes und Screen-Varianten', 'Bildmaterial und Moodboards: Hier setzt Bildgenerierung an'], you: 'Varianten nach Kriterien bewerten, auswählen und weiterentwickeln. Erst wenn das Problem klar ist, lohnt sich das Generieren.' },
-  { id: 'deliver', label: 'Deliver', sub: 'Umsetzen', path: 'M0 0 L100 30 L0 60 Z', m: 'Testing, Iteration, Implementierung', ki: ['Usability-Auffälligkeiten vorab analysieren', 'A/B-Varianten erzeugen', 'Texte und Microcopy überarbeiten', 'Code nach Spezifikation'], you: 'Mit echten Menschen testen und Ergebnisse verantworten. Wie das geht, zeigt das Lernmodul 05.' }
+  { id: 'deliver', label: 'Deliver', sub: 'Umsetzen', path: 'M0 0 L100 30 L0 60 Z', m: 'Testing, Iteration, Implementierung', ki: ['Usability-Auffälligkeiten vorab analysieren', 'A/B-Varianten erzeugen', 'Texte und Microcopy überarbeiten', 'Code nach Spezifikation'], you: 'Mit echten Menschen testen und Ergebnisse verantworten. Wie das geht, zeigt das Lernmodul 06.' }
 ];
 const MF = [
   { id: 'kontext', label: 'Kontext', ki: 'Zielgruppe, Jobs-to-be-done und Nutzungsszenarien ausarbeiten: Wo wird die App genutzt? Wie viel Zeit hat die Person? Welche Eingabe ist realistisch? Welche Emotion dominiert?', check: 'Stimmen die Annahmen mit Ihrer Recherche überein, oder hat die KI Klischees ergänzt?', p: 'Analysiere diese App-Idee entlang des Mobile-Design-Workflows: Kontext, Hauptaufgabe, User Flow, Screen-Typen, Accessibility-Risiken und Testfragen.' },
@@ -692,7 +692,7 @@ function initDoku() {
     const sec = (t) => ({ text: t, bold: true, size: 11.5, rgb: P, space: 10, after: 3, keep: true });
     const row = (l, v) => ({ text: `${l}: ${s(v) || '–'}`, after: 2 });
     const blocks = [
-      { text: 'LERNMODUL 07 · UX & KI · KI-BILD-DOKUMENTATION', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
+      { text: 'LERNMODUL 08 · UX & KI · KI-BILD-DOKUMENTATION', bold: true, size: 8, rgb: '0.8 0.31 0', after: 4 },
       { text: 'KI-Bild-Dokumentation: ' + (s(st.pr) || '…'), bold: true, size: 18, rgb: P, space: 10, after: 6 },
       { rule: true },
       row('Verwendung', st.use), row('Datum', dateDe()), row('Werkzeug', st.tool), row('Modell', st.model), row('KI-Anteil', st.share), row('Nutzungsrechte', st.lic), row('Kennzeichnung', st.label),
@@ -701,7 +701,7 @@ function initDoku() {
       sec('Manuelle Bearbeitung'), { text: s(st.edit) || '–' },
       sec('Prüfung'), ...DK_CHECKS.map(([k, t]) => ({ text: t, box: true, checked: !!st.c[k], after: 3 }))
     ];
-    dl(makePdf(blocks, `Erstellt am ${new Date().toLocaleDateString('de-DE')} · Lernmodul 07 UX & KI · designminb.github.io/lernapps`), 'ki-bild-dokumentation.pdf');
+    dl(makePdf(blocks, `Erstellt am ${new Date().toLocaleDateString('de-DE')} · Lernmodul 08 UX & KI · designminb.github.io/lernapps`), 'ki-bild-dokumentation.pdf');
     toast('Als ki-bild-dokumentation.pdf gespeichert');
   });
 }
