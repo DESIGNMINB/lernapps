@@ -396,7 +396,7 @@ function initThree() {
       if (n > 0) { $('.count', stage).textContent = n; return; }
       clearInterval(timer);
       stage.innerHTML = '<p class="ph">Bild ausgeblendet. Was ist hängen geblieben?</p>';
-      q.innerHTML = `<p style="margin:0 0 10px"><strong>Wo wäre Platz für eine Headline?</strong></p><div class="options">${[['l', 'Links'], ['r', 'Rechts'], ['o', 'Oben'], ['n', 'Nirgends']].map(([k, t], i) => `<button type="button" class="opt" data-k="${k}"><span class="k">${'ABCD'[i]}</span>${t}</button>`).join('')}</div><div id="t3-fb"></div>`;
+      q.innerHTML = `<p style="margin:0 0 10px"><strong>Welche Stimmung ist hängen geblieben?</strong></p><div class="options">${[['l', 'Ruhig und vertrauenswürdig'], ['r', 'Hektisch und laut'], ['o', 'Kühl und technisch'], ['n', 'Dramatisch und düster']].map(([k, t], i) => `<button type="button" class="opt" data-k="${k}"><span class="k">${'ABCD'[i]}</span>${t}</button>`).join('')}</div><div id="t3-fb"></div>`;
       $('.opt', q).focus();
     }, 1000);
   });
@@ -405,7 +405,7 @@ function initThree() {
     const ok = b.dataset.k === 'l';
     for (const x of $$('.opt', q)) { x.disabled = true; if (x.dataset.k === 'l') x.classList.add('right'); }
     if (!ok) b.classList.add('wrong');
-    $('#t3-fb').innerHTML = `<div class="feedback ${ok ? 'ok' : 'bad'}" role="status" style="margin-top:12px"><p><strong>${ok ? 'Richtig.' : 'Links.'}</strong> Die Person sitzt rechts, die linke Hälfte ist ruhig und hell. Wenn das nach drei Sekunden klar ist, funktioniert die Hierarchie. Fragen Sie im Team auch: Welche Stimmung ist hängen geblieben?</p></div>`;
+    $('#t3-fb').innerHTML = `<div class="feedback ${ok ? 'ok' : 'bad'}" role="status" style="margin-top:12px"><p><strong>${ok ? 'So war es gedacht.' : 'Gedacht war: ruhig und vertrauenswürdig.'}</strong> Weiches Tageslicht, warme Töne und eine entspannte Haltung tragen die Wirkung. Kommt die beabsichtigte Stimmung nach drei Sekunden an, funktioniert das Bild. Vergleichen Sie Ihre Antwort im Team: Gehen die Eindrücke auseinander, ist das ein Hinweis auf eine unklare Bildaussage.</p></div>`;
     stage.innerHTML = '<img src="media/p-b.jpg" alt="Eine junge Frau sitzt rechts im Bild am Fenster und schaut lächelnd auf ihr Smartphone, links ist eine ruhige helle Fläche">';
   });
   leaveHooks.push(() => clearInterval(timer));
@@ -533,7 +533,7 @@ const BB_ITEMS = [
 const ER_ITEMS = [
   ['Die kleine Kreideschrift unten links auf der Tafel ergibt keinen Sinn.', true, 'Richtig: Kleinschrift besteht oft aus wortähnlichen, sinnlosen Zeichen.', 33.6, 32.5],
   ['Der Haupttext auf der Tafel enthält Rechtschreibfehler.', false, 'Er ist korrekt, sogar mit Umlauten. Kurze, große Texte gelingen heute meist.'],
-  ['Das rote Leuchtschild hinter dem Milchkännchen zeigt keine lesbaren Buchstaben.', true, 'Richtig: Ungefragte Schilder und Schriftzüge mit Fantasiezeichen sind typisch.', 66.8, 46.7],
+  ['Hinter dem Milchkännchen leuchtet ein rotes Schild, das niemand verlangt hat und dessen Zeichen keinen Sinn ergeben.', true, 'Richtig: Ungefragte Schilder und Schriftzüge mit Fantasiezeichen sind typisch.', 66.8, 46.7],
   ['Die Hand, die das Kännchen hält, hat sechs Finger.', false, 'Die Hand ist anatomisch in Ordnung. Fehler an Händen sind seltener geworden.'],
   ['Der Kellner im Hintergrund trägt nur ein Glas, verlangt waren drei.', true, 'Richtig: Das Bild sieht stimmig aus, setzt den Prompt aber nicht vollständig um. Zählen ist eine Schwäche.', 23.5, 52],
   ['Der Milchstrahl fließt nach oben aus dem Kännchen.', false, 'Der Strahl fällt korrekt in die Tasse.'],
