@@ -87,7 +87,7 @@
 .ki-mare b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; color: #fff; font: 700 16px/1 var(--f-body); margin-bottom: 8px; }
 .ki-mare h3 { margin: 0 0 4px; font-size: 15px; }
 .ki-mare p { margin: 0; font-size: 13px; color: var(--muted); }
-.ki-mare .opt { border-style: dashed; }
+.ki-mare .mare-opt { border-style: dashed; }
 .c-r { background: #4B5563; } .c-m { background: #7A2862; } .c-a { background: #A63F00; } .c-res { background: #1D6B52; } .c-e { background: #3E4C9A; } .c-z { background: #6B5B2E; }
 .ki-builder { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
 .ki-builder label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); margin-bottom: 10px; }
