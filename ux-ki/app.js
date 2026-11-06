@@ -781,7 +781,8 @@ const CREDITS = [
   ['Teekanne, fünf Bearbeitungen', 'Magnific: Ideogram 4.5 Precise Edit, Hintergrund entfernen, Relight, Expand, Upscaler', 'Einstellungen siehe Kapitel 07. Keine manuelle Nachbearbeitung, damit die Fehler sichtbar bleiben.'],
   ['Café-Szene (Übung 4)', 'Magnific, Modus Auto, 3:2', '„Photo in a cozy café: close-up of a barista’s two hands, one holding a metal milk jug and pouring milk into a cappuccino cup … a waiter in the background carries three glasses, behind them a chalkboard with the handwritten German text …“'],
   ['Praxistest A, B, C (Kapitel 05)', 'Magnific, Seedream 5 Pro und Magnific One, 21.10.2026', 'Aus dem Skript „Design und künstliche Intelligenz“, Prompts im Kapitel.'],
-  ['Kapitel-, Übungs- und Kachelbilder', 'Magnific, Modus Auto, 16:9', 'Je ein Prompt pro Bild in englischer Sprache, immer mit „no logos, no readable text“. Ein Durchlauf, Auswahl nach Sichtprüfung, verkleinert mit sips.']
+  ['Kapitel-, Übungs- und Kachelbilder', 'Magnific, Modus Auto, 16:9', 'Je ein Prompt pro Bild in englischer Sprache, immer mit „no logos, no readable text“. Ein Durchlauf, Auswahl nach Sichtprüfung, verkleinert mit sips.'],
+  ['Kapitelbild „Prompting als Briefing“', 'Magnific, Modus Auto, 16:9, zweiter Durchlauf', 'Im ersten Bild fehlte der Gestalterin der Hals, ein typischer Anatomiefehler, der bei der Sichtprüfung übersehen wurde. Neu erzeugt aus seitlicher Perspektive mit dem Zusatz „head, neck and shoulders clearly visible and anatomically correct“.']
 ];
 function initLit() {
   $('#lit').innerHTML = LIT.map(([y, t, by, pub, d]) => `<div class="lit-item"><span class="yr">${y}</span><div><h3>${esc(t)}</h3><div class="by">${esc(by)} · ${esc(pub)}</div><p>${esc(d)}</p></div></div>`).join('');
