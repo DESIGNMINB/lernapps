@@ -479,7 +479,8 @@ function shapeInner(s) {
     case 'rect': return `<rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}"/>`;
     case 'capsule': return `<rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="${Math.min(w, h) / 2}"/>`;
     case 'tri': return `<polygon points="0,${-h / 2} ${w / 2},${h / 2} ${-w / 2},${h / 2}"/>`;
-    case 'half': return `<path d="M${-w / 2} ${h / 2}A${w / 2} ${h} 0 0 1 ${w / 2} ${h / 2}Z"/>`;
+    // Als Kontur bleibt der Halbkreis offen: nur der Bogen, z. B. als Henkel
+    case 'half': return `<path d="M${-w / 2} ${h / 2}A${w / 2} ${h} 0 0 1 ${w / 2} ${h / 2}${s.o ? '' : 'Z'}"/>`;
   }
   return '';
 }
@@ -506,7 +507,7 @@ function shapePath(s) {
     case 'rect': return `M${P(-w, -h)}L${P(w, -h)}L${P(w, h)}L${P(-w, h)}Z`;
     case 'tri': return `M${P(0, -h)}L${P(w, h)}L${P(-w, h)}Z`;
     case 'circle': return `M${P(w, 0)}${q(0, 0, w, h, 0, H)}${q(0, 0, w, h, H, 2 * H)}${q(0, 0, w, h, 2 * H, 3 * H)}${q(0, 0, w, h, 3 * H, 4 * H)}Z`;
-    case 'half': return `M${P(-w, h)}${q(0, h, w, 2 * h, 2 * H, 3 * H)}${q(0, h, w, 2 * h, 3 * H, 4 * H)}Z`;
+    case 'half': return `M${P(-w, h)}${q(0, h, w, 2 * h, 2 * H, 3 * H)}${q(0, h, w, 2 * h, 3 * H, 4 * H)}${s.o ? '' : 'Z'}`;
     case 'capsule': {
       const r = Math.min(w, h);
       return `M${P(-w + r, -h)}L${P(w - r, -h)}${q(w - r, -h + r, r, r, 3 * H, 4 * H)}L${P(w, h - r)}${q(w - r, h - r, r, r, 0, H)}` +
@@ -517,14 +518,16 @@ function shapePath(s) {
 }
 function extent(s) {
   const a = (s.r * Math.PI) / 180, c = Math.abs(Math.cos(a)), n = Math.abs(Math.sin(a));
-  return { ex: (s.w / 2) * c + (s.h / 2) * n, ey: (s.w / 2) * n + (s.h / 2) * c };
+  const o = (s.o || 0) / 2; // Kontur ragt zur Hälfte über die Form hinaus
+  return { ex: (s.w / 2) * c + (s.h / 2) * n + o, ey: (s.w / 2) * n + (s.h / 2) * c + o };
 }
 
 const PK_COLORS = [
   [null, 'Schwarz', '#161412'], ['#64378C', 'IWI-Lila', '#64378C'], ['#DE6A10', 'Orange', '#DE6A10'],
   ['#1E6FD9', 'Blau', '#1E6FD9'], ['#2E9E5B', 'Grün', '#2E9E5B'], ['#D7263D', 'Rot', '#D7263D'], ['#F2B705', 'Gelb', '#F2B705']
 ];
-const shapeStyle = (s) => (s.c && !s.neg ? ` style="--c:${s.c}"` : '');
+const shapeStyle = (s) => { const st = (s.c && !s.neg ? `--c:${s.c};` : '') + (s.o ? `stroke-width:${s.o}` : ''); return st ? ` style="${st}"` : ''; };
+const shapeClass = (s) => 'pk-shape' + (s.neg ? ' neg' : '') + (s.o ? ' outline' : '');
 
 function initBaukasten() {
   const svg = $('#pk-svg');
@@ -577,12 +580,12 @@ function initBaukasten() {
   const find = (id) => shapes.find((s) => s.id === id);
   const save = () => store.set(key(brief), shapes.map(({ id, ...rest }) => rest));
 
-  const markup = () => shapes.map((s) => `<g class="pk-shape${s.neg ? ' neg' : ''}" data-id="${s.id}"${shapeStyle(s)} transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('');
+  const markup = () => shapes.map((s) => `<g class="${shapeClass(s)}" data-id="${s.id}"${shapeStyle(s)} transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('');
 
   function render() {
     $('#pk-shapes').innerHTML = markup();
     const s = find(sel);
-    $('#pk-selection').innerHTML = s ? `<g transform="${shapeTf(s)}"><rect class="pk-sel" x="${-s.w / 2 - .6}" y="${-s.h / 2 - .6}" width="${s.w + 1.2}" height="${s.h + 1.2}" rx=".6"/></g>` : '';
+    $('#pk-selection').innerHTML = s ? `<g transform="${shapeTf(s)}"><rect class="pk-sel" x="${-s.w / 2 - .6 - (s.o || 0) / 2}" y="${-s.h / 2 - .6 - (s.o || 0) / 2}" width="${s.w + 1.2 + (s.o || 0)}" height="${s.h + 1.2 + (s.o || 0)}" rx=".6"/></g>` : '';
     $('#pk-props').hidden = !s;
     $('#pk-noprops').hidden = !!s;
     if (s) {
@@ -590,6 +593,9 @@ function initBaukasten() {
       $('#pk-h').value = s.h; $('#pk-h-o').textContent = s.h;
       $('#pk-r').value = s.r; $('#pk-r-o').textContent = s.r + '°';
       $('#pk-neg').checked = !!s.neg;
+      $('#pk-outline').checked = !!s.o;
+      $('#pk-sw-field').hidden = !s.o;
+      if (s.o) { $('#pk-sw').value = s.o; $('#pk-sw-o').textContent = s.o; }
       const known = PK_COLORS.find(([v]) => v === (s.c || null));
       $('#pk-colors').querySelectorAll('[data-c]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.c === (s.c || ''))));
       const own = $('#pk-c-own'); own.value = s.c || '#161412';
@@ -664,6 +670,9 @@ function initBaukasten() {
   });
   bindRange('#pk-w', 'w'); bindRange('#pk-h', 'h'); bindRange('#pk-r', 'r');
   $('#pk-neg').addEventListener('change', (e) => { const s = find(sel); if (!s) return; s.neg = e.target.checked; commit(); });
+  // Kontur statt Fläche: Strichstärke in Rastereinheiten, Standard 4 wie bei den Keylines
+  $('#pk-outline').addEventListener('change', (e) => { const s = find(sel); if (!s) return; if (e.target.checked) s.o = 4; else delete s.o; commit(); });
+  $('#pk-sw').addEventListener('input', (e) => { const s = find(sel); if (!s || !s.o) return; s.o = +e.target.value; commit(); });
   $('#pk-colors').innerHTML = PK_COLORS.map(([v, name, hex]) => `<button type="button" class="swatch" role="radio" data-c="${v || ''}" style="--sw:${hex}" title="${name}" aria-label="${name}"></button>`).join('')
     + '<label class="swatch swatch-own" role="radio" title="Eigene Farbe" aria-label="Eigene Farbe"><input type="color" id="pk-c-own" value="#161412"></label>';
   const setColor = (c) => { const s = find(sel); if (!s) return; s.c = c || undefined; if (!c) delete s.c; s.neg = false; commit(); };
@@ -680,11 +689,13 @@ function initBaukasten() {
     brief = i; store.set('pk-brief', i); setBrief(); commit(); toast(`Beispiel „${BRIEFS[i][0]}“ geladen`);
   };
   $('#pk-example').addEventListener('click', () => loadExample(brief));
-  $('#pk-gallery').innerHTML = EXAMPLES.map((ex, i) => `<button type="button" data-ex-i="${i}" aria-label="Beispiel ${esc(BRIEFS[i][0])} laden"><svg viewBox="0 0 48 48" aria-hidden="true">${ex.map((s) => `<g class="pk-shape${s.neg ? ' neg' : ''}" transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('')}</svg><span>${esc(BRIEFS[i][0])}</span></button>`).join('');
+  $('#pk-gallery').innerHTML = EXAMPLES.map((ex, i) => `<button type="button" data-ex-i="${i}" aria-label="Beispiel ${esc(BRIEFS[i][0])} laden"><svg viewBox="0 0 48 48" aria-hidden="true">${ex.map((s) => `<g class="${shapeClass(s)}"${shapeStyle(s)} transform="${shapeTf(s)}">${shapeInner(s)}</g>`).join('')}</svg><span>${esc(BRIEFS[i][0])}</span></button>`).join('');
   $('#pk-gallery').addEventListener('click', (e) => { const b = e.target.closest('[data-ex-i]'); if (b) loadExample(+b.dataset.exI); });
   $('#pk-clear').addEventListener('click', () => { shapes = []; sel = null; commit(); });
   $('#pk-copy').addEventListener('click', async () => {
-    const body = shapes.map((s) => `  <path d="${shapePath(s)}" fill="${s.neg ? '#ffffff' : (s.c || '#000000')}"/>`).join('\n');
+    const body = shapes.map((s) => { const col = s.neg ? '#ffffff' : (s.c || '#000000');
+      return s.o ? `  <path d="${shapePath(s)}" fill="none" stroke="${col}" stroke-width="${s.o}" stroke-linecap="round" stroke-linejoin="round"/>`
+        : `  <path d="${shapePath(s)}" fill="${col}"/>`; }).join('\n');
     const code = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="480" height="480">\n  <title>${esc(BRIEFS[brief][0])}</title>\n${body}\n</svg>`;
     const fb = $('#pk-fallback');
     try { await navigator.clipboard.writeText(code); fb.hidden = true; toast('SVG-Code kopiert'); }
