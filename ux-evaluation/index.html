@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css?v=20261106a">
-<link rel="stylesheet" href="ue.css?v=20261106c">
+<link rel="stylesheet" href="ue.css?v=20261106d">
 </head>
 <body>
 <a class="skip" href="#main">Zum Hauptinhalt</a>
@@ -498,6 +498,33 @@
         <h2>User Experience Questionnaire (UEQ)</h2>
         <p>Der UEQ (Laugwitz, Held und Schrepp, 2008) misst mit 26 Gegensatzpaaren wie „langweilig – spannend“ oder „kompliziert – einfach“ sechs Skalen: Attraktivität, Durchschaubarkeit, Effizienz, Steuerbarkeit, Stimulation und Originalität. Damit erfasst er neben der Bedienbarkeit auch, wie anregend eine App wirkt. Fragebogen und Auswertungstabelle gibt es kostenlos auf ueq-online.org, auch auf Deutsch. Für kurze Tests eignet sich die Kurzfassung UEQ-S mit acht Paaren.</p>
 
+        <h3 style="margin-top:28px">Die Kurzfassung UEQ-S</h3>
+        <p>Der UEQ-S besteht aus acht Gegensatzpaaren auf einer Skala von 1 bis 7. Die ersten vier messen die <strong>pragmatische Qualität</strong> (Ist die App effizient und verständlich?), die letzten vier die <strong>hedonische Qualität</strong> (Ist sie anregend und neuartig?).</p>
+        <div class="grid g2">
+          <div class="card soft"><div class="label">Berechnung</div><p style="margin-top:10px">Jede Antwort minus 4 ergibt einen Wert von −3 bis +3.<br>Pragmatisch: Mittelwert der Paare 1–4.<br>Hedonisch: Mittelwert der Paare 5–8.<br>Gesamt: Mittelwert aller acht Paare.</p></div>
+          <div class="card soft"><div class="label">Einordnung</div><p style="margin-top:10px">Über +0,8 gilt als positiv, unter −0,8 als negativ, dazwischen als neutral. Werte über +2 kommen selten vor, weil Menschen extreme Antworten meiden.</p></div>
+        </div>
+
+        <h3 style="margin-top:28px">Beispiel zum Ausfüllen</h3>
+        <p>Lena (P1) hat die CampusMensa-App nach dem Test so bewertet. Rechnen Sie die drei Werte aus und prüfen Sie sie. Übernehmen Sie danach das Beispiel in den UEQ-S-Rechner.</p>
+        <div class="demo">
+          <div class="table-wrap"><table class="ue-sx-table" id="uq-table"></table></div>
+          <div class="ue-sx-sum">
+            <label>Pragmatisch <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="uq-pq" aria-label="Pragmatische Qualität"></label>
+            <label>Hedonisch <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="uq-hq" aria-label="Hedonische Qualität"></label>
+            <label>Gesamt <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="uq-all" aria-label="Gesamtwert"></label>
+          </div>
+          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="uq-check">Rechnung prüfen</button><button class="btn" type="button" id="uq-take">In den UEQ-S-Rechner übernehmen</button><button class="btn" type="button" id="uq-reset">Zurücksetzen</button></div>
+          <div id="uq-fb" style="margin-top:14px"></div>
+        </div>
+
+        <h3 style="margin-top:28px" id="ueq-rechner">Ausprobieren: UEQ-S-Rechner</h3>
+        <p class="small muted">Stellen Sie für jedes Paar einen Wert von 1 bis 7 ein, oder übernehmen Sie oben das Beispiel.</p>
+        <div class="demo">
+          <div id="m-ueq" class="ue-uq-grid"></div>
+          <p class="ue-sus-result" id="m-ueq-out" role="status"></p>
+        </div>
+
         <h2>Welcher Fragebogen wann?</h2>
         <div class="grid g2">
           <div class="card"><h3>SUS</h3><p class="small muted">Schnell, gut vergleichbar, fokussiert auf Bedienbarkeit. Ideal, um Version 1 und Version 2 Ihrer App zu vergleichen.</p></div>
@@ -505,11 +532,11 @@
         </div>
 
         <h2>Vorlagen zum Herunterladen</h2>
-        <p>Diese vier Fragebögen decken einen kompletten Usability-Test ab, in der Reihenfolge des Testablaufs aus Kapitel 08. Ersetzen Sie „[Name Ihrer App]“ und die Platzhalter durch Ihr Projekt, streichen Sie, was Sie nicht brauchen, und drucken Sie pro Testperson einen Satz aus.</p>
+        <p>Die Vorlagen 1 bis 4 decken einen kompletten Usability-Test ab, in der Reihenfolge des Testablaufs aus Kapitel 08. Vorlage 5 (UEQ-S) können Sie statt oder zusätzlich zum SUS einsetzen. Ersetzen Sie „[Name Ihrer App]“ und die Platzhalter durch Ihr Projekt, streichen Sie, was Sie nicht brauchen, und drucken Sie pro Testperson einen Satz aus.</p>
         <div class="dl-card">
-          <div><strong>Fragebogen-Paket</strong><p class="small muted">Alle vier Vorlagen in einer Datei. Die Word-Fassung können Sie für Ihr Projekt bearbeiten.</p></div>
+          <div><strong>Fragebogen-Paket</strong><p class="small muted">Alle fünf Vorlagen in einer Datei. Die Word-Fassung können Sie für Ihr Projekt bearbeiten.</p></div>
           <div class="ue-dl-btns">
-            <a class="btn btn-download" href="downloads/ux-fragebogen-paket.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>PDF <span class="dl-meta">(4 Seiten, 293 KB)</span></a>
+            <a class="btn btn-download" href="downloads/ux-fragebogen-paket.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>PDF <span class="dl-meta">(5 Seiten, 343 KB)</span></a>
             <a class="btn" href="downloads/ux-fragebogen-paket.docx" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Word <span class="dl-meta">(bearbeitbar, 7 KB)</span></a>
           </div>
         </div>
@@ -518,8 +545,9 @@
             <li><a href="downloads/ux-fragebogen-2-nach-aufgabe.pdf" download><span class="ue-dl-t">Vorlage 2 · Nach jeder Aufgabe</span><span class="ue-dl-d">Single Ease Question (SEQ) mit 7 Stufen für bis zu vier Aufgaben, plus Notizfeld.</span><span class="ue-dl-m">PDF · 1 Seite, 149 KB</span></a></li>
             <li><a href="downloads/ux-fragebogen-3-sus.pdf" download><span class="ue-dl-t">Vorlage 3 · System Usability Scale</span><span class="ue-dl-d">Die zehn SUS-Aussagen wie in diesem Modul, mit Auswertungshilfe für das Team.</span><span class="ue-dl-m">PDF · 1 Seite, 164 KB</span></a></li>
             <li><a href="downloads/ux-fragebogen-4-abschluss.pdf" download><span class="ue-dl-t">Vorlage 4 · Abschlussfragen</span><span class="ue-dl-d">Offene Fragen für das Nachgespräch: Was war schwierig, was fehlt, was würden Sie ändern?</span><span class="ue-dl-m">PDF · 1 Seite, 95 KB</span></a></li>
+            <li><a href="downloads/ux-fragebogen-5-ueq-s.pdf" download><span class="ue-dl-t">Vorlage 5 · UEQ-S</span><span class="ue-dl-d">Die acht Gegensatzpaare der UEQ-Kurzfassung mit Auswertungshilfe für pragmatische und hedonische Qualität.</span><span class="ue-dl-m">PDF · 1 Seite, 164 KB</span></a></li>
         </ul>
-        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Und der UEQ?</strong> Den User Experience Questionnaire und seine Kurzfassung UEQ-S bieten die Autoren kostenlos auf Deutsch an, zusammen mit einer Excel-Auswertung: <a href="https://www.ueq-online.org/" target="_blank" rel="noopener">ueq-online.org</a>. Nutzen Sie die Originalfassung, damit Ihre Werte mit den Vergleichsdaten vergleichbar bleiben. Das gilt auch für den SUS: Ändern Sie die Aussagen nicht, ersetzen Sie höchstens „App“ durch den Namen Ihrer App.</p></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Den vollständigen UEQ</strong> mit 26 Paaren und ein Excel-Werkzeug zur Auswertung bieten die Autoren kostenlos auf Deutsch an: <a href="https://www.ueq-online.org/" target="_blank" rel="noopener">ueq-online.org</a>. Dort finden Sie auch Vergleichswerte (Benchmark) und Konfidenzintervalle. Ändern Sie bei UEQ und SUS die Formulierungen nicht, damit Ihre Werte vergleichbar bleiben. Ersetzen Sie höchstens „App“ durch den Namen Ihrer App.</p></div>
         <div class="pager" data-pager></div>
       </div>
     </section>
@@ -752,6 +780,6 @@
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261106c"></script>
+<script src="app.js?v=20261106d"></script>
 </body>
 </html>

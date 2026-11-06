@@ -106,3 +106,18 @@ ol.steps { list-style: none; padding: 0; margin: 0 0 20px; }
 .ue-sx-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 16px; font-weight: 600; }
 .ue-sx-sum label { display: flex; align-items: center; gap: 8px; }
 .ue-sus-result { margin-top: 22px; }
+
+/* ---------- Kapitel 09: UEQ-S-Rechner ---------- */
+.ue-uq-grid { display: grid; gap: 10px; }
+.ue-uq-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 120px 20px; align-items: center; gap: 12px; font-size: 14px; }
+.ue-uq-a { text-align: right; }
+.ue-uq-row input { width: 100%; }
+.ue-uq-row output { font: 600 13px/1 var(--f-mono); }
+@media (max-width: 560px) {
+  .ue-uq-row { grid-template-columns: 1fr 1fr 20px; gap: 4px 10px; }
+  .ue-uq-a { text-align: left; }
+  .ue-uq-b { text-align: right; }
+  .ue-uq-row input { grid-column: 1 / 3; grid-row: 2; }
+  .ue-uq-row output { grid-row: 2; grid-column: 3; }
+  .ue-uq-a { grid-row: 1; grid-column: 1; } .ue-uq-b { grid-row: 1; grid-column: 2; }
+}

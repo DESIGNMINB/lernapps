@@ -665,6 +665,42 @@ function initMessen() {
   out();
 }
 
+/* Kapitel 09: UEQ-S – Beispiel zum Ausfüllen + Rechner */
+const UEQS = [['behindernd', 'unterstützend'], ['kompliziert', 'einfach'], ['ineffizient', 'effizient'], ['verwirrend', 'übersichtlich'],
+  ['langweilig', 'spannend'], ['uninteressant', 'interessant'], ['konventionell', 'originell'], ['herkömmlich', 'neuartig']];
+const UQ_ANSWERS = [6, 5, 6, 7, 4, 5, 3, 4]; // PQ 2,0 · HQ 0,0 · Gesamt 1,0
+const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+const ueqScores = (a) => { const t = a.map((v) => v - 4); return [mean(t.slice(0, 4)), mean(t.slice(4)), mean(t)]; };
+const ueqLabel = (v) => (v > 0.8 ? 'positiv' : v < -0.8 ? 'negativ' : 'neutral');
+const sgn = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + fmt(Math.abs(v), 2);
+function initUeq() {
+  const vals = Array(8).fill(4);
+  const num = (el) => parseFloat(String(el.value).trim().replace('−', '-').replace('+', '').replace(',', '.'));
+  $('#uq-table').innerHTML = `<thead><tr><th>Nr.</th><th>Paar</th><th>Antwort</th><th>Wert (Antwort − 4)</th></tr></thead><tbody>${UQ_ANSWERS.map((v, i) => `<tr><td class="mono">${i + 1}</td><td>${esc(UEQS[i][0])} – ${esc(UEQS[i][1])}<span class="small muted"> · ${i < 4 ? 'pragmatisch' : 'hedonisch'}</span></td><td><strong class="mono">${v}</strong></td><td class="mono">${sgn(v - 4).replace(',00', '')}</td></tr>`).join('')}</tbody>`;
+  const ids = ['#uq-pq', '#uq-hq', '#uq-all'];
+  const saved = store.get('uq', {});
+  ids.forEach((id, i) => { $(id).value = (saved.v || [])[i] || ''; });
+  $('#uq-table').closest('.demo').addEventListener('input', (e) => { if (e.target.matches('input')) { e.target.classList.remove('is-ok', 'is-bad'); store.set('uq', { v: ids.map((id) => $(id).value) }); } });
+  $('#uq-check').addEventListener('click', () => {
+    const sc = ueqScores(UQ_ANSWERS); let right = 0;
+    ids.forEach((id, i) => { const ok = Math.abs(num($(id)) - sc[i]) < 0.051; $(id).classList.toggle('is-ok', ok); $(id).classList.toggle('is-bad', !ok); if (ok) right++; });
+    $('#uq-fb').innerHTML = `<div class="feedback ${right === 3 ? 'ok' : 'bad'}" role="status">${right === 3
+      ? `<p><strong>Richtig: pragmatisch ${sgn(sc[0])}, hedonisch ${sgn(sc[1])}, gesamt ${sgn(sc[2])}.</strong> Lena findet die App gut bedienbar, aber nicht besonders anregend. Ein typisches Ergebnis für eine funktionale App: Wenn sie auch begeistern soll, lohnt es sich, an Bildsprache, Mikrointeraktionen oder Überraschungsmomenten zu arbeiten.</p>`
+      : `<p><strong>${right} von 3 Werten richtig.</strong></p><p>Tipp: Ziehen Sie von jeder Antwort 4 ab. Bilden Sie dann den Mittelwert der Paare 1–4, der Paare 5–8 und aller acht.</p>`}</div>`;
+  });
+  $('#uq-reset').addEventListener('click', () => { ids.forEach((id) => { $(id).value = ''; $(id).classList.remove('is-ok', 'is-bad'); }); $('#uq-fb').innerHTML = ''; store.set('uq', {}); });
+  $('#m-ueq').innerHTML = UEQS.map(([a, b], i) => `<label class="ue-uq-row"><span class="ue-uq-a">${esc(a)}</span><input type="range" min="1" max="7" value="4" data-u="${i}" aria-label="${esc(a)} (1) bis ${esc(b)} (7)"><span class="ue-uq-b">${esc(b)}</span><output>4</output></label>`).join('');
+  const out = () => { const [pq, hq, all] = ueqScores(vals); $('#m-ueq-out').innerHTML = `Pragmatisch ${sgn(pq)} · Hedonisch ${sgn(hq)} · Gesamt ${sgn(all)} <span class="small muted" style="font-weight:500">(${ueqLabel(all)})</span>`; };
+  $('#m-ueq').addEventListener('input', (e) => { const r = e.target.closest('[data-u]'); if (!r) return; vals[+r.dataset.u] = +r.value; r.parentElement.querySelector('output').textContent = r.value; out(); });
+  $('#uq-take').addEventListener('click', () => {
+    UQ_ANSWERS.forEach((v, i) => { vals[i] = v; const r = $(`[data-u="${i}"]`); r.value = v; r.parentElement.querySelector('output').textContent = v; });
+    out();
+    $('#ueq-rechner').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    toast('Beispiel in den UEQ-S-Rechner übernommen');
+  });
+  out();
+}
+
 /* Kapitel 06: Methodenfinder */
 const MF = [
   { q: 'Gibt es schon etwas zum Ausprobieren?', a: [['Nein, nur eine Idee', 'idee'], ['Skizzen oder Wireframes', 'lowfi'], ['Klickbarer Prototyp', 'proto'], ['Fertige App', 'app']] }
@@ -832,7 +868,7 @@ function boot() {
   renderTiles();
   renderPagers();
   initMethoden();
-  initMessen();
+  initMessen(); initUeq();
   initDaumen();
   initHeuristik();
   initAufgaben();
