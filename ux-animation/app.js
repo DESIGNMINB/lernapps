@@ -796,8 +796,8 @@ function initExEasing() {
 
 /* ---------- Übung 2: Dauer einstellen ---------- */
 const ET_ITEMS = [
-  ['Schalter „Benachrichtigungen“ umlegen', 'toggle', 100, 250, 'std', 'Eine kleine Zustandsänderung braucht nur einen Augenblick. Länger wirkt der Schalter schwerfällig.'],
-  ['Snackbar „Gespeichert“ einblenden', 'snack', 150, 300, 'dec', 'Kleine Elemente erscheinen schnell. Der Text muss danach ja noch gelesen werden.'],
+  ['Schalter „Benachrichtigungen“ umlegen', 'toggle', 100, 200, 'std', 'Eine kleine Zustandsänderung braucht nur einen Augenblick. Länger wirkt der Schalter schwerfällig.'],
+  ['Snackbar „Gespeichert“ einblenden', 'snack', 150, 250, 'dec', 'Kleine Elemente erscheinen schnell. Der Text muss danach ja noch gelesen werden.'],
   ['Bottom Sheet mit Filtern öffnen', 'sheet', 250, 400, 'dec', 'Eine mittlere Fläche legt einen längeren Weg zurück und braucht etwas mehr Zeit.'],
   ['Seitenwechsel über den ganzen Screen', 'page', 300, 500, 'std', 'Große Übergänge brauchen am meisten Zeit, sollten aber eine halbe Sekunde kaum überschreiten.'],
   ['Dialog nach „Abbrechen“ schließen', 'dialog', 100, 250, 'acc', 'Was verschwindet, hat seine Aufgabe erfüllt. Ausblenden ist kürzer als Einblenden.']
@@ -947,13 +947,13 @@ const ER_ITEMS = [
 ];
 function initExReduce() {
   const st = store.get('er', {});
-  const render = () => { $('#er-list').innerHTML = ER_ITEMS.map(([t], i) => `<div class="an-ex-item" data-i="${i}"><p style="color:var(--ink)"><b>${i + 1}.</b> ${esc(t)}</p><div class="an-chips-sm" role="radiogroup" aria-label="Entscheidung für Animation ${i + 1}">${ER_OPTS.map(([v, l]) => `<button type="button" class="chip" role="radio" aria-checked="${st[i] === v}" aria-pressed="${st[i] === v}" data-er="${i}" data-v="${v}">${esc(l)}</button>`).join('')}</div><div class="why" hidden></div></div>`).join(''); };
+  const render = () => { $('#er-list').innerHTML = ER_ITEMS.map(([t], i) => `<div class="an-ex-item" data-i="${i}"><p style="color:var(--ink)"><b>${i + 1}.</b> ${esc(t)}</p><div class="an-chips-sm" role="group" aria-label="Entscheidung für Animation ${i + 1}">${ER_OPTS.map(([v, l]) => `<button type="button" class="chip" aria-pressed="${st[i] === v}" data-er="${i}" data-v="${v}">${esc(l)}</button>`).join('')}</div><div class="why" hidden></div></div>`).join(''); };
   render();
   const list = $('#er-list');
   list.addEventListener('click', (e) => {
     const b = e.target.closest('[data-er]'); if (!b) return;
     st[b.dataset.er] = b.dataset.v; store.set('er', st);
-    for (const x of $$(`[data-er="${b.dataset.er}"]`, list)) { const on = x === b; x.setAttribute('aria-pressed', String(on)); x.setAttribute('aria-checked', String(on)); }
+    for (const x of $$(`[data-er="${b.dataset.er}"]`, list)) x.setAttribute('aria-pressed', String(x === b));
   });
   $('#er-check').addEventListener('click', () => {
     let right = 0;

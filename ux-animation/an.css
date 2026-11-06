@@ -98,7 +98,7 @@
 .an-mparts li { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 13.5px; color: var(--muted); }
 .an-mparts li b { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 .an-mparts li.on { border-color: var(--an-cta); background: var(--accent-soft); color: var(--ink); }
-.an-mparts li.on b { color: var(--an-cta); }
+.an-mparts li.on b { color: #A63F00; } /* 5,5 : 1 auf --accent-soft */
 :root[data-theme="dark"] .an-mparts li.on b { color: #FF8A3D; }
 .an-heart { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink); font: 600 14px/1 var(--f-body); cursor: pointer; }
 .an-heart svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; }
