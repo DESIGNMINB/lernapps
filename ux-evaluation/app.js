@@ -628,7 +628,6 @@ function initTestplan() {
 const SX_ANSWERS = [4, 2, 5, 1, 4, 2, 4, 1, 4, 3]; // Summe 32, SUS 80
 const LIKERT = ['', 'stimme gar nicht zu', 'stimme eher nicht zu', 'teils, teils', 'stimme eher zu', 'stimme voll zu'];
 function initMessen() {
-  const vals = Array(10).fill(3);
   const contrib = (i, v) => (i % 2 === 0 ? v - 1 : 5 - v);
   const num = (el) => parseFloat(String(el.value).trim().replace(',', '.'));
   $('#sx-table').innerHTML = `<thead><tr><th>Nr.</th><th>Aussage</th><th>Antwort</th><th>Regel</th><th>Wert</th></tr></thead><tbody>${SX_ANSWERS.map((v, i) => `<tr><td class="mono">${i + 1}</td><td>${esc(SUS_ITEMS[i])}</td><td><strong class="mono">${v}</strong><span class="small muted"> · ${esc(LIKERT[v])}</span></td><td class="mono small">${i % 2 === 0 ? 'Antwort − 1' : '5 − Antwort'}</td><td><input type="text" inputmode="numeric" autocomplete="off" class="ue-num ue-sx-in" data-sx="${i}" aria-label="Umgerechneter Wert für Aussage ${i + 1}"></td></tr>`).join('')}</tbody>`;
@@ -646,23 +645,14 @@ function initMessen() {
     mark($('#sx-sum'), okSum); mark($('#sx-score'), okScore);
     const all = right === 10 && okSum && okScore;
     $('#sx-fb').innerHTML = `<div class="feedback ${all ? 'ok' : 'bad'}" role="status">${all
-      ? `<p><strong>Richtig gerechnet: SUS = ${fmt(score, 1)}.</strong> Das liegt über dem Durchschnitt von etwa 68 und gilt als ${esc(susGrade(score)[0])}. Übernehmen Sie die Antworten in den Rechner und prüfen Sie das Ergebnis.</p>`
+      ? `<p><strong>Richtig gerechnet: SUS = ${fmt(score, 1)}.</strong> Das liegt über dem Durchschnitt von etwa 68 und gilt als ${esc(susGrade(score)[0])}. Übernehmen Sie das Beispiel in die Auswertung und prüfen Sie das Ergebnis.</p>`
       : `<p><strong>${right} von 10 Werten richtig${okSum ? ', Summe stimmt' : ''}${okScore ? ', Score stimmt' : ''}.</strong></p><p>Tipp: Bei ungeraden Aussagen ziehen Sie 1 von der Antwort ab, bei geraden rechnen Sie 5 minus Antwort. Jeder Wert liegt zwischen 0 und 4.</p>`}</div>`;
   });
-  $('#sx-take').addEventListener('click', () => {
-    SX_ANSWERS.forEach((v, i) => { vals[i] = v; const r = $(`[data-m="${i}"]`); r.value = v; r.nextElementSibling.textContent = v; });
-    out();
-    $('#sus-rechner').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    toast('Beispiel in den SUS-Rechner übernommen');
-  });
+  $('#sx-take').addEventListener('click', () => { AT.sus.addExample(); });
   $('#sx-reset').addEventListener('click', () => {
     for (const el of $$('#sx-table input, #sx-sum, #sx-score')) { el.value = ''; el.classList.remove('is-ok', 'is-bad'); }
     $('#sx-fb').innerHTML = ''; store.set('sx', {});
   });
-  $('#m-sus').innerHTML = vals.map((v, i) => `<label class="ue-mini"><span class="mono">F${i + 1}</span><input type="range" min="1" max="5" value="3" data-m="${i}" aria-label="Antwort auf Frage ${i + 1}: ${esc(SUS_ITEMS[i])}"><output>3</output></label>`).join('');
-  const out = () => { const s = susScore(vals); $('#m-sus-out').textContent = `SUS = ${fmt(s, 1)} · ${susGrade(s)[0]}`; };
-  $('#m-sus').addEventListener('input', (e) => { const r = e.target.closest('[data-m]'); if (!r) return; vals[+r.dataset.m] = +r.value; r.nextElementSibling.textContent = r.value; out(); });
-  out();
 }
 
 /* Kapitel 09: UEQ-S – Beispiel zum Ausfüllen + Rechner */
@@ -674,7 +664,6 @@ const ueqScores = (a) => { const t = a.map((v) => v - 4); return [mean(t.slice(0
 const ueqLabel = (v) => (v > 0.8 ? 'positiv' : v < -0.8 ? 'negativ' : 'neutral');
 const sgn = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + fmt(Math.abs(v), 2);
 function initUeq() {
-  const vals = Array(8).fill(4);
   const num = (el) => parseFloat(String(el.value).trim().replace('−', '-').replace('+', '').replace(',', '.'));
   $('#uq-table').innerHTML = `<thead><tr><th>Nr.</th><th>Paar</th><th>Antwort</th><th>Wert (Antwort − 4)</th></tr></thead><tbody>${UQ_ANSWERS.map((v, i) => `<tr><td class="mono">${i + 1}</td><td>${esc(UEQS[i][0])} – ${esc(UEQS[i][1])}<span class="small muted"> · ${i < 4 ? 'pragmatisch' : 'hedonisch'}</span></td><td><strong class="mono">${v}</strong></td><td class="mono">${sgn(v - 4).replace(',00', '')}</td></tr>`).join('')}</tbody>`;
   const ids = ['#uq-pq', '#uq-hq', '#uq-all'];
@@ -689,16 +678,143 @@ function initUeq() {
       : `<p><strong>${right} von 3 Werten richtig.</strong></p><p>Tipp: Ziehen Sie von jeder Antwort 4 ab. Bilden Sie dann den Mittelwert der Paare 1–4, der Paare 5–8 und aller acht.</p>`}</div>`;
   });
   $('#uq-reset').addEventListener('click', () => { ids.forEach((id) => { $(id).value = ''; $(id).classList.remove('is-ok', 'is-bad'); }); $('#uq-fb').innerHTML = ''; store.set('uq', {}); });
-  $('#m-ueq').innerHTML = UEQS.map(([a, b], i) => `<label class="ue-uq-row"><span class="ue-uq-a">${esc(a)}</span><input type="range" min="1" max="7" value="4" data-u="${i}" aria-label="${esc(a)} (1) bis ${esc(b)} (7)"><span class="ue-uq-b">${esc(b)}</span><output>4</output></label>`).join('');
-  const out = () => { const [pq, hq, all] = ueqScores(vals); $('#m-ueq-out').innerHTML = `Pragmatisch ${sgn(pq)} · Hedonisch ${sgn(hq)} · Gesamt ${sgn(all)} <span class="small muted" style="font-weight:500">(${ueqLabel(all)})</span>`; };
-  $('#m-ueq').addEventListener('input', (e) => { const r = e.target.closest('[data-u]'); if (!r) return; vals[+r.dataset.u] = +r.value; r.parentElement.querySelector('output').textContent = r.value; out(); });
-  $('#uq-take').addEventListener('click', () => {
-    UQ_ANSWERS.forEach((v, i) => { vals[i] = v; const r = $(`[data-u="${i}"]`); r.value = v; r.parentElement.querySelector('output').textContent = v; });
-    out();
-    $('#ueq-rechner').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    toast('Beispiel in den UEQ-S-Rechner übernommen');
+  $('#uq-take').addEventListener('click', () => { AT.ueq.addExample(); });
+}
+
+/* Kapitel 09: Auswertungswerkzeug für eigene Testdaten (mehrere Personen, zwei Runden, CSV) */
+const median = (a) => { const b = a.slice().sort((x, y) => x - y), m = b.length >> 1; return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2; };
+const AT = {};
+function evalTool(root, cfg) {
+  const n = cfg.items;
+  let rows = store.get(cfg.key, null);
+  if (!Array.isArray(rows) || !rows.length) rows = [1, 2, 3, 4, 5].map((i) => ({ p: 'P' + i, r: 1, v: Array(n).fill('') }));
+  const save = () => store.set(cfg.key, rows);
+  const parse = (x) => { const v = Number(String(x).trim().replace(',', '.')); return String(x).trim() !== '' && Number.isInteger(v) && v >= cfg.min && v <= cfg.max ? v : null; };
+  const complete = (row) => row.v.every((x) => parse(x) !== null);
+  const scoresOf = (row) => cfg.scores(row.v.map(parse));
+  root.innerHTML = `
+    <div class="row-btns ue-at-bar">
+      <button class="btn btn-sm" type="button" data-at="add">+ Person</button>
+      <button class="btn btn-sm" type="button" data-at="paste" aria-expanded="false">Aus Tabelle einfügen</button>
+      <button class="btn btn-sm" type="button" data-at="csv">CSV herunterladen</button>
+      <button class="btn btn-sm" type="button" data-at="clear">Alles löschen</button>
+    </div>
+    <div class="ue-at-paste" hidden>
+      <label class="label" for="${cfg.key}-ta">Eine Zeile pro Person: optional ein Kürzel, dann ${n} Antworten (${cfg.min}–${cfg.max}), getrennt durch Tab, Semikolon, Komma oder Leerzeichen.</label>
+      <textarea id="${cfg.key}-ta" rows="5" placeholder="${esc(cfg.pasteExample)}"></textarea>
+      <div class="row-btns"><button class="btn btn-primary btn-sm" type="button" data-at="import">Zeilen übernehmen</button><label class="ue-at-r"><input type="checkbox" data-at="r2"> als Runde 2</label></div>
+    </div>
+    <div class="ue-at-wrap"><table class="ue-at-table"><thead><tr><th scope="col">Person</th><th scope="col">Runde</th>${Array.from({ length: n }, (_, i) => `<th scope="col" title="${esc(cfg.itemTitles[i])}">${cfg.itemShort(i)}</th>`).join('')}${cfg.scoreNames.map((h) => `<th scope="col" class="ue-at-sc">${esc(h)}</th>`).join('')}<th><span class="sr-only">Entfernen</span></th></tr></thead><tbody></tbody></table></div>
+    <div class="ue-at-out" role="status" aria-live="polite"></div>`;
+  const tbody = $('tbody', root), outEl = $('.ue-at-out', root);
+  const scoreCells = (row) => complete(row) ? scoresOf(row).map((v) => `<td class="ue-at-sc mono">${cfg.fmt(v)}</td>`).join('') : cfg.scoreNames.map(() => '<td class="ue-at-sc small muted">–</td>').join('');
+  const renderRows = () => {
+    tbody.innerHTML = rows.map((row, r) => `<tr data-row="${r}"><td><input type="text" class="ue-at-name" value="${esc(row.p)}" data-f="p" aria-label="Kürzel Person ${r + 1}"></td><td><select data-f="r" aria-label="Testrunde ${esc(row.p)}"><option value="1"${row.r === 1 ? ' selected' : ''}>1</option><option value="2"${row.r === 2 ? ' selected' : ''}>2</option></select></td>${row.v.map((x, i) => `<td><input type="text" inputmode="numeric" maxlength="1" class="ue-at-in${String(x).trim() !== '' && parse(x) === null ? ' is-bad' : ''}" value="${esc(x)}" data-i="${i}" aria-label="${esc(row.p)}, ${esc(cfg.itemTitles[i])}"></td>`).join('')}${scoreCells(row)}<td><button type="button" class="ue-at-del" data-at="del" aria-label="${esc(row.p)} entfernen">×</button></td></tr>`).join('');
+  };
+  const stats = (vals) => ({ n: vals.length, m: mean(vals), md: median(vals), lo: Math.min(...vals), hi: Math.max(...vals) });
+  const renderOut = () => {
+    const done = rows.filter(complete), open = rows.filter((r) => !complete(r) && r.v.some((x) => String(x).trim() !== ''));
+    if (!done.length) { outEl.innerHTML = `<p class="small muted">Noch keine vollständige Zeile. Sobald alle ${n} Antworten einer Person eingetragen sind, erscheinen hier die Ergebnisse.</p>`; return; }
+    const rounds = [1, 2].map((rd) => done.filter((r) => r.r === rd)).filter((g) => g.length);
+    const k = cfg.main;
+    const card = (g) => {
+      const rd = g[0].r, st = cfg.scoreNames.map((_, j) => stats(g.map((r) => scoresOf(r)[j])));
+      const main = st[k];
+      return `<div class="card soft ue-at-card"><div class="label">Runde ${rd} · ${main.n} ${main.n === 1 ? 'Person' : 'Personen'}</div>
+        <p class="ue-at-big">${esc(cfg.scoreNames[k])}: ${cfg.fmt(main.m)}</p>
+        <p class="small">${esc(cfg.grade(main.m))}</p>
+        <ul class="ue-at-st">${cfg.scoreNames.map((h, j) => `<li><strong>${esc(h)}</strong> Mittelwert ${cfg.fmt(st[j].m)} · Median ${cfg.fmt(st[j].md)} · Spanne ${cfg.fmt(st[j].lo)} bis ${cfg.fmt(st[j].hi)}</li>`).join('')}</ul></div>`;
+    };
+    let html = `<div class="grid g2">${rounds.map(card).join('')}</div>`;
+    const notes = [];
+    for (const g of rounds) {
+      const vals = g.map((r) => scoresOf(r)[k]), md = median(vals);
+      for (const r of g) { const v = scoresOf(r)[k]; if (g.length >= 3 && Math.abs(v - md) >= cfg.outlier) notes.push(`<strong>${esc(r.p)}</strong> (Runde ${r.r}) weicht mit ${cfg.fmt(v)} stark vom Median ${cfg.fmt(md)} ab. Schauen Sie in Ihre Notizen und fragen Sie, wenn möglich, nach.`); }
+    }
+    if (rounds.length === 2) {
+      const d = mean(rounds[1].map((r) => scoresOf(r)[k])) - mean(rounds[0].map((r) => scoresOf(r)[k]));
+      notes.unshift(`Von Runde 1 zu Runde 2 hat sich der Mittelwert um <strong>${d >= 0 ? '+' : '−'}${cfg.fmt(Math.abs(d))}</strong> verändert. Bei so wenigen Personen ist das eine Tendenz, kein statistischer Beleg.`);
+    }
+    for (const g of rounds) if (g.length < 5) notes.push(`Runde ${g[0].r} hat erst ${g.length} ${g.length === 1 ? 'Person' : 'Personen'}. Die Werte sind noch sehr unsicher, planen Sie mindestens fünf je Runde.`);
+    if (open.length) notes.push(`${open.length} ${open.length === 1 ? 'Zeile ist unvollständig oder enthält' : 'Zeilen sind unvollständig oder enthalten'} ungültige Werte (erlaubt: ganze Zahlen ${cfg.min}–${cfg.max}) und ${open.length === 1 ? 'wird' : 'werden'} nicht mitgezählt.`);
+    if (notes.length) html += `<ul class="ue-at-notes">${notes.map((x) => `<li>${x}</li>`).join('')}</ul>`;
+    outEl.innerHTML = html;
+  };
+  const refreshRow = (tr) => { const row = rows[+tr.dataset.row]; const cells = $$('.ue-at-sc', tr); const tmp = document.createElement('tbody'); tmp.innerHTML = `<tr>${scoreCells(row)}</tr>`; $$('td', tmp).forEach((td, i) => { cells[i].replaceWith(td); }); };
+  const render = () => { renderRows(); renderOut(); };
+  root.addEventListener('input', (e) => {
+    const t = e.target, tr = t.closest('tr[data-row]'); if (!tr) return;
+    const row = rows[+tr.dataset.row];
+    if (t.dataset.f === 'p') row.p = t.value;
+    if (t.dataset.f === 'r') row.r = +t.value;
+    if (t.dataset.i !== undefined) {
+      row.v[+t.dataset.i] = t.value;
+      t.classList.toggle('is-bad', t.value.trim() !== '' && parse(t.value) === null);
+      if (parse(t.value) !== null) { const next = $(`[data-i="${+t.dataset.i + 1}"]`, tr); if (next) next.focus(); }
+    }
+    save(); refreshRow(tr); renderOut();
   });
-  out();
+  root.addEventListener('change', (e) => { if (e.target.dataset.f === 'r') { rows[+e.target.closest('tr').dataset.row].r = +e.target.value; save(); renderOut(); } });
+  root.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-at]'); if (!b) return;
+    const act = b.dataset.at;
+    if (act === 'add') { rows.push({ p: 'P' + (rows.length + 1), r: rows.length ? rows[rows.length - 1].r : 1, v: Array(n).fill('') }); save(); render(); $$('.ue-at-name', root).pop().focus(); }
+    if (act === 'del') { rows.splice(+b.closest('tr').dataset.row, 1); save(); render(); }
+    if (act === 'clear') { if (!confirm('Alle eingetragenen Antworten löschen?')) return; rows = [1, 2, 3, 4, 5].map((i) => ({ p: 'P' + i, r: 1, v: Array(n).fill('') })); save(); render(); }
+    if (act === 'paste') { const box = $('.ue-at-paste', root); box.hidden = !box.hidden; b.setAttribute('aria-expanded', String(!box.hidden)); if (!box.hidden) $('textarea', box).focus(); }
+    if (act === 'import') {
+      const ta = $('textarea', root), r2 = $('[data-at="r2"]', root).checked ? 2 : 1;
+      let added = 0, skipped = 0;
+      const fresh = ta.value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean).map((line) => {
+        const parts = line.split(/[\t;, ]+/).filter(Boolean);
+        const name = parts.length && parse(parts[0]) === null && !/^\d/.test(parts[0]) ? parts.shift() : '';
+        const nums = parts.map(parse);
+        if (nums.length !== n || nums.some((x) => x === null)) { skipped++; return null; }
+        added++; return { p: name || 'P' + (rows.filter(complete).length + added), r: r2, v: nums.map(String) };
+      }).filter(Boolean);
+      rows = rows.filter((r) => r.v.some((x) => String(x).trim() !== '')).concat(fresh);
+      if (!rows.length) rows = [{ p: 'P1', r: 1, v: Array(n).fill('') }];
+      save(); render(); ta.value = '';
+      toast(`${added} ${added === 1 ? 'Zeile' : 'Zeilen'} übernommen${skipped ? `, ${skipped} übersprungen (Kopfzeile oder falsche Anzahl)` : ''}`);
+    }
+    if (act === 'csv') {
+      const head = ['Person', 'Runde', ...Array.from({ length: n }, (_, i) => cfg.itemShort(i)), ...cfg.scoreNames];
+      const lines = rows.filter(complete).map((r) => [r.p, r.r, ...r.v.map(parse), ...scoresOf(r).map((v) => fmt(v, 2))].join(';'));
+      if (!lines.length) { toast('Noch keine vollständige Zeile zum Exportieren'); return; }
+      const blob = new Blob(['﻿' + [head.join(';'), ...lines].join('\r\n')], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = cfg.csv; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      toast(`Auswertung als ${cfg.csv} gespeichert`);
+    }
+  });
+  render();
+  return {
+    addExample() {
+      const ex = { p: cfg.example.p, r: 1, v: cfg.example.v.map(String) };
+      const empty = rows.findIndex((r) => r.v.every((x) => String(x).trim() === ''));
+      if (empty >= 0) rows[empty] = ex; else rows.push(ex);
+      save(); render();
+      root.closest('.demo').previousElementSibling.previousElementSibling.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      toast('Beispiel in die Auswertung übernommen');
+    }
+  };
+}
+function initAuswertung() {
+  AT.sus = evalTool($('#at-sus'), {
+    key: 'at-sus', items: 10, min: 1, max: 5, main: 0, outlier: 20, csv: 'sus-auswertung.csv',
+    itemShort: (i) => 'F' + (i + 1), itemTitles: SUS_ITEMS.map((q, i) => `Frage ${i + 1}: ${q}`),
+    scoreNames: ['SUS'], scores: (a) => [susScore(a)], fmt: (v) => fmt(v, 1),
+    grade: (m) => `${susGrade(m)[0]} · Durchschnitt aller Studien etwa 68`,
+    pasteExample: 'P1\t4\t2\t4\t1\t4\t2\t5\t2\t4\t1\nP2;3;3;4;2;3;3;4;3;3;2',
+    example: { p: 'Jonas (Beispiel)', v: SX_ANSWERS }
+  });
+  AT.ueq = evalTool($('#at-ueq'), {
+    key: 'at-ueq', items: 8, min: 1, max: 7, main: 2, outlier: 1.5, csv: 'ueq-s-auswertung.csv',
+    itemShort: (i) => 'U' + (i + 1), itemTitles: UEQS.map(([a, b], i) => `Paar ${i + 1}: ${a} – ${b}`),
+    scoreNames: ['Pragmatisch', 'Hedonisch', 'Gesamt'], scores: (a) => ueqScores(a), fmt: (v) => sgn(v),
+    grade: (m) => `Gesamteindruck ${ueqLabel(m)} (über +0,8 positiv, unter −0,8 negativ)`,
+    pasteExample: 'P1\t6\t5\t6\t7\t4\t5\t3\t4\nP2;5;5;6;6;5;6;4;5',
+    example: { p: 'Lena (Beispiel)', v: UQ_ANSWERS }
+  });
 }
 
 /* Kapitel 06: Methodenfinder */
@@ -868,7 +984,7 @@ function boot() {
   renderTiles();
   renderPagers();
   initMethoden();
-  initMessen(); initUeq();
+  initMessen(); initUeq(); initAuswertung();
   initDaumen();
   initHeuristik();
   initAufgaben();

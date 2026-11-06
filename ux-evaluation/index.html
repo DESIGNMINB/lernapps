@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="styles.css?v=20261106a">
-<link rel="stylesheet" href="ue.css?v=20261106d">
+<link rel="stylesheet" href="ue.css?v=20261106e">
 </head>
 <body>
 <a class="skip" href="#main">Zum Hauptinhalt</a>
@@ -476,7 +476,7 @@
           <div class="card soft"><div class="label">Einordnung</div><p style="margin-top:10px">Etwa 68 ist Durchschnitt (Sauro). Nach Bangor u. a. (2009) gelten Werte um 71 als „gut“, ab etwa 85 als „ausgezeichnet“. Der Score ist kein Prozentwert.</p></div>
         </div>
         <h3 style="margin-top:28px">Beispiel zum Ausfüllen</h3>
-        <p>Jonas (P2) hat nach dem Test der CampusMensa-App den Fragebogen so ausgefüllt. Rechnen Sie jede Antwort in einen Wert von 0 bis 4 um, bilden Sie die Summe und daraus den SUS-Score. Übernehmen Sie danach die Antworten in den SUS-Rechner und vergleichen Sie.</p>
+        <p>Jonas (P2) hat nach dem Test der CampusMensa-App den Fragebogen so ausgefüllt. Rechnen Sie jede Antwort in einen Wert von 0 bis 4 um, bilden Sie die Summe und daraus den SUS-Score. Übernehmen Sie danach das Beispiel in die Auswertung weiter unten und vergleichen Sie.</p>
         <div class="demo">
           <div class="table-wrap"><table class="ue-sx-table" id="sx-table"></table></div>
           <div class="ue-sx-sum">
@@ -484,16 +484,13 @@
             <span aria-hidden="true">× 2,5 =</span>
             <label>SUS-Score <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="sx-score" aria-label="SUS-Score"></label>
           </div>
-          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="sx-check">Rechnung prüfen</button><button class="btn" type="button" id="sx-take">In den SUS-Rechner übernehmen</button><button class="btn" type="button" id="sx-reset">Zurücksetzen</button></div>
+          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="sx-check">Rechnung prüfen</button><button class="btn" type="button" id="sx-take">In die Auswertung übernehmen</button><button class="btn" type="button" id="sx-reset">Zurücksetzen</button></div>
           <div id="sx-fb" style="margin-top:14px"></div>
         </div>
 
-        <h3 style="margin-top:28px" id="sus-rechner">Ausprobieren: SUS-Rechner</h3>
-        <p class="small muted">Stellen Sie für jede Aussage eine Antwort von 1 bis 5 ein, oder übernehmen Sie oben das Beispiel.</p>
-        <div class="demo">
-          <div id="m-sus" class="ue-mini-grid"></div>
-          <p class="ue-sus-result" id="m-sus-out" role="status"></p>
-        </div>
+        <h3 style="margin-top:28px" id="sus-rechner">Ihre Testdaten auswerten: SUS</h3>
+        <p>Tragen Sie hier die Fragebögen Ihres eigenen Tests ein, eine Zeile pro Person. Sie können die Antworten auch aus Excel oder Numbers kopieren und einfügen. Das Werkzeug berechnet die Scores, den Mittelwert und den Median, vergleicht zwei Testrunden und markiert auffällige Werte. Die Daten bleiben nur in Ihrem Browser.</p>
+        <div class="demo"><div id="at-sus" class="ue-at"></div></div>
 
         <h2>User Experience Questionnaire (UEQ)</h2>
         <p>Der UEQ (Laugwitz, Held und Schrepp, 2008) misst mit 26 Gegensatzpaaren wie „langweilig – spannend“ oder „kompliziert – einfach“ sechs Skalen: Attraktivität, Durchschaubarkeit, Effizienz, Steuerbarkeit, Stimulation und Originalität. Damit erfasst er neben der Bedienbarkeit auch, wie anregend eine App wirkt. Fragebogen und Auswertungstabelle gibt es kostenlos auf ueq-online.org, auch auf Deutsch. Für kurze Tests eignet sich die Kurzfassung UEQ-S mit acht Paaren.</p>
@@ -506,7 +503,7 @@
         </div>
 
         <h3 style="margin-top:28px">Beispiel zum Ausfüllen</h3>
-        <p>Lena (P1) hat die CampusMensa-App nach dem Test so bewertet. Rechnen Sie die drei Werte aus und prüfen Sie sie. Übernehmen Sie danach das Beispiel in den UEQ-S-Rechner.</p>
+        <p>Lena (P1) hat die CampusMensa-App nach dem Test so bewertet. Rechnen Sie die drei Werte aus und prüfen Sie sie. Übernehmen Sie danach das Beispiel in die Auswertung weiter unten.</p>
         <div class="demo">
           <div class="table-wrap"><table class="ue-sx-table" id="uq-table"></table></div>
           <div class="ue-sx-sum">
@@ -514,16 +511,13 @@
             <label>Hedonisch <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="uq-hq" aria-label="Hedonische Qualität"></label>
             <label>Gesamt <input type="text" inputmode="decimal" autocomplete="off" class="ue-num" id="uq-all" aria-label="Gesamtwert"></label>
           </div>
-          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="uq-check">Rechnung prüfen</button><button class="btn" type="button" id="uq-take">In den UEQ-S-Rechner übernehmen</button><button class="btn" type="button" id="uq-reset">Zurücksetzen</button></div>
+          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="uq-check">Rechnung prüfen</button><button class="btn" type="button" id="uq-take">In die Auswertung übernehmen</button><button class="btn" type="button" id="uq-reset">Zurücksetzen</button></div>
           <div id="uq-fb" style="margin-top:14px"></div>
         </div>
 
-        <h3 style="margin-top:28px" id="ueq-rechner">Ausprobieren: UEQ-S-Rechner</h3>
-        <p class="small muted">Stellen Sie für jedes Paar einen Wert von 1 bis 7 ein, oder übernehmen Sie oben das Beispiel.</p>
-        <div class="demo">
-          <div id="m-ueq" class="ue-uq-grid"></div>
-          <p class="ue-sus-result" id="m-ueq-out" role="status"></p>
-        </div>
+        <h3 style="margin-top:28px" id="ueq-rechner">Ihre Testdaten auswerten: UEQ-S</h3>
+        <p>Wie beim SUS: eine Zeile pro Person, Antworten von 1 bis 7 in der Reihenfolge des Fragebogens. Für Benchmark-Vergleiche und Konfidenzintervalle nutzen Sie zusätzlich das Excel-Werkzeug von ueq-online.org.</p>
+        <div class="demo"><div id="at-ueq" class="ue-at"></div></div>
 
         <h2>Welcher Fragebogen wann?</h2>
         <div class="grid g2">
@@ -780,6 +774,6 @@
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261106d"></script>
+<script src="app.js?v=20261106e"></script>
 </body>
 </html>
