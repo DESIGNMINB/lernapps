@@ -126,7 +126,11 @@ function show(id, focus = false) {
 function route(e) {
   const id = decodeURIComponent(location.hash.slice(1));
   if (!id) { show('home', !!e); return; }
-  if (!show(id, !!e) && !$('.page.active')) show('home');
+  if (show(id, !!e)) return;
+  // Sprungziel innerhalb eines Kapitels, z. B. #peer-test
+  const t = document.getElementById(id), pg = t && t.closest('.page');
+  if (pg) { show(pg.dataset.page); t.setAttribute('tabindex', '-1'); requestAnimationFrame(() => { t.scrollIntoView({ block: 'start' }); t.focus({ preventScroll: true }); }); return; }
+  if (!$('.page.active')) show('home');
 }
 
 /* ================================================================
