@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="utf-8">
+<script src="../theme.js?v=5"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+<title>UX & Animation Lernmodul</title>
+<meta name="description" content="Interaktives Lernmodul UX und Animation für Studierende der Medieninformatik: Zweck, Timing, Easing, Mikrointeraktionen, Übergänge, Barrierefreiheit und Umsetzung – Prof. Dipl. Des. T. Hinz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261106a">
+<link rel="stylesheet" href="an.css?v=20261106a">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="home-back" href="../" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <a class="brand" href="#home">
+      <span class="brand-mark">AN</span>
+      <span class="brand-name">Lernmodul<small>06 · UX &amp; Animation</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <button type="button" class="dark-toggle" data-theme-toggle aria-pressed="false">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span class="dark-toggle-label">Dunkelmodus</span>
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>UX-Animation v1.0</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px" aria-hidden="true">AN</span>
+      <span class="t">UX &amp; Animation</span>
+    </div>
+
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home" style="--mod:#47307F">
+      <div class="wrap-wide">
+        <div class="home-hero" style="--mod:#47307F">
+          <div>
+            <div class="mod-chip" aria-hidden="true">AN</div>
+            <p class="hero-eyebrow">Lernmodul 06 · Studiengang Medieninformatik</p>
+            <h1>UX &amp; Animation</h1>
+            <p class="hero-lead">Bewegung ist Teil der Oberfläche. Gut gemacht zeigt sie, was gerade passiert, woher ein Element kommt und ob eine Eingabe angekommen ist. Schlecht gemacht kostet sie Zeit, lenkt ab oder macht Menschen sogar schwindelig. Dieses Modul zeigt, wie Sie Animation in Apps und Websites gezielt einsetzen: mit Timing, Easing, Mikrointeraktionen, Übergängen, Rücksicht auf reduzierte Bewegung und sauberer Übergabe an die Entwicklung. Alle Beispiele können Sie direkt ausprobieren und verändern.</p>
+            <div class="hero-actions">
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="btn" href="#easing">Zum Easing-Editor</a>
+              </div>
+              <a class="btn btn-download" href="downloads/ux-animation-zusammenfassung.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Zusammenfassung als PDF <span class="dl-meta" id="dl-meta">(2 Seiten, 216 KB)</span></a>
+            </div>
+            <p class="hero-meta"><span><b>10</b> Kapitel</span><span><b>6</b> Übungen</span><span><b>15</b> Testfragen</span></p>
+          </div>
+          <figure class="hero-media an-hero-media">
+            <video id="hero-video" muted playsinline loop preload="metadata" poster="media/einleitung.jpg" width="1280" height="720" aria-label="Kurzes Video: Zwei Studierende schauen sich lächelnd eine Animation auf einem Smartphone an"><source src="media/hero.mp4" type="video/mp4"></video>
+            <button type="button" class="an-vid-btn" id="hero-video-btn" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Video abspielen</span></button>
+          </figure>
+        </div>
+        <p class="an-rm-note" data-rm-note hidden><strong>Reduzierte Bewegung ist auf Ihrem Gerät eingeschaltet.</strong> Das Video bleibt stehen, und alle Beispiele laufen nur, wenn Sie sie selbst starten.</p>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Grundlagen &amp; Gestaltung</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Zuordnen · Timen · Zerlegen · Spezifizieren</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Lernmodul 06 · UX &amp; Animation · Fotos und Videos KI-generiert mit Magnific, alle Beispiel-Apps sind fiktiv. Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 01 · Einleitung</span>
+        <h1>Warum sich Oberflächen bewegen</h1>
+        <p class="lead">Auf dem Bildschirm verschwindet nichts einfach so und taucht nichts aus dem Nichts auf, jedenfalls nicht in einer guten App. Bewegung verbindet zwei Zustände und erklärt, was dazwischen passiert ist. Damit ist Animation ein Werkzeug der User Experience und kein Schmuck.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Zwei Studierende schauen sich an einem hellen Schreibtisch lächelnd eine Animation auf einem Smartphone an, im Hintergrund ein Laptop mit Zeitleiste" loading="lazy" width="1600" height="900"><figcaption>Animation entsteht im Zusammenspiel von Gestaltung und Technik. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Ausprobieren: Mit und ohne Bewegung</h2>
+        <p>Fügen Sie der Einkaufsliste einen Eintrag hinzu und löschen Sie einen. Schalten Sie dann die Animation ab und wiederholen Sie es. Achten Sie darauf, ob Sie noch erkennen, <em>was</em> sich verändert hat.</p>
+        <div class="demo">
+          <div class="demo-head">
+            <div class="toggle" role="group" aria-label="Animation"><button type="button" aria-pressed="true" data-intro-anim="1">Mit Animation</button><button type="button" aria-pressed="false" data-intro-anim="0">Ohne Animation</button></div>
+            <button type="button" class="btn btn-primary btn-sm" id="intro-add">+ Eintrag hinzufügen</button>
+          </div>
+          <div class="an-phone an-phone-sm"><div class="an-screen"><div class="an-appbar">Einkaufsliste</div><ul class="an-list" id="intro-list" aria-live="polite"></ul></div></div>
+          <p class="small muted" style="margin-top:12px">Tippen Sie auf das × neben einem Eintrag, um ihn zu löschen.</p>
+        </div>
+        <p>Ohne Animation springt die Liste. Das Auge muss neu suchen, was dazugekommen oder verschwunden ist. Mit Animation sieht man es: Der neue Eintrag schiebt die anderen sanft nach unten, der gelöschte fällt weg und die Lücke schließt sich. Das ist der Kern dieses Moduls.</p>
+
+        <h2>Begriffe</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>UI-Animation</h3><p>Jede zeitliche Veränderung einer Oberfläche: Position, Größe, Farbe, Deckkraft oder Form ändern sich über eine bestimmte <strong>Dauer</strong> mit einem bestimmten <strong>Verlauf</strong> (Easing).</p></div>
+          <div class="card key"><h3>Motion Design</h3><p>Die Gestaltungsdisziplin dahinter: Sie legt fest, <em>was</em> sich wann, wie schnell und warum bewegt, und sorgt dafür, dass alle Bewegungen einer App zusammenpassen.</p></div>
+          <div class="card key"><h3>Mikrointeraktion</h3><p>Ein kleiner, abgeschlossener Moment mit einer einzigen Aufgabe: einen Schalter umlegen, etwas merken, eine Liste aktualisieren (Kapitel 06).</p></div>
+          <div class="card key"><h3>Übergang (Transition)</h3><p>Die Bewegung zwischen zwei Zuständen oder Screens, zum Beispiel von der Liste in die Detailansicht (Kapitel 07).</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Zum Nachlesen:</strong> Grundbegriffe wie Usability, Heuristiken und die Laws of UX finden Sie im <a href="../ux-grundlagen/">Lernmodul 04 · UX-Grundlagen</a>. Wie Sie Ihre Animationen mit echten Menschen testen, zeigt das <a href="../ux-evaluation/">Lernmodul 05 · UX &amp; Evaluation</a>.</p></div>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>für jede Animation begründen, welche Aufgabe sie für die Nutzenden erfüllt,</li>
+          <li>die klassischen Animationsprinzipien auf Bedienoberflächen übertragen,</li>
+          <li>Dauer und Easing passend zu Größe, Weg und Richtung einer Bewegung wählen,</li>
+          <li>Mikrointeraktionen mit dem Modell nach Dan Saffer entwerfen und beschreiben,</li>
+          <li>Übergänge zwischen Screens räumlich schlüssig und gestaffelt gestalten,</li>
+          <li>Wartezeiten mit Fortschrittsanzeigen und Skeleton Screens kürzer wirken lassen,</li>
+          <li>Bewegung barrierefrei gestalten und „reduzierte Bewegung“ berücksichtigen,</li>
+          <li>Animationen performant umsetzen und als Spezifikation an die Entwicklung übergeben.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen und spielen</div><p style="margin-top:10px">Jedes Kapitel hat Beispiele, die Sie starten und verändern können. Ändern Sie Werte ruhig, bis es „falsch“ aussieht. So lernen Sie die Grenzen kennen.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen vom Easing-Zuordnen bis zum Reduced-Motion-Check. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Anwenden</div><p style="margin-top:10px">In Übung 6 schreiben Sie eine Motion-Spezifikation für Ihr eigenes Projekt und laden sie als PDF oder Markdown herunter.</p></div>
+        </div>
+        <p class="an-rm-note" data-rm-note hidden><strong>Hinweis:</strong> Ihr Gerät meldet „reduzierte Bewegung“. Die Beispiele starten deshalb nie von selbst, sondern nur auf Ihren Klick. Sie sind für das Verständnis dieses Moduls notwendig.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 02 ZWECK ================= -->
+    <section class="page" id="p-zweck" data-page="zweck">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02</span>
+        <h1>Wozu Animation?</h1>
+        <p class="lead">Jede Bewegung in einer Oberfläche braucht einen Grund. Die gute Nachricht: Es gibt nur eine Handvoll Gründe. Wenn Sie keinen davon nennen können, lassen Sie die Animation weg.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/zweck.jpg" alt="Ein Finger tippt auf einen Smartphone-Bildschirm, vom Berührungspunkt breitet sich ein heller Kreis aus" loading="lazy" width="1600" height="900"><figcaption>Rückmeldung in Millisekunden: Die App zeigt, dass der Tipp angekommen ist. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Sechs Aufgaben von Bewegung</h2>
+        <p>Starten Sie die Beispiele einzeln. Jedes zeigt eine Aufgabe, die Animation in einer Oberfläche übernehmen kann.</p>
+        <div class="an-purpose" id="d-zweck"></div>
+
+        <h2>Die Kontrollfrage</h2>
+        <div class="card dark key"><p style="font-size:18px;margin:0">„Würde jemand etwas vermissen oder sich schlechter zurechtfinden, wenn diese Animation fehlt?“</p><p class="muted" style="margin-top:10px">Lautet die Antwort „nein“, ist die Animation Dekoration. Dekoration ist nicht verboten, aber sie muss kurz sein, darf nichts verzögern und muss sich abschalten lassen.</p></div>
+
+        <h2>Wann Sie nicht animieren sollten</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Bei häufigen Aktionen</h3><p class="small muted">Was Menschen hundertmal am Tag tun, etwa eine Mail archivieren, muss sofort reagieren. Eine schöne Animation nervt beim zehnten Mal.</p></div>
+          <div class="card"><h3>Wenn sie Inhalte zurückhält</h3><p class="small muted">Eine Intro-Animation, nach der erst der Inhalt erscheint, ist reine Wartezeit. Inhalte sollten sofort nutzbar sein, Bewegung läuft daneben.</p></div>
+          <div class="card"><h3>In Dauerschleife</h3><p class="small muted">Was sich ständig bewegt, zieht ständig Aufmerksamkeit ab, gerade von Menschen mit Konzentrationsschwierigkeiten. Und es verbraucht Akku.</p></div>
+          <div class="card"><h3>Bei Texteingaben</h3><p class="small muted">Während jemand tippt, sollte sich nichts in der Nähe des Eingabefelds bewegen außer der Rückmeldung zur Eingabe selbst.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 03 PRINZIPIEN ================= -->
+    <section class="page" id="p-prinzipien" data-page="prinzipien">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03</span>
+        <h1>Animationsprinzipien</h1>
+        <p class="lead">1981 beschrieben die Disney-Animatoren Frank Thomas und Ollie Johnston in „The Illusion of Life“ zwölf Prinzipien, mit denen gezeichnete Figuren lebendig wirken. Viele davon gelten auch für Buttons, Karten und Screens, weil unser Gehirn Bewegung immer mit der Physik der echten Welt vergleicht.</p>
+        <hr class="rule">
+        <figure class="media an-video-fig">
+          <video controls muted playsinline loop preload="none" poster="media/prinzipien.jpg" width="1280" height="720"><source src="media/prinzipien.mp4" type="video/mp4">Ihr Browser kann dieses Video nicht abspielen.</video>
+          <figcaption>Daumenkino auf dem Leuchttisch: Ein Ball springt Bild für Bild. Video ohne Ton, KI-generiert mit Magnific.</figcaption>
+        </figure>
+
+        <h2>Ausprobieren: Ein Ball mit und ohne Prinzipien</h2>
+        <p>Der Ball springt von links nach rechts. Schalten Sie die Prinzipien einzeln zu und vergleichen Sie. Mit allen Prinzipien wirkt der Ball schwer und lebendig, ohne sie wie ein Diagramm.</p>
+        <div class="demo">
+          <fieldset class="an-checks" id="ball-opts">
+            <legend class="label">Prinzipien</legend>
+            <label><input type="checkbox" value="slow" checked> Beschleunigen und Abbremsen</label>
+            <label><input type="checkbox" value="arc" checked> Bögen</label>
+            <label><input type="checkbox" value="squash"> Stauchen und Strecken</label>
+            <label><input type="checkbox" value="antic"> Vorbereitung</label>
+            <label><input type="checkbox" value="follow"> Nachschwingen</label>
+          </fieldset>
+          <div class="an-stage an-ball-stage" id="ball-stage" aria-hidden="true"><div class="an-floor"></div><div class="an-ball" id="ball"></div></div>
+          <div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" id="ball-play">Abspielen</button><button type="button" class="btn" id="ball-all">Alle Prinzipien an</button><button type="button" class="btn" id="ball-none">Alle aus</button></div>
+        </div>
+
+        <h2>Die zwölf Prinzipien im Interface</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Prinzip</th><th>Bedeutung</th><th>Im Interface</th><th>Relevanz</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Stauchen und Strecken</strong><br><span class="small muted">Squash and Stretch</span></td><td>Ein Körper verformt sich beim Aufprall und bei schneller Bewegung, das Volumen bleibt gleich.</td><td>Elastischer Button beim Drücken, Gummiband-Effekt am Listenende.</td><td>mittel</td></tr>
+            <tr><td><strong>Vorbereitung</strong><br><span class="small muted">Anticipation</span></td><td>Vor einer Bewegung holt die Figur kurz aus.</td><td>Ein Element zieht sich leicht zusammen, bevor es wegfliegt. Hinweis auf eine Wischgeste.</td><td>mittel</td></tr>
+            <tr><td><strong>Inszenierung</strong><br><span class="small muted">Staging</span></td><td>Eine Handlung zur Zeit, klar erkennbar inszeniert.</td><td>Beim Dialog wird der Hintergrund abgedunkelt, nur das Wichtige bewegt sich.</td><td>hoch</td></tr>
+            <tr><td><strong>Durchanimieren und Schlüsselposen</strong><br><span class="small muted">Straight Ahead and Pose to Pose</span></td><td>Bild für Bild zeichnen oder Schlüsselposen festlegen und dazwischen ergänzen.</td><td>In UI-Tools fast immer Schlüsselposen: Start- und Endzustand plus Übergang.</td><td>mittel</td></tr>
+            <tr><td><strong>Nachschwingen und Überlappen</strong><br><span class="small muted">Follow Through and Overlapping Action</span></td><td>Teile einer Figur kommen nicht gleichzeitig zum Stehen.</td><td>Leichtes Nachfedern, gestaffelt einlaufende Listenelemente (Kapitel 07).</td><td>hoch</td></tr>
+            <tr><td><strong>Beschleunigen und Abbremsen</strong><br><span class="small muted">Slow In and Slow Out</span></td><td>Bewegungen beginnen und enden langsamer.</td><td>Easing: das wichtigste Prinzip überhaupt (Kapitel 05).</td><td>sehr hoch</td></tr>
+            <tr><td><strong>Bögen</strong><br><span class="small muted">Arcs</span></td><td>Natürliche Bewegungen verlaufen auf Bögen statt auf Geraden.</td><td>Ein Artikel fliegt im Bogen in den Warenkorb.</td><td>mittel</td></tr>
+            <tr><td><strong>Nebenbewegung</strong><br><span class="small muted">Secondary Action</span></td><td>Eine kleinere Bewegung unterstützt die Hauptbewegung.</td><td>Das Pfeil-Icon dreht sich, während sich ein Bereich aufklappt.</td><td>mittel</td></tr>
+            <tr><td><strong>Timing</strong></td><td>Die Zahl der Bilder bestimmt Gewicht, Stimmung und Charakter.</td><td>Dauer in Millisekunden (Kapitel 04).</td><td>sehr hoch</td></tr>
+            <tr><td><strong>Übertreibung</strong><br><span class="small muted">Exaggeration</span></td><td>Bewegung wird überzeichnet, damit sie deutlich wird.</td><td>Ein Passwortfeld schüttelt sich bei falscher Eingabe. Sparsam einsetzen.</td><td>gering</td></tr>
+            <tr><td><strong>Räumliches Zeichnen</strong><br><span class="small muted">Solid Drawing</span></td><td>Figuren haben Volumen, Gewicht und Perspektive.</td><td>Ein schlüssiges Ebenenmodell: Was oben liegt, wirft Schatten und bewegt sich über anderem.</td><td>mittel</td></tr>
+            <tr><td><strong>Ausstrahlung</strong><br><span class="small muted">Appeal</span></td><td>Die Figur ist angenehm anzusehen und hat Charakter.</td><td>Eine eigene Motion-Persönlichkeit, passend zur Marke: ruhig, verspielt, präzise.</td><td>mittel</td></tr>
+          </tbody>
+        </table></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p>Schon 1993 haben Bay-Wei Chang und David Ungar gezeigt, dass sich diese Prinzipien auf Benutzungsoberflächen übertragen lassen. Ihr Argument: Wenn Objekte sich glaubwürdig bewegen, verstehen Menschen leichter, was sie sind und wo sie hingehören.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 04 TIMING ================= -->
+    <section class="page" id="p-timing" data-page="timing">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04</span>
+        <h1>Timing und Dauer</h1>
+        <p class="lead">Zu schnell, und niemand sieht, was passiert ist. Zu langsam, und die App fühlt sich zäh an. Die meisten Interface-Animationen liegen zwischen 100 und 500 Millisekunden. Wo genau, hängt von Größe, Weg und Bedeutung der Bewegung ab.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/timing.jpg" alt="Analoge Stoppuhr auf einem hellen Schreibtisch neben einem Laptop mit Animations-Zeitleiste" loading="lazy" width="1600" height="900"><figcaption>Millisekunden entscheiden, ob sich eine App flink oder träge anfühlt. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Drei Zeitgrenzen der Wahrnehmung</h2>
+        <p>Jakob Nielsen hat 1993 drei Grenzen für Antwortzeiten zusammengefasst. Sie helfen auch bei Animationen:</p>
+        <div class="grid g3">
+          <div class="card"><div class="label">0,1 Sekunden</div><h3 style="margin-top:8px">Unmittelbar</h3><p class="small muted">Bis hier wirkt eine Reaktion wie direkte Manipulation. Rückmeldung auf einen Tipp sollte in dieser Zeit beginnen.</p></div>
+          <div class="card"><div class="label">1 Sekunde</div><h3 style="margin-top:8px">Gedankenfluss</h3><p class="small muted">Die Person merkt die Verzögerung, bleibt aber bei der Sache. Keine Animation sollte die Bedienung länger blockieren.</p></div>
+          <div class="card"><div class="label">10 Sekunden</div><h3 style="margin-top:8px">Aufmerksamkeit</h3><p class="small muted">Danach wenden sich Menschen ab. Längere Vorgänge brauchen eine Fortschrittsanzeige (Kapitel 08).</p></div>
+        </div>
+
+        <h2>Ausprobieren: Drei Dauern im Vergleich</h2>
+        <p>Dieselbe Karte, derselbe Weg, dreimal unterschiedlich lang. Stellen Sie in der vierten Bahn Ihre eigene Dauer ein.</p>
+        <div class="demo">
+          <div class="an-race" id="race"></div>
+          <div class="an-slider-row"><label for="race-dur">Ihre Dauer</label><input type="range" id="race-dur" min="0" max="1500" step="25" value="450"><output id="race-out" class="mono">450 ms</output></div>
+          <div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" id="race-play">Alle starten</button></div>
+        </div>
+
+        <h2>Richtwerte</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Art der Bewegung</th><th>Beispiel</th><th>Dauer</th></tr></thead>
+          <tbody>
+            <tr><td>Rückmeldung, kleine Zustandsänderung</td><td>Button drücken, Schalter, Häkchen</td><td class="mono">100–200 ms</td></tr>
+            <tr><td>Kleines Element erscheint oder verschwindet</td><td>Tooltip, Snackbar, Menü</td><td class="mono">150–250 ms</td></tr>
+            <tr><td>Mittlere Fläche bewegt sich</td><td>Bottom Sheet, Akkordeon, Dialog</td><td class="mono">250–400 ms</td></tr>
+            <tr><td>Großer Übergang über den ganzen Screen</td><td>Seitenwechsel, Karte wird zur Detailansicht</td><td class="mono">300–500 ms</td></tr>
+          </tbody>
+        </table></div>
+        <div class="grid g2">
+          <div class="card key"><h3>Weg und Größe</h3><p>Je größer die Fläche und je länger der Weg, desto mehr Zeit braucht die Bewegung, damit sie nicht ruckartig wirkt. Auf dem Tablet dürfen Übergänge darum etwas länger sein als auf dem Smartphone, auf der Smartwatch kürzer.</p></div>
+          <div class="card key"><h3>Rein langsamer als raus</h3><p>Was erscheint, braucht Zeit, um wahrgenommen zu werden. Was verschwindet, hat seine Aufgabe erfüllt: Ausblenden darf kürzer sein als Einblenden, oft um ein Viertel bis ein Drittel.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Design-Tokens statt Einzelwerte:</strong> Material Design 3 legt Dauern als Stufen fest: <span class="mono">short</span> (50–200 ms), <span class="mono">medium</span> (250–400 ms), <span class="mono">long</span> (450–600 ms) und <span class="mono">extra-long</span> (700–1000 ms). Wer Stufen statt beliebiger Zahlen verwendet, bekommt eine App, deren Bewegungen zusammenpassen.</p></div>
+
+        <h2>Bilder pro Sekunde</h2>
+        <p>Ein Display mit 60 Hz zeigt alle 16,7 Millisekunden ein neues Bild, eines mit 120 Hz alle 8,3 Millisekunden. Eine Animation von 200 ms besteht auf einem 60-Hz-Display also aus nur 12 Bildern. Fällt eines aus, weil der Browser zu beschäftigt ist, sieht man ein Ruckeln. Wie Sie das vermeiden, zeigt Kapitel 10.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 05 EASING ================= -->
+    <section class="page" id="p-easing" data-page="easing">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05</span>
+        <h1>Easing und Federn</h1>
+        <p class="lead">Nichts in der echten Welt startet sofort mit voller Geschwindigkeit und stoppt schlagartig. Easing beschreibt, wie sich die Geschwindigkeit während einer Animation verändert. Es entscheidet mehr über das Gefühl einer Bewegung als die Dauer.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/easing.jpg" alt="Tablet mit einer orangefarbenen S-Kurve auf einem Raster, eine Hand zieht mit einem Stift an einem Anfasser" loading="lazy" width="1600" height="900"><figcaption>Eine Easing-Kurve zeigt den Fortschritt über die Zeit. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die vier Grundformen</h2>
+        <div class="grid g2 an-ease-cards" id="ease-cards"></div>
+        <div class="card dark key"><p style="margin:0"><strong>Faustregel:</strong> Was hereinkommt, bremst ab (<span class="mono">ease-out</span>). Was hinausgeht, beschleunigt (<span class="mono">ease-in</span>). Was sich innerhalb des Screens bewegt, macht beides (<span class="mono">ease-in-out</span>). Linear bleibt für Dinge ohne Masse: Fortschrittsbalken, Drehungen eines Ladesymbols, Farbverläufe.</p></div>
+
+        <h2>Ausprobieren: Der Kurven-Editor</h2>
+        <p>Eine Kurve <span class="mono">cubic-bezier(x1, y1, x2, y2)</span> verläuft immer von (0, 0) nach (1, 1). Die waagerechte Achse ist die Zeit, die senkrechte der Fortschritt. Ziehen Sie die beiden Anfasser oder geben Sie Werte ein. Werte für y über 1 oder unter 0 erzeugen ein Überschwingen.</p>
+        <div class="demo">
+          <div class="an-bez">
+            <div>
+              <svg id="bez-svg" class="an-bez-svg" viewBox="-20 -60 340 420" role="img" aria-label="Diagramm der Easing-Kurve mit zwei verschiebbaren Anfassern"></svg>
+            </div>
+            <div>
+              <div class="chips" id="bez-presets" role="group" aria-label="Vorlagen"></div>
+              <div class="an-bez-in">
+                <label>x1 <input type="number" step="0.01" min="0" max="1" id="bz-x1"></label>
+                <label>y1 <input type="number" step="0.01" min="-1" max="2" id="bz-y1"></label>
+                <label>x2 <input type="number" step="0.01" min="0" max="1" id="bz-x2"></label>
+                <label>y2 <input type="number" step="0.01" min="-1" max="2" id="bz-y2"></label>
+              </div>
+              <div class="an-slider-row"><label for="bez-dur">Dauer</label><input type="range" id="bez-dur" min="100" max="2000" step="50" value="600"><output id="bez-dur-out" class="mono">600 ms</output></div>
+              <div class="an-track" aria-hidden="true"><div class="an-dot" id="bez-dot"></div></div>
+              <div class="an-track" aria-hidden="true"><div class="an-dot an-dot-lin" id="bez-lin"></div></div>
+              <p class="small muted" style="margin:6px 0 0">Oben Ihre Kurve, unten zum Vergleich linear.</p>
+              <code class="an-code" id="bez-code"></code>
+              <div class="row-btns" style="margin-top:12px"><button type="button" class="btn btn-primary" id="bez-play">Abspielen</button><button type="button" class="btn" id="bez-copy">CSS kopieren</button></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Easing in Design-Systemen</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Werte</th><th>Einsatz</th></tr></thead>
+          <tbody>
+            <tr><td>CSS <span class="mono">ease</span></td><td class="mono">0.25, 0.1, 0.25, 1</td><td>Voreinstellung im Browser, wenn nichts angegeben ist</td></tr>
+            <tr><td>CSS <span class="mono">ease-in-out</span></td><td class="mono">0.42, 0, 0.58, 1</td><td>Symmetrisch, wirkt oft etwas träge</td></tr>
+            <tr><td>Material 3 Standard</td><td class="mono">0.2, 0, 0, 1</td><td>Die meisten Bewegungen innerhalb eines Screens</td></tr>
+            <tr><td>Material 3 Emphasized Decelerate</td><td class="mono">0.05, 0.7, 0.1, 1</td><td>Betonte Elemente, die hereinkommen</td></tr>
+            <tr><td>Material 3 Emphasized Accelerate</td><td class="mono">0.3, 0, 0.8, 0.15</td><td>Betonte Elemente, die hinausgehen</td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted">Material Design 3 beschreibt die betonte Kurve eigentlich als zusammengesetzten Pfad. Die Werte oben sind die gängigen Annäherungen für CSS. Neuere Versionen von Material setzen zunehmend auf Federn.</p>
+
+        <h2>Federn statt Kurven</h2>
+        <p>Eine Feder (Spring) beschreibt Bewegung physikalisch mit <strong>Steifigkeit</strong>, <strong>Dämpfung</strong> und <strong>Masse</strong>. Die Dauer ergibt sich daraus von selbst. Der große Vorteil: Eine Feder lässt sich mitten in der Bewegung umlenken und übernimmt dabei die aktuelle Geschwindigkeit. Wird ein Bottom Sheet beim Schließen wieder angefasst, springt es nicht, sondern folgt dem Finger. SwiftUI und Jetpack Compose verwenden darum standardmäßig Federn.</p>
+        <div class="demo">
+          <div class="an-spring">
+            <div>
+              <div class="an-slider-row"><label for="sp-k">Steifigkeit</label><input type="range" id="sp-k" min="50" max="600" step="10" value="200"><output id="sp-k-out" class="mono">200</output></div>
+              <div class="an-slider-row"><label for="sp-d">Dämpfung</label><input type="range" id="sp-d" min="2" max="40" step="1" value="12"><output id="sp-d-out" class="mono">12</output></div>
+              <div class="an-slider-row"><label for="sp-m">Masse</label><input type="range" id="sp-m" min="0.5" max="4" step="0.1" value="1"><output id="sp-m-out" class="mono">1,0</output></div>
+              <p class="small" id="sp-info" role="status"></p>
+              <div class="row-btns"><button type="button" class="btn btn-primary" id="sp-play">Abspielen</button><button type="button" class="btn" id="sp-copy">CSS linear() kopieren</button></div>
+            </div>
+            <div>
+              <svg id="sp-svg" class="an-sp-svg" viewBox="0 0 300 180" role="img" aria-label="Verlauf der Federbewegung über die Zeit"></svg>
+              <div class="an-track" aria-hidden="true"><div class="an-dot" id="sp-dot"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p>In CSS gibt es keine echten Federn. Mit der Funktion <span class="mono">linear()</span>, die alle aktuellen Browser unterstützen, lässt sich eine Feder aber als Folge von Punkten annähern. Der Knopf oben erzeugt genau diesen Code.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 MIKRO ================= -->
+    <section class="page" id="p-mikro" data-page="mikro">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06</span>
+        <h1>Mikrointeraktionen</h1>
+        <p class="lead">Ein Herz antippen, einen Schalter umlegen, ein Passwort eingeben: Mikrointeraktionen sind die kleinen Momente, aus denen eine App zum größten Teil besteht. Dan Saffer hat 2013 ein einfaches Modell beschrieben, mit dem man sie bewusst gestalten kann.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/mikro.jpg" alt="Nahaufnahme eines Smartphones mit einem großen orangefarbenen Schalter, ein Daumen setzt gerade zum Tippen an" loading="lazy" width="1600" height="900"><figcaption>Ein Schalter ist die kleinste vollständige Interaktion. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Das Modell nach Saffer</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Auslöser (Trigger)</h3><p>Was startet die Mikrointeraktion? Entweder die Person (ein Tipp, eine Geste) oder das System (eine neue Nachricht, ein niedriger Akkustand).</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Regeln</h3><p>Was passiert, und was darf passieren? Die Regeln sind unsichtbar, bestimmen aber das Verhalten: ab wann geladen wird, was bei Fehlern geschieht.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Rückmeldung (Feedback)</h3><p>Wie erfährt die Person, was passiert? Hier kommt Animation ins Spiel, zusammen mit Farbe, Text, Ton und Vibration.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Schleifen und Modi</h3><p>Was passiert bei Wiederholung, nach längerer Zeit oder in Sonderfällen? Etwa ein Hinweis, der nach dem dritten Mal nicht mehr kommt, oder ein Offline-Modus.</p></div></li>
+        </ol>
+
+        <h2>Ausprobieren: Drei Mikrointeraktionen, zerlegt</h2>
+        <p>Bedienen Sie die drei Elemente. Rechts daneben sehen Sie, welcher Teil des Modells gerade aktiv ist.</p>
+        <div class="an-micro" id="d-mikro"></div>
+
+        <h2>Gute Rückmeldung</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Sofort beginnen</h3><p class="small muted">Die Rückmeldung startet innerhalb von 100 ms nach dem Tipp, auch wenn das Ergebnis noch auf den Server wartet.</p></div>
+          <div class="card"><h3>Am Ort des Geschehens</h3><p class="small muted">Feedback erscheint dort, wo die Person hinschaut: am Button, nicht in einer Ecke des Screens.</p></div>
+          <div class="card"><h3>Angemessen stark</h3><p class="small muted">Ein „Gefällt mir“ darf hüpfen. Eine Überweisung sollte ruhig und eindeutig bestätigt werden.</p></div>
+          <div class="card"><h3>Nicht nur Bewegung</h3><p class="small muted">Zustände werden auch durch Farbe, Form oder Text erkennbar. Wer Bewegung abgeschaltet hat oder nicht sieht, muss trotzdem wissen, was passiert ist.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 07 ÜBERGÄNGE ================= -->
+    <section class="page" id="p-uebergaenge" data-page="uebergaenge">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07</span>
+        <h1>Übergänge und Choreografie</h1>
+        <p class="lead">Ein Übergang erklärt, wie zwei Screens zusammenhängen: Liegt der neue Screen „darunter“, „daneben“ oder „darüber“? Wenn alle Übergänge einer App demselben räumlichen Modell folgen, finden sich Menschen schneller zurecht.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/uebergaenge.jpg" alt="Ein Student zeigt auf ein Storyboard an einer Wand, gezeichnete Smartphone-Screens sind mit orangefarbenen Pfeilen verbunden" loading="lazy" width="1600" height="900"><figcaption>Übergänge entstehen im Storyboard, lange bevor sie programmiert werden. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Vier Übergangsmuster</h2>
+        <p>Material Design beschreibt vier Muster, die sich auch auf iOS und im Web bewähren:</p>
+        <div class="grid g2">
+          <div class="card key"><h3>Container-Transformation</h3><p class="small">Ein Element wächst zum neuen Screen, etwa eine Karte zur Detailansicht. Zeigt: „Das hier ist dasselbe, nur größer.“</p></div>
+          <div class="card key"><h3>Gemeinsame Achse</h3><p class="small">Beide Screens bewegen sich entlang derselben Achse, etwa beim Vor und Zurück in einem Assistenten oder zwischen Tabs.</p></div>
+          <div class="card key"><h3>Durchblenden</h3><p class="small">Der alte Inhalt blendet aus, der neue blendet leicht vergrößert ein. Für Screens ohne direkten Zusammenhang, etwa in der Tab-Leiste.</p></div>
+          <div class="card key"><h3>Einblenden</h3><p class="small">Ein Element erscheint innerhalb des Screens: ein Dialog, ein Menü, eine Snackbar.</p></div>
+        </div>
+
+        <h2>Ausprobieren: Liste und Detailansicht</h2>
+        <p>Wählen Sie ein Muster und tippen Sie auf eine Karte. Mit „Zurück“ läuft der Übergang rückwärts. Achten Sie darauf, ob Sie wissen, wo Sie sind.</p>
+        <div class="demo">
+          <div class="toggle" role="group" aria-label="Übergangsmuster" id="tr-mode">
+            <button type="button" aria-pressed="true" data-mode="container">Container</button><button type="button" aria-pressed="false" data-mode="axis">Achse</button><button type="button" aria-pressed="false" data-mode="fade">Durchblenden</button><button type="button" aria-pressed="false" data-mode="none">Ohne</button>
+          </div>
+          <div class="an-phone" style="margin-top:16px"><div class="an-screen" id="tr-screen"></div></div>
+        </div>
+
+        <h2>Choreografie: Wer bewegt sich zuerst?</h2>
+        <p>Bewegen sich viele Elemente gleichzeitig, weiß das Auge nicht, wohin. Choreografie legt eine Reihenfolge fest: Das wichtigste Element führt, die anderen folgen mit kurzem <strong>Versatz</strong> (Staggering). Üblich sind 20 bis 50 ms pro Element. Die gesamte Folge sollte trotzdem nicht viel länger als eine halbe Sekunde dauern. Bei langen Listen staffelt man darum nur die ersten Einträge.</p>
+        <div class="demo">
+          <div class="an-slider-row"><label for="st-delay">Versatz</label><input type="range" id="st-delay" min="0" max="150" step="5" value="40"><output id="st-out" class="mono">40 ms</output></div>
+          <div class="toggle" role="group" aria-label="Reihenfolge" id="st-order" style="margin-top:6px">
+            <button type="button" aria-pressed="true" data-order="row">Zeilenweise</button><button type="button" aria-pressed="false" data-order="center">Von der Mitte</button><button type="button" aria-pressed="false" data-order="random">Zufällig</button>
+          </div>
+          <div class="an-stagger" id="st-grid" aria-hidden="true"></div>
+          <p class="small" id="st-total" role="status"></p>
+          <div class="row-btns"><button type="button" class="btn btn-primary" id="st-play">Abspielen</button></div>
+        </div>
+
+        <h2>Übergänge im Web: View Transitions</h2>
+        <p>Mit der View Transition API kann der Browser zwischen zwei Zuständen einer Seite selbst einen Übergang erzeugen. Er fotografiert den alten Zustand, führt Ihre Änderung aus und blendet zum neuen über. Elemente mit demselben <span class="mono">view-transition-name</span> werden dabei wie bei der Container-Transformation ineinander überführt.</p>
+<pre class="an-pre"><code>// Zustand ändern und den Browser animieren lassen
+if (document.startViewTransition) {
+  document.startViewTransition(() =&gt; zeigeDetail(id));
+} else {
+  zeigeDetail(id); // ältere Browser: ohne Übergang
+}
+
+/* CSS: Bild in Liste und Detail gehört zusammen */
+.karte-bild, .detail-bild { view-transition-name: produktbild; }</code></pre>
+        <p class="small muted">Übergänge innerhalb einer Seite unterstützen Chrome, Edge, Safari ab Version 18 und Firefox ab Version 144. Übergänge zwischen zwei Seiten (Cross-Document) gibt es in Chrome ab 126 und Safari ab 18.2. Ein Fallback ohne Übergang ist darum Pflicht.</p>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 08 LADEN ================= -->
+    <section class="page" id="p-laden" data-page="laden">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08</span>
+        <h1>Laden und Wartezeiten</h1>
+        <p class="lead">Wartezeit lässt sich nicht immer verkürzen. Wie lang sie sich anfühlt, schon. Gute Ladeanimationen zeigen, dass etwas passiert, wie lange es noch dauert und was gleich kommt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/laden.jpg" alt="Smartphone auf einem Holztisch mit grauen Platzhalterflächen und einem dünnen orangefarbenen Fortschrittsbalken, daneben eine Tasse Kaffee" loading="lazy" width="1600" height="900"><figcaption>Platzhalter zeigen schon die Form des Inhalts, bevor er da ist. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Welche Anzeige wann?</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Wartezeit</th><th>Anzeige</th><th>Warum</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">unter 1 s</td><td>Keine eigene Ladeanzeige, nur Rückmeldung am Button</td><td>Ein Spinner, der kurz aufblitzt, wirkt unruhiger als gar keiner.</td></tr>
+            <tr><td class="mono">1–3 s</td><td>Skeleton Screen oder dezenter Indikator</td><td>Die Person sieht, dass etwas kommt und wo es erscheinen wird.</td></tr>
+            <tr><td class="mono">3–10 s</td><td>Fortschrittsbalken, wenn der Fortschritt bekannt ist</td><td>Ein sich füllender Balken lässt sich besser einschätzen als ein drehendes Symbol.</td></tr>
+            <tr><td class="mono">über 10 s</td><td>Fortschritt mit Prozent oder Restzeit, Abbrechen möglich</td><td>Nach Nielsen wenden sich Menschen jetzt anderen Dingen zu und wollen wissen, wann sie zurückkommen sollen.</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>Ausprobieren: Dreimal drei Sekunden</h2>
+        <p>Alle drei Varianten laden genau gleich lang. Starten Sie sie und achten Sie darauf, welche sich am kürzesten anfühlt.</p>
+        <div class="demo">
+          <div class="an-load" id="load-grid"></div>
+          <div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" id="load-play">Laden starten</button></div>
+        </div>
+        <p>Die meisten empfinden den Skeleton Screen als am schnellsten: Er zeigt sofort die Struktur, und der Inhalt füllt sie nur noch auf. Der Begriff stammt von Luke Wroblewski (2013). Wichtig ist, dass die Platzhalter wirklich der Form des Inhalts entsprechen. Ein Schimmer-Effekt sollte langsam und blass sein.</p>
+
+        <h2>Optimistische Oberfläche</h2>
+        <p>Manche Aktionen gelingen fast immer, etwa ein „Gefällt mir“. Eine optimistische Oberfläche zeigt das Ergebnis darum sofort und schickt die Anfrage im Hintergrund. Nur wenn der Server einen Fehler meldet, wird die Änderung sichtbar zurückgenommen und erklärt.</p>
+        <div class="demo">
+          <label class="an-inline"><input type="checkbox" id="opt-fail"> Server meldet einen Fehler</label>
+          <div class="an-opt" id="opt-demo"></div>
+        </div>
+
+        <h2>Tricks, die tatsächlich wirken</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Fortschritt, der zum Ende hin schneller wird</h3><p class="small muted">Chris Harrison und Kollegen haben 2010 gezeigt, dass Balken, die gegen Ende beschleunigen, als kürzer empfunden werden als gleichmäßige.</p></div>
+          <div class="card"><h3>Schrittweise anzeigen</h3><p class="small muted">Was schon da ist, wird sofort gezeigt: zuerst Text, dann Bilder in niedriger Auflösung, dann scharf.</p></div>
+          <div class="card"><h3>Vorausladen</h3><p class="small muted">Was die Person wahrscheinlich als Nächstes öffnet, kann schon geladen werden, während sie noch liest.</p></div>
+          <div class="card"><h3>Ehrlich bleiben</h3><p class="small muted">Ein Balken, der bei 99 % stehen bleibt, zerstört das Vertrauen. Lieber einen unbestimmten Indikator als einen falschen Prozentwert.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 09 ZUGANG ================= -->
+    <section class="page" id="p-zugang" data-page="zugang">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09</span>
+        <h1>Barrierefreie Bewegung</h1>
+        <p class="lead">Für viele Menschen ist Bewegung auf dem Bildschirm mehr als eine Geschmacksfrage. Große Bewegungen, Zoom und Parallax-Effekte können Schwindel, Übelkeit oder Migräne auslösen, etwa bei Störungen des Gleichgewichtssinns. Dauerbewegung erschwert Menschen mit Konzentrationsschwierigkeiten das Lesen.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/zugang.jpg" alt="Eine ältere Frau sitzt entspannt auf einem Sofa und ändert die Bedienungshilfen-Einstellungen auf ihrem Smartphone" loading="lazy" width="1600" height="900"><figcaption>„Bewegung reduzieren“ ist eine Systemeinstellung, die Apps respektieren müssen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Was die WCAG verlangen</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Kriterium</th><th>Stufe</th><th>Inhalt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>2.2.2 Pausieren, beenden, ausblenden</strong></td><td>A</td><td>Bewegt sich etwas automatisch länger als fünf Sekunden neben anderem Inhalt, etwa ein Karussell oder Hintergrundvideo, muss es sich anhalten oder ausblenden lassen.</td></tr>
+            <tr><td><strong>2.3.1 Grenzwert von dreimaligem Blitzen</strong></td><td>A</td><td>Nichts darf öfter als dreimal pro Sekunde aufblitzen. Blitze können epileptische Anfälle auslösen.</td></tr>
+            <tr><td><strong>2.3.3 Animation durch Interaktionen</strong></td><td>AAA</td><td>Bewegungen, die durch eine Interaktion ausgelöst werden, lassen sich abschalten, außer sie sind für die Funktion notwendig.</td></tr>
+          </tbody>
+        </table></div>
+        <p>Kriterium 2.3.3 ist zwar nur Stufe AAA, lässt sich aber mit einer einzigen Systemabfrage erfüllen: Jedes Betriebssystem hat eine Einstellung für reduzierte Bewegung, und Apps wie Websites können sie auslesen. Seit dem 28. Juni 2025 gilt in Deutschland zudem das Barrierefreiheitsstärkungsgesetz (BFSG) für viele Apps und Online-Shops. Mehr dazu im <a href="../ux-evaluation/#zugang">Lernmodul 05</a>.</p>
+
+        <h2>Reduzieren heißt nicht entfernen</h2>
+        <div class="grid g3">
+          <div class="card"><div class="label">Ersetzen</div><p style="margin-top:8px">Große Bewegungen wie Schieben, Zoomen oder Drehen werden zur kurzen <strong>Überblendung</strong>. Der Zustandswechsel bleibt sichtbar.</p></div>
+          <div class="card"><div class="label">Entfernen</div><p style="margin-top:8px">Parallax, Hintergrundvideos, Dauerschleifen und rein dekorative Effekte fallen weg oder werden zum <strong>Standbild</strong>.</p></div>
+          <div class="card"><div class="label">Behalten</div><p style="margin-top:8px">Farbwechsel, kleine Rückmeldungen und Fortschrittsanzeigen bleiben. Sie bewegen wenig und <strong>tragen Information</strong>.</p></div>
+        </div>
+
+        <h2>Ausprobieren: Derselbe Übergang, zweimal</h2>
+        <p class="small" id="rm-status" role="status"></p>
+        <div class="demo">
+          <div class="toggle" role="group" aria-label="Bewegungseinstellung" id="rm-mode"><button type="button" aria-pressed="true" data-rm="0">Standard</button><button type="button" aria-pressed="false" data-rm="1">Reduzierte Bewegung</button></div>
+          <div class="an-rm-wrap">
+            <div class="an-phone an-phone-sm"><div class="an-screen" id="rm-screen"></div></div>
+            <div class="an-rm-legend" id="rm-legend"></div>
+          </div>
+          <div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" id="rm-play">Übergang abspielen</button></div>
+        </div>
+
+        <h2>Umsetzung</h2>
+<pre class="an-pre"><code>/* CSS: Standard ist Bewegung, bei Bedarf reduzieren */
+@media (prefers-reduced-motion: reduce) {
+  .seite-neu { animation: einblenden 150ms ease-out; } /* statt Schieben */
+  .parallax  { transform: none; }
+}
+
+// JavaScript: Einstellung abfragen und auf Änderungen hören
+const reduziert = matchMedia('(prefers-reduced-motion: reduce)');
+reduziert.addEventListener('change', () =&gt; passeAnimationenAn(reduziert.matches));</code></pre>
+        <div class="grid g2">
+          <div class="card"><h3>iOS</h3><p class="small muted">Einstellung „Bewegung reduzieren“. In SwiftUI über <span class="mono">@Environment(\.accessibilityReduceMotion)</span>, in UIKit über <span class="mono">UIAccessibility.isReduceMotionEnabled</span>.</p></div>
+          <div class="card"><h3>Android</h3><p class="small muted">Einstellung „Animationen entfernen“. Sie setzt den Systemwert <span class="mono">ANIMATOR_DURATION_SCALE</span> auf 0. Viele Standardanimationen reagieren darauf automatisch, eigene sollten ihn abfragen.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Auch ohne Systemeinstellung:</strong> Bieten Sie bei auffälligen Effekten eine eigene Option in der App an. Nicht alle Betroffenen kennen die Systemeinstellung, und manche wollen Bewegung nur in einer bestimmten App reduzieren.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 10 UMSETZUNG ================= -->
+    <section class="page" id="p-umsetzung" data-page="umsetzung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10</span>
+        <h1>Umsetzung und Übergabe</h1>
+        <p class="lead">Eine Animation ist erst gut, wenn sie auf dem Gerät flüssig läuft und genau so gebaut wird, wie sie gestaltet wurde. Dafür brauchen Sie zwei Dinge: Wissen darüber, was sich günstig animieren lässt, und eine Spezifikation, die keine Fragen offenlässt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/umsetzung.jpg" alt="Entwickler an einem Schreibtisch mit zwei Monitoren, links Programmcode, rechts eine App-Vorschau mit einer einschwebenden orangefarbenen Karte" loading="lazy" width="1600" height="900"><figcaption>Gestaltung und Code müssen dieselbe Sprache sprechen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Was sich günstig animieren lässt</h2>
+        <p>Der Browser berechnet jedes Bild in Schritten: Stil, <strong>Layout</strong> (Größen und Positionen), <strong>Paint</strong> (Pixel zeichnen) und <strong>Composite</strong> (Ebenen zusammensetzen). Ändern Sie <span class="mono">width</span>, <span class="mono">height</span>, <span class="mono">top</span> oder <span class="mono">left</span>, muss für jedes Bild das Layout neu berechnet werden. <span class="mono">transform</span> und <span class="mono">opacity</span> dagegen kann die Grafikkarte allein erledigen, auch wenn das Programm gerade beschäftigt ist. Native Plattformen funktionieren ähnlich.</p>
+        <div class="demo">
+          <div class="an-perf" id="perf"></div>
+          <div class="row-btns" style="margin-top:14px"><button type="button" class="btn btn-primary" id="perf-play">Abspielen</button><button type="button" class="btn" id="perf-busy" aria-pressed="false">Hauptthread belasten: aus</button></div>
+          <p class="small muted" style="margin-top:10px">Mit Belastung blockiert ein Skript den Hauptthread regelmäßig für 150 ms. Die obere Kugel wird über <span class="mono">left</span> bewegt und ruckelt, die untere über <span class="mono">transform</span> und läuft in den meisten Browsern weiter flüssig.</p>
+        </div>
+        <div class="grid g2">
+          <div class="card key"><h3>FLIP-Technik</h3><p class="small">Soll sich ein Element in Größe oder Position ändern, ändert man das Layout sofort und animiert nur den Unterschied mit <span class="mono">transform</span>: <strong>F</strong>irst, <strong>L</strong>ast, <strong>I</strong>nvert, <strong>P</strong>lay. Paul Lewis hat das 2015 beschrieben. Die Einkaufsliste in Kapitel 01 funktioniert so.</p></div>
+          <div class="card key"><h3>Sparsam mit will-change</h3><p class="small"><span class="mono">will-change: transform</span> bereitet eine eigene Ebene vor. Für wenige, gleich startende Animationen hilfreich, auf vielen Elementen dauerhaft gesetzt kostet es Speicher.</p></div>
+        </div>
+
+        <h2>Werkzeuge</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Bereich</th><th>Werkzeuge</th><th>Wofür</th></tr></thead>
+          <tbody>
+            <tr><td>Prototyping</td><td>Figma (Smart Animate), ProtoPie</td><td>Übergänge und Mikrointeraktionen zeigen und testen, bevor Code entsteht</td></tr>
+            <tr><td>Web</td><td>CSS Transitions und Animations, Web Animations API, View Transitions, Bibliotheken wie GSAP oder Motion</td><td>Vom einfachen Hover bis zur gesteuerten Sequenz</td></tr>
+            <tr><td>Nativ</td><td>SwiftUI (<span class="mono">withAnimation</span>), Jetpack Compose (<span class="mono">animate*AsState</span>), Flutter (<span class="mono">AnimatedContainer</span>)</td><td>Plattformtypische Bewegungen und Federn</td></tr>
+            <tr><td>Illustrierte Animation</td><td>Lottie (aus After Effects), Rive</td><td>Icons, Leerzustände, Onboarding, interaktive Figuren</td></tr>
+          </tbody>
+        </table></div>
+
+        <h2>Die Motion-Spezifikation</h2>
+        <p>„Es soll irgendwie weich reinkommen“ führt zu fünf verschiedenen Umsetzungen. Eine Spezifikation beschreibt jede Animation so genau, dass sie ohne Rückfrage gebaut werden kann. Dazu gehören Tokens für Dauer und Easing, die die ganze App verwendet.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Element und Auslöser</th><th>Eigenschaft</th><th>Von → Nach</th><th>Dauer</th><th>Easing</th><th>Reduzierte Bewegung</th></tr></thead>
+          <tbody>
+            <tr><td>Bottom Sheet, Tipp auf „Filter“</td><td>translateY</td><td>100 % → 0</td><td class="mono">medium (300 ms)</td><td class="mono">decelerate</td><td>Einblenden 150 ms</td></tr>
+            <tr><td>Hintergrund dahinter</td><td>opacity</td><td>0 → 0,4</td><td class="mono">medium (300 ms)</td><td class="mono">standard</td><td>unverändert</td></tr>
+            <tr><td>Bottom Sheet schließen</td><td>translateY</td><td>0 → 100 %</td><td class="mono">short (200 ms)</td><td class="mono">accelerate</td><td>Ausblenden 100 ms</td></tr>
+          </tbody>
+        </table></div>
+        <p>In Übung 6 erstellen Sie eine solche Spezifikation für Ihr eigenes Projekt.</p>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Testen nicht vergessen:</strong> Ob eine Animation hilft, zeigt sich erst mit echten Nutzenden. Beobachten Sie in Usability-Tests, ob Menschen nach einem Übergang wissen, wo sie sind. Wie Sie solche Tests planen, zeigt das <a href="../ux-evaluation/">Lernmodul 05 · UX &amp; Evaluation</a>.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 EASING ================= -->
+    <section class="page" id="p-ue-easing" data-page="ue-easing">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Zuordnen</span>
+        <h1>Easing zuordnen</h1>
+        <p class="lead">Fünf Bewegungen aus einer Shopping-App brauchen die passende Easing-Kurve. Wählen Sie für jede eine Kurve und sehen Sie sich das Ergebnis in der Vorschau an.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Fünf Situationen</span><span><i></i>Kapitel 05</span></div>
+        <figure class="media media-ex"><img src="media/ue-easing.jpg" alt="Aufgeschlagenes Skizzenbuch mit handgezeichneten Bewegungskurven in Orange und Lila, daneben Stifte und ein kleiner Ball" loading="lazy" width="1600" height="900"><figcaption>Jede Bewegung hat ihre Kurve. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Ordnen Sie jeder Situation eine Kurve zu. Mit „Vorschau“ sehen Sie die Bewegung mit der gewählten Kurve. Bestanden ist die Übung bei mindestens vier richtigen Zuordnungen.</p></div>
+        <div class="demo">
+          <div id="ee-list" class="an-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="ee-check">Zuordnung prüfen</button><button type="button" class="btn" id="ee-reset">Zurücksetzen</button></div>
+          <div id="ee-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-easing"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 TIMING ================= -->
+    <section class="page" id="p-ue-timing" data-page="ue-timing">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Timen</span>
+        <h1>Dauer einstellen</h1>
+        <p class="lead">Fünf Animationen sind alle gleich lang eingestellt, auf eine träge Sekunde. Stellen Sie für jede eine passende Dauer ein.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Fünf Animationen</span><span><i></i>Kapitel 04</span></div>
+        <figure class="media media-ex"><img src="media/ue-timing.jpg" alt="Hölzernes Metronom neben einem Smartphone, auf dem eine Karte gerade hereingleitet" loading="lazy" width="1600" height="900"><figcaption>Gutes Timing hat einen Rhythmus. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Stellen Sie die Regler so ein, dass jede Animation zu ihrer Aufgabe passt, und prüfen Sie sie in der Vorschau. Bestanden ist die Übung, wenn mindestens vier Dauern im empfohlenen Bereich liegen.</p></div>
+        <div class="demo">
+          <div id="et-list" class="an-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="et-check">Dauern prüfen</button><button type="button" class="btn" id="et-reset">Zurücksetzen</button></div>
+          <div id="et-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-timing"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 ZWECK ================= -->
+    <section class="page" id="p-ue-zweck" data-page="ue-zweck">
+      <div class="wrap">
+        <span class="eyebrow">Übung 3 · Bewerten</span>
+        <h1>Sinnvoll oder Deko?</h1>
+        <p class="lead">Sechs Animationen aus verschiedenen Apps. Spielen Sie jede ab und entscheiden Sie, welche Aufgabe sie erfüllt, oder ob sie nur schmückt und dabei stört.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Sechs Beispiele</span><span><i></i>Kapitel 02</span></div>
+        <figure class="media media-ex"><img src="media/ue-zweck.jpg" alt="Drei Studierende sitzen vor einem großen Monitor und diskutieren über eine Animation" loading="lazy" width="1600" height="900"><figcaption>Über Animation lässt sich gut streiten, mit den richtigen Begriffen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie für jedes Beispiel den Hauptzweck. Bestanden ist die Übung bei mindestens fünf richtigen Antworten.</p></div>
+        <div class="demo">
+          <div id="ez-list" class="an-ez"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="ez-check">Antworten prüfen</button><button type="button" class="btn" id="ez-reset">Zurücksetzen</button></div>
+          <div id="ez-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-zweck"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 MIKRO ================= -->
+    <section class="page" id="p-ue-mikro" data-page="ue-mikro">
+      <div class="wrap">
+        <span class="eyebrow">Übung 4 · Zerlegen</span>
+        <h1>Mikrointeraktion zerlegen</h1>
+        <p class="lead">Ziehen zum Aktualisieren (Pull to Refresh) kennt jede und jeder aus Nachrichten- und Mail-Apps. Probieren Sie die Geste aus und zerlegen Sie sie dann mit dem Modell nach Saffer.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>Acht Aussagen</span><span><i></i>Kapitel 06</span></div>
+        <figure class="media media-ex"><img src="media/ue-mikro.jpg" alt="Whiteboard mit vier Spalten aus leeren orangefarbenen und lila Haftnotizen, davor hält eine Hand ein Smartphone" loading="lazy" width="1600" height="900"><figcaption>Vier Spalten: Auslöser, Regeln, Rückmeldung, Schleifen und Modi. KI-generiert mit Magnific.</figcaption></figure>
+        <h2>Ausprobieren</h2>
+        <p>Ziehen Sie die Liste mit der Maus oder dem Finger nach unten und lassen Sie los. Mit der Tastatur: Fokus auf die Liste und Pfeil nach unten gedrückt halten.</p>
+        <div class="demo">
+          <div class="an-phone an-phone-sm"><div class="an-screen an-ptr" id="ptr" tabindex="0" aria-label="Nachrichtenliste. Nach unten ziehen oder Pfeil nach unten gedrückt halten zum Aktualisieren"></div></div>
+          <p class="small" id="ptr-status" role="status" style="text-align:center;margin-top:10px"></p>
+        </div>
+        <div class="task"><span class="label">Aufgabe</span><p>Ordnen Sie jede Aussage einem Teil des Modells zu. Bestanden ist die Übung bei mindestens sechs von acht richtigen Zuordnungen.</p></div>
+        <div class="demo">
+          <div id="em-list" class="an-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="em-check">Zuordnung prüfen</button><button type="button" class="btn" id="em-reset">Zurücksetzen</button></div>
+          <div id="em-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-mikro"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 REDUCE ================= -->
+    <section class="page" id="p-ue-reduce" data-page="ue-reduce">
+      <div class="wrap">
+        <span class="eyebrow">Übung 5 · Anpassen</span>
+        <h1>Reduced-Motion-Check</h1>
+        <p class="lead">Eine Reise-App soll „reduzierte Bewegung“ respektieren. Entscheiden Sie für sieben Animationen, was bei eingeschalteter Einstellung mit ihnen passieren soll.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Sieben Animationen</span><span><i></i>Kapitel 09</span></div>
+        <figure class="media media-ex"><img src="media/ue-reduce.jpg" alt="Eine Hand schaltet in den Einstellungen eines Smartphones einen orangefarbenen Schalter aus" loading="lazy" width="1600" height="900"><figcaption>Ein Schalter in den Einstellungen, viele Entscheidungen in der App. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Wählen Sie für jede Animation „Behalten“, „Durch Überblendung ersetzen“ oder „Entfernen“. Bestanden ist die Übung bei mindestens sechs von sieben richtigen Entscheidungen.</p></div>
+        <div class="demo">
+          <div id="er-list" class="an-ex-list"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="er-check">Entscheidungen prüfen</button><button type="button" class="btn" id="er-reset">Zurücksetzen</button></div>
+          <div id="er-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-reduce"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 SPEC ================= -->
+    <section class="page" id="p-ue-spec" data-page="ue-spec">
+      <div class="wrap">
+        <span class="eyebrow">Übung 6 · Anwenden</span>
+        <h1>Motion-Spezifikation</h1>
+        <p class="lead">Jetzt für Ihr eigenes Projekt: Legen Sie die Bewegungssprache Ihrer App fest und beschreiben Sie drei wichtige Animationen so, dass Ihr Team sie ohne Rückfrage bauen kann. Die Eingaben bleiben in diesem Browser gespeichert.</p>
+        <div class="ex-meta"><span><i></i>ca. 30 Minuten</span><span><i></i>Im Team ausfüllen</span><span><i></i>Kapitel 04–10</span></div>
+        <figure class="media media-ex"><img src="media/ue-spec.jpg" alt="Eine Studentin schreibt Notizen in ein Heft, daneben ein Laptop mit einer Tabelle aus Bewegungskurven und kleinen App-Screens" loading="lazy" width="1600" height="900"><figcaption>Was aufgeschrieben ist, wird auch so gebaut. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Füllen Sie die Grundlagen und drei Animationen aus. Mit „Spezifikation prüfen“ erhalten Sie Hinweise. Ist alles vollständig und stimmig, gilt die Übung als erledigt.</p></div>
+        <div class="demo">
+          <div id="sp-form" class="an-spec"></div>
+          <div class="row-btns" style="margin-top:16px"><button type="button" class="btn btn-primary" id="spec-check">Spezifikation prüfen</button><button type="button" class="btn" id="spec-pdf">Als PDF herunterladen</button><button type="button" class="btn" id="spec-md">Als Markdown herunterladen</button><button type="button" class="btn" id="spec-copy">Kopieren</button></div>
+          <div id="spec-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-spec"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Fünfzehn Fragen quer durch das Modul. Nach jeder Frage erhalten Sie eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Studierende in einem hellen Seminarraum beantworten ein Quiz auf ihren Smartphones" loading="lazy" width="1600" height="900"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Weiterlesen</span>
+        <h1>Literatur</h1>
+        <p class="lead">Grundlagenwerke, Studien und Richtlinien zu Animation und Motion Design im Interface, chronologisch geordnet.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Stapel Fachbücher mit lila und orangefarbenen Buchrücken auf einem Bibliothekstisch, daneben ein Daumenkino und ein Tablet" loading="lazy" width="1600" height="900"><figcaption>Zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Aufgeschlagenes Notizbuch mit alphabetischem Register und handschriftlichen Begriffen neben einem Smartphone und einem orangefarbenen Stift" loading="lazy" width="1600" height="900"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Easing" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <nav class="az" id="gl-az" aria-label="Alphabet"></nav>
+        </div>
+        <p class="small muted" id="gl-count" role="status"></p>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=20261106a"></script>
+</body>
+</html>

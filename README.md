@@ -9,3 +9,4 @@ Startseite und Lern-Apps, veröffentlicht über GitHub Pages.
 | `logogestaltung/` | `~/Dev/lernapps/Logogestaltung/logo-lernmodul` (statisch) | Ordner hierher kopieren |
 | `farbgestaltung/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css`, `app.js`, `media/`) | Direkt in diesem Ordner bearbeiten |
 | `ux-evaluation/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Farb-App, `ue.css`, `app.js`, `media/`) | Direkt in diesem Ordner bearbeiten |
+| `ux-animation/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Evaluations-App, `an.css`, `app.js`, `media/`); PDF-Zusammenfassung mit `python3 ../summaries/build.py anim` | Direkt in diesem Ordner bearbeiten |
