@@ -1,0 +1,90 @@
+/* ================================================================
+   Lernmodul 05 · UX & Evaluation – Ergänzungen zu styles.css
+   ================================================================ */
+ol.steps { list-style: none; padding: 0; margin: 0 0 20px; }
+.step h3 { margin: 0 0 4px; }
+.step p { margin: 0; }
+
+/* ---------- Übung 1: Daumenzonen ---------- */
+.ue-dz { display: grid; grid-template-columns: minmax(180px, 260px) 1fr; gap: 28px; align-items: start; }
+.ue-dz-phone { width: 100%; height: auto; display: block; }
+.ue-dz-el { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 0 0 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ue-dz-el legend { font-weight: 600; font-size: 14px; padding: 0 6px; color: var(--ink); }
+.ue-dz-el label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.ue-dz-el select, .ue-dz-el input[type="range"] { width: 100%; }
+.ue-dz-el output { font: 600 12px/1 var(--f-mono); color: var(--ink); }
+@media (max-width: 720px) {
+  .ue-dz { grid-template-columns: 1fr; }
+  .ue-dz-phone { max-width: 220px; margin: 0 auto; }
+  .ue-dz-el { grid-template-columns: 1fr 1fr; }
+  .ue-dz-el label:last-child { grid-column: 1 / -1; }
+}
+
+/* ---------- Übung 2: Heuristik-Detektiv ---------- */
+.ue-hd { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: 28px; align-items: start; }
+.ue-hd-phone { position: relative; aspect-ratio: 1 / 2; border: 3px solid var(--ink); border-radius: 28px; background: #fff; overflow: hidden; }
+.ue-hd-screen { position: absolute; inset: 0; font-size: 12px; color: #1F2937; }
+.ue-hd-top { display: flex; justify-content: space-between; align-items: center; height: 9%; padding: 0 7%; border-bottom: 1px solid #E5E7EB; font-weight: 700; }
+.ue-hd-row { position: absolute; left: 6.7%; right: 6.7%; border-radius: 8px; padding: 0 10px; display: flex; align-items: center; justify-content: space-between; }
+.ue-hd-load { top: 12.3%; height: 6.7%; background: #F3F4F6; color: #5B6270; }
+.ue-hd-err { top: 21.7%; height: 9%; background: #FEE2E2; color: #991B1B; font-family: var(--f-mono); }
+.ue-hd-field { border: 1px solid #9CA3AF; background: #fff; }
+.ue-hd-field:nth-of-type(4) { top: 33.3%; height: 8%; }
+.ue-hd-field:nth-of-type(5) { top: 44.7%; height: 8%; }
+.ue-hd-field span { font-family: var(--f-mono); color: #5B6270; }
+.ue-hd-sum { top: 58%; height: 7%; }
+.ue-hd-cta { position: absolute; left: 6.7%; right: 6.7%; top: 86.7%; height: 8.7%; border-radius: 10px; background: #CC4E00; color: #fff; display: grid; place-items: center; font-weight: 700; }
+.ue-hd-spot { position: absolute; border: 2px dashed transparent; border-radius: 8px; background: transparent; cursor: pointer; padding: 0; }
+.ue-hd-spot:hover, .ue-hd-spot:focus-visible { border-color: #64378C; background: rgba(100, 55, 140, .08); outline: none; }
+.ue-hd-spot.is-found { border-color: #15803D; border-style: solid; }
+.ue-hd-panel { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; background: var(--paper); min-height: 200px; }
+.ue-hd-panel h3 { margin-top: 0; }
+.ue-hd-panel select { width: 100%; margin-top: 6px; }
+.ue-hd-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 720px) { .ue-hd { grid-template-columns: 1fr; } .ue-hd-phone { max-width: 260px; margin: 0 auto; width: 100%; } }
+
+/* ---------- Übung 3: Aufgaben ---------- */
+.ue-tq { border-top: 1px solid var(--line); padding: 16px 0; }
+.ue-tq:first-child { border-top: 0; padding-top: 0; }
+.ue-tq-text { font-style: italic; margin: 0 0 10px; }
+.ue-tq .toggle { flex-wrap: wrap; }
+
+/* ---------- Übung 4: SUS ---------- */
+.ue-sus-table td, .ue-sus-table th { text-align: center; padding: 8px 6px; }
+.ue-num { width: 84px; padding: 6px 8px; border: 1px solid var(--control-border, #858C98); border-radius: 6px; font: 500 14px/1.2 var(--f-mono); }
+.ue-num.is-ok { border-color: #15803D; box-shadow: 0 0 0 2px #DCFCE7; }
+.ue-num.is-bad { border-color: #B91C1C; box-shadow: 0 0 0 2px #FEE2E2; }
+.ue-sus-item { border: 0; border-top: 1px solid var(--line); padding: 14px 0; margin: 0; }
+.ue-sus-item legend { font-size: 15px; padding: 0; margin-bottom: 8px; }
+.ue-likert { display: flex; gap: 8px; flex-wrap: wrap; }
+.ue-likert label { position: relative; }
+.ue-likert input { position: absolute; opacity: 0; width: 44px; height: 44px; margin: 0; cursor: pointer; }
+.ue-likert span { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 999px; font-weight: 600; }
+.ue-likert input:checked + span { background: #64378C; border-color: #64378C; color: #fff; }
+.ue-likert input:focus-visible + span { outline: 3px solid #C8A8DE; outline-offset: 2px; }
+.ue-mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 18px; }
+.ue-mini { display: grid; grid-template-columns: 34px 1fr 18px; align-items: center; gap: 8px; font-size: 13px; }
+.ue-mini output { font: 600 13px/1 var(--f-mono); }
+.ue-sus-result { margin: 16px 0 0; font: 700 18px/1.3 var(--f-body); color: var(--ink); }
+
+/* ---------- Übung 5: Schweregrade ---------- */
+.ue-sev { border-top: 1px solid var(--line); padding: 16px 0; }
+.ue-sev:first-child { border-top: 0; padding-top: 0; }
+.ue-sev p { margin: 0 0 10px; }
+.ue-sev select { margin-left: 8px; }
+.ue-sev-sorted ol { padding-left: 20px; }
+.ue-sev-sorted h3 { margin-top: 24px; }
+
+/* ---------- Übung 6: Testplan ---------- */
+.ue-tp { display: grid; gap: 16px; }
+.ue-tp-field { display: grid; gap: 6px; }
+.ue-tp-field input, .ue-tp-field textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--control-border, #858C98); border-radius: 8px; font: 400 15px/1.5 var(--f-body); background: var(--paper); color: var(--ink); }
+.ue-tp-check { border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; display: grid; gap: 8px; }
+.ue-tp-check label { display: flex; gap: 10px; align-items: center; min-height: 32px; }
+/* SUS-Tabelle auf dem Handy kompakt: 5 Antworten pro Zeile statt einer langen Liste */
+@media (max-width: 720px) {
+  .ue-sus-table tr { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px 8px; }
+  .ue-sus-table td { text-align: center; padding: 4px 0; }
+  .ue-sus-table td:first-child, .ue-sus-table td:last-child { grid-column: 1 / -1; text-align: left; }
+  .ue-sus-table td:last-child input { width: 100%; }
+}

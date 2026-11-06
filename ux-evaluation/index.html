@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="utf-8">
+<script src="../theme.js?v=5"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="../favicon.ico?v=2" sizes="any">
+<link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+<title>UX & Evaluation Lernmodul</title>
+<meta name="description" content="Interaktives Lernmodul UX und Evaluation mobiler Apps für das 3. Semester Medieninformatik (Medienprojekt 1) – Prof. Dipl. Des. T. Hinz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261106a">
+<link rel="stylesheet" href="ue.css?v=20261106a">
+</head>
+<body>
+<a class="skip" href="#main">Zum Hauptinhalt</a>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Kapitelnavigation">
+    <a class="home-back" href="../" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <a class="brand" href="#home">
+      <span class="brand-mark">EV</span>
+      <span class="brand-name">Lernmodul<small>05 · UX &amp; Evaluation</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="side-foot">
+      <button type="button" class="dark-toggle" data-theme-toggle aria-pressed="false">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <span class="dark-toggle-label">Dunkelmodus</span>
+        <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
+      <div style="display:flex;justify-content:space-between"><span>Übungen erledigt</span><span id="side-count" class="mono">0/6</span></div>
+      <div class="side-progress"><span id="side-bar"></span></div>
+      <span>UX-Evaluation v1.0</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar">
+      <button type="button" id="menu-btn" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="brand-mark" style="width:28px;height:28px;font-size:10px" aria-hidden="true">EV</span>
+      <span class="t">UX &amp; Evaluation</span>
+    </div>
+
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="p-home" data-page="home" style="--mod:#5A2576">
+      <div class="wrap-wide">
+        <div class="home-hero" style="--mod:#5A2576">
+          <div>
+            <div class="mod-chip" aria-hidden="true">EV</div>
+            <p class="hero-eyebrow">Lernmodul 05 · Medienprojekt 1 · 3. Semester Medieninformatik</p>
+            <h1>UX &amp; Evaluation mobiler Apps</h1>
+            <p class="hero-lead">Im Medienprojekt entwickeln Sie eine eigene App. Dieses Modul zeigt, wie Sie sie von Anfang an für echte Menschen gestalten und mit ihnen überprüfen: Nutzende verstehen, mobil denken, barrierefrei bauen, Heuristiken anwenden, Usability-Tests durchführen, Ergebnisse messen und so berichten, dass Ihr Team daraus etwas macht. Mit sechs interaktiven Übungen bis zum fertigen Testplan für Ihr Projekt.</p>
+            <div class="hero-actions">
+              <div class="hero-cta">
+                <a class="btn btn-primary" href="#einleitung">Modul starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="btn" href="#ue-testplan">Zum Testplan</a>
+              </div>
+            </div>
+            <p class="hero-meta"><span><b>10</b> Kapitel</span><span><b>6</b> Übungen</span><span><b>15</b> Testfragen</span></p>
+          </div>
+          <figure class="hero-media"><img src="media/einleitung.jpg" alt="" width="1600" height="900"></figure>
+        </div>
+        <div class="progress-band" aria-live="polite">
+          <span class="label">Ihr Fortschritt</span>
+          <div class="bar"><span id="home-bar"></span></div>
+          <b id="home-count">0 / 6 Übungen</b>
+        </div>
+        <div class="home-section-label"><h2>Gestalten &amp; Evaluieren</h2><span class="small muted">Kapitel 01–10</span></div>
+        <div class="tiles" id="tiles-theory"></div>
+        <div class="home-section-label"><h2>Übungen</h2><span class="small muted">Platzieren · Prüfen · Testen · Messen</span></div>
+        <div class="tiles" id="tiles-ex"></div>
+        <div class="home-section-label"><h2>Wissen</h2><span class="small muted">Test · Literatur · Register</span></div>
+        <div class="tiles" id="tiles-know"></div>
+        <p class="footer-note">© 2026 Lernmodul 05 · UX &amp; Evaluation · Fotos KI-generiert mit Magnific, alle Beispiel-Apps und Personen sind fiktiv. Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
+      </div>
+    </section>
+
+    <!-- ================= 01 EINLEITUNG ================= -->
+    <section class="page" id="p-einleitung" data-page="einleitung">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 01 · Einleitung</span>
+        <h1>UX im Medienprojekt</h1>
+        <p class="lead">Eine App kann technisch einwandfrei sein und trotzdem scheitern: weil niemand die wichtigste Funktion findet, weil der Button unter der Tastatur verschwindet oder weil sie ein Problem löst, das niemand hat. User Experience (UX) und Evaluation sorgen dafür, dass Ihr Team das rechtzeitig merkt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/einleitung.jpg" alt="Studierende testen an einem Tisch einen App-Prototyp auf dem Smartphone, eine Person beobachtet und macht Notizen" loading="lazy" width="1600" height="900"><figcaption>Testen im Team: eine Person bedient, eine beobachtet. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Usability und User Experience</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Usability</h3><p>Die Gebrauchstauglichkeit nach DIN EN ISO 9241-11: Wie <strong>effektiv</strong>, <strong>effizient</strong> und <strong>zufriedenstellend</strong> können bestimmte Nutzende in einem bestimmten Kontext ihre Ziele erreichen? Usability lässt sich beobachten und messen.</p></div>
+          <div class="card key"><h3>User Experience</h3><p>Alle Wahrnehmungen und Reaktionen vor, während und nach der Nutzung (ISO 9241-210): Erwartungen, Vertrauen, Freude, Ärger. Usability ist ein Teil davon, aber eine App kann gut bedienbar sein und sich trotzdem langweilig anfühlen.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Zum Nachlesen:</strong> Die Grundbegriffe, die zehn Heuristiken, die ISO-Normen und die Gestaltgesetze sind im <a href="../ux-grundlagen/">Lernmodul 02 · UX-Grundlagen</a> ausführlich erklärt. Dieses Modul baut darauf auf und wendet sie auf Ihre App im Medienprojekt an.</p></div>
+
+        <h2>Warum evaluieren, wenn man doch selbst testet?</h2>
+        <p>Wer eine App entwickelt, kennt jeden Bildschirm. Genau das macht blind: Sie wissen, wo der Button ist, weil Sie ihn selbst dorthin gesetzt haben. Nutzende kommen ohne dieses Wissen. Drei typische Fallen:</p>
+        <div class="grid g3">
+          <div class="card"><h3>„Ich bin nicht die Nutzerin“</h3><p class="small muted">Das Team ist technikaffin, kennt die Fachbegriffe und hat die App hundertmal gesehen. Es ist die schlechteste Testgruppe für die eigene App.</p></div>
+          <div class="card"><h3>Zu spät testen</h3><p class="small muted">Ein Strukturfehler, der im Papierprototyp fünf Minuten kostet, kostet nach der Implementierung Tage.</p></div>
+          <div class="card"><h3>Meinung statt Verhalten</h3><p class="small muted">„Gefällt euch das?“ liefert Höflichkeit. Erst wenn Menschen eine Aufgabe lösen, sieht man, wo sie scheitern.</p></div>
+        </div>
+
+        <h2>Lernziele</h2>
+        <p>Nach Bearbeitung des Moduls können Sie …</p>
+        <ul class="list">
+          <li>den menschzentrierten Gestaltungsprozess auf Ihr Medienprojekt übertragen,</li>
+          <li>Nutzende und ihren mobilen Nutzungskontext mit Interviews und Personas beschreiben,</li>
+          <li>Bedienelemente für Daumen, Gesten und Plattformkonventionen gestalten,</li>
+          <li>Ihre App gegen die wichtigsten Anforderungen der Barrierefreiheit prüfen,</li>
+          <li>passende Evaluationsmethoden für jede Projektphase auswählen,</li>
+          <li>eine heuristische Evaluation im Team durchführen,</li>
+          <li>einen Usability-Test planen, moderieren und aufzeichnen,</li>
+          <li>Ergebnisse mit Erfolgsquoten, SUS und UEQ messen,</li>
+          <li>Befunde nach Schweregrad priorisieren und in einem Bericht dokumentieren.</li>
+        </ul>
+
+        <h2>So arbeiten Sie mit dem Modul</h2>
+        <div class="grid g3">
+          <div class="card soft"><div class="label">1 · Lesen</div><p style="margin-top:10px">Kapitel 01–05 helfen beim Gestalten, Kapitel 06–10 beim Überprüfen. Sie folgen dem Ablauf Ihres Projekts.</p></div>
+          <div class="card soft"><div class="label">2 · Üben</div><p style="margin-top:10px">Sechs Übungen vom Daumenzonen-Check bis zum Testplan. Jede endet mit „Als erledigt markieren“.</p></div>
+          <div class="card soft"><div class="label">3 · Anwenden</div><p style="margin-top:10px">Der Testplan aus Übung 6 ist direkt für Ihr Projekt gedacht. Laden Sie ihn herunter und nutzen Sie ihn im Team.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 02 PROZESS ================= -->
+    <section class="page" id="p-prozess" data-page="prozess">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 02</span>
+        <h1>Nutzerzentrierter Prozess</h1>
+        <p class="lead">Gute Apps entstehen nicht in einem Wurf. Sie entstehen in Schleifen: verstehen, entwerfen, ausprobieren lassen, verbessern. Die Norm DIN EN ISO 9241-210 beschreibt diesen Ablauf, und er passt gut zu den Sprints in Ihrem Medienprojekt.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/prozess.jpg" alt="Whiteboard mit einem Kreislauf aus Haftnotizen und Pfeilen, davor Smartphones mit Papierprototypen" loading="lazy" width="1600" height="900"><figcaption>Iterieren heißt: lieber fünfmal klein als einmal groß. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die vier Aktivitäten nach ISO 9241-210</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Nutzungskontext verstehen</h3><p>Wer nutzt die App, wofür, wo und mit welchem Gerät? Unterwegs in der Bahn, im Hörsaal, in der Küche mit nassen Händen?</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Anforderungen festlegen</h3><p>Aus dem Kontext folgen Ziele und Anforderungen: „Eine Person mit wenig Zeit soll in unter 30 Sekunden sehen, was es heute in der Mensa gibt.“</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Lösungen gestalten</h3><p>Skizzen, Wireframes, klickbare Prototypen. Früh grob, später fein.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Gegen die Anforderungen evaluieren</h3><p>Mit Fachleuten und mit Nutzenden prüfen. Die Ergebnisse führen zurück zu Schritt 1, 2 oder 3.</p></div></li>
+        </ol>
+        <p>Entscheidend ist der Pfeil zurück: Evaluation ist kein Abschluss, sondern der Motor des Prozesses. Die Norm verlangt außerdem, dass Nutzende über den ganzen Prozess einbezogen werden und dass das Team interdisziplinär arbeitet. Genau das ist in einem Medienprojekt mit Gestaltung, Entwicklung und Konzeption der Fall.</p>
+
+        <h2>Prozess im Medienprojekt</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Projektphase</th><th>Was Sie tun</th><th>Evaluation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Wochen 1–3</strong> Idee</td><td>Problem und Zielgruppe klären, Interviews, Personas</td><td>Annahmen prüfen: Gibt es das Problem wirklich?</td></tr>
+              <tr><td><strong>Wochen 4–6</strong> Konzept</td><td>User Flows, Skizzen, Papierprototyp</td><td>Papierprototyp-Test, Cognitive Walkthrough</td></tr>
+              <tr><td><strong>Wochen 7–10</strong> Prototyp</td><td>Klickbarer Prototyp in Figma, erste Umsetzung</td><td>Heuristische Evaluation, Usability-Test mit 5 Personen</td></tr>
+              <tr><td><strong>Wochen 11–14</strong> Umsetzung</td><td>App entwickeln, Befunde einarbeiten</td><td>Zweiter Test, SUS oder UEQ, Barrierefreiheits-Check</td></tr>
+              <tr><td><strong>Abgabe</strong></td><td>Präsentation und Dokumentation</td><td>Evaluationskapitel im Bericht</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small muted" style="margin-top:10px">Die Wochen sind ein Vorschlag. Maßgeblich ist der Zeitplan Ihres Projekts.</p>
+
+        <h2>Fidelity: Wie fertig muss ein Prototyp sein?</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Low-Fidelity</h3><p class="small muted">Papier, Skizzen, graue Kästen. In Minuten geändert. Ideal, um Struktur und Abläufe zu testen, weil niemand über Farben diskutiert.</p></div>
+          <div class="card"><h3>Mid-Fidelity</h3><p class="small muted">Klickbare Wireframes mit echten Texten. Gut für Navigation und Begriffe.</p></div>
+          <div class="card"><h3>High-Fidelity</h3><p class="small muted">Fast wie die echte App, mit Design und Animationen. Für Detailfragen, Vertrauen und Wirkung.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Faustregel:</strong> Testen Sie so früh wie möglich mit der niedrigsten Fidelity, die Ihre Frage beantwortet. Wer wissen will, ob die Navigation verstanden wird, braucht keine fertigen Icons.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 03 NUTZENDE ================= -->
+    <section class="page" id="p-nutzende" data-page="nutzende">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 03</span>
+        <h1>Nutzende verstehen</h1>
+        <p class="lead">Bevor Sie einen Screen gestalten, sollten Sie wissen, für wen. Nicht „alle Studierenden“, sondern Menschen mit konkreten Zielen, Gewohnheiten und Situationen. Bei Apps kommt der Kontext dazu: unterwegs, abgelenkt, mit einer Hand.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/nutzende.jpg" alt="Zwei Studierende führen in einem Café ein Interview, eine Person hält ein Notizbuch, auf dem Tisch liegt ein Smartphone" loading="lazy" width="1600" height="900"><figcaption>Zuhören, nachfragen, notieren: das Interview als Startpunkt. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Methoden, um Nutzende kennenzulernen</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>Leitfadeninterview</h3><p>5–8 Gespräche à 20–40 Minuten mit Menschen aus der Zielgruppe. Offene Fragen nach Erfahrungen: „Erzählen Sie, wie Sie zuletzt …“. Nicht fragen, ob jemand eine App wollen würde.</p></div>
+          <div class="card key"><h3>Kontextbeobachtung</h3><p>Dort hinschauen, wo die App später genutzt wird: an der Haltestelle, in der Mensa-Schlange, im Fitnessstudio. Was Menschen tun, verrät mehr als das, was sie sagen.</p></div>
+          <div class="card key"><h3>Kurze Umfrage</h3><p>Ergänzt Interviews um Zahlen: Wie viele nutzen das Angebot wie oft? Gut, um Annahmen aus den Gesprächen zu prüfen, nicht um sie zu ersetzen.</p></div>
+          <div class="card key"><h3>Wettbewerbsanalyse</h3><p>Wie lösen bestehende Apps das Problem? Was loben und kritisieren Rezensionen im App Store? Dort finden Sie Pain Points kostenlos.</p></div>
+        </div>
+
+        <h2>Gute Interviewfragen</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Statt …</th><th>besser …</th><th>warum</th></tr></thead>
+            <tbody>
+              <tr><td>„Würden Sie eine App nutzen, die …?“</td><td>„Wie haben Sie das zuletzt gelöst?“</td><td>Menschen sagen aus Höflichkeit Ja. Vergangenes Verhalten ist verlässlicher.</td></tr>
+              <tr><td>„Finden Sie die Mensa-Website umständlich?“</td><td>„Wie finden Sie heraus, was es heute gibt?“</td><td>Suggestivfragen geben die Antwort vor.</td></tr>
+              <tr><td>„Nutzen Sie Push-Nachrichten?“</td><td>„Welche Benachrichtigungen haben Sie zuletzt sofort geöffnet, welche weggewischt?“</td><td>Konkrete Erinnerungen statt Ja/Nein.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Von Daten zu Personas</h2>
+        <p>Aus den Interviews entstehen <strong>Personas</strong>: verdichtete Modelle typischer Nutzungsgruppen mit Zielen, Frustrationen, Verhalten und Kontext. Für ein Medienprojekt reichen meist eine primäre und eine sekundäre Persona. Wichtig ist, dass jede Aussage auf Ihre Daten zurückgeht. Eine Persona, die am Schreibtisch erfunden wurde, bestätigt nur die Annahmen des Teams.</p>
+        <div class="grid g2">
+          <div class="card soft"><div class="label">Persona-Steckbrief</div><p style="margin-top:10px"><strong>Lena, 20, Erstsemester Maschinenbau.</strong> Isst viermal pro Woche in der Mensa, hat 25 Minuten Pause zwischen zwei Vorlesungen. Ziel: schnell etwas Vegetarisches ohne lange Schlange. Frust: Das Angebot steht nur als PDF online. Kontext: Smartphone in der Hand auf dem Weg vom Hörsaal.</p></div>
+          <div class="card soft"><div class="label">Szenario</div><p style="margin-top:10px">Dienstag, 11:50 Uhr. Lena verlässt die Vorlesung und will vor 12:15 Uhr gegessen haben. Sie öffnet die App im Gehen, sieht die beiden vegetarischen Gerichte und die geschätzte Wartezeit, bestellt vor und holt das Essen an der Ausgabe ab.</p></div>
+        </div>
+        <p style="margin-top:16px">Das Szenario ist gleichzeitig die Vorlage für eine Testaufgabe in Kapitel 08. Mehr zu Personas und Journey Maps finden Sie im <a href="../ux-grundlagen/">Lernmodul UX-Grundlagen</a> unter „Design Methoden“.</p>
+
+        <h2>Der mobile Nutzungskontext</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Unterbrechung</h3><p class="small muted">Mobile Nutzung passiert in kurzen Episoden. Eine Aufgabe muss nach einer Unterbrechung leicht wieder aufzunehmen sein.</p></div>
+          <div class="card"><h3>Umgebung</h3><p class="small muted">Sonnenlicht, Lärm, schwaches Netz, Handschuhe. Testen Sie nicht nur am Schreibtisch.</p></div>
+          <div class="card"><h3>Aufmerksamkeit</h3><p class="small muted">Wer gleichzeitig läuft, wartet oder spricht, hat wenig Aufmerksamkeit übrig. Weniger ist mehr.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 04 MOBILE UX ================= -->
+    <section class="page" id="p-mobile" data-page="mobile">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 04</span>
+        <h1>Mobile UX</h1>
+        <p class="lead">Ein Smartphone ist kein kleiner Desktop. Es wird mit dem Daumen bedient, oft mit einer Hand, und es folgt den Konventionen seiner Plattform. Wer diese Regeln kennt, vermeidet die häufigsten Probleme, bevor jemand testet.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/mobile.jpg" alt="Hand hält ein Smartphone einhändig, der Daumen erreicht den unteren Bildschirmbereich" loading="lazy" width="1600" height="900"><figcaption>Der Daumen bestimmt, was leicht erreichbar ist. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Daumenzonen</h2>
+        <p>Steven Hoober beobachtete 2013 über 1.300 Menschen bei der Smartphone-Nutzung: Rund die Hälfte bediente das Gerät einhändig. Der Daumen erreicht dabei den unteren und mittleren Bereich gut, die oberen Ecken schlecht. Bei großen Displays wird dieser Effekt stärker.</p>
+        <div class="grid g3">
+          <div class="card"><h3 style="color:#166534">Leicht</h3><p class="small muted">Unten, besonders unten Mitte. Hier gehören Tab-Leiste, Hauptaktion und häufige Funktionen hin.</p></div>
+          <div class="card"><h3 style="color:#92400E">Mittel</h3><p class="small muted">Mitte und Seiten. Gut für Inhalte, Listen und seltener genutzte Aktionen.</p></div>
+          <div class="card"><h3 style="color:#991B1B">Schwer</h3><p class="small muted">Obere Ecken. Geeignet für seltene Aktionen wie Einstellungen und für destruktive Aktionen, die nicht versehentlich ausgelöst werden sollen.</p></div>
+        </div>
+
+        <h2>Touch-Ziele</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Quelle</th><th>Mindestgröße</th><th>Hinweis</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Apple</strong> Human Interface Guidelines</td><td>44 × 44 pt</td><td>Gilt für alle antippbaren Elemente.</td></tr>
+              <tr><td><strong>Google</strong> Material Design</td><td>48 × 48 dp</td><td>Mit mindestens 8 dp Abstand zwischen Zielen.</td></tr>
+              <tr><td><strong>WCAG 2.2</strong> Kriterium 2.5.8 (AA)</td><td>24 × 24 CSS-px</td><td>Rechtliche Untergrenze. 2.5.5 (AAA) verlangt 44 × 44.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">Die sichtbare Fläche darf kleiner sein als die antippbare: Ein 24 px großes Icon kann eine 44 pt große Trefferfläche haben.</p>
+
+        <h2>Plattformkonventionen</h2>
+        <div class="grid g2">
+          <div class="card"><h3>iOS</h3><p class="small muted">Tab-Leiste unten für 3–5 Hauptbereiche, Zurück-Geste vom linken Rand, Titel oben, Bestätigungen als Action Sheet von unten. SF-Symbols als Icon-Sprache.</p></div>
+          <div class="card"><h3>Android</h3><p class="small muted">Navigationsleiste unten (Material 3), System-Zurück-Geste an beiden Rändern, Floating Action Button für die Hauptaktion, Snackbars für kurze Rückmeldungen.</p></div>
+        </div>
+        <p style="margin-top:14px">Nutzende verbringen die meiste Zeit in anderen Apps und übertragen ihre Erwartungen (Jakob’s Law). Eine eigene, ungewöhnliche Navigation muss sich diesen Lernaufwand verdienen.</p>
+
+        <h2>Gesten, Tastatur, Rückmeldung</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Gesten sichtbar machen</h3><p class="small muted">Wischen zum Löschen ist praktisch, aber unsichtbar. Bieten Sie immer auch einen sichtbaren Weg an.</p></div>
+          <div class="card"><h3>Passende Tastatur</h3><p class="small muted">Zahlenfeld für PLZ und Kartennummer, E-Mail-Tastatur mit @. Auf dem Web per <code>inputmode</code>, nativ per Keyboard-Type.</p></div>
+          <div class="card"><h3>Sofortige Rückmeldung</h3><p class="small muted">Jede Berührung braucht eine Reaktion: Zustand, Ladeindikator, Haptik. Sonst tippen Menschen mehrfach.</p></div>
+        </div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Ausprobieren:</strong> In Übung 1 platzieren Sie Bedienelemente auf einem Smartphone und prüfen, ob sie in der richtigen Daumenzone liegen und groß genug sind.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 05 BARRIEREFREIHEIT ================= -->
+    <section class="page" id="p-zugang" data-page="zugang">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 05</span>
+        <h1>Barrierefreie Apps</h1>
+        <p class="lead">Rund jede zehnte Person in Deutschland lebt mit einer anerkannten Schwerbehinderung, viele weitere mit Sehschwäche, Zittern oder vorübergehenden Einschränkungen, etwa einem gebrochenen Arm. Barrierefreiheit macht Apps für alle besser und ist seit 2025 für viele Angebote Pflicht.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/zugang.jpg" alt="Person bedient ein Smartphone mit vergrößerter Schrift, daneben Kopfhörer für die Sprachausgabe" loading="lazy" width="1600" height="900"><figcaption>Große Schrift und Sprachausgabe sind eingebaute Werkzeuge jedes Smartphones. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Rechtlicher Rahmen</h2>
+        <div class="grid g2">
+          <div class="card key"><h3>BFSG</h3><p>Das Barrierefreiheitsstärkungsgesetz gilt seit 28. Juni 2025. Es setzt den European Accessibility Act um und betrifft u. a. Online-Shops, Banking, Ticketing und Personenbeförderung, auch als App.</p></div>
+          <div class="card key"><h3>WCAG 2.2</h3><p>Die Web Content Accessibility Guidelines sind der fachliche Maßstab. Die europäische Norm EN 301 549 verweist auf sie und wendet sie auch auf native Apps an. Ziel ist Stufe AA.</p></div>
+        </div>
+
+        <h2>Die wichtigsten Prüfpunkte für Ihre App</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Prüfpunkt</th><th>Anforderung</th><th>So prüfen Sie</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Kontrast</strong></td><td>Text mind. 4,5 : 1, große Schrift und Bedienelemente mind. 3 : 1</td><td>Kontrast-Checker, z. B. in Figma</td></tr>
+              <tr><td><strong>Schriftgröße</strong></td><td>Layout hält Systemeinstellung „größere Schrift“ aus</td><td>Dynamic Type (iOS) bzw. Schriftgröße (Android) auf Maximum</td></tr>
+              <tr><td><strong>Screenreader</strong></td><td>Jedes Element hat eine sinnvolle Beschriftung und Rolle</td><td>VoiceOver bzw. TalkBack einschalten und App blind bedienen</td></tr>
+              <tr><td><strong>Touch-Ziele</strong></td><td>mind. 24 × 24 px, besser 44 pt</td><td>Abstände im Design messen</td></tr>
+              <tr><td><strong>Nicht nur Farbe</strong></td><td>Fehler und Zustände auch mit Text oder Symbol</td><td>Screenshot in Graustufen ansehen</td></tr>
+              <tr><td><strong>Bewegung</strong></td><td>Animationen reduzierbar, kein Zwang zu Gesten</td><td>Einstellung „Bewegung reduzieren“ testen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Screenreader in fünf Minuten ausprobieren</h2>
+        <ol class="list">
+          <li>Schalten Sie VoiceOver (iOS: Einstellungen → Bedienungshilfen) oder TalkBack (Android: Einstellungen → Bedienungshilfen) ein.</li>
+          <li>Wischen Sie nach rechts, um von Element zu Element zu springen. Doppeltippen aktiviert.</li>
+          <li>Öffnen Sie Ihre App und versuchen Sie, die Hauptaufgabe zu erledigen, ohne hinzusehen.</li>
+          <li>Notieren Sie jedes Element, das als „Button“ ohne Namen oder als Dateiname vorgelesen wird.</li>
+        </ol>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Vertiefung:</strong> Kontraste und Farbsehschwächen behandelt das <a href="../farbgestaltung/#barrierefreiheit">Lernmodul Farbgestaltung</a>, rechtliche Grundlagen und Alternativtexte die <a href="../typografie/exercise-09.html">Typografie-Lektion 09</a>.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 06 METHODEN ================= -->
+    <section class="page" id="p-methoden" data-page="methoden">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 06</span>
+        <h1>Evaluationsmethoden</h1>
+        <p class="lead">Es gibt nicht die eine richtige Methode. Welche passt, hängt davon ab, was Sie wissen wollen, wie weit Ihre App ist und wie viel Zeit Sie haben. Diese Übersicht hilft bei der Wahl.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/methoden.jpg" alt="Tisch mit Karteikarten verschiedener Methoden, einem Smartphone mit Prototyp und einem ausgedruckten Fragebogen" loading="lazy" width="1600" height="900"><figcaption>Die Methode richtet sich nach der Frage. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Drei Unterscheidungen</h2>
+        <div class="grid g3">
+          <div class="card key"><h3>Formativ oder summativ</h3><p><strong>Formativ</strong> heißt: während der Entwicklung, um zu verbessern. <strong>Summativ</strong> heißt: am Ende, um zu bewerten. Im Medienprojekt evaluieren Sie überwiegend formativ.</p></div>
+          <div class="card key"><h3>Qualitativ oder quantitativ</h3><p><strong>Qualitativ</strong> fragt nach dem Warum: Beobachtungen, Zitate. <strong>Quantitativ</strong> misst: Erfolgsquoten, Zeiten, Fragebogenwerte.</p></div>
+          <div class="card key"><h3>Mit oder ohne Nutzende</h3><p><strong>Expertenbasiert</strong> prüfen Fachleute, schnell und günstig. <strong>Nutzerbasiert</strong> zeigen echte Menschen, was wirklich passiert.</p></div>
+        </div>
+
+        <h2>Methoden im Überblick</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Methode</th><th>Art</th><th>Wann</th><th>Aufwand</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Heuristische Evaluation</strong></td><td>expertenbasiert, qualitativ</td><td>ab Wireframe</td><td>2–4 Stunden im Team</td></tr>
+              <tr><td><strong>Cognitive Walkthrough</strong></td><td>expertenbasiert, qualitativ</td><td>ab Papierprototyp</td><td>1–2 Stunden</td></tr>
+              <tr><td><strong>Usability-Test mit lautem Denken</strong></td><td>nutzerbasiert, qualitativ</td><td>ab Papierprototyp</td><td>5 × 30 Minuten plus Auswertung</td></tr>
+              <tr><td><strong>Fragebogen (SUS, UEQ)</strong></td><td>nutzerbasiert, quantitativ</td><td>nach jedem Test</td><td>5 Minuten pro Person</td></tr>
+              <tr><td><strong>A/B-Test</strong></td><td>nutzerbasiert, quantitativ</td><td>veröffentlichte App</td><td>viele Nutzende nötig</td></tr>
+              <tr><td><strong>Analytics</strong></td><td>nutzerbasiert, quantitativ</td><td>veröffentlichte App</td><td>Einrichtung, Datenschutz beachten</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Methodenfinder</h2>
+        <div class="demo"><div id="mf"></div></div>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Kombinieren lohnt sich:</strong> Eine heuristische Evaluation vor dem Usability-Test räumt die offensichtlichen Fehler aus dem Weg. Dann verbringen Ihre Testpersonen ihre Zeit mit den interessanten Problemen.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 07 HEURISTISCHE EVALUATION ================= -->
+    <section class="page" id="p-experten" data-page="experten">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 07</span>
+        <h1>Heuristische Evaluation</h1>
+        <p class="lead">Bei einer heuristischen Evaluation prüfen Fachleute eine Oberfläche anhand bewährter Regeln. Sie ist schnell, braucht keine Testpersonen und findet viele offensichtliche Fehler. Sie ersetzt aber keinen Test mit echten Nutzenden.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/experten.jpg" alt="Drei Studierende prüfen gemeinsam Screenshots einer App, die an einer Wand hängen, und markieren Probleme mit Haftnotizen" loading="lazy" width="1600" height="900"><figcaption>Erst allein prüfen, dann gemeinsam zusammenführen. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Die zehn Heuristiken nach Nielsen, mobil gedacht</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Heuristik</th><th>Typischer Fehler in Apps</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1 Sichtbarkeit des Systemstatus</strong></td><td>Nach dem Tippen passiert nichts Sichtbares, kein Ladeindikator.</td></tr>
+              <tr><td><strong>2 Übereinstimmung mit der realen Welt</strong></td><td>Fachbegriffe aus der Entwicklung: „Sync failed“, „Entity“.</td></tr>
+              <tr><td><strong>3 Nutzerkontrolle und Freiheit</strong></td><td>Kein Zurück, kein Rückgängig nach dem Löschen.</td></tr>
+              <tr><td><strong>4 Konsistenz und Standards</strong></td><td>Eigene Navigation, die iOS- oder Android-Konventionen ignoriert.</td></tr>
+              <tr><td><strong>5 Fehlervermeidung</strong></td><td>Falsche Tastatur für Zahlen, destruktive Aktion ohne Rückfrage.</td></tr>
+              <tr><td><strong>6 Wiedererkennen statt Erinnern</strong></td><td>Code aus einer SMS muss abgetippt werden.</td></tr>
+              <tr><td><strong>7 Flexibilität und Effizienz</strong></td><td>Keine Favoriten, kein Autofill, jedes Mal alles neu eingeben.</td></tr>
+              <tr><td><strong>8 Ästhetisches, minimalistisches Design</strong></td><td>Überladener Startscreen mit zehn gleich lauten Elementen.</td></tr>
+              <tr><td><strong>9 Fehler erkennen und beheben</strong></td><td>„Error 500“ statt einer verständlichen Lösung.</td></tr>
+              <tr><td><strong>10 Hilfe und Dokumentation</strong></td><td>Komplexe Funktion ohne Erklärung im Moment der Nutzung.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Ablauf im Projektteam</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Vorbereiten</h3><p>Screens oder Prototyp, Persona und 2–3 typische Aufgaben festlegen. Ein gemeinsames Protokoll anlegen.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Unabhängig prüfen</h3><p>3–5 Personen gehen die Aufgaben einzeln durch, idealerweise zweimal: einmal für den Fluss, einmal für Details. Jeder Fund wird mit Screen, Heuristik und Beschreibung notiert.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Zusammenführen</h3><p>Doppelte Befunde zusammenlegen. Jede Person vergibt einen Schweregrad von 0 bis 4, dann wird gemittelt.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Maßnahmen ableiten</h3><p>Für die Befunde mit Schweregrad 3 und 4 konkrete Lösungen formulieren und Verantwortliche festlegen.</p></div></li>
+        </ol>
+        <p>Warum einzeln? Eine Person allein findet nach Nielsen nur etwa ein Drittel der Probleme. Mehrere Prüfende ergänzen sich, solange sie sich nicht vorher absprechen.</p>
+
+        <h2>Cognitive Walkthrough</h2>
+        <p>Eine verwandte Methode für neue Nutzende: Das Team geht eine Aufgabe Schritt für Schritt aus Sicht der Persona durch und stellt bei jedem Schritt vier Fragen:</p>
+        <ul class="list">
+          <li>Will die Person an dieser Stelle das Richtige tun?</li>
+          <li>Bemerkt sie, dass die richtige Aktion verfügbar ist?</li>
+          <li>Erkennt sie, dass diese Aktion zu ihrem Ziel führt?</li>
+          <li>Sieht sie nach der Aktion, dass sie vorankommt?</li>
+        </ul>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Ausprobieren:</strong> In Übung 2 finden Sie sechs Probleme in einem Bezahl-Screen und ordnen sie den Heuristiken zu.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 08 USABILITY-TESTS ================= -->
+    <section class="page" id="p-testen" data-page="testen">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 08</span>
+        <h1>Usability-Tests mit Apps</h1>
+        <p class="lead">Nichts ersetzt den Moment, in dem eine fremde Person Ihre App in die Hand nimmt und an einer Stelle hängen bleibt, die Sie für selbstverständlich hielten. Ein Usability-Test macht diese Momente sichtbar, mit überraschend wenig Aufwand.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/testen.jpg" alt="Testperson bedient eine App auf dem Smartphone, eine Kamera über dem Tisch filmt die Hände, daneben moderiert eine Studentin" loading="lazy" width="1600" height="900"><figcaption>Ein einfaches Test-Setup: Gerät, Aufnahme, Moderation. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Wie viele Personen?</h2>
+        <p>Nielsen und Landauer zeigten 1993, dass etwa fünf Personen rund 85 % der Usability-Probleme aufdecken. Die Rechnung setzt voraus, dass die Personen zu einer Zielgruppe gehören und die Probleme häufig genug auftreten. Für Ihr Projekt heißt das: Lieber zwei oder drei Runden mit je fünf Personen, und dazwischen verbessern, als eine große Runde am Ende.</p>
+
+        <h2>Ablauf eines Tests</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Begrüßung und Einwilligung</h3><p>Ziel erklären: „Wir testen die App, nicht Sie.“ Einwilligung für Aufnahme und Datenspeicherung unterschreiben lassen.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Vorgespräch</h3><p>Zwei, drei Fragen zur Person und ihren Gewohnheiten. Das lockert auf und hilft bei der Auswertung.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Aufgaben mit lautem Denken</h3><p>3–5 Aufgaben nacheinander, schriftlich vorgelegt. Die Person spricht aus, was sie denkt. Die Moderation hilft nicht.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Fragebogen</h3><p>Direkt nach den Aufgaben, z. B. SUS oder UEQ (Kapitel 09).</p></div></li>
+          <li class="step"><span class="n">05</span><div><h3>Nachgespräch</h3><p>„Was war am schwierigsten?“, „Was würden Sie ändern?“ Danach bedanken.</p></div></li>
+        </ol>
+
+        <h2>Rollen im Team</h2>
+        <div class="grid g3">
+          <div class="card"><h3>Moderation</h3><p class="small muted">Führt durch den Test, liest Aufgaben vor, fragt neutral nach: „Was erwarten Sie jetzt?“ statt „Sehen Sie den Button?“</p></div>
+          <div class="card"><h3>Protokoll</h3><p class="small muted">Notiert Beobachtungen mit Zeitstempel, Zitate, Fehler, Abbrüche. Trennt Beobachtung („tippt dreimal auf das Logo“) von Deutung.</p></div>
+          <div class="card"><h3>Technik</h3><p class="small muted">Bereitet Gerät und Aufnahme vor, setzt den Prototyp zwischen den Personen zurück.</p></div>
+        </div>
+
+        <h2>Mobile Testen: das Setup</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Variante</th><th>Vorteil</th><th>Nachteil</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bildschirmaufnahme</strong> am Gerät (iOS, Android integriert)</td><td>Kein Zubehör, zeigt jeden Tap</td><td>Gesicht und Hände fehlen, Gerät muss dem Team gehören oder vorbereitet sein</td></tr>
+              <tr><td><strong>Dokumentenkamera</strong> oder Smartphone-Halterung über dem Tisch</td><td>Hände und Gesten sichtbar</td><td>Person muss das Gerät auf dem Tisch halten</td></tr>
+              <tr><td><strong>Remote</strong> per Videocall mit Bildschirmfreigabe</td><td>Personen überall erreichbar</td><td>Weniger Kontext, technische Hürden</td></tr>
+              <tr><td><strong>Papierprototyp</strong></td><td>Sehr früh, sehr günstig</td><td>Moderation spielt „Computer“ und tauscht Blätter</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Ethik und Datenschutz</h2>
+        <div class="note"><span class="badge-i" aria-hidden="true">i</span><p><strong>Auch Kommilitoninnen und Kommilitonen haben Rechte.</strong> Aufnahmen von Gesicht, Stimme oder Bildschirm sind personenbezogene Daten nach DSGVO. Holen Sie vorab eine schriftliche, freiwillige Einwilligung ein, erklären Sie Zweck, Speicherort und Löschfrist, speichern Sie Aufnahmen nur im Projektlaufwerk und löschen Sie sie nach der Auswertung. Die Teilnahme darf jederzeit abgebrochen werden, ohne Nachteile.</p></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 09 MESSEN ================= -->
+    <section class="page" id="p-messen" data-page="messen">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 09</span>
+        <h1>Messen und Fragebögen</h1>
+        <p class="lead">Beobachtungen zeigen, warum etwas schiefgeht. Zahlen zeigen, wie oft und wie sehr, und ob die nächste Version besser ist. Drei Größen aus der ISO 9241-11 geben die Struktur vor.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/messen.jpg" alt="Laptop mit einer einfachen Tabelle aus Testergebnissen, daneben Stoppuhr und ausgefüllte Fragebögen" loading="lazy" width="1600" height="900"><figcaption>Erfolgsquoten, Zeiten und Fragebögen machen Verbesserungen vergleichbar. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Effektivität, Effizienz, Zufriedenheit</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Größe</th><th>Kennzahl</th><th>Beispiel</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Effektivität</strong></td><td>Erfolgsquote je Aufgabe, Anzahl Fehler</td><td>4 von 5 Personen bestellen ohne Hilfe vor: 80 %</td></tr>
+              <tr><td><strong>Effizienz</strong></td><td>Zeit je Aufgabe, Anzahl Schritte</td><td>Median 48 Sekunden bis zur Bestellung</td></tr>
+              <tr><td><strong>Zufriedenheit</strong></td><td>Fragebogen (SUS, UEQ), Zitate</td><td>SUS-Mittelwert 74</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">Bei fünf Personen sind Zahlen Tendenzen, keine statistischen Beweise. Nennen Sie immer die Anzahl (n = 5) und nutzen Sie bei Zeiten den Median, weil eine einzelne langsame Person den Mittelwert stark verzerrt.</p>
+
+        <h2>System Usability Scale (SUS)</h2>
+        <p>Der SUS von John Brooke (1996) ist der verbreitetste Usability-Fragebogen: zehn Aussagen, je fünf Stufen von „stimme gar nicht zu“ (1) bis „stimme voll zu“ (5). Ungerade Aussagen sind positiv, gerade negativ formuliert.</p>
+        <div class="grid g2">
+          <div class="card soft"><div class="label">Berechnung</div><p style="margin-top:10px">Ungerade Aussagen: Antwort − 1.<br>Gerade Aussagen: 5 − Antwort.<br>Summe aller zehn Werte × 2,5 = SUS-Score von 0 bis 100.</p></div>
+          <div class="card soft"><div class="label">Einordnung</div><p style="margin-top:10px">Etwa 68 ist Durchschnitt (Sauro). Nach Bangor u. a. (2009) gelten Werte um 71 als „gut“, ab etwa 85 als „ausgezeichnet“. Der Score ist kein Prozentwert.</p></div>
+        </div>
+        <h3 style="margin-top:28px">Ausprobieren: SUS-Rechner</h3>
+        <p class="small muted">Stellen Sie für jede Aussage eine Antwort von 1 bis 5 ein.</p>
+        <div class="demo">
+          <div id="m-sus" class="ue-mini-grid"></div>
+          <p class="ue-sus-result" id="m-sus-out" role="status"></p>
+        </div>
+
+        <h2>User Experience Questionnaire (UEQ)</h2>
+        <p>Der UEQ (Laugwitz, Held und Schrepp, 2008) misst mit 26 Gegensatzpaaren wie „langweilig – spannend“ oder „kompliziert – einfach“ sechs Skalen: Attraktivität, Durchschaubarkeit, Effizienz, Steuerbarkeit, Stimulation und Originalität. Damit erfasst er neben der Bedienbarkeit auch, wie anregend eine App wirkt. Fragebogen und Auswertungstabelle gibt es kostenlos auf ueq-online.org, auch auf Deutsch. Für kurze Tests eignet sich die Kurzfassung UEQ-S mit acht Paaren.</p>
+
+        <h2>Welcher Fragebogen wann?</h2>
+        <div class="grid g2">
+          <div class="card"><h3>SUS</h3><p class="small muted">Schnell, gut vergleichbar, fokussiert auf Bedienbarkeit. Ideal, um Version 1 und Version 2 Ihrer App zu vergleichen.</p></div>
+          <div class="card"><h3>UEQ</h3><p class="small muted">Breiter, auch emotionale Qualität. Gut, wenn Ihre App begeistern soll, etwa ein Spiel oder eine Kultur-App.</p></div>
+        </div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= 10 AUSWERTEN ================= -->
+    <section class="page" id="p-auswerten" data-page="auswerten">
+      <div class="wrap">
+        <span class="eyebrow">Kapitel 10</span>
+        <h1>Auswerten und Berichten</h1>
+        <p class="lead">Nach fünf Tests haben Sie Seiten voller Notizen und Stunden Video. Der Wert entsteht erst, wenn daraus eine kurze, priorisierte Liste wird, mit der Ihr Team arbeiten kann.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/auswerten.jpg" alt="Wand mit gruppierten Haftnotizen in mehreren Farben, davor ein Team, das Befunde sortiert" loading="lazy" width="1600" height="900"><figcaption>Aus vielen Beobachtungen werden wenige klare Befunde. KI-generiert mit Magnific.</figcaption></figure>
+
+        <h2>Von Notizen zu Befunden</h2>
+        <ol class="steps">
+          <li class="step"><span class="n">01</span><div><h3>Beobachtungen sammeln</h3><p>Jede Beobachtung auf eine eigene Karte: was, wer, bei welcher Aufgabe. Noch nicht deuten.</p></div></li>
+          <li class="step"><span class="n">02</span><div><h3>Gruppieren</h3><p>Ähnliche Karten zusammenlegen (Affinity Mapping). Aus „P2 sucht den Button oben“ und „P4 scrollt nach oben“ wird ein Befund.</p></div></li>
+          <li class="step"><span class="n">03</span><div><h3>Bewerten</h3><p>Für jeden Befund: Wie viele Personen waren betroffen, wie stark, und tritt es immer wieder auf? Daraus folgt der Schweregrad.</p></div></li>
+          <li class="step"><span class="n">04</span><div><h3>Maßnahmen ableiten</h3><p>Für jeden wichtigen Befund eine konkrete Lösung und eine verantwortliche Person.</p></div></li>
+        </ol>
+
+        <h2>Schweregrade nach Nielsen</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Grad</th><th>Bedeutung</th><th>Handlung</th></tr></thead>
+            <tbody>
+              <tr><td><strong>0</strong></td><td>Kein Usability-Problem</td><td>Nichts tun oder als Idee notieren</td></tr>
+              <tr><td><strong>1</strong></td><td>Kosmetisch</td><td>Beheben, wenn Zeit bleibt</td></tr>
+              <tr><td><strong>2</strong></td><td>Gering</td><td>Niedrige Priorität</td></tr>
+              <tr><td><strong>3</strong></td><td>Schwerwiegend</td><td>Hohe Priorität, zeitnah beheben</td></tr>
+              <tr><td><strong>4</strong></td><td>Katastrophal</td><td>Vor der Veröffentlichung zwingend beheben</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px">Nielsen nennt drei Faktoren: <strong>Häufigkeit</strong> (wie viele sind betroffen), <strong>Auswirkung</strong> (lässt sich das Problem leicht überwinden?) und <strong>Persistenz</strong> (stört es einmal oder bei jeder Nutzung?).</p>
+
+        <h2>Ein guter Befund</h2>
+        <div class="grid g2">
+          <div class="card"><h3 style="color:#B91C1C">Schwach</h3><p class="small muted">„Der Checkout ist verwirrend.“</p></div>
+          <div class="card"><h3 style="color:#166534">Stark</h3><p class="small muted">„4 von 5 Personen fanden den Button ‚Weiter‘ im Checkout nicht, weil die Tastatur ihn verdeckt (Aufgabe 2, Screen 3). Schweregrad 4. Maßnahme: Button über der Tastatur fixieren. Zuständig: Jonas.“</p></div>
+        </div>
+
+        <h2>Das Evaluationskapitel im Projektbericht</h2>
+        <ul class="list">
+          <li><strong>Ziel und Fragestellung</strong> des Tests</li>
+          <li><strong>Methode:</strong> Prototyp-Stand, Teilnehmende (n, Rekrutierung), Aufgaben, Messgrößen, Ort</li>
+          <li><strong>Ergebnisse:</strong> Erfolgsquoten und Zeiten je Aufgabe, SUS oder UEQ, wichtigste Befunde mit Schweregrad und Belegen (Zitate, Screenshots)</li>
+          <li><strong>Maßnahmen:</strong> Was wurde geändert, was bleibt offen und warum</li>
+          <li><strong>Reflexion:</strong> Grenzen des Tests, z. B. Kommilitonen statt echter Zielgruppe</li>
+          <li><strong>Anhang:</strong> Testplan, Einwilligungsvorlage (ohne personenbezogene Daten), Fragebögen</li>
+        </ul>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü1 DAUMEN ================= -->
+    <section class="page" id="p-ue-daumen" data-page="ue-daumen">
+      <div class="wrap">
+        <span class="eyebrow">Übung 1 · Platzieren</span>
+        <h1>Daumenzonen-Check</h1>
+        <p class="lead">Ein Buchungsscreen ist ungünstig aufgebaut. Verschieben Sie vier Bedienelemente und passen Sie ihre Größe an, bis sie zu Daumen und Plattformkonventionen passen.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Rechtshändige, einhändige Bedienung</span><span><i></i>Kapitel 04</span></div>
+        <figure class="media media-ex"><img src="media/ue-daumen.jpg" alt="Nahaufnahme eines Daumens, der auf einem Smartphone-Bildschirm unten eine Schaltfläche antippt" loading="lazy" width="1600" height="900"><figcaption>Was der Daumen nicht erreicht, wird seltener genutzt. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Erfüllen Sie alle vier Kriterien: Die Hauptaktion liegt in der leichten Zone und ist mindestens 44 pt hoch. Die Tab-Leiste sitzt unten. „Konto löschen“ liegt außerhalb der leichten Zone. Alle Elemente sind mindestens 44 pt hoch. Die farbigen Flächen zeigen die Daumenzonen.</p></div>
+        <div class="demo">
+          <div class="ue-dz">
+            <svg id="dz-phone" class="ue-dz-phone" viewBox="0 0 300 600" role="img" aria-label="Smartphone mit Daumenzonen: grün unten rechts leicht, gelb in der Mitte mittel, rot oben links schwer, und den vier platzierten Elementen"></svg>
+            <div>
+              <div id="dz-controls"></div>
+              <div class="row-btns" style="margin-top:14px"><button class="btn btn-primary" type="button" id="dz-check">Anordnung prüfen</button><button class="btn" type="button" id="dz-reset">Zurücksetzen</button></div>
+            </div>
+          </div>
+          <div id="dz-fb"></div>
+        </div>
+        <div class="task"><span class="label">Reflexion</span><p>Gilt Ihre Lösung auch für Linkshänder und für Tablets? Was würden Sie für eine App ändern, die meist im Liegen auf dem Sofa genutzt wird?</p></div>
+        <div class="ex-done" data-ex="ue-daumen"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü2 HEURISTIK ================= -->
+    <section class="page" id="p-ue-heuristik" data-page="ue-heuristik">
+      <div class="wrap">
+        <span class="eyebrow">Übung 2 · Prüfen</span>
+        <h1>Heuristik-Detektiv</h1>
+        <p class="lead">Der Bezahl-Screen einer Ticket-App hat mindestens sechs Usability-Probleme. Finden Sie sie und ordnen Sie jedes der Heuristik zu, gegen die es am deutlichsten verstößt.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>10 Heuristiken nach Nielsen</span><span><i></i>Kapitel 07</span></div>
+        <figure class="media media-ex"><img src="media/ue-heuristik.jpg" alt="Lupe über einem ausgedruckten App-Screenshot, auf dem Probleme rot eingekreist sind" loading="lazy" width="1600" height="900"><figcaption>Genau hinsehen, Heuristik benennen, Lösung vorschlagen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Tippen Sie auf die Bereiche des Screens oder nutzen Sie die Liste darunter. Wählen Sie für jedes Problem eine Heuristik. Bestanden ist die Übung bei mindestens fünf richtigen Zuordnungen.</p></div>
+        <div class="demo">
+          <div class="ue-hd">
+            <div class="ue-hd-phone" id="hd-phone"></div>
+            <div class="ue-hd-panel" id="hd-panel"><p class="muted">Wählen Sie einen Bereich des Screens aus.</p></div>
+          </div>
+          <p class="label" style="margin-top:18px">Alle Bereiche als Liste</p>
+          <ul class="ue-hd-list" id="hd-list"></ul>
+          <p class="small" id="hd-count" role="status" style="margin-top:12px"></p>
+        </div>
+        <div class="ex-done" data-ex="ue-heuristik"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü3 AUFGABEN ================= -->
+    <section class="page" id="p-ue-aufgaben" data-page="ue-aufgaben">
+      <div class="wrap">
+        <span class="eyebrow">Übung 3 · Testen</span>
+        <h1>Testaufgaben formulieren</h1>
+        <p class="lead">Die Aufgabe entscheidet, was ein Test zeigen kann. Eine Aufgabe, die den Weg verrät, misst nur, ob jemand lesen kann. Bewerten Sie acht Formulierungen.</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Szenario statt Anleitung</span><span><i></i>Kapitel 08</span></div>
+        <figure class="media media-ex"><img src="media/ue-aufgaben.jpg" alt="Karteikarten mit handgeschriebenen Testaufgaben neben einem Smartphone auf einem Holztisch" loading="lazy" width="1600" height="900"><figcaption>Gute Aufgaben beschreiben ein Ziel, nicht den Weg. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Entscheiden Sie bei jeder Aufgabe, ob sie gut formuliert oder problematisch ist. Prüfen Sie anschließend. Bestanden ist die Übung mit mindestens sieben richtigen Bewertungen.</p></div>
+        <div class="demo">
+          <div id="tq-list"></div>
+          <button class="btn btn-primary" type="button" id="tq-check" style="margin-top:16px">Bewertungen prüfen</button>
+          <div id="tq-fb"></div>
+        </div>
+        <div class="task"><span class="label">Transfer</span><p>Schreiben Sie drei Aufgaben für Ihre eigene App. Prüfen Sie: Enthält eine Aufgabe ein Wort, das auch auf einem Button steht? Dann umformulieren.</p></div>
+        <div class="ex-done" data-ex="ue-aufgaben"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü4 SUS ================= -->
+    <section class="page" id="p-ue-sus" data-page="ue-sus">
+      <div class="wrap">
+        <span class="eyebrow">Übung 4 · Messen</span>
+        <h1>SUS auswerten</h1>
+        <p class="lead">Fünf Personen haben nach dem Test einer Fahrrad-Sharing-App den SUS-Fragebogen ausgefüllt. Berechnen Sie die Scores von Hand, so wie Sie es später mit Ihren eigenen Daten tun.</p>
+        <div class="ex-meta"><span><i></i>ca. 15 Minuten</span><span><i></i>System Usability Scale</span><span><i></i>Kapitel 09</span></div>
+        <figure class="media media-ex"><img src="media/ue-sus.jpg" alt="Ausgefüllte Fragebögen mit Ankreuzskalen, ein Taschenrechner und ein Stift auf einem Schreibtisch" loading="lazy" width="1600" height="900"><figcaption>Zehn Kreuze, eine Zahl. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Berechnen Sie für jede Person den SUS-Score und tragen Sie ihn ein. F1 bis F10 sind die Antworten auf die zehn Aussagen (1 = stimme gar nicht zu, 5 = stimme voll zu).</p></div>
+        <div class="demo">
+          <div class="table-wrap ue-sus-table" id="sus-data"></div>
+          <div class="row-btns" style="margin-top:14px"><button class="btn btn-primary" type="button" id="sus-check">Scores prüfen</button><button class="btn" type="button" id="sus-solve">Lösung zeigen</button></div>
+          <div id="sus-fb"></div>
+        </div>
+        <h2>Den Fragebogen selbst ausfüllen</h2>
+        <p>So sieht der SUS für Ihre Testpersonen aus. Füllen Sie ihn für eine App aus, die Sie täglich nutzen.</p>
+        <div class="demo">
+          <div id="sus-form"></div>
+          <div id="sus-out"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-sus"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü5 SCHWERE ================= -->
+    <section class="page" id="p-ue-schwere" data-page="ue-schwere">
+      <div class="wrap">
+        <span class="eyebrow">Übung 5 · Auswerten</span>
+        <h1>Befunde priorisieren</h1>
+        <p class="lead">Nach einem Test mit sechs Personen liegen sechs Befunde auf dem Tisch. Ihr Team hat nur Zeit für drei Änderungen. Welche zuerst?</p>
+        <div class="ex-meta"><span><i></i>ca. 10 Minuten</span><span><i></i>Schweregrade 0–4 nach Nielsen</span><span><i></i>Kapitel 10</span></div>
+        <figure class="media media-ex"><img src="media/ue-schwere.jpg" alt="Haftnotizen in einer Prioritätenmatrix an einem Whiteboard, eine Hand verschiebt eine Notiz nach oben" loading="lazy" width="1600" height="900"><figcaption>Nicht alles ist gleich wichtig. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Vergeben Sie für jeden Befund einen Schweregrad von 0 bis 4. Berücksichtigen Sie Häufigkeit, Auswirkung und Wiederkehr. Eine Stufe Abweichung von der Einschätzung der Lehrenden gilt als richtig.</p></div>
+        <div class="demo">
+          <div id="sev-list"></div>
+          <button class="btn btn-primary" type="button" id="sev-check" style="margin-top:16px">Einschätzung prüfen</button>
+          <div id="sev-fb"></div>
+          <div id="sev-sorted" class="ue-sev-sorted"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-schwere"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= Ü6 TESTPLAN ================= -->
+    <section class="page" id="p-ue-testplan" data-page="ue-testplan">
+      <div class="wrap">
+        <span class="eyebrow">Übung 6 · Anwenden</span>
+        <h1>Testplan erstellen</h1>
+        <p class="lead">Jetzt für Ihr eigenes Projekt: Planen Sie den ersten Usability-Test Ihrer App. Die Eingaben bleiben in diesem Browser gespeichert und lassen sich als Markdown-Datei herunterladen.</p>
+        <div class="ex-meta"><span><i></i>ca. 30 Minuten</span><span><i></i>Im Team ausfüllen</span><span><i></i>Kapitel 08–10</span></div>
+        <figure class="media media-ex"><img src="media/ue-testplan.jpg" alt="Klemmbrett mit einer Checkliste, daneben ein Smartphone mit App-Prototyp und eine Einwilligungserklärung" loading="lazy" width="1600" height="900"><figcaption>Ein guter Test beginnt mit einem Plan. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="task"><span class="label">Aufgabe</span><p>Füllen Sie alle Felder aus und planen Sie mindestens drei Aufgaben. Mit „Plan prüfen“ erhalten Sie Hinweise. Ist der Plan vollständig, gilt die Übung als erledigt.</p></div>
+        <div class="demo">
+          <div id="tp-form" class="ue-tp"></div>
+          <div class="row-btns" style="margin-top:16px"><button class="btn btn-primary" type="button" id="tp-check">Plan prüfen</button><button class="btn" type="button" id="tp-dl">Als Markdown herunterladen</button><button class="btn" type="button" id="tp-copy">Kopieren</button></div>
+          <div id="tp-fb"></div>
+        </div>
+        <div class="ex-done" data-ex="ue-testplan"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <section class="page" id="p-quiz" data-page="quiz">
+      <div class="wrap">
+        <span class="eyebrow">Wissensüberprüfung</span>
+        <h1>Wissenstest</h1>
+        <p class="lead">Fünfzehn Fragen quer durch das Modul. Nach jeder Frage erhalten Sie eine kurze Erklärung.</p>
+        <hr class="rule">
+        <figure class="media"><img src="media/quiz.jpg" alt="Smartphone mit einer Quiz-App auf einem Schreibtisch neben Karteikarten und einer Tasse Kaffee" loading="lazy" width="1600" height="900"><figcaption>Zeit für den Wissenstest. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="quiz-card" id="quiz"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= LITERATUR ================= -->
+    <section class="page" id="p-literatur" data-page="literatur">
+      <div class="wrap">
+        <span class="eyebrow">Bibliothek</span>
+        <h1>Literatur und Quellen</h1>
+        <p class="lead">Grundlagenwerke, Studien und Standards zu Usability und Evaluation, chronologisch geordnet. Zur Vertiefung und für Ihren Projektbericht.</p>
+        <figure class="media media-ex"><img src="media/literatur.jpg" alt="Stapel Fachbücher zu Usability und Interaktionsdesign auf einem Bibliothekstisch neben einem Tablet" loading="lazy" width="1600" height="900"><figcaption>Zum Weiterlesen. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="lit" id="lit" style="margin-top:36px"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+
+    <!-- ================= GLOSSAR ================= -->
+    <section class="page" id="p-glossar" data-page="glossar">
+      <div class="wrap">
+        <span class="eyebrow">Wissen von A–Z</span>
+        <h1>Stichwortverzeichnis</h1>
+        <p class="lead">Alle Fachbegriffe des Moduls, kurz erklärt und mit Verweis auf das passende Kapitel.</p>
+        <figure class="media media-ex"><img src="media/glossar.jpg" alt="Aufgeschlagenes Notizbuch mit alphabetischem Register und handschriftlichen Begriffen neben einem Smartphone" loading="lazy" width="1600" height="900"><figcaption>Fachbegriffe von A bis Z. KI-generiert mit Magnific.</figcaption></figure>
+        <div class="gl-tools">
+          <input type="search" id="gl-search" placeholder="Begriff suchen, z. B. Persona" aria-label="Begriff suchen">
+          <div class="chips" id="gl-cats" role="group" aria-label="Kategorie filtern"></div>
+          <nav class="az" id="gl-az" aria-label="Alphabet"></nav>
+        </div>
+        <p class="small muted" id="gl-count" role="status"></p>
+        <div id="gl-list"></div>
+        <div class="pager" data-pager></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=20261106a"></script>
+</body>
+</html>
