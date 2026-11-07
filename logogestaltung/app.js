@@ -53,7 +53,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'Warum Zeichen gestalten', group: 'Theorie & Grundlagen' },
   { id: 'grundlagen', t: 'Grundlagen', sub: 'Zeichen, Logo, Marke' },
   { id: 'geschichte', t: 'Geschichte', sub: 'Vom Steinmetz zum Favicon' },

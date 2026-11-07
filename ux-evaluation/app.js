@@ -54,7 +54,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'UX im Medienprojekt', group: 'Gestalten' },
   { id: 'prozess', t: 'Nutzerzentrierter Prozess', sub: 'Iterieren statt raten' },
   { id: 'nutzende', t: 'Nutzende verstehen', sub: 'Interviews, Personas, Kontext' },

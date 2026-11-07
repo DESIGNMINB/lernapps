@@ -52,7 +52,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'KI als Partnerin in der Gestaltung', group: 'Grundlagen' },
   { id: 'modelle', t: 'Wie Bildmodelle arbeiten', sub: 'Diffusion, latenter Raum, Jagged Frontier' },
   { id: 'prozess', t: 'KI im UX-Prozess', sub: 'Double Diamond und Mobile-Workflow' },

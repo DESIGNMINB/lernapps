@@ -115,7 +115,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'Warum Farbe gestalten', group: 'Theorie & Grundlagen' },
   { id: 'wahrnehmung', t: 'Licht und Wahrnehmung', sub: 'Spektrum, Auge, Metamerie' },
   { id: 'mischung', t: 'Farbmischung', sub: 'Additiv und subtraktiv' },

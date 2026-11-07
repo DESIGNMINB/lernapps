@@ -67,7 +67,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'Warum Ordnung wirkt', group: 'Theorie & Grundlagen' },
   { id: 'satzspiegel', t: 'Format und Satzspiegel', sub: 'Stege und Teilungen' },
   { id: 'spalten', t: 'Spaltenraster', sub: 'Spalten und Zeilenlänge' },

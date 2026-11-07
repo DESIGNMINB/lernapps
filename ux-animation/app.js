@@ -91,7 +91,7 @@ const ICONS = {
 };
 
 const PAGES = [
-  { id: 'home', t: 'Home' },
+  { id: 'home', t: 'Übersicht' },
   { id: 'einleitung', t: 'Einleitung', sub: 'Warum sich Oberflächen bewegen', group: 'Grundlagen' },
   { id: 'zweck', t: 'Wozu Animation?', sub: 'Sechs Aufgaben von Bewegung' },
   { id: 'prinzipien', t: 'Animationsprinzipien', sub: 'Von Disney zum Interface' },
