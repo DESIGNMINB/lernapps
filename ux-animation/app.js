@@ -529,59 +529,88 @@ const TR_ITEMS = [
 function initTransitions() {
   const scr = $('#tr-screen');
   let mode = 'container', busy = false;
-  onGroup($('#tr-mode'), (b) => { mode = b.dataset.mode; });
   const listHtml = () => `<div class="an-appbar">Lernkapitel</div><div class="an-tr-list">${TR_ITEMS.map(([id, t, s], i) => `<button type="button" class="an-tr-card" data-tc="${i}"><span class="img" style="background-image:url(media/tile-${id}.jpg)"></span><span>${esc(t)}<small>${esc(s)}</small></span></button>`).join('')}</div>`;
   scr.innerHTML = listHtml();
   const list = () => $('.an-tr-list', scr);
   const rel = (el) => { const a = el.getBoundingClientRect(), b = scr.getBoundingClientRect(); return { left: a.left - b.left, top: a.top - b.top, width: a.width, height: a.height }; };
   const px = (r) => ({ left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px' });
+  // Auf das Ende einer Animation warten, aber nie länger als ihre Dauer plus Puffer.
+  // So bleibt die Demo bedienbar, auch wenn der Browser eine Animation anhält oder abbricht.
+  const done = (a, ms) => Promise.race([a.finished.catch(() => {}), new Promise((r) => setTimeout(r, ms + 250))]);
+  // Bei „Bewegung reduzieren“ ersetzt eine kurze Überblendung jede Bewegung
+  const reduced = () => RM.matches;
+  // Detailansicht sofort schließen, etwa wenn das Muster gewechselt wird
+  const reset = () => {
+    for (const el of [scr, ...$$('*', scr)]) for (const a of el.getAnimations()) a.cancel();
+    for (const n of $$('.an-tr-detail, .an-ghost', scr)) n.parentNode.removeChild(n);
+    list().style.visibility = ''; busy = false;
+  };
+  onGroup($('#tr-mode'), (b) => { mode = b.dataset.mode; if ($('.an-tr-detail', scr)) reset(); });
   async function open(i) {
     if (busy) return; busy = true;
-    const [id, t, s] = TR_ITEMS[i];
-    const card = $(`[data-tc="${i}"]`, scr);
-    const det = document.createElement('div');
-    det.className = 'an-tr-detail'; det.dataset.i = i;
-    det.innerHTML = `<button type="button" class="an-tr-back">← Zurück</button><div class="img" style="background-image:url(media/tile-${id}.jpg)"></div><div class="body"><h3>${esc(t)}</h3><p>${esc(s)}</p><p>Hier stünde der Inhalt des Kapitels. Achten Sie beim Zurückgehen darauf, ob Sie die Karte wiederfinden, von der Sie gekommen sind.</p></div>`;
-    scr.append(det);
-    const L = list(), img = $('.img', det), body = $('.body', det), back = $('.an-tr-back', det);
-    if (mode === 'container') {
-      const from = rel($('.img', card)), to = rel(img);
-      const g = document.createElement('div'); g.className = 'an-ghost'; g.style.backgroundImage = `url(media/tile-${id}.jpg)`; scr.append(g);
-      det.style.opacity = '1'; img.style.visibility = 'hidden'; body.style.opacity = '0'; back.style.opacity = '0';
-      play(det, [{ backgroundColor: 'transparent' }, { backgroundColor: getComputedStyle(scr).backgroundColor }], { duration: 250, easing: EASE.std });
-      play(L, [{ opacity: 1 }, { opacity: 0 }], { duration: 150 });
-      await play(g, [Object.assign(px(from), { borderRadius: '8px' }), Object.assign(px(to), { borderRadius: '0px' })], { duration: 380, easing: EASE.dec }).finished;
-      img.style.visibility = ''; g.remove();
-      play(body, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 200, easing: EASE.dec });
-      play(back, [{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
-    } else if (mode === 'axis') {
-      play(L, [{ transform: 'none', opacity: 1 }, { transform: 'translateX(-30%)', opacity: 0 }], { duration: 300, easing: EASE.std });
-      await play(det, [{ transform: 'translateX(30%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 300, easing: EASE.std }).finished;
-    } else if (mode === 'fade') {
-      await play(L, [{ opacity: 1 }, { opacity: 0 }], { duration: 90, easing: EASE.acc }).finished;
-      await play(det, [{ opacity: 0, transform: 'scale(.92)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }).finished;
-    } else { L.style.visibility = 'hidden'; }
-    back.focus(); busy = false;
+    try {
+      const [id, t, s] = TR_ITEMS[i];
+      const card = $(`[data-tc="${i}"]`, scr);
+      const det = document.createElement('div');
+      det.className = 'an-tr-detail'; det.dataset.i = i;
+      det.innerHTML = `<button type="button" class="an-tr-back">← Zurück</button><div class="img" style="background-image:url(media/tile-${id}.jpg)"></div><div class="body"><h3>${esc(t)}</h3><p>${esc(s)}</p><p>Hier stünde der Inhalt des Kapitels. Achten Sie beim Zurückgehen darauf, ob Sie die Karte wiederfinden, von der Sie gekommen sind.</p></div>`;
+      // Erst unsichtbar einfügen, damit nichts aufblitzt, bevor der Übergang startet
+      det.style.opacity = '0';
+      scr.append(det);
+      const L = list(), img = $('.img', det), body = $('.body', det), back = $('.an-tr-back', det);
+      if (mode === 'none') { det.style.opacity = '1'; L.style.visibility = 'hidden'; }
+      else if (reduced()) {
+        det.style.opacity = '';
+        play(L, [{ opacity: 1 }, { opacity: 0 }], { duration: 150 });
+        await done(play(det, [{ opacity: 0 }, { opacity: 1 }], { duration: 150 }), 150);
+      } else if (mode === 'container') {
+        const from = rel($('.img', card)), to = rel(img);
+        const g = document.createElement('div'); g.className = 'an-ghost'; g.style.backgroundImage = `url(media/tile-${id}.jpg)`; scr.append(g);
+        det.style.opacity = '1'; img.style.visibility = 'hidden'; body.style.opacity = '0'; back.style.opacity = '0';
+        play(det, [{ backgroundColor: 'transparent' }, { backgroundColor: getComputedStyle(scr).backgroundColor }], { duration: 250, easing: EASE.std });
+        play(L, [{ opacity: 1 }, { opacity: 0 }], { duration: 150 });
+        await done(play(g, [Object.assign(px(from), { borderRadius: '8px' }), Object.assign(px(to), { borderRadius: '0px' })], { duration: 380, easing: EASE.dec }), 380);
+        img.style.visibility = ''; g.parentNode.removeChild(g); body.style.opacity = ''; back.style.opacity = '';
+        play(body, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 200, easing: EASE.dec });
+        play(back, [{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
+      } else if (mode === 'axis') {
+        det.style.opacity = '';
+        play(L, [{ transform: 'none', opacity: 1 }, { transform: 'translateX(-30%)', opacity: 0 }], { duration: 300, easing: EASE.std });
+        await done(play(det, [{ transform: 'translateX(30%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 300, easing: EASE.std }), 300);
+      } else {
+        await done(play(L, [{ opacity: 1 }, { opacity: 0 }], { duration: 90, easing: EASE.acc }), 90);
+        det.style.opacity = '';
+        await done(play(det, [{ opacity: 0, transform: 'scale(.92)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }), 210);
+      }
+      back.focus({ preventScroll: true });
+    } finally { busy = false; }
   }
   async function close() {
     if (busy) return; busy = true;
-    const det = $('.an-tr-detail', scr), i = +det.dataset.i, L = list(), card = $(`[data-tc="${i}"]`, scr);
-    L.style.visibility = '';
-    if (mode === 'container') {
-      const img = $('.img', det), from = rel(img), to = rel($('.img', card));
-      const g = document.createElement('div'); g.className = 'an-ghost'; g.style.backgroundImage = img.style.backgroundImage; scr.append(g);
-      play(det, [{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: EASE.acc });
-      play(L, [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 80 });
-      await play(g, [Object.assign(px(from), { borderRadius: '0px' }), Object.assign(px(to), { borderRadius: '8px' })], { duration: 300, easing: EASE.std }).finished;
-      g.remove();
-    } else if (mode === 'axis') {
-      play(det, [{ transform: 'none', opacity: 1 }, { transform: 'translateX(30%)', opacity: 0 }], { duration: 260, easing: EASE.std });
-      await play(L, [{ transform: 'translateX(-30%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 260, easing: EASE.std }).finished;
-    } else if (mode === 'fade') {
-      await play(det, [{ opacity: 1 }, { opacity: 0 }], { duration: 90, easing: EASE.acc }).finished;
-      await play(L, [{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }).finished;
-    } else play(L, [{ opacity: 1 }], { duration: 1 });
-    det.remove(); card.focus(); busy = false;
+    try {
+      const det = $('.an-tr-detail', scr); if (!det) return;
+      const i = +det.dataset.i, L = list(), card = $(`[data-tc="${i}"]`, scr);
+      L.style.visibility = '';
+      if (mode === 'none') play(L, [{ opacity: 1 }], { duration: 1 });
+      else if (reduced()) {
+        play(L, [{ opacity: 0 }, { opacity: 1 }], { duration: 150 });
+        await done(play(det, [{ opacity: 1 }, { opacity: 0 }], { duration: 150 }), 150);
+      } else if (mode === 'container') {
+        const img = $('.img', det), from = rel(img), to = rel($('.img', card));
+        const g = document.createElement('div'); g.className = 'an-ghost'; g.style.backgroundImage = img.style.backgroundImage; scr.append(g);
+        play(det, [{ opacity: 1 }, { opacity: 0 }], { duration: 150, easing: EASE.acc });
+        play(L, [{ opacity: 0 }, { opacity: 1 }], { duration: 250, delay: 80 });
+        await done(play(g, [Object.assign(px(from), { borderRadius: '0px' }), Object.assign(px(to), { borderRadius: '8px' })], { duration: 300, easing: EASE.std }), 380);
+        g.parentNode.removeChild(g);
+      } else if (mode === 'axis') {
+        play(det, [{ transform: 'none', opacity: 1 }, { transform: 'translateX(30%)', opacity: 0 }], { duration: 260, easing: EASE.std });
+        await done(play(L, [{ transform: 'translateX(-30%)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 260, easing: EASE.std }), 260);
+      } else {
+        await done(play(det, [{ opacity: 1 }, { opacity: 0 }], { duration: 90, easing: EASE.acc }), 90);
+        await done(play(L, [{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }), 210);
+      }
+      det.parentNode.removeChild(det); card.focus({ preventScroll: true });
+    } finally { busy = false; }
   }
   scr.addEventListener('click', (e) => {
     const c = e.target.closest('[data-tc]'); if (c) { open(+c.dataset.tc); return; }
