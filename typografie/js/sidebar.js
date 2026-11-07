@@ -24,7 +24,6 @@ function renderSidebar(activePage) {
     { id: 'din', label: 'DIN 16518', href: 'din16518.html', icon: 'table' },
     { id: 'rechtschreibung', label: 'Rechtschreibung', href: 'rechtschreibung.html', icon: 'spell' },
     { id: 'wiss', label: 'Wiss. Schreiben', href: 'wissenschaftliches-schreiben.html', icon: 'pen' },
-    { id: 'design', label: 'Design System', href: 'design-system.html', icon: 'star' },
     { type: 'section', label: 'Wissenstest' },
     { id: 'quiz', label: 'Typografie-Quiz', href: 'quiz.html', icon: 'quiz' },
   ];
