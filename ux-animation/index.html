@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../fonts/ibm-plex-sans.css">
 <link rel="stylesheet" href="../fonts/ibm-plex-mono.css">
 <link rel="stylesheet" href="styles.css?v=20261107f">
-<link rel="stylesheet" href="an.css?v=20261106b">
+<link rel="stylesheet" href="an.css?v=20261107a">
 </head>
 <body>
 <a class="skip" href="#main">Zum Hauptinhalt</a>
@@ -180,9 +180,9 @@
         <h1>Animationsprinzipien</h1>
         <p class="lead">1981 beschrieben die Disney-Animatoren Frank Thomas und Ollie Johnston in „The Illusion of Life“ zwölf Prinzipien, mit denen gezeichnete Figuren lebendig wirken. Viele davon gelten auch für Buttons, Karten und Screens, weil unser Gehirn Bewegung immer mit der Physik der echten Welt vergleicht.</p>
         <hr class="rule">
-        <figure class="media an-video-fig">
-          <video controls muted playsinline loop preload="none" poster="media/prinzipien.jpg" width="1280" height="720"><source src="media/prinzipien.webm" type="video/webm"><source src="media/prinzipien.mp4" type="video/mp4">Ihr Browser kann dieses Video nicht abspielen.</video>
-          <figcaption>Daumenkino auf dem Leuchttisch: Ein Ball springt Bild für Bild. Video ohne Ton, KI-generiert mit Magnific.</figcaption>
+        <figure class="media">
+          <img src="media/prinzipien.webp" loading="lazy" alt="Eine Hand blättert auf einem Leuchttisch durch Zeichenblätter, auf denen ein orangefarbener Ball in mehreren Phasen springt und sich beim Aufprall staucht" width="1600" height="900">
+          <figcaption>Daumenkino auf dem Leuchttisch: Ein Ball springt Bild für Bild. KI-generiert mit Magnific.</figcaption>
         </figure>
 
         <h2>Ausprobieren: Ein Ball mit und ohne Prinzipien</h2>
@@ -219,6 +219,11 @@
           </tbody>
         </table></div>
         <div class="note"><span class="badge-i" aria-hidden="true">i</span><p>Schon 1993 haben Bay-Wei Chang und David Ungar gezeigt, dass sich diese Prinzipien auf Benutzungsoberflächen übertragen lassen. Ihr Argument: Wenn Objekte sich glaubwürdig bewegen, verstehen Menschen leichter, was sie sind und wo sie hingehören.</p></div>
+
+        <h2>Die zwölf Prinzipien in Beispielen</h2>
+        <p>Zu jedem Prinzip gibt es zwei kurze Beispiele: „So funktioniert’s“ zeigt das Prinzip an sich, „In der App“ eine typische Anwendung auf dem Smartphone. Zu sehen ist zunächst das Endbild. Mit „Abspielen“ starten Sie die Bewegung.</p>
+        <div class="an-pr-list" id="pr-examples"></div>
+        <p class="visually-hidden" id="pr-live" role="status" aria-live="polite"></p>
         <div class="pager" data-pager></div>
       </div>
     </section>
@@ -748,6 +753,6 @@ reduziert.addEventListener('change', () =&gt; passeAnimationenAn(reduziert.match
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261107s"></script>
+<script src="app.js?v=20261107u"></script>
 </body>
 </html>

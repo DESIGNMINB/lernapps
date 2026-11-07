@@ -299,6 +299,323 @@ function initZweck() {
 
 
 /* ================================================================
+   Kapitel 03: die zwölf Prinzipien in Beispielen.
+   Je ein Beispiel zur Funktionsweise und eines aus einer mobilen App.
+   Ruhezustand ist immer das Endbild; jede Animation beschreibt ihren
+   Anfang ausdrücklich und startet nur auf Klick.
+   ================================================================ */
+const pa = (el, kf, o) => el.animate(kf, Object.assign({ fill: 'forwards' }, o));
+const cssv = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const PHN = (inner) => `<div class="an-mph"><div class="an-mph-scr">${inner}</div></div>`;
+const PIC = {
+  heart: '<svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z"/></svg>',
+  cart: '<svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.5h10.6L20 7H6.3"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>',
+  send: '<svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg>',
+  check: '<svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="23"/><path d="M15 27l7 7 15-16" pathLength="30"/></svg>'
+};
+const rnd = (i) => { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); };
+const PRINC = [
+  {
+    t: 'Stauchen und Strecken', en: 'Squash and Stretch',
+    f: {
+      d: 'Im Fall streckt sich der Ball, beim Aufprall staucht er sich. Das Volumen bleibt gleich: Wird er flacher, wird er zugleich breiter.',
+      html: '<div class="fl"></div><div class="pb" style="left:calc(50% - 16px);transform:translateY(160px)"></div>',
+      run: (s) => [pa($('.pb', s), [
+        { transform: 'translateY(24px) scale(1, 1)', easing: EASE.in },
+        { transform: 'translateY(150px) scale(.84, 1.2)', offset: .3 },
+        { transform: 'translateY(160px) scale(1.4, .62)', offset: .36, easing: EASE.out },
+        { transform: 'translateY(140px) scale(.86, 1.16)', offset: .42, easing: EASE.out },
+        { transform: 'translateY(70px) scale(1, 1)', offset: .6, easing: EASE.in },
+        { transform: 'translateY(152px) scale(.92, 1.08)', offset: .76 },
+        { transform: 'translateY(160px) scale(1.18, .82)', offset: .81, easing: EASE.out },
+        { transform: 'translateY(160px) scale(1, 1)', offset: .9 },
+        { transform: 'translateY(160px) scale(1, 1)' }
+      ], { duration: 1400 })]
+    },
+    a: {
+      d: 'Like-Button: Beim Tippen staucht sich das Herz kurz und streckt sich beim Füllen. Die Verformung macht den Tipp fühlbar.',
+      html: PHN(`<div class="bar">Feed</div><div class="post"><div class="img"></div><div class="act"><span class="hrt">${PIC.heart}</span><b class="cnt">129</b></div></div><i class="row"></i><i class="row s"></i>`),
+      run: (s) => {
+        const c = $('.cnt', s); c.textContent = '128'; setTimeout(() => { c.textContent = '129'; }, 160);
+        return [
+          pa($('.hrt', s), [{ transform: 'scale(1)' }, { transform: 'scale(1.3, .7)', offset: .22 }, { transform: 'scale(.8, 1.3)', offset: .5 }, { transform: 'scale(1.08, .94)', offset: .74 }, { transform: 'scale(1)' }], { duration: 650, easing: EASE.out }),
+          pa($('.hrt svg', s), [{ color: cssv('--muted') }, { color: '#E11D48' }], { duration: 160, delay: 140 }),
+          pa($('.hrt path', s), [{ fillOpacity: 0 }, { fillOpacity: 1 }], { duration: 160, delay: 140 })
+        ];
+      }
+    }
+  },
+  {
+    t: 'Vorbereitung', en: 'Anticipation',
+    f: {
+      d: 'Bevor der Block losschießt, holt er aus: Er weicht kurz zurück und duckt sich. So sieht man die Bewegung kommen, bevor sie passiert.',
+      html: '<div class="fl"></div><div class="pbx" style="right:24px"></div>',
+      run: (s) => {
+        const d = s.clientWidth - 88;
+        return [pa($('.pbx', s), [
+          { transform: `translateX(${-d}px) scale(1, 1)`, easing: EASE.inout },
+          { transform: `translateX(${-d - 18}px) scale(1.16, .8)`, offset: .45, easing: 'cubic-bezier(.3, 0, .1, 1)' },
+          { transform: 'translateX(0) scale(1, 1)', offset: .78 },
+          { transform: 'translateX(0) scale(1, 1)' }
+        ], { duration: 1300 })];
+      }
+    },
+    a: {
+      d: 'Pull-to-Refresh: Man zieht die Liste nach unten, der Pfeil dreht sich als Ankündigung. Erst nach dem Loslassen wird neu geladen.',
+      html: PHN('<div class="bar">Neuigkeiten</div><span class="ptr">↓</span><div class="cw"><i class="row new"></i><i class="row"></i><i class="row s"></i><i class="row"></i><i class="row s"></i></div>'),
+      run: (s) => {
+        const p = $('.ptr', s); p.textContent = '↓'; setTimeout(() => { p.textContent = '↻'; }, 860);
+        return [
+          pa($('.cw', s), [{ transform: 'translateY(0)', easing: EASE.out }, { transform: 'translateY(44px)', offset: .3 }, { transform: 'translateY(44px)', offset: .72, easing: EASE.std }, { transform: 'translateY(0)', offset: .86 }, { transform: 'translateY(0)' }], { duration: 2400 }),
+          pa(p, [{ transform: 'translateY(-30px) rotate(0)', opacity: 0 }, { transform: 'translateY(12px) rotate(0)', opacity: 1, offset: .26 }, { transform: 'translateY(12px) rotate(180deg)', opacity: 1, offset: .34 }, { transform: 'translateY(12px) rotate(900deg)', opacity: 1, offset: .72 }, { transform: 'translateY(-30px) rotate(900deg)', opacity: 0, offset: .86 }, { transform: 'translateY(-30px) rotate(900deg)', opacity: 0 }], { duration: 2400 }),
+          pa($('.row.new', s), [{ opacity: 0 }, { opacity: 0, offset: .84 }, { opacity: 1 }], { duration: 2400 })
+        ];
+      }
+    }
+  },
+  {
+    t: 'Inszenierung', en: 'Staging',
+    f: {
+      d: 'Eine Handlung zur Zeit: Alles andere tritt zurück, nur das Wichtige wächst und bekommt Farbe. So weiß das Auge sofort, wohin es schauen soll.',
+      html: '<div class="stg"><i></i><i></i><i class="on"></i><i></i><i></i></div>',
+      run: (s) => [
+        ...$$('.stg i:not(.on)', s).map((el) => pa(el, [{ opacity: 1, transform: 'scale(1)' }, { opacity: .2, transform: 'scale(.85)' }], { duration: 450, delay: 150, easing: EASE.std })),
+        pa($('.stg .on', s), [{ transform: 'translateY(0) scale(1)', background: cssv('--an-purple') }, { transform: 'translateY(-10px) scale(1.6)', background: '#CC4E00' }], { duration: 550, delay: 300, easing: EASE.dec })
+      ]
+    },
+    a: {
+      d: 'Bottom Sheet: Der Hintergrund wird abgedunkelt, das Blatt fährt von unten herein. Die Aufmerksamkeit liegt allein auf der neuen Aufgabe.',
+      html: PHN('<div class="bar">Fotos</div><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="scrim"></div><div class="sheet"><b class="hdl"></b><i class="row"></i><i class="row s"></i><span class="sbtn">Teilen</span></div>'),
+      run: (s) => [
+        pa($('.scrim', s), [{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: EASE.std }),
+        pa($('.sheet', s), [{ transform: 'translateY(105%)' }, { transform: 'translateY(0)' }], { duration: 400, delay: 60, easing: EASE.dec })
+      ]
+    }
+  },
+  {
+    t: 'Durchanimieren und Schlüsselposen', en: 'Straight Ahead and Pose to Pose',
+    f: {
+      d: 'Oben: erst die Schlüsselposen (gestrichelt), dann die Zwischenbilder, planbar und präzise. Unten: Bild für Bild weitergezeichnet, lebendiger, aber schwerer zu steuern.',
+      html: '<div class="lane"><span class="lb">Schlüsselposen</span><i class="gh" style="left:8%;top:62%"></i><i class="gh" style="left:46%;top:26%"></i><i class="gh" style="left:84%;top:62%"></i><b class="dt" style="left:84%;top:62%"></b></div><div class="lane"><span class="lb">Durchanimiert</span><b class="dt" style="left:84%;top:62%"></b></div>',
+      run: (s) => {
+        const [a, b] = $$('.dt', s), N = 24;
+        const fr = Array.from({ length: N + 1 }, (_, i) => {
+          const p = i / N, j = i === N ? 0 : (rnd(i) - .5) * 14;
+          return { left: (8 + 76 * p + (i === N ? 0 : (rnd(i + 7) - .5) * 5)).toFixed(1) + '%', top: (62 - 34 * Math.sin(Math.PI * p) + j).toFixed(1) + '%' };
+        });
+        return [
+          pa(a, [{ left: '8%', top: '62%', easing: EASE.inout }, { left: '46%', top: '26%', offset: .5, easing: EASE.inout }, { left: '84%', top: '62%' }], { duration: 1600 }),
+          pa(b, fr, { duration: 1600, easing: 'linear' })
+        ];
+      }
+    },
+    a: {
+      d: 'Oben fest definierte Keyframes (wie in Lottie oder CSS): Start, Ziel, Dauer. Unten eine Feder, die die Bewegung Schritt für Schritt aus der Physik berechnet.',
+      html: PHN('<div class="bar">Hinweise</div><div class="kv"><span class="cap">Keyframes, 400 ms</span><div class="nt"></div><span class="cap">Feder (Physik)</span><div class="nt sp"></div></div>'),
+      run: (s) => {
+        const sm = springSamples(170, 11, 1);
+        return [
+          pa($('.nt', s), [{ transform: 'translateX(130%)' }, { transform: 'translateX(0)' }], { duration: 400, easing: EASE.dec }),
+          pa($('.nt.sp', s), springFrames(sm, (x) => ({ transform: `translateX(${((1 - x) * 130).toFixed(1)}%)` })), { duration: Math.round((sm.length - 1) * 1000 / 60), easing: 'linear' })
+        ];
+      }
+    }
+  },
+  {
+    t: 'Nachschwingen und Überlappen', en: 'Follow Through and Overlapping Action',
+    f: {
+      d: 'Der Körper hält an, die Antenne nicht: Sie hängt beim Start nach, schwingt über das Ziel hinaus und pendelt sich ein. Teile kommen nacheinander zur Ruhe.',
+      html: '<div class="fl"></div><div class="fb" style="right:36px"><b class="ant"></b></div>',
+      run: (s) => {
+        const d = s.clientWidth - 110;
+        return [
+          pa($('.fb', s), [{ transform: `translateX(${-d}px)`, easing: EASE.dec }, { transform: 'translateX(0)', offset: .45 }, { transform: 'translateX(0)' }], { duration: 1700 }),
+          pa($('.ant', s), [{ transform: 'rotate(0)' }, { transform: 'rotate(-32deg)', offset: .15 }, { transform: 'rotate(-24deg)', offset: .4 }, { transform: 'rotate(30deg)', offset: .55 }, { transform: 'rotate(-16deg)', offset: .68 }, { transform: 'rotate(9deg)', offset: .8 }, { transform: 'rotate(-4deg)', offset: .9 }, { transform: 'rotate(0)' }], { duration: 1700, easing: EASE.inout })
+        ];
+      }
+    },
+    a: {
+      d: 'Overscroll-Bounce: Wird die Liste schwungvoll nach oben gescrollt, schießt sie am Listenanfang etwas über den Rand hinaus und federt zurück.',
+      html: PHN('<div class="bar">Chats</div><div class="cw"><i class="row"></i><i class="row s"></i><i class="row"></i><i class="row s"></i><i class="row"></i><i class="row s"></i></div>'),
+      run: (s) => [pa($('.cw', s), [
+        { transform: 'translateY(-90px)', easing: EASE.out }, { transform: 'translateY(26px)', offset: .45, easing: EASE.inout }, { transform: 'translateY(-6px)', offset: .7, easing: EASE.inout }, { transform: 'translateY(0)', offset: .88 }, { transform: 'translateY(0)' }
+      ], { duration: 1300 })]
+    }
+  },
+  {
+    t: 'Beschleunigen und Abbremsen', en: 'Slow In and Slow Out',
+    f: {
+      d: 'Die blassen Punkte zeigen, wo das Objekt nach gleichen Zeitabständen ist. Oben gleichmäßig (linear), unten dicht am Anfang und Ende: Es beschleunigt und bremst.',
+      html: (() => {
+        const io = (p) => (p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+        const lane = (lb, f) => `<div class="lane"><span class="lb">${lb}</span>${Array.from({ length: 9 }, (_, i) => `<i class="tk" style="left:${(8 + 80 * f(i / 8)).toFixed(1)}%"></i>`).join('')}<b class="dt" style="left:88%;top:60%"></b></div>`;
+        return lane('Linear', (p) => p) + lane('Ease-in-out', io);
+      })(),
+      run: (s) => {
+        const [a, b] = $$('.dt', s);
+        return [pa(a, [{ left: '8%' }, { left: '88%' }], { duration: 1400, easing: 'linear' }), pa(b, [{ left: '8%' }, { left: '88%' }], { duration: 1400, easing: EASE.inout })];
+      }
+    },
+    a: {
+      d: 'Seitenwechsel: Der neue Screen kommt schnell herein und bremst kurz vor dem Ziel ab (ease-out). Er wirkt flott und landet trotzdem weich.',
+      html: PHN('<div class="bar">Rezepte</div><div class="cw"><i class="row"></i><i class="row s"></i><i class="row"></i></div><div class="det"><div class="hero"></div><i class="row"></i><i class="row s"></i></div>'),
+      run: (s) => [pa($('.det', s), [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }], { duration: 450, easing: EASE.dec })]
+    }
+  },
+  {
+    t: 'Bögen', en: 'Arcs',
+    f: {
+      d: 'Natürliche Bewegungen folgen Bögen, kaum je einer Geraden. Der Ball fliegt auf der gestrichelten Bahn; die blasse Gerade wirkt dagegen mechanisch.',
+      html: '<svg class="arc" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="ln" d="M10 82 L90 82"/><path d="M10 82 Q50 -10 90 82"/></svg><b class="dt big" style="left:90%;top:82%"></b>',
+      run: (s) => {
+        const N = 30, fr = Array.from({ length: N + 1 }, (_, i) => {
+          const t = i / N, x = (1 - t) * (1 - t) * 10 + 2 * (1 - t) * t * 50 + t * t * 90, y = (1 - t) * (1 - t) * 82 + 2 * (1 - t) * t * -10 + t * t * 82;
+          return { left: x.toFixed(2) + '%', top: y.toFixed(2) + '%' };
+        });
+        return [pa($('.dt', s), fr, { duration: 1300, easing: EASE.inout })];
+      }
+    },
+    a: {
+      d: 'In den Warenkorb: Das Produkt fliegt im Bogen zum Symbol oben rechts. Die Bahn verbindet Ursache und Ziel, der Zähler springt auf 1.',
+      html: PHN(`<div class="bar">Shop <span class="crt">${PIC.cart}<b class="bdg">1</b></span></div><div class="prod"><div class="pimg"></div><i class="row s"></i><span class="sbtn">In den Warenkorb</span></div><b class="fly"></b>`),
+      run: (s) => {
+        const scr = $('.an-mph-scr', s).getBoundingClientRect(), a = $('.pimg', s).getBoundingClientRect(), b = $('.crt', s).getBoundingClientRect();
+        const x0 = a.left + a.width / 2 - scr.left, y0 = a.top + a.height / 2 - scr.top, x1 = b.left + b.width / 2 - scr.left, y1 = b.top + b.height / 2 - scr.top;
+        const cx = x0 - 6, cy = y1 + 4, N = 24;
+        const fr = Array.from({ length: N + 1 }, (_, i) => {
+          const t = i / N, x = (1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * cx + t * t * x1, y = (1 - t) * (1 - t) * y0 + 2 * (1 - t) * t * cy + t * t * y1;
+          return { transform: `translate(${(x - 8).toFixed(1)}px, ${(y - 8).toFixed(1)}px) scale(${(1 - .5 * t).toFixed(2)})`, opacity: i === N ? 0 : 1 };
+        });
+        return [
+          pa($('.fly', s), fr, { duration: 700, easing: 'cubic-bezier(.4, 0, .6, 1)' }),
+          pa($('.crt', s), [{ transform: 'scale(1)' }, { transform: 'scale(1.3)', offset: .4 }, { transform: 'scale(1)' }], { duration: 320, delay: 660, easing: EASE.out }),
+          pa($('.bdg', s), [{ transform: 'scale(0)' }, { transform: 'scale(0)', offset: .6 }, { transform: 'scale(1.35)', offset: .82 }, { transform: 'scale(1)' }], { duration: 1000 })
+        ];
+      }
+    }
+  },
+  {
+    t: 'Nebenbewegung', en: 'Secondary Action',
+    f: {
+      d: 'Die Hauptbewegung ist der Sprung. Die Arme reißen dabei jubelnd nach oben: Diese kleinere Bewegung unterstützt die Hauptbewegung und gibt ihr Ausdruck.',
+      html: '<div class="fl"></div><div class="fig"><b class="hd"></b><b class="bd"></b><b class="arm l"></b><b class="arm r"></b></div>',
+      run: (s) => [
+        pa($('.fig', s), [{ transform: 'translateY(0)', easing: EASE.out }, { transform: 'translateY(-56px)', offset: .45, easing: EASE.in }, { transform: 'translateY(0)', offset: .85 }, { transform: 'translateY(0)' }], { duration: 1100 }),
+        pa($('.arm.l', s), [{ transform: 'rotate(25deg)', easing: EASE.out }, { transform: 'rotate(155deg)', offset: .4, easing: EASE.inout }, { transform: 'rotate(25deg)', offset: .95 }, { transform: 'rotate(25deg)' }], { duration: 1100 }),
+        pa($('.arm.r', s), [{ transform: 'rotate(-25deg)', easing: EASE.out }, { transform: 'rotate(-155deg)', offset: .4, easing: EASE.inout }, { transform: 'rotate(-25deg)', offset: .95 }, { transform: 'rotate(-25deg)' }], { duration: 1100 })
+      ]
+    },
+    a: {
+      d: 'Senden: Die Nachricht steigt in den Verlauf auf (Hauptbewegung). Gleichzeitig fliegt der Papierflieger im Button davon und kehrt zurück (Nebenbewegung).',
+      html: PHN(`<div class="bar">Lena</div><div class="chat"><span class="bb in">Kommst du heute?</span><span class="bb out">Ja, um 18 Uhr</span><span class="bb out nw">Bis gleich!</span></div><div class="ib"><span class="inp">Nachricht</span><span class="snd">${PIC.send}</span></div>`),
+      run: (s) => {
+        const inp = $('.inp', s); inp.textContent = 'Bis gleich!'; inp.classList.add('typed');
+        setTimeout(() => { inp.textContent = 'Nachricht'; inp.classList.remove('typed'); }, 140);
+        return [
+          pa($('.bb.nw', s), [{ transform: 'translateY(40px) scale(.9)', opacity: 0 }, { transform: 'translateY(0) scale(1)', opacity: 1 }], { duration: 380, delay: 100, easing: EASE.dec }),
+          pa($('.snd svg', s), [{ transform: 'translate(0, 0)', opacity: 1 }, { transform: 'translate(16px, -16px) rotate(-12deg)', opacity: 0, offset: .45 }, { transform: 'translate(0, 0) scale(.3)', opacity: 0, offset: .55 }, { transform: 'translate(0, 0) scale(1)', opacity: 1 }], { duration: 760, easing: EASE.std })
+        ];
+      }
+    }
+  },
+  {
+    t: 'Timing', en: 'Timing',
+    f: {
+      d: 'Gleicher Weg, andere Dauer. Schnell wirkt leicht oder hektisch, langsam schwer oder träge. Im Trickfilm ist es die Zahl der Bilder, im Interface die Dauer in Millisekunden.',
+      html: ['150 ms', '400 ms', '1000 ms'].map((l) => `<div class="lane sm"><span class="lb">${l}</span><b class="blk"></b></div>`).join(''),
+      run: (s) => $$('.blk', s).map((el, i) => pa(el, [{ transform: `translateX(${-(el.parentElement.clientWidth - 58)}px)` }, { transform: 'translateX(0)' }], { duration: [150, 400, 1000][i], easing: EASE.inout }))
+    },
+    a: {
+      d: 'Drei Schalter, drei Dauern. Um 150 bis 250 ms wirkt ein Schalter direkt. 80 ms springt fast, 600 ms zögert spürbar.',
+      html: PHN('<div class="bar">Einstellungen</div>' + ['80 ms', '200 ms', '600 ms'].map((l) => `<div class="set"><span>${l}</span><span class="sw"><i></i></span></div>`).join('')),
+      run: (s) => $$('.sw', s).flatMap((sw, i) => {
+        const d = [80, 200, 600][i];
+        return [pa($('i', sw), [{ transform: 'translateX(0)' }, { transform: 'translateX(14px)' }], { duration: d, easing: EASE.std }), pa(sw, [{ backgroundColor: '#9CA3AF' }, { backgroundColor: '#15803D' }], { duration: d })];
+      })
+    }
+  },
+  {
+    t: 'Übertreibung', en: 'Exaggeration',
+    f: {
+      d: 'Derselbe Hüpfer, einmal realistisch, einmal überzeichnet: tiefer gestaucht, höher gesprungen, stärker gestreckt. Übertreibung macht eine Absicht unmissverständlich.',
+      html: '<div class="lane"><span class="lb">Realistisch</span><b class="hb"></b></div><div class="lane"><span class="lb">Übertrieben</span><b class="hb"></b></div>',
+      run: (s) => {
+        const [a, b] = $$('.hb', s);
+        return [
+          pa(a, [{ transform: 'translateY(0) scale(1, 1)' }, { transform: 'translateY(0) scale(1.06, .94)', offset: .14, easing: EASE.out }, { transform: 'translateY(-24px) scale(.97, 1.03)', offset: .45, easing: EASE.in }, { transform: 'translateY(0) scale(1.06, .94)', offset: .8 }, { transform: 'translateY(0) scale(1, 1)' }], { duration: 1100 }),
+          pa(b, [{ transform: 'translateY(0) scale(1, 1)' }, { transform: 'translateY(0) scale(1.4, .6)', offset: .16, easing: EASE.out }, { transform: 'translateY(-56px) scale(.75, 1.35)', offset: .38 }, { transform: 'translateY(-62px) scale(1, 1)', offset: .48, easing: EASE.in }, { transform: 'translateY(0) scale(.8, 1.25)', offset: .78 }, { transform: 'translateY(0) scale(1.4, .6)', offset: .85, easing: EASE.out }, { transform: 'translateY(0) scale(1, 1)' }], { duration: 1100 })
+        ];
+      }
+    },
+    a: {
+      d: 'Falsches Passwort: Das Formular schüttelt sich kurz wie ein Kopfschütteln, das Feld färbt sich rot. Sparsam einsetzen und immer mit einer Fehlermeldung als Text.',
+      html: PHN('<div class="bar">Anmelden</div><div class="lg"><span class="fld">anna@mail.de</span><span class="fld pw">••••••</span><span class="err">Passwort stimmt nicht.</span><span class="sbtn">Anmelden</span></div>'),
+      run: (s) => [
+        pa($('.sbtn', s), [{ transform: 'scale(1)' }, { transform: 'scale(.94)', offset: .4 }, { transform: 'scale(1)' }], { duration: 180 }),
+        pa($('.lg', s), [{ transform: 'translateX(0)' }, { transform: 'translateX(-9px)', offset: .15 }, { transform: 'translateX(9px)', offset: .3 }, { transform: 'translateX(-7px)', offset: .45 }, { transform: 'translateX(7px)', offset: .6 }, { transform: 'translateX(-3px)', offset: .78 }, { transform: 'translateX(0)' }], { duration: 480, delay: 180, easing: 'linear' }),
+        pa($('.pw', s), [{ borderColor: cssv('--line') }, { borderColor: '#C3301A' }], { duration: 200, delay: 180 }),
+        pa($('.err', s), [{ opacity: 0, transform: 'translateY(-4px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, delay: 380, easing: EASE.dec })
+      ]
+    }
+  },
+  {
+    t: 'Räumliches Zeichnen', en: 'Solid Drawing',
+    f: {
+      d: 'Der Würfel dreht sich und bleibt dabei glaubwürdig ein Körper: Flächen, Licht und Schatten passen in jeder Ansicht zusammen. Das Prinzip verlangt Volumen, Gewicht und Perspektive.',
+      html: '<div class="cube-w"><div class="cube"><b class="fr"></b><b class="bk"></b><b class="rt"></b><b class="lf"></b><b class="tp"></b></div><i class="shd"></i></div>',
+      run: (s) => [pa($('.cube', s), [{ transform: 'rotateX(-24deg) rotateY(-35deg)' }, { transform: 'rotateX(-24deg) rotateY(325deg)' }], { duration: 2600, easing: EASE.inout })]
+    },
+    a: {
+      d: 'Karte umdrehen: Sie dreht sich im Raum, hebt sich dabei leicht an und zeigt ihre Rückseite. Ein schlüssiges Ebenenmodell lässt die Oberfläche greifbar wirken.',
+      html: PHN('<div class="bar">Lernkarten</div><div class="flip"><i class="fshd"></i><div class="fin"><div class="ff"><b>Was ist Timing?</b></div><div class="fbk"><i class="row"></i><i class="row s"></i><i class="row"></i></div></div></div>'),
+      run: (s) => [
+        pa($('.fin', s), [{ transform: 'rotateY(0) scale(1)' }, { transform: 'rotateY(90deg) scale(1.1)', offset: .5 }, { transform: 'rotateY(180deg) scale(1)' }], { duration: 800, easing: EASE.inout }),
+        pa($('.fshd', s), [{ opacity: .35, transform: 'scale(1)' }, { opacity: .15, transform: 'scale(1.25)', offset: .5 }, { opacity: .35, transform: 'scale(1)' }], { duration: 800, easing: EASE.inout })
+      ]
+    }
+  },
+  {
+    t: 'Ausstrahlung', en: 'Appeal',
+    f: {
+      d: 'Beide kommen an dieselbe Stelle. Oben neutral und linear, unten mit Hüpfer, Verformung und einem Blinzeln. Ausstrahlung heißt: Man schaut gern hin, die Figur hat Charakter.',
+      html: '<div class="lane"><span class="lb">Neutral</span><b class="sq"></b></div><div class="lane"><span class="lb">Mit Ausstrahlung</span><b class="blob"><span class="eyes"><i></i><i></i></span></b></div>',
+      run: (s) => {
+        const d = Math.round(s.clientWidth * .38);
+        return [
+          pa($('.sq', s), [{ transform: `translateX(${-d}px)` }, { transform: 'translateX(0)' }], { duration: 700, easing: 'linear' }),
+          pa($('.blob', s), [{ transform: `translateX(${-d}px) translateY(0) scale(1, 1)`, easing: EASE.out }, { transform: `translateX(${-d / 2}px) translateY(-28px) scale(.9, 1.12)`, offset: .4, easing: EASE.in }, { transform: 'translateX(0) translateY(0) scale(1.22, .8)', offset: .72, easing: EASE.out }, { transform: 'translateX(0) translateY(0) scale(1, 1)', offset: .86 }, { transform: 'translateX(0) translateY(0) scale(1, 1)' }], { duration: 1000 }),
+          pa($('.eyes', s), [{ transform: 'scaleY(1)' }, { transform: 'scaleY(1)', offset: .8 }, { transform: 'scaleY(.1)', offset: .87 }, { transform: 'scaleY(1)', offset: .94 }, { transform: 'scaleY(1)' }], { duration: 1500 })
+        ];
+      }
+    },
+    a: {
+      d: 'Onboarding-Abschluss: Der Kreis federt auf, das Häkchen zeichnet sich, ein paar Punkte sprühen. Eine kurze Mikroanimation mit Charakter, die zur Marke passt.',
+      html: PHN(`<div class="done"><span class="ok">${PIC.check}${Array.from({ length: 6 }, () => '<b class="cf"></b>').join('')}</span><b class="ttl">Alles bereit!</b><i class="row s"></i><span class="sbtn">Los geht’s</span></div>`),
+      run: (s) => [
+        pa($('.ok svg', s), [{ transform: 'scale(0)' }, { transform: 'scale(1.12)', offset: .6 }, { transform: 'scale(1)' }], { duration: 520, easing: EASE.dec }),
+        pa($('.ok path', s), [{ strokeDashoffset: 30 }, { strokeDashoffset: 0 }], { duration: 380, delay: 360, easing: EASE.out }),
+        pa($('.ttl', s), [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 300, delay: 520, easing: EASE.dec }),
+        ...$$('.cf', s).map((el, i) => { const a = i / 6 * Math.PI * 2 - Math.PI / 2; return pa(el, [{ transform: 'translate(0, 0) scale(1)', opacity: 1 }, { transform: `translate(${(Math.cos(a) * 38).toFixed(1)}px, ${(Math.sin(a) * 38).toFixed(1)}px) scale(.4)`, opacity: 0 }], { duration: 650, delay: 420, easing: EASE.dec }); })
+      ]
+    }
+  }
+];
+const PR_KIND = { f: 'So funktioniert’s', a: 'In der App' };
+function initPrinzipienBeispiele() {
+  const root = $('#pr-examples'), live = $('#pr-live');
+  if (!root) return;
+  root.innerHTML = PRINC.map((p, i) => `<article class="an-pr"><h3><span class="n">${String(i + 1).padStart(2, '0')}</span>${esc(p.t)}${p.en !== p.t ? `<span class="en" lang="en">${esc(p.en)}</span>` : ''}</h3><div class="an-pr-pair">${['f', 'a'].map((k) => `<div class="an-pr-ex"><p class="an-pr-k">${PR_KIND[k]}</p><div class="an-pr-stage${k === 'a' ? ' ph' : ''}" data-st="${i}${k}" aria-hidden="true">${p[k].html}</div><p class="an-pr-d">${esc(p[k].d)}</p><button type="button" class="btn btn-sm" data-prp="${i}${k}">Abspielen<span class="visually-hidden">: ${esc(p.t)}, ${PR_KIND[k]}</span></button></div>`).join('')}</div></article>`).join('');
+  root.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-prp]'); if (!b) return;
+    const id = b.dataset.prp, p = PRINC[+id.slice(0, -1)], k = id.slice(-1), st = $(`[data-st="${id}"]`, root);
+    for (const a of st.getAnimations({ subtree: true })) a.cancel();
+    const anims = p[k].run(st);
+    live.textContent = `Beispiel läuft: ${p.t}, ${PR_KIND[k]}.`;
+    Promise.all(anims.map((a) => a.finished)).then(() => { live.textContent = `Beispiel beendet: ${p.t}. Zu sehen ist jetzt das Endbild.`; }).catch(() => {});
+  });
+}
+
+/* ================================================================
    Kapitel 03: springender Ball mit Prinzipien
    ================================================================ */
 function ballFrames(o, W) {
@@ -1289,7 +1606,7 @@ function boot() {
   renderTiles();
   renderPagers();
   initHero();
-  const inits = [initIntro, initZweck, initBall, initRace, initEaseCards, initBezier, initSpring, initMikro, initTransitions, initStagger, initLoading, initReduce, initPerf,
+  const inits = [initIntro, initZweck, initBall, initPrinzipienBeispiele, initRace, initEaseCards, initBezier, initSpring, initMikro, initTransitions, initStagger, initLoading, initReduce, initPerf,
     initExEasing, initExTiming, initExZweck, initExMikro, initExReduce, initSpec, initQuiz, initLit, initGlossar];
   // Ein Fehler in einer Demo soll nicht das ganze Modul lahmlegen
   for (const f of inits) { try { f(); } catch (err) { console.error(f.name, err); } }
