@@ -327,6 +327,7 @@ function initAbstraktion() {
     const i = +range.value - 1, s = CUP[i];
     $('#abs-pic').innerHTML = `<svg viewBox="0 0 100 100" aria-label="Tasse, Stufe ${i + 1}: ${s.t}">${s.svg}</svg>`;
     $('#abs-step').textContent = `Stufe ${i + 1} von 5`;
+    $('#abs-range').setAttribute('aria-valuetext', `Stufe ${i + 1} von 5: ${s.t}`);
     $('#abs-title').textContent = s.t;
     $('#abs-desc').textContent = s.d;
   };
@@ -674,7 +675,7 @@ function initBaukasten() {
   $('#pk-outline').addEventListener('change', (e) => { const s = find(sel); if (!s) return; if (e.target.checked) s.o = 4; else delete s.o; commit(); });
   $('#pk-sw').addEventListener('input', (e) => { const s = find(sel); if (!s || !s.o) return; s.o = +e.target.value; commit(); });
   $('#pk-colors').innerHTML = PK_COLORS.map(([v, name, hex]) => `<button type="button" class="swatch" role="radio" data-c="${v || ''}" style="--sw:${hex}" title="${name}" aria-label="${name}"></button>`).join('')
-    + '<label class="swatch swatch-own" role="radio" title="Eigene Farbe" aria-label="Eigene Farbe"><input type="color" id="pk-c-own" value="#161412"></label>';
+    + '<label class="swatch swatch-own" role="radio" title="Eigene Farbe" aria-label="Eigene Farbe"><input type="color" id="pk-c-own" value="#161412" aria-label="Eigene Farbe wählen"></label>';
   const setColor = (c) => { const s = find(sel); if (!s) return; s.c = c || undefined; if (!c) delete s.c; s.neg = false; commit(); };
   $('#pk-colors').addEventListener('click', (e) => { const b = e.target.closest('[data-c]'); if (b) setColor(b.dataset.c); });
   $('#pk-c-own').addEventListener('input', (e) => setColor(e.target.value));

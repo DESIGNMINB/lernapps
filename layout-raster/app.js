@@ -278,12 +278,13 @@ function initSpalten() {
     svg.innerHTML = s;
     $('#sp-vals').innerHTML = `<div><dt>Satzspiegelbreite</dt><dd>${W} mm</dd></div><div><dt>Spaltenbreite</dt><dd>${fmt(cw, 1)} mm</dd></div><div><dt>Zeichen pro Zeile (ca.)</dt><dd>${chars}</dd></div>`;
     let r;
+    const pre = `Spaltenbreite ${fmt(cw, 1)} mm, etwa ${chars} Zeichen pro Zeile. `;
     if (chars < 35) r = '✕ Zu kurz: viele Trennungen, große Wortlücken, unruhiger Lesefluss.';
     else if (chars < 45) r = '○ Knapp: für Zeitungen und Marginalien üblich, für Fließtext eher zu kurz.';
     else if (chars <= 75) r = '✓ Gut lesbar: im Bereich von 45 bis 75 Zeichen.';
     else if (chars <= 90) r = '○ Lang: Das Auge findet den nächsten Zeilenanfang schwerer. Mehr Zeilenabstand hilft.';
     else r = '✕ Zu lang: Teilen Sie die Fläche in mehr Spalten oder vergrößern Sie die Schrift.';
-    $('#sp-rate').textContent = r;
+    $('#sp-rate').textContent = pre + r;
   };
   for (const id of ['sp-n', 'sp-g', 'sp-f']) $('#' + id).addEventListener('input', draw);
   draw();
@@ -405,7 +406,7 @@ function initResponsive() {
     const inner = W - 2 * m, col = (inner - (b.cols - 1) * b.g) / b.cols;
     const span = b.cols === 12 ? 3 : 4, per = b.cols / span;
     $('#rw-w-o').textContent = `${W} px`;
-    $('#rw-bp').textContent = `${b.n} · ${b.cols} Spalten`;
+    $('#rw-bp').textContent = `${b.n} · ${b.cols} Spalten à ${fmt(col, 1)} px`;
     st.style.width = W * s + 'px';
     const pad = `0 ${m * s}px`, gap = b.g * s + 'px', tpl = `repeat(${b.cols}, minmax(0, 1fr))`;
     st.innerHTML = `<div class="cols" style="grid-template-columns:${tpl};column-gap:${gap};padding:${pad}">${'<span></span>'.repeat(b.cols)}</div>

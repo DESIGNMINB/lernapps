@@ -105,6 +105,53 @@
     var href = a.getAttribute('href') || '';
     if (/\.pdf($|\?)/i.test(href)) event('download/' + href.split('/').pop().split('?')[0], 'PDF-Download');
   });
+  /* Screenreader-Hilfen für alle Lern-Apps (ergänzen, ersetzen keine saubere Auszeichnung):
+     1. Schieberegler nennen ihren Wert mit Einheit (aria-valuetext aus der sichtbaren Anzeige).
+     2. Rückmeldefelder sind schon vor der Rückmeldung Live-Regionen, sonst überhören Screenreader
+        nachträglich eingefügte Meldungen.
+     3. Scrollbare Codeblöcke erhalten einen Namen. */
+  function valueEl(r) {
+    if (r.id) {
+      var o = document.getElementById(r.id + '-o') || document.getElementById(r.id + '-out') || document.getElementById(r.id + '-val') || document.querySelector('output[for="' + r.id + '"]');
+      if (o) return o;
+    }
+    for (var p = r.parentElement, i = 0; p && i < 3; p = p.parentElement, i++) {
+      var c = p.querySelector('output, .slider-value');
+      if (c) return c;
+    }
+    return null;
+  }
+  function syncRange(r) {
+    var o = valueEl(r), t = o && o.textContent.replace(/\s+/g, ' ').trim();
+    if (t) r.setAttribute('aria-valuetext', t);
+  }
+  function a11yScan(root) {
+    var rs = root.querySelectorAll ? root.querySelectorAll('input[type="range"]') : [];
+    for (var i = 0; i < rs.length; i++) syncRange(rs[i]);
+    var fb = root.querySelectorAll ? root.querySelectorAll('[id$="-fb"], [id$="-res"], [id$="-result"], #quiz-fb') : [];
+    for (var j = 0; j < fb.length; j++) {
+      var f = fb[j];
+      if (!f.closest('[aria-live], [role="status"], [role="alert"], [role="log"]')) f.setAttribute('aria-live', 'polite');
+    }
+    var pres = root.querySelectorAll ? root.querySelectorAll('pre[tabindex]:not([aria-label]):not([aria-labelledby])') : [];
+    for (var k = 0; k < pres.length; k++) { pres[k].setAttribute('role', 'region'); pres[k].setAttribute('aria-label', 'Codebeispiel'); }
+  }
+  function a11yInit() {
+    a11yScan(document);
+    // Anzeige wird im selben Ereignis aktualisiert: Wert erst danach übernehmen
+    document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') setTimeout(function () { syncRange(e.target); }, 0); });
+    document.addEventListener('change', function (e) { if (e.target && e.target.type === 'range') setTimeout(function () { syncRange(e.target); }, 0); });
+    if (window.MutationObserver) {
+      var pending = false;
+      new MutationObserver(function () {
+        if (pending) return; pending = true;
+        setTimeout(function () { pending = false; a11yScan(document); }, 50);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', a11yInit);
+  else a11yInit();
+
   /* Suche über alle Lern-Apps: search.js liegt neben theme.js und wird nachgeladen */
   var me = document.currentScript;
   if (me && me.src && !window.LernSearch) {

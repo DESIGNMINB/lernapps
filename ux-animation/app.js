@@ -583,6 +583,7 @@ function initTransitions() {
         await done(play(det, [{ opacity: 0, transform: 'scale(.92)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }), 210);
       }
       back.focus({ preventScroll: true });
+      $('#tr-status').textContent = `Detailansicht „${t}“ geöffnet, Übergang: ${$('#tr-mode [aria-pressed="true"]').textContent}.`;
     } finally { busy = false; }
   }
   async function close() {
@@ -610,6 +611,7 @@ function initTransitions() {
         await done(play(L, [{ opacity: 0, transform: 'scale(.96)' }, { opacity: 1, transform: 'none' }], { duration: 210, easing: EASE.dec }), 210);
       }
       det.parentNode.removeChild(det); card.focus({ preventScroll: true });
+      $('#tr-status').textContent = 'Zurück in der Liste der Lernkapitel.';
     } finally { busy = false; }
   }
   scr.addEventListener('click', (e) => {

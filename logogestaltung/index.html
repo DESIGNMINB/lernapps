@@ -2,7 +2,7 @@
 <html lang="de" data-theme="light">
 <head>
 <meta charset="utf-8">
-<script src="../theme.js?v=8"></script>
+<script src="../theme.js?v=9"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="../favicon.ico?v=2" sizes="any">
 <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
@@ -614,7 +614,7 @@
             <label class="check"><input type="checkbox" checked value="keine Verläufe, keine Schatten"> ohne Effekte</label>
             <label class="check"><input type="checkbox" value="mehrere Varianten in einem Raster"> Variantenraster</label>
           </div>
-          <textarea id="pr-out" class="mono small" readonly style="width:100%;height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--paper);color:var(--ink)"></textarea>
+          <textarea id="pr-out" class="mono small" readonly aria-label="Zusammengesetzter Prompt" style="width:100%;height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--paper);color:var(--ink)"></textarea>
           <div class="row-btns" style="margin-top:10px"><button class="btn btn-dark" type="button" id="pr-copy">Prompt kopieren</button></div>
           <p class="small muted" style="margin:10px 0 0">Tipp: Lassen Sie Schrift bewusst weg. Die Wortmarke gestalten Sie besser selbst mit einer echten Schrift.</p>
         </div>
@@ -745,7 +745,7 @@
           <p class="small muted" style="margin:6px 0 12px">Ein Lösungsvorschlag pro Aufgabe. Ein Klick lädt das Beispiel auf die Zeichenfläche, wo Sie es zerlegen und verändern können. Ihr eigener Entwurf wird dabei ersetzt.</p>
           <div class="pk-gallery" id="pk-gallery"></div>
         </div>
-        <textarea id="pk-fallback" class="mono small" readonly hidden style="width:100%;height:110px;margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface)"></textarea>
+        <textarea id="pk-fallback" class="mono small" readonly hidden aria-label="SVG-Code zum Kopieren" style="width:100%;height:110px;margin-top:12px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface)"></textarea>
 
         <div class="task"><span class="label">Reflexion</span><p>Zeigen Sie Ihr Piktogramm einer anderen Person ohne Erklärung. Hat sie es richtig gedeutet? Welche Form haben Sie nach dem 16-px-Test noch verändert?</p></div>
         <div class="ex-done" data-ex="ue-baukasten"></div>
@@ -886,6 +886,6 @@
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261107m"></script>
+<script src="app.js?v=20261107t"></script>
 </body>
 </html>

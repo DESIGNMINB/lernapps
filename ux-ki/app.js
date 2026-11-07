@@ -227,7 +227,10 @@ function initDiffusion() {
   ];
   const draw = (s) => {
     $('#diff-step').textContent = s;
-    $('#diff-text').textContent = texts.filter(([k]) => s >= k).pop()[1];
+    $('#diff-range').setAttribute('aria-valuetext', `Schritt ${s} von 30`);
+    // Beim Abspielen nur die Phasentexte ansagen, nicht jeden Schritt: Text nur bei Wechsel setzen
+    const t0 = texts.filter(([k]) => s >= k).pop()[1];
+    if ($('#diff-text').textContent !== t0) $('#diff-text').textContent = t0;
     if (!base) return;
     const t = 1 - s / 30;
     tctx.filter = t > 0 ? `blur(${(t * 16).toFixed(1)}px)` : 'none';

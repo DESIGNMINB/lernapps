@@ -2,7 +2,7 @@
 <html lang="de" data-theme="light">
 <head>
 <meta charset="utf-8">
-<script src="../theme.js?v=8"></script>
+<script src="../theme.js?v=9"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="../favicon.ico?v=2" sizes="any">
 <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
@@ -190,7 +190,7 @@
           </div>
           <svg class="lr-spread" id="ss-svg" viewBox="0 0 460 330" role="img" aria-labelledby="ss-text"></svg>
           <p class="small" id="ss-text" role="status"></p>
-          <dl class="lr-dl" id="ss-vals"></dl>
+          <dl class="lr-dl" id="ss-vals" aria-live="polite"></dl>
         </div>
         <div class="grid g3">
           <div class="card"><h3>Neunerteilung</h3><p class="small">Breite und Höhe werden in neun Teile geteilt. Bund- und Kopfsteg erhalten je einen Teil, Außen- und Fußsteg je zwei. Das Ergebnis entspricht der Diagonalkonstruktion nach Villard de Honnecourt und J. A. van de Graaf, die Jan Tschichold bekannt machte.</p></div>
@@ -673,7 +673,7 @@ natürliche Farben, Augenhöhe, 35 mm. Ohne Text, ohne Logos.</pre>
               <div class="field"><label for="g-w">Satzspiegel bzw. Container <output id="g-w-o"></output></label><input type="range" id="g-w" min="320" max="1440" step="8" value="1200"></div>
               <div class="field"><label for="g-n">Spalten <output id="g-n-o"></output></label><input type="range" id="g-n" min="2" max="16" value="12"></div>
               <div class="field"><label for="g-g">Gutter <output id="g-g-o"></output></label><input type="range" id="g-g" min="0" max="48" step="4" value="24"></div>
-              <dl class="lr-dl" id="g-vals"></dl>
+              <dl class="lr-dl" id="g-vals" aria-live="polite"></dl>
             </div>
             <div class="lr-gen-prev" id="g-prev" aria-hidden="true"></div>
           </div>
@@ -847,6 +847,6 @@ natürliche Farben, Augenhöhe, 35 mm. Ohne Text, ohne Logos.</pre>
   </main>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="app.js?v=20261107m"></script>
+<script src="app.js?v=20261107s"></script>
 </body>
 </html>
