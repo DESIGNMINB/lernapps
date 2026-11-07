@@ -904,3 +904,9 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
   .content-head + .page, .content-head ~ .page:not([data-page="home"]) { padding-top: 32px; }
   .main:has(#p-home.active) .content-head { display: none; }
 }
+
+/* Kontrastkasten in Lila (Logogestaltung: Nachteile von KI) */
+.card.dark.card-lila { background: #4A2870; border-color: #4A2870; border-left-color: #D9C3EE; color: #fff; }
+.page .card-lila ul.list li::marker { color: #D9C3EE; }
+:root[data-theme="dark"] .card.dark.card-lila { background: #3D2160; border-color: #5A3A85; border-left-color: #D9C3EE; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card.dark.card-lila { background: #3D2160; border-color: #5A3A85; border-left-color: #D9C3EE; } }
