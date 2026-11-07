@@ -155,7 +155,7 @@
   /* Suche über alle Lern-Apps: search.js liegt neben theme.js und wird nachgeladen */
   var me = document.currentScript;
   if (me && me.src && !window.LernSearch) {
-    window.LernSearchVersion = '20261107c';
+    window.LernSearchVersion = '20261107d';
     var ss = document.createElement('script');
     ss.src = me.src.replace(/theme\.js.*$/, 'search.js?v=' + window.LernSearchVersion);
     ss.async = true;
