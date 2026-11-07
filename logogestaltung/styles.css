@@ -862,3 +862,5 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 
 /* Mobil: Menü kommt von rechts, passend zum Menü-Knopf oben rechts */
 @media (max-width: 880px) { .sidebar { border-right: 0; border-left: 1px solid var(--line); } }
+/* Mobil zeigt die Kopfleiste Logo und Titel bereits: App-Block im Menü ausblenden */
+@media (max-width: 880px) { .sidebar .brand { display: none; } .home-back { margin-bottom: 8px; } }
