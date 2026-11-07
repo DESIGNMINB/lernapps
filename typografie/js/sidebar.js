@@ -98,6 +98,12 @@ function renderSidebar(activePage) {
   const sidebar = document.getElementById('sidebar');
   if (sidebar) {
     sidebar.innerHTML = html;
+    // App-Kopf zusätzlich oben im Contentbereich (Desktop); auf der Übersicht zeigt ihn der Hero
+    const card = document.querySelector('.main .content-card');
+    if (card && activePage !== 'intro' && !card.querySelector('.content-head')) {
+      const src = sidebar.querySelector('.sidebar-header');
+      if (src) { const head = document.createElement('div'); head.className = 'content-head'; head.appendChild(src.cloneNode(true)); card.insertBefore(head, card.firstChild); }
+    }
     sidebar.setAttribute('aria-label', 'Kapitelnavigation');
     initMobileNav(sidebar);
   }

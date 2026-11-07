@@ -1105,3 +1105,15 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
 .nav a[data-nav="home"]:focus-visible { outline: 2px solid #64378C; outline-offset: 2px; }
 [data-theme="dark"] .nav a[data-nav="home"] svg { color: #C8A8DE; }
 [data-theme="dark"] .nav a[data-nav="home"]:focus-visible { outline-color: #C8A8DE; }
+
+/* App-Kopf (Icon, „Lernmodul“, Nummer) auf dem Desktop oben im Contentbereich statt in der Seitenleiste.
+   Mobil zeigt ihn die Kopfleiste. Auf der Übersicht entfällt er, dort steht der Hero mit Icon und Titel. */
+.content-head { display: none; }
+@media (min-width: 881px) {
+  .sidebar .brand { display: none; }
+  .content-head { display: block; padding: 40px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+  .content-head .brand { max-width: 1024px; margin: 0 auto; padding: 0; }
+  .content-head .brand-name { color: var(--ink); }
+  .content-head + .page, .content-head ~ .page:not([data-page="home"]) { padding-top: 32px; }
+  .main:has(#p-home.active) .content-head { display: none; }
+}

@@ -41,6 +41,16 @@
       [data-theme="dark"] .nav-home svg { color: #C8A8DE !important; }
       [data-theme="dark"] .nav-home:hover { background: #252836 !important; }
       [data-theme="dark"] .nav-home:focus-visible { outline-color: #C8A8DE; }
+      /* App-Kopf auf dem Desktop oben im Contentbereich statt in der Seitenleiste (nicht auf der Übersicht) */
+      .ux-content-head { display: none; }
+      @media (min-width: 768px) {
+        .ux-content-head { display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; max-width: 1024px; margin: 0 auto 32px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+        .ux-content-head .mark { width: 40px; height: 40px; border-radius: 10px; background: #64378C; color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+        .ux-content-head .name { display: flex; flex-direction: column; font-size: 20px; font-weight: 700; line-height: 1.2; color: #1F2937; }
+        .ux-content-head .name small { margin-top: 2px; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B6270; }
+        [data-theme="dark"] .ux-content-head .name { color: #F3F4F6; }
+        [data-theme="dark"] .ux-content-head .name small { color: #9CA3AF; }
+      }
     </style>
   </head>
   <body>
