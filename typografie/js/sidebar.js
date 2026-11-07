@@ -79,7 +79,7 @@ function renderSidebar(activePage) {
       const isActive = item.id === activePage ? ' active' : '';
       const icon = icons[item.icon] || '';
       const current = isActive ? ' aria-current="page"' : '';
-      html += `<a href="${base}${item.href}" class="nav-item${isActive}"${current}>
+      html += `<a href="${base}${item.href}" class="nav-item${isActive}" data-id="${item.id}"${current}>
         <span class="nav-icon" aria-hidden="true">${icon}</span>${item.label}</a>`;
     }
   });

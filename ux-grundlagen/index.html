@@ -17,6 +17,33 @@
     <link rel="modulepreload" crossorigin href="./assets/vendor-CUD6N8da.js">
     <link rel="modulepreload" crossorigin href="./assets/radix-DecXKbqi.js">
     <link rel="stylesheet" crossorigin href="./assets/index-DcvWZA8y.css">
+    <style>
+      /* Vorschlag: Link zur Übersicht der Lern-Apps auf dem Desktop als lila Rahmen statt gefüllter Fläche */
+      @media (min-width: 768px) {
+        .lern-back { background: transparent !important; color: #64378C !important; border: 1.5px solid #64378C !important; }
+        .lern-back:hover, .lern-back:focus-visible { background: #F1EEF4 !important; }
+        .lern-back:focus-visible { box-shadow: 0 0 0 3px rgba(100, 55, 140, .3) !important; }
+        .lern-back > svg { color: #64378C !important; }
+        .lern-back > span:first-of-type { background: #64378C !important; color: #fff !important; box-shadow: 3px -3px 0 rgba(100, 55, 140, .45), 6px -6px 0 rgba(100, 55, 140, .22) !important; }
+        .lern-back small { color: #64378C !important; }
+        [data-theme="dark"] .lern-back { color: #C8A8DE !important; border-color: #C8A8DE !important; }
+        [data-theme="dark"] .lern-back:hover, [data-theme="dark"] .lern-back:focus-visible { background: #2A2140 !important; }
+        [data-theme="dark"] .lern-back > svg, [data-theme="dark"] .lern-back small { color: #C8A8DE !important; }
+        [data-theme="dark"] .lern-back > span:first-of-type { background: #C8A8DE !important; color: #1A1D27 !important; box-shadow: 3px -3px 0 rgba(200, 168, 222, .45), 6px -6px 0 rgba(200, 168, 222, .22) !important; }
+      }
+      /* Navigation: Home ohne lila Fläche. Icon lila, Text fett, Hover grau wie bei den übrigen Punkten,
+         aktiv mit lila Balken links */
+      .nav-home { background: transparent !important; color: #1F2937 !important; font-weight: 700 !important; }
+      .nav-home svg { color: #64378C !important; }
+      .nav-home.is-active { box-shadow: inset 3px 0 0 #64378C; }
+      .nav-home:hover { background: #F3F4F6 !important; }
+      .nav-home:focus-visible { outline: 2px solid #64378C; outline-offset: 2px; }
+      [data-theme="dark"] .nav-home { color: #E5E7EB !important; }
+      [data-theme="dark"] .nav-home svg { color: #C8A8DE !important; }
+      [data-theme="dark"] .nav-home.is-active { box-shadow: inset 3px 0 0 #C8A8DE; }
+      [data-theme="dark"] .nav-home:hover { background: #252836 !important; }
+      [data-theme="dark"] .nav-home:focus-visible { outline-color: #C8A8DE; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
