@@ -89,7 +89,7 @@ function renderNav() {
 }
 
 function renderTiles() {
-  const mk = (p, num) => `<a class="ptile" href="#${p.id}" data-tile="${p.id}"><div class="art"><img class="bg" src="media/tile-${p.id}.jpg?v=2" alt="" loading="lazy">${p.ex ? '<span class="tag-ex">Übung</span><span class="tag-done" hidden>Erledigt</span>' : ''}<span class="chip-num" aria-hidden="true">${num}</span></div><div class="tile-body"><h3>${esc(p.t)}</h3><p>${esc(p.sub)}</p><span class="go">${p.ex ? 'Übung starten' : 'Kapitel öffnen'}</span></div></a>`;
+  const mk = (p, num) => `<a class="ptile" href="#${p.id}" data-tile="${p.id}"><div class="art"><img class="bg" src="media/tile-${p.id}.webp?v=2" alt="" loading="lazy">${p.ex ? '<span class="tag-ex">Übung</span><span class="tag-done" hidden>Erledigt</span>' : ''}<span class="chip-num" aria-hidden="true">${num}</span></div><div class="tile-body"><h3>${esc(p.t)}</h3><p>${esc(p.sub)}</p><span class="go">${p.ex ? 'Übung starten' : 'Kapitel öffnen'}</span></div></a>`;
   $('#tiles-theory').innerHTML = CHAPTERS.map((p, i) => mk(p, String(i + 1).padStart(2, '0'))).join('');
   $('#tiles-ex').innerHTML = PAGES.filter((p) => p.ex).map((p) => mk(p, 'Ü' + p.ex)).join('');
   $('#tiles-know').innerHTML = [['quiz', '?'], ['literatur', 'Lit'], ['glossar', 'A–Z']].map(([id, n]) => mk(pageById(id), n)).join('');
@@ -244,7 +244,7 @@ function initDiffusion() {
     base = [(W - w) / 2, (H - h) / 2, w, h];
     draw(+$('#diff-range').value);
   };
-  img.src = 'media/k-golden.jpg';
+  img.src = 'media/k-golden.webp';
   draw(0);
   const range = $('#diff-range');
   range.addEventListener('input', () => { clearTimeout(timer); draw(+range.value); });
@@ -371,11 +371,11 @@ const PSTYLE = [
 ];
 function initRegie() {
   tabs($('#rg-tabs'), KAM, (k) => {
-    const img = $('#rg-img'); img.src = `media/${k.id}.jpg`; img.alt = k.alt;
+    const img = $('#rg-img'); img.src = `media/${k.id}.webp`; img.alt = k.alt;
     $('#rg-panel').innerHTML = `<div class="label">Geänderter Teil des Prompts</div><span class="mono">${esc(k.p)}</span><p style="margin-top:12px"><strong>Wirkung:</strong> ${esc(k.w)}</p><p><strong>Typischer Einsatz:</strong> ${esc(k.use)}</p><p class="small muted" style="margin:0">Achten Sie auch darauf, was sich ungewollt ändert: Gesicht, Fahrrad und Straße sind trotz gleichem Seed nicht identisch. Für echte Serien brauchen Sie Referenzbilder.</p>`;
   });
   tabs($('#ps-tabs'), PSTYLE, (s) => {
-    const img = $('#ps-img'); img.src = `media/${s.id}.jpg`; img.alt = s.alt;
+    const img = $('#ps-img'); img.src = `media/${s.id}.webp`; img.alt = s.alt;
     $('#ps-panel').innerHTML = `<div class="label">Modell: ${esc(s.m)}</div><p class="ki-pre" style="margin:8px 0 12px">${esc(s.p)}</p><p style="margin:0"><strong>Beobachtung:</strong> ${esc(s.o)}</p>`;
   });
 }
@@ -388,7 +388,7 @@ function initThree() {
   let timer;
   $('#t3-start').addEventListener('click', () => {
     clearInterval(timer); q.innerHTML = '';
-    stage.innerHTML = '<img src="media/p-b.jpg" alt="Testbild, wird nach drei Sekunden ausgeblendet"><span class="count" aria-hidden="true">3</span>';
+    stage.innerHTML = '<img src="media/p-b.webp" alt="Testbild, wird nach drei Sekunden ausgeblendet"><span class="count" aria-hidden="true">3</span>';
     let n = 3;
     timer = setInterval(() => {
       n--;
@@ -405,7 +405,7 @@ function initThree() {
     for (const x of $$('.opt', q)) { x.disabled = true; if (x.dataset.k === 'l') x.classList.add('right'); }
     if (!ok) b.classList.add('wrong');
     $('#t3-fb').innerHTML = `<div class="feedback ${ok ? 'ok' : 'bad'}" role="status" style="margin-top:12px"><p><strong>${ok ? 'So war es gedacht.' : 'Gedacht war: ruhig und vertrauenswürdig.'}</strong> Weiches Tageslicht, warme Töne und eine entspannte Haltung tragen die Wirkung. Kommt die beabsichtigte Stimmung nach drei Sekunden an, funktioniert das Bild. Vergleichen Sie Ihre Antwort im Team: Gehen die Eindrücke auseinander, ist das ein Hinweis auf eine unklare Bildaussage.</p></div>`;
-    stage.innerHTML = '<img src="media/p-b.jpg" alt="Eine junge Frau sitzt rechts im Bild am Fenster und schaut lächelnd auf ihr Smartphone, links ist eine ruhige helle Fläche">';
+    stage.innerHTML = '<img src="media/p-b.webp" alt="Eine junge Frau sitzt rechts im Bild am Fenster und schaut lächelnd auf ihr Smartphone, links ist eine ruhige helle Fläche">';
   });
   leaveHooks.push(() => clearInterval(timer));
 }
@@ -424,9 +424,9 @@ function initBA() {
   tabs($('#ba-tabs'), BA, (s) => {
     const stage = $('#ba-stage');
     if (s.side) {
-      stage.innerHTML = `<div class="ki-side"><figure><img src="media/${s.a}.jpg" alt="${esc(s.altA)}" width="1200" height="900"><figcaption>Vorher · 4:3</figcaption></figure><figure><img src="media/${s.b}.jpg" alt="${esc(s.altB)}" width="1200" height="675"><figcaption>Nachher · 16:9</figcaption></figure></div>`;
+      stage.innerHTML = `<div class="ki-side"><figure><img src="media/${s.a}.webp" alt="${esc(s.altA)}" width="1200" height="900"><figcaption>Vorher · 4:3</figcaption></figure><figure><img src="media/${s.b}.webp" alt="${esc(s.altB)}" width="1200" height="675"><figcaption>Nachher · 16:9</figcaption></figure></div>`;
     } else {
-      stage.innerHTML = `<div class="ki-ba"><img src="media/${s.a}.jpg" alt="Vorher: ${esc(s.altA)}"><div class="after-wrap"><img src="media/${s.b}.jpg" alt="Nachher: ${esc(s.altB)}"></div><span class="line" aria-hidden="true"></span><span class="lb l" aria-hidden="true">Vorher</span><span class="lb r" aria-hidden="true">Nachher</span></div><label class="ki-ba-range">Vergleich: links vorher, rechts nachher<input type="range" min="0" max="100" value="50" aria-valuetext="50 % nachher"></label>`;
+      stage.innerHTML = `<div class="ki-ba"><img src="media/${s.a}.webp" alt="Vorher: ${esc(s.altA)}"><div class="after-wrap"><img src="media/${s.b}.webp" alt="Nachher: ${esc(s.altB)}"></div><span class="line" aria-hidden="true"></span><span class="lb l" aria-hidden="true">Vorher</span><span class="lb r" aria-hidden="true">Nachher</span></div><label class="ki-ba-range">Vergleich: links vorher, rechts nachher<input type="range" min="0" max="100" value="50" aria-valuetext="50 % nachher"></label>`;
       const r = $('input', stage), wrap = $('.after-wrap', stage), line = $('.line', stage);
       const set = () => { wrap.style.clipPath = `inset(0 0 0 ${r.value}%)`; line.style.left = r.value + '%'; r.setAttribute('aria-valuetext', `${100 - r.value} % nachher sichtbar`); };
       r.addEventListener('input', set); set();
@@ -867,7 +867,7 @@ function initExercises() {
     okText: 'Sie erkennen die Bausteine eines guten Briefings.', badText: 'Fragen Sie bei jedem Satz: Warum (Motivation), was (Aufgabe), in welcher Form (Resultat), woran orientiert (Exempel)?' });
   selectExercise({ key: 'km', list: '#km-list', check: '#km-check', reset: '#km-reset', fb: '#km-fb', items: KM_ITEMS, opts: KM_OPTS, pass: 5, ex: 'ue-kamera',
     okText: 'Sie lesen Kamera- und Lichtsprache sicher.', badText: 'Achten Sie auf Raumtiefe (Brennweite), Unschärfe (Blende), Blickwinkel und die Verteilung von Hell und Dunkel.',
-    render: (it, i, st) => { const k = KAM.find((x) => x.id === it[0]); return `<div class="ki-ex-item" data-i="${i}"><img src="media/${k.id}.jpg" alt="Bild ${i + 1}: Frau mit gelber Regenjacke und grünem Fahrrad" loading="lazy" width="1200" height="805"><h3>Bild ${i + 1}</h3>${selectHtml(i, KM_OPTS, st[i], 'Anweisung für Bild ' + (i + 1))}<div class="why" hidden></div></div>`; } });
+    render: (it, i, st) => { const k = KAM.find((x) => x.id === it[0]); return `<div class="ki-ex-item" data-i="${i}"><img src="media/${k.id}.webp" alt="Bild ${i + 1}: Frau mit gelber Regenjacke und grünem Fahrrad" loading="lazy" width="1200" height="805"><h3>Bild ${i + 1}</h3>${selectHtml(i, KM_OPTS, st[i], 'Anweisung für Bild ' + (i + 1))}<div class="why" hidden></div></div>`; } });
   selectExercise({ key: 'bb', list: '#bb-list', check: '#bb-check', reset: '#bb-reset', fb: '#bb-fb', items: BB_ITEMS, opts: BB_OPTS, pass: 6, ex: 'ue-bearbeitung',
     okText: 'Sie wählen passende Techniken und erkennen, wann eine Bearbeitung die Aussage verfälscht.', badText: 'Denken Sie an den Leitsatz: verbessern ja, Produktidentität und dokumentarische Wahrheit verfälschen nein.' });
 }

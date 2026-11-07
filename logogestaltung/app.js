@@ -90,7 +90,7 @@ function renderNav() {
 
 /* Kachelgrafiken für die Startseite: jede Grafik greift das Kapitelthema auf */
 // Eigene Kachelbilder, die nirgends sonst auf der Seite vorkommen
-const TILE_PHOTOS = Object.fromEntries(PAGES.filter((p) => p.id !== 'home').map((p) => [p.id, `media/tile-${p.id}.jpg`]));
+const TILE_PHOTOS = Object.fromEntries(PAGES.filter((p) => p.id !== 'home').map((p) => [p.id, `media/tile-${p.id}.webp`]));
 function tileArt(id) {
   if (TILE_PHOTOS[id]) return `<img class="bg" src="${TILE_PHOTOS[id]}" alt="" loading="lazy">`;
   let bg = '#d5cdc2', a = '#bdb3a6', b = '#ece6de', c = '#a59b8e';
