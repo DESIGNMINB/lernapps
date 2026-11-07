@@ -54,7 +54,7 @@
 .ki-token .cand:hover { border-color: #4B5563; }
 .ki-token .cand .bar { height: 10px; border-radius: 5px; background: var(--surface-2); overflow: hidden; }
 .ki-token .cand .bar i { display: block; height: 100%; background: var(--ki-plum); }
-.ki-token .cand .p { font: 600 13px/1 var(--f-mono); text-align: right; }
+.ki-token .cand .p { font: 600 14px/1 var(--f-body); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .ki-frontier { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .ki-frontier .card h3 { margin-top: 0; }
 .ki-frontier .good { border-top: 4px solid var(--ok); }
@@ -67,11 +67,12 @@
 
 /* ---------- Kapitel 03: Double Diamond ---------- */
 .ki-dd { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 10px 0 14px; }
-.ki-dd button { position: relative; min-height: 92px; border: 0; background: transparent; cursor: pointer; color: var(--ink); font: 700 15px/1.2 var(--f-body); padding: 0; }
-.ki-dd button svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.ki-dd button svg path { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
-.ki-dd button span { position: relative; display: block; }
-.ki-dd button small { position: relative; display: block; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 3px; }
+/* Form oben, Beschriftung darunter: So bleiben beide Rauten erkennbar und kein Text läuft über eine Kante */
+.ki-dd button { display: flex; flex-direction: column; align-items: center; gap: 4px; border: 0; background: transparent; cursor: pointer; color: var(--ink); font: 700 15px/1.2 var(--f-body); padding: 0 2px 6px; }
+.ki-dd button svg { display: block; width: 100%; height: 76px; margin-bottom: 4px; }
+.ki-dd button svg path { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.ki-dd button span { display: block; }
+.ki-dd button small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
 .ki-dd button:hover svg path { fill: var(--surface-2); }
 .ki-dd button[aria-pressed="true"] svg path { fill: var(--ki-plum-soft); stroke: var(--ki-plum); stroke-width: 2.5; }
 .ki-dd-legend { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
@@ -205,8 +206,10 @@
   .ki-scale div + div { border-left: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 560px) {
-  .ki-dd { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .ki-dd-legend { display: none; }
+  .ki-dd button { font-size: 13px; }
+  .ki-dd button svg { height: 52px; }
+  .ki-dd button small { font-size: 11px; }
+  .ki-dd-legend { font-size: 11.5px; }
   .ki-frontier, .ki-ex-grid, .ki-rules, .ki-crit, .ki-side { grid-template-columns: minmax(0, 1fr); }
   .ki-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ki-doc .g, .ki-doc .g2s { grid-template-columns: minmax(0, 1fr); }

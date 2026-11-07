@@ -260,9 +260,8 @@ function initDiffusion() {
 }
 
 const TOK = {
-  a: { add: 'Die beste Farbe für einen Call-to-Action-Button ist', c: [['Orange', .38, 'b'], ['Grün', .24, 'b'], ['Rot', .17, 'b'], ['die', .12, 'c'], ['Blau', .07, 'b']] },
-  b: { add: ', weil sie', c: [['Aufmerksamkeit erzeugt', .46], ['Energie vermittelt', .21], ['Vertrauen schafft', .18], ['zur Marke passt', .09]] },
-  c: { add: ' Farbe, die', c: [['am meisten auffällt', .41], ['sich vom Hintergrund abhebt', .33], ['zur Marke passt', .19]] }
+  a: { add: 'Die beste Farbe für einen Call-to-Action-Button ist', c: [['Orange', .38, 'b'], ['Grün', .24, 'b'], ['Rot', .17, 'b'], ['Gelb', .12, 'b'], ['Blau', .07, 'b']] },
+  b: { add: ', weil sie', c: [['Aufmerksamkeit erzeugt', .46], ['Energie vermittelt', .21], ['Vertrauen schafft', .18], ['zur Marke passt', .09]] }
 };
 function initToken() {
   let words = [], node = 'a';
@@ -273,7 +272,7 @@ function initToken() {
       $('#tok-cands').innerHTML = '<div class="feedback ok" role="status"><p><strong>Plausibel, aber stimmt es?</strong> Keine Farbe ist an sich „die beste“. Ob ein Button auffällt, hängt vom Kontrast zur Umgebung, von der Marke und von Konventionen ab. Das Modell wählt, was in seinen Daten oft so stand, nicht was in Ihrem Kontext richtig ist.</p></div>';
       return;
     }
-    $('#tok-cands').innerHTML = n.c.map(([w, p], i) => `<button type="button" class="cand" data-i="${i}"><span>${esc(w)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(p * 100 / n.c[0][1])}%"></i></span><span class="p">${Math.round(p * 100)} %</span></button>`).join('');
+    $('#tok-cands').innerHTML = n.c.map(([w, p], i) => `<button type="button" class="cand" data-i="${i}"><span>${esc(w)}</span><span class="bar" aria-hidden="true"><i style="width:${Math.round(p * 100 / n.c[0][1])}%"></i></span><span class="p">${Math.round(p * 100)}\u202F%</span></button>`).join('');
   };
   const start = () => { words = [TOK.a.add]; node = 'a'; render(); };
   $('#tok-cands').addEventListener('click', (e) => {
