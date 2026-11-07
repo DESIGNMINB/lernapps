@@ -796,7 +796,7 @@ function initLit() {
    ================================================================ */
 const GL = [
   ['Alt-Text', 'Barrierefreiheit', 'Textalternative für ein Bild. Je nach Funktion informativ, funktional, dekorativ (leer) oder komplex.', 'appdesign'],
-  ['Autoregressive Bildgenerierung', 'Modelle', 'Das Bild entsteht Stück für Stück wie Text, statt durch Entrauschen. Genutzt von multimodalen Modellen wie GPT Image.', 'modelle'],
+  ['Autoregressive Bildgenerierung', 'Modelle', 'Das Bild entsteht Stück für Stück wie Text, statt durch Entrauschen. Bekannt seit DALL·E 1 (2021) und Parti (2022), seit 2025 breit genutzt von multimodalen Chat-Modellen wie GPT Image oder Gemini.', 'modelle'],
   ['Bias', 'Ethik', 'Verzerrung durch die Trainingsdaten, etwa stereotype Darstellungen von Berufen oder Herkunft.', 'recht'],
   ['Brennweite', 'Bildsprache', 'Bestimmt Bildwinkel und Wirkung: 24 mm weit und räumlich, 85 mm eng und verdichtend.', 'regie'],
   ['C2PA', 'Recht', 'Offener Standard für kryptografisch signierte Herkunftsangaben in Mediendateien.', 'recht'],
