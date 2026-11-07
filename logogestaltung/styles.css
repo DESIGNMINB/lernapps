@@ -513,7 +513,7 @@ input[type="color"]::-webkit-color-swatch { border: 0; border-radius: 50%; }
 }
 @media (max-width: 880px) {
   .app { grid-template-columns: minmax(0, 1fr); }
-  .sidebar { position: fixed; inset: 0 auto 0 0; width: min(300px, 86vw); z-index: 40; transform: translateX(-102%); transition: transform .25s ease; }
+  .sidebar { position: fixed; inset: 0 0 0 auto; width: min(300px, 86vw); z-index: 40; transform: translateX(102%); transition: transform .25s ease; border-right: 0; border-left: 1px solid var(--line); }
   .app.nav-open .sidebar { transform: none; box-shadow: 0 0 0 100vmax rgba(0,0,0,.45); }
   .topbar {
     display: flex; align-items: center; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
@@ -522,6 +522,7 @@ input[type="color"]::-webkit-color-swatch { border: 0; border-radius: 50%; }
   }
   body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 31; background: var(--side-bg); }
   .topbar button { background: none; border: 0; color: #fff; padding: 6px; cursor: pointer; display: grid; place-items: center; }
+  .topbar #menu-btn { order: 2; margin-left: auto; margin-right: -6px; width: 44px; height: 44px; }
   .topbar button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
   .topbar .t { font: 700 15px/1 var(--f-display); }
   .page { padding-block: 32px 72px; }
@@ -858,3 +859,6 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 
 /* Deaktivierte Buttons lesbar statt verblasst (Schrift ≥ 4,5 : 1) */
 .btn[disabled], .btn-primary[disabled], .btn-dark[disabled] { opacity: 1; background: var(--surface); border-color: var(--line); color: #5B6270; }
+
+/* Mobil: Menü kommt von rechts, passend zum Menü-Knopf oben rechts */
+@media (max-width: 880px) { .sidebar { border-right: 0; border-left: 1px solid var(--line); } }

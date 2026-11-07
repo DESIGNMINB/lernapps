@@ -587,9 +587,11 @@ input[type="range"]::-webkit-slider-thumb {
     background: var(--bg-white); color: var(--text-primary); cursor: pointer;
   }
   .mobile-topbar .menu-btn svg { width: 22px; height: 22px; }
+  /* Menü-Knopf rechts wie in der UX-App; das Menü öffnet rechts */
+  .mobile-topbar .menu-btn { order: 2; margin-left: auto; }
   .mobile-topbar .topbar-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .sidebar {
-    display: none; width: min(85vw, 300px); z-index: 30;
+    display: none; width: min(85vw, 300px); z-index: 30; left: auto; right: 0; border-right: 0; border-left: 1px solid var(--border-color);
     box-shadow: 0 10px 40px rgba(0,0,0,.25);
   }
   body.nav-open .sidebar { display: flex; }
