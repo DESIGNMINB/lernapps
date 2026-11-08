@@ -1117,3 +1117,7 @@ input[aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 
   .content-head + .page, .content-head ~ .page:not([data-page="home"]) { padding-top: 32px; }
   .main:has(#p-home.active) .content-head { display: none; }
 }
+
+/* Kennzeichnung KI-generierter Bilder und Videos (KI-Verordnung Art. 50) */
+.hero-media { position: relative; }
+.ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .74); color: #fff; font-family: inherit; font-size: 11px; font-weight: 600; line-height: 1.2; letter-spacing: .02em; pointer-events: none; }

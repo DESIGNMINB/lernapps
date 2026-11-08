@@ -119,6 +119,8 @@
 
     footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); }
     footer a { color: inherit; text-underline-offset: 2px; }
+    .hero-media { position: relative; }
+    .ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .74); color: #fff; font-family: inherit; font-size: 11px; font-weight: 600; line-height: 1.2; pointer-events: none; }
     @media (prefers-reduced-motion: reduce) { .card, .go, .go::after { transition: none; } }
 
     /* ===== Dunkelmodus (gemeinsamer Schalter für alle Lern-Apps, siehe theme.js) ===== */
@@ -182,7 +184,8 @@
       <div data-lernapps-search></div>
       </div>
       <figure class="hero-media">
-        <img src="img/teaser.webp" alt="Zwei Studierende besprechen am Arbeitstisch einen App-Entwurf auf dem Smartphone, daneben ein Laptop mit Code und ein Skizzenbuch mit Wireframes" width="1200" height="896" fetchpriority="high">
+        <span class="ki-badge" aria-hidden="true">KI-generiert</span>
+        <img src="img/teaser.webp" alt="Zwei Studierende besprechen am Arbeitstisch einen App-Entwurf auf dem Smartphone, daneben ein Laptop mit Code und ein Skizzenbuch mit Wireframes (KI-generiert)" width="1200" height="896" fetchpriority="high">
       </figure>
     </header>
 

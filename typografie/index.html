@@ -65,6 +65,8 @@
     .home-section-label { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 56px 0 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
     .home-section-label h2 { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-primary); }
     .home-section-label span { font-size: 14px; color: var(--text-secondary); }
+    .hero-media { position: relative; }
+    .ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .74); color: #fff; font-family: inherit; font-size: 11px; font-weight: 600; line-height: 1.2; pointer-events: none; }
     .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; list-style: none; }
     .tile { display: block; text-decoration: none; color: inherit; border-radius: 12px; }
     .tile .art { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; transition: transform .25s ease, box-shadow .25s; }
@@ -150,7 +152,7 @@
           </div>
           <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>4</b> Referenzen</span><span><b>15</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
         </div>
-        <figure class="hero-media"><img src="img/einleitung.webp" alt="" width="1600" height="893"></figure>
+        <figure class="hero-media"><span class="ki-badge" aria-hidden="true">KI-generiert</span><img src="img/einleitung.webp" alt="" width="1600" height="893"></figure>
       </div>
       <div class="progress-band" aria-live="polite">
         <span class="label">Ihr Fortschritt</span>
@@ -165,7 +167,7 @@
       <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
       <ul class="tiles" id="tiles-quiz"></ul>
 
-      <p class="footer-note">© 2026 TypoLab · Lernmodul 01 · Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
+      <p class="footer-note">© 2026 TypoLab · Lernmodul 01 · Fotos KI-generiert · Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
     </div>
   </main>
 

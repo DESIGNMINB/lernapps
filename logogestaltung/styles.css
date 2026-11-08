@@ -910,3 +910,7 @@ input[type="text"], input[type="search"], select, textarea { border-color: var(-
 .page .card-lila ul.list li::marker { color: #D9C3EE; }
 :root[data-theme="dark"] .card.dark.card-lila { background: #3D2160; border-color: #5A3A85; border-left-color: #D9C3EE; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card.dark.card-lila { background: #3D2160; border-color: #5A3A85; border-left-color: #D9C3EE; } }
+
+/* Kennzeichnung KI-generierter Bilder und Videos (KI-Verordnung Art. 50) */
+.hero-media { position: relative; }
+.ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .74); color: #fff; font-family: inherit; font-size: 11px; font-weight: 600; line-height: 1.2; letter-spacing: .02em; pointer-events: none; }
