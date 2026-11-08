@@ -68,8 +68,22 @@
      PDF-Downloads und Feedback-Klicks. Auf localhost wird nichts gezählt.
      Eigene Aufrufe ausschließen: einmal eine Seite mit #toggle-goatcounter am Ende öffnen. */
   var GC_CODE = 'dualtom'; // GoatCounter-Code, z. B. 'lernapps' → https://lernapps.goatcounter.com
+  /* Abschalten: Schalter auf der Seite datenschutz.html (Speicher 'lernapps-stats-off')
+     sowie automatisch bei Global Privacy Control oder „Do Not Track“ im Browser. */
+  var STATS_KEY = 'lernapps-stats-off';
+  function statsOffReason() {
+    try { if (localStorage.getItem(STATS_KEY) === '1') return 'user'; } catch (e) { /* privat */ }
+    if (navigator.globalPrivacyControl === true || navigator.doNotTrack === '1' || window.doNotTrack === '1') return 'browser';
+    return null;
+  }
+  var statsOff = statsOffReason();
+  window.LernStats = {
+    off: function () { return statsOffReason(); },
+    set: function (off) { try { if (off) localStorage.setItem(STATS_KEY, '1'); else localStorage.removeItem(STATS_KEY); } catch (e) { /* privat */ } }
+  };
   var queue = [], ready = false, last = '';
   function send(o) {
+    if (statsOff) return;
     if (ready && window.goatcounter && window.goatcounter.count) window.goatcounter.count(o);
     else queue.push(o);
   }
@@ -82,7 +96,7 @@
   function event(name, title) { send({ path: name, title: title || name, event: true }); }
   window.LernTrack = { view: view, event: event };
 
-  if (GC_CODE) {
+  if (GC_CODE && !statsOff) {
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://gc.zgo.at/count.js';
@@ -136,8 +150,24 @@
     var pres = root.querySelectorAll ? root.querySelectorAll('pre[tabindex]:not([aria-label]):not([aria-labelledby])') : [];
     for (var k = 0; k < pres.length; k++) { pres[k].setAttribute('role', 'region'); pres[k].setAttribute('aria-label', 'Codebeispiel'); }
   }
+  /* Datenschutz und Impressum: Links unter jedem Feedback-Link (Seitenleisten aller Apps, auch React) */
+  var BASE = (document.currentScript && document.currentScript.src || '').replace(/theme\.js.*$/, '');
+  function legalLinks() {
+    if (!BASE) return;
+    var fbs = document.querySelectorAll('[data-feedback]');
+    for (var i = 0; i < fbs.length; i++) {
+      var f = fbs[i], n = f.nextElementSibling;
+      if (f.hasAttribute('data-no-legal')) continue;
+      if (n && n.classList.contains('legal-links')) continue;
+      var p = document.createElement('p');
+      p.className = 'legal-links';
+      p.style.cssText = 'margin:2px 0 6px;padding:0 12px;font-size:12px;line-height:1.5;opacity:.85';
+      p.innerHTML = '<a href="' + BASE + 'datenschutz.html" style="color:inherit">Datenschutz</a> · <a href="' + BASE + 'impressum.html" style="color:inherit">Impressum</a>';
+      f.parentNode.insertBefore(p, f.nextSibling);
+    }
+  }
   function a11yInit() {
-    a11yScan(document);
+    a11yScan(document); legalLinks();
     // Anzeige wird im selben Ereignis aktualisiert: Wert erst danach übernehmen
     document.addEventListener('input', function (e) { if (e.target && e.target.type === 'range') setTimeout(function () { syncRange(e.target); }, 0); });
     document.addEventListener('change', function (e) { if (e.target && e.target.type === 'range') setTimeout(function () { syncRange(e.target); }, 0); });
@@ -145,7 +175,7 @@
       var pending = false;
       new MutationObserver(function () {
         if (pending) return; pending = true;
-        setTimeout(function () { pending = false; a11yScan(document); }, 50);
+        setTimeout(function () { pending = false; a11yScan(document); legalLinks(); }, 50);
       }).observe(document.body, { childList: true, subtree: true });
     }
   }
