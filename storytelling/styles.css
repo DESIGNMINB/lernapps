@@ -152,3 +152,24 @@
 .story-model-tag { display: inline-block; margin: 0 0 8px !important; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--purple-ink); color: var(--purple-ink); font-size: 12px; font-weight: 600; }
 .story-order { counter-reset: story-order; }
 .story-order li::before { counter-increment: story-order; content: counter(story-order) "."; flex: none; min-width: 1.4em; font-weight: 600; color: var(--purple-ink); }
+
+/* Spannungskurve (Lektion 04) */
+.story-curve-grid { display: grid; gap: 24px; margin-top: 12px; }
+@media (min-width: 1000px) { .story-curve-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: start; } }
+.story-curve-sliders { display: grid; gap: 14px; }
+.story-curve-row label { display: flex; justify-content: space-between; gap: 12px; font-weight: 600; }
+.story-curve-val { color: var(--purple-ink); font-variant-numeric: tabular-nums; }
+.story-curve-row input[type=range] { display: block; width: 100%; accent-color: var(--purple-brand); margin: 4px 0 2px; }
+.story-curve-row .story-note { display: block; font-size: 13px; line-height: 1.4; }
+.story-curve-chart svg { display: block; width: 100%; height: auto; }
+.story-curve-grid-lines line { stroke: var(--border-color); stroke-width: 1; }
+.story-curve-line { fill: none; stroke: var(--purple-brand); stroke-width: 4; stroke-linecap: round; }
+.story-curve-ref { fill: none; stroke: var(--text-secondary); stroke-width: 3; stroke-dasharray: 8 7; opacity: .45; }
+.story-curve-ref[hidden] { display: none; }
+#curve-dots circle { fill: var(--bg-white); stroke: var(--purple-brand); stroke-width: 3; }
+#curve-dots circle.is-climax { fill: var(--purple-brand); }
+.story-curve-num { fill: var(--text-secondary); font-size: 20px; font-weight: 600; }
+.story-curve-axis { display: flex; justify-content: space-between; gap: 12px; margin: 4px 0 8px !important; font-size: 13px; color: var(--text-secondary); }
+.story-curve-feedback { padding: 12px 14px; border-radius: 8px; background: var(--purple-soft); }
+.story-curve-feedback p { margin: 0 0 8px !important; }
+.story-curve-feedback p:last-child { margin-bottom: 0 !important; }

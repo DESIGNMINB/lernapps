@@ -143,13 +143,32 @@ function practice(id) {
     <h3>Szenen ordnen</h3><p>Bringen Sie die Momente aus Miras Geschichte in eine Abfolge, in der jede Entscheidung nachvollziehbar wird.</p>
     <ol class="story-order" id="beat-order"></ol><button type="button" class="btn" id="order-check">Reihenfolge prüfen</button>
     <p class="story-result" id="order-result" role="status"></p></div>`;
-  if (id === 'spannung') return `<figure class="story-panel">
+  if (id === 'spannung') return `<div class="story-panel story-curve">
     <h3>Spannungskurve</h3>
-    <svg viewBox="0 0 620 220" role="img" aria-label="Beabsichtigte Spannung im Erzählverlauf"><path d="M35 20v165h555" fill="none" stroke="currentColor"/><polyline id="curve" fill="none" stroke="#9254D1" stroke-width="5"/><text x="45" y="30" fill="currentColor">Spannung</text><text x="220" y="215" fill="currentColor">Erzählverlauf →</text></svg>
-    <div class="story-controls"><label>Rückschlag <output id="setback-value"></output><input id="setback" type="range" min="1" max="10" value="6"></label>
-    <label>Entscheidung <output id="peak-value"></output><input id="peak" type="range" min="1" max="10" value="9"></label></div>
-    <figcaption>Skala von 1 bis 10. Die beiden Regler verändern die Höhe der mittleren Punkte.</figcaption>
-  </figure>`;
+    <p>Stellen Sie für jede Station von Miras Geschichte ein, wie viel Spannung das Publikum dort erleben soll. Die Rückmeldung beschreibt, was der Verlauf erzählt. Eine einzige richtige Kurve gibt es nicht.</p>
+    <div class="story-controls" id="curve-presets" role="group" aria-label="Muster laden">
+      ${Object.entries(curvePresets).map(([key, [label]]) => `<button type="button" class="btn" data-preset="${key}">${label}</button>`).join('')}
+    </div>
+    <div class="story-curve-grid">
+      <div class="story-curve-sliders">${curveStations.map(([name, scene], i) => `<div class="story-curve-row">
+        <label for="curve-${i}"><span>${i + 1}. ${name}</span><span class="story-curve-val" id="curve-${i}-v" aria-hidden="true"></span></label>
+        <input id="curve-${i}" type="range" min="0" max="10" step="1" value="${curvePresets.klassisch[1][i]}" aria-describedby="curve-${i}-s">
+        <span class="story-note" id="curve-${i}-s">${scene}</span></div>`).join('')}</div>
+      <div class="story-curve-chart">
+        <svg viewBox="0 0 600 300" role="img" aria-labelledby="curve-desc"><title id="curve-desc">Spannungskurve über sechs Stationen</title>
+          <g class="story-curve-grid-lines">${[0, 5, 10].map((v) => `<line x1="40" x2="580" y1="${curveY(v)}" y2="${curveY(v)}"/>`).join('')}</g>
+          <path class="story-curve-ref" id="curve-ref" d="" hidden/>
+          <path class="story-curve-line" id="curve-line" d=""/>
+          <g id="curve-dots"></g>
+          ${curveStations.map((_, i) => `<text class="story-curve-num" x="${curveX(i)}" y="294" text-anchor="middle">${i + 1}</text>`).join('')}
+        </svg>
+        <p class="story-curve-axis"><span>↑ Spannung</span><span>Erzählverlauf: Stationen 1–6 →</span></p>
+        <div class="story-controls"><button type="button" class="btn" id="curve-keep">Kurve A merken</button><button type="button" class="btn" id="curve-clear" hidden>Vergleich entfernen</button></div>
+        <p class="story-note" id="curve-legend" hidden>Blass gestrichelt: Kurve A. Kräftig: aktuelle Kurve B.</p>
+        <div class="story-curve-feedback" id="curve-feedback" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>`;
   if (id === 'bild') return `<figure class="story-panel"><img src="img/hero.svg" width="640" height="400" alt="Sechs Bildfelder: Mira mit Modell, Regen, Bruchstelle, Blick zum Telefon, Teamarbeit und Präsentation">
     <figcaption>Beispielsequenz: Totale, Detail, Detail, Nahaufnahme, Zweierbild und Totale. Der Ausschnitt führt vom Ort zur Ursache, zur Entscheidung und schließlich zu ihrer Folge.</figcaption></figure>`;
   if (id === 'transmedia') return `<div class="story-panel">
@@ -553,16 +572,90 @@ function wireStoryboard() {
   };
 }
 
-function wireCurve() {
-  const setback = $('#setback');
-  const peak = $('#peak');
-  function draw() {
-    $('#setback-value').textContent = `${setback.value}/10`;
-    $('#peak-value').textContent = `${peak.value}/10`;
-    $('#curve').setAttribute('points', `35,170 145,145 285,${180 - setback.value * 14} 435,${180 - peak.value * 14} 580,150`);
+const curveStations = [
+  ['Ausgangslage', 'Mira bereitet das Modell für die Präsentation vor.'],
+  ['Auslöser', 'Der Regen weicht die Pfeiler auf.'],
+  ['Steigende Handlung', 'Der Klebeversuch scheitert, beim Belastungstest reißt die Verbindung.'],
+  ['Höhepunkt', 'Mira entscheidet sich, ihr Team um Hilfe zu bitten.'],
+  ['Fallende Handlung', 'Das Team repariert das Modell gemeinsam unter Zeitdruck.'],
+  ['Auflösung', 'Das Team präsentiert die gemeinsame Reparatur.']
+];
+const curvePresets = {
+  flach: ['Flache Kurve', [4, 4, 5, 5, 5, 4]],
+  frueh: ['Zu früher Höhepunkt', [2, 9, 7, 6, 4, 3]],
+  klassisch: ['Klassischer Bogen', [2, 4, 6, 9, 5, 3]]
+};
+const curveX = (i) => 60 + i * 100;
+const curveY = (v) => 260 - v * 23;
+function curvePath(values) {
+  const pts = values.map((v, i) => [curveX(i), curveY(v)]);
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+    const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    d += ` C${c1.map(Math.round)},${c2.map(Math.round)},${p2}`;
   }
-  setback.oninput = draw;
-  peak.oninput = draw;
+  return d;
+}
+function curveFeedback(v) {
+  const [start, trigger, rising, climax, falling, end] = v;
+  const max = Math.max(...v);
+  const first = v.indexOf(max);
+  const notes = [];
+  if (max - Math.min(...v) <= 2) notes.push('Die Kurve bleibt fast flach. Wo steht für Mira etwas auf dem Spiel? Ein Rückschlag oder eine knappe Frist kann zeigen, dass der Ausgang offen ist.');
+  else {
+    if (start >= trigger) notes.push('Die Ausgangslage ist schon so angespannt wie der Auslöser. Ein ruhigerer Alltag am Anfang macht die Störung erst sichtbar.');
+    if (first < 3 && max > climax) notes.push(`Der höchste Punkt liegt bei „${curveStations[first][0]}“, noch vor Miras Entscheidung. Was soll danach noch wichtiger werden? Hat die Entscheidung weniger Gewicht als das, was davor geschah, wirkt das Ende schwächer.`);
+    if (rising < trigger) notes.push('Nach dem Auslöser sinkt die Spannung. Ein gescheiterter Versuch sollte die Lage verschärfen, sonst wirkt die Mitte wie eine Pause.');
+    if (falling > climax) notes.push('Nach der Entscheidung steigt die Spannung weiter. Dann ist die fallende Handlung eigentlich ein neuer Höhepunkt. Prüfen Sie, welche Szene die zentrale Entscheidung enthält.');
+    if (end > climax) notes.push('Das Ende liegt höher als der Höhepunkt. So entsteht ein offenes Ende oder ein Cliffhanger. Ist das gewollt?');
+    else if (end >= falling && falling < climax) notes.push('Die Auflösung ist angespannter als die fallende Handlung. Das Publikum bekommt kaum Zeit, die Folgen der Entscheidung zu verarbeiten.');
+  }
+  if (!notes.length) notes.push('Die Spannung steigt bis zu Miras Entscheidung und fällt danach ab. Das Publikum erlebt den Höhepunkt dort, wo die wichtigste Wahl fällt. Prüfen Sie im Test mit Publikum, ob die Erwartung tatsächlich entsteht.');
+  return notes;
+}
+function wireCurve() {
+  const inputs = curveStations.map((_, i) => $(`#curve-${i}`));
+  let reference = null;
+  const values = () => inputs.map((input) => Number(input.value));
+  const dots = (v) => v.map((value, i) => `<circle cx="${curveX(i)}" cy="${curveY(value)}" r="7"${i === 3 ? ' class="is-climax"' : ''}/>`).join('');
+  function draw() {
+    const v = values();
+    inputs.forEach((input, i) => {
+      $(`#curve-${i}-v`).textContent = `${v[i]}/10`;
+      input.setAttribute('aria-valuetext', `${curveStations[i][0]}: ${v[i]} von 10`);
+    });
+    $('#curve-line').setAttribute('d', curvePath(v));
+    $('#curve-dots').innerHTML = dots(v);
+    $('#curve-feedback').innerHTML = curveFeedback(v).map((note) => `<p>${note}</p>`).join('');
+    const preset = Object.entries(curvePresets).find(([, [, p]]) => p.every((x, i) => x === v[i]))?.[0];
+    $('#curve-presets').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === preset)));
+  }
+  inputs.forEach((input) => { input.addEventListener('input', () => { draw(); setTimeout(draw, 0); }); });
+  $('#curve-presets').onclick = (event) => {
+    const button = event.target.closest('[data-preset]');
+    if (!button) return;
+    curvePresets[button.dataset.preset][1].forEach((value, i) => { inputs[i].value = value; });
+    draw();
+  };
+  $('#curve-keep').onclick = () => {
+    reference = values();
+    const ref = $('#curve-ref');
+    ref.setAttribute('d', curvePath(reference));
+    ref.removeAttribute('hidden');
+    $('#curve-keep').textContent = 'Kurve A ersetzen';
+    $('#curve-clear').hidden = false;
+    $('#curve-legend').hidden = false;
+  };
+  $('#curve-clear').onclick = () => {
+    reference = null;
+    $('#curve-ref').setAttribute('hidden', '');
+    $('#curve-keep').textContent = 'Kurve A merken';
+    $('#curve-clear').hidden = true;
+    $('#curve-legend').hidden = true;
+    $('#curve-keep').focus();
+  };
   draw();
 }
 
