@@ -188,11 +188,90 @@ function lessonContent(lesson, index) {
     ${section('Ihre Aufgabe', `<p>${lesson.task}</p>${fields(lesson)}`, true)}`;
 }
 
+const introExercises = {
+  grundlagen: 'Verbinden Sie einzelne Ereignisse so, dass eine Entscheidung aus dem vorherigen Geschehen folgt.',
+  figur: 'Entwerfen Sie eine Figur mit einem konkreten Ziel. Legen Sie fest, was ihr im Weg steht und was sie verlieren kann.',
+  struktur: 'Ordnen Sie Szenen von der Ausgangslage bis zur Konsequenz und begründen Sie den Wendepunkt.',
+  spannung: 'Verändern Sie die Spannungskurve und entscheiden Sie, wann das Publikum einen Hinweis bekommt.',
+  perspektive: 'Erzählen Sie denselben Moment aus zwei Perspektiven und machen Sie Gefühle durch Handlungen sichtbar.',
+  bild: 'Skizzieren Sie sechs Einstellungen und planen Sie, welche Information Bild und Ton jeweils vermitteln.',
+  transmedia: 'Verteilen Sie drei eigenständige Beiträge auf mehrere Medien. Planen Sie verständliche Einstiege und Übergänge.',
+  transfer: 'Verdichten Sie Ihre Geschichte in einer Logline und leiten Sie aus einem Publikumstest eine Überarbeitung ab.'
+};
+
 const references = {
-  einleitung: `<h1 class="page-title purple">Einleitung</h1><p class="page-intro">Storytelling organisiert Informationen so, dass ein Publikum einer Veränderung folgen kann. Die acht Labore bauen von der ersten Idee bis zur Umsetzung in mehreren Medien aufeinander auf.</p>
-    ${section('So arbeiten Sie mit dem Modul', '<ol><li>Lesen Sie Lernziele, Grundlagen und das Fallbeispiel.</li><li>Probieren Sie das Beispiel aus und prüfen Sie Ihr Verständnis mit der Kontrollfrage.</li><li>Wenden Sie das Gelernte auf eine eigene Geschichte an. Nutzen Sie die Hinweise für Ihre Selbstprüfung.</li><li>Überprüfen Sie Ihr Wissen im Quiz und verwenden Sie die Vorlagen für ein eigenes Projekt.</li></ol>', true)}
-    ${section('Das Fallbeispiel', '<p>Mira und ihr Team möchten an der Hochschule ein Brückenmodell präsentieren. Auf dem Weg in die Werkstatt wird das Modell beschädigt. An diesem Beispiel sehen Sie, wie Ursache, Konflikt, Perspektive und Medienwahl die Wirkung derselben Ausgangslage verändern.</p>')}
-    ${section('Ihr eigener Entwurf', '<p>Wählen Sie eine kleine Situation mit einer klaren Entscheidung. Eine Präsentation, ein verpasster Anschluss oder eine unerwartete Nachricht genügen. Entwickeln Sie denselben Entwurf von Labor zu Labor weiter.</p>')}`,
+  einleitung: `
+    <span class="intro-eyebrow">Einleitung</span>
+    <h1 class="main-heading">Warum Geschichten gestalten?</h1>
+    <p class="intro-lead">Um zehn Uhr soll Mira ihr Brückenmodell präsentieren. Kurz vorher bricht ein Pfeiler. Repariert sie die Brücke allein oder bittet sie ihr Team um Hilfe? Sobald das Publikum versteht, was für Mira auf dem Spiel steht, bekommt ihre Entscheidung Gewicht. In diesem Modul gestalten Sie solche Momente für Text, Bild und mehrere Medien.</p>
+    <hr class="intro-rule">
+    <figure class="intro-media">
+      <img src="img/fotos/hero.jpg" alt="Studierende vergleichen ein gezeichnetes Storyboard mit ihrem beschädigten Brückenmodell in der Werkstatt" width="1200" height="900">
+      <figcaption>„Brücke um zehn“ begleitet Sie durch das Modul. An demselben Fall erproben Sie, wie Reihenfolge, Perspektive und Medienwahl die Geschichte verändern. Bild KI-generiert.</figcaption>
+    </figure>
+
+    <h2 class="intro-h2">Was Sie in diesem Modul erwartet</h2>
+    <div class="intro-grid g3">
+      <div class="intro-card">
+        <h3>Figur und Konflikt</h3>
+        <p class="intro-sub">Wer handelt und warum?</p>
+        <p>Ein konkretes Ziel gibt der Geschichte eine Richtung. Ein Hindernis zwingt die Figur zur Wahl. Die Folgen zeigen, warum diese Wahl zählt.</p>
+        <p class="intro-q">Leitfrage: „Was steht für die Figur auf dem Spiel?“</p>
+      </div>
+      <div class="intro-card">
+        <h3>Dramaturgie und Perspektive</h3>
+        <p class="intro-sub">Was erfährt das Publikum wann?</p>
+        <p>Wer den Riss im Pfeiler vor Mira sieht, erwartet den Bruch. Wer ihn erst mit ihr bemerkt, wird überrascht. Reihenfolge, Blickwinkel und Rhythmus verändern die Wirkung.</p>
+        <p class="intro-q">Leitfrage: „Welche Frage hält das Publikum bei der Geschichte?“</p>
+      </div>
+      <div class="intro-card">
+        <h3>Bild und Medien</h3>
+        <p class="intro-sub">Wie wird die Erzählwelt erfahrbar?</p>
+        <p>Im Storyboard planen Sie, was Bild und Ton erzählen. Transmedial kann ein Film Miras Entscheidung zeigen, während eine Audionotiz erstmals die Sicht ihres Teamkollegen hörbar macht.</p>
+        <p class="intro-q">Leitfrage: „Was kann das Publikum in diesem Medium zusätzlich entdecken?“</p>
+      </div>
+    </div>
+
+    <section class="section-card">
+      <h2>Laborübungen</h2>
+      <ol class="exercise-list" role="list">
+        ${lessons.map((lesson, index) => `<li class="exercise-item">
+          <span class="exercise-number" aria-hidden="true">${number(index)}</span>
+          <div><a class="exercise-label" href="#${lesson.id}">${lesson.title}</a><span class="exercise-desc"> · ${introExercises[lesson.id]}</span></div>
+        </li>`).join('')}
+      </ol>
+    </section>
+
+    <section class="section-card">
+      <h2>Referenzbereich</h2>
+      <ul class="exercise-list" role="list">
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#glossar">Glossar</a><span class="exercise-desc"> · Fachbegriffe von Adaption bis Wendepunkt nachschlagen.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#werkzeuge">Vorlagen und Literatur</a><span class="exercise-desc"> · Das Arbeitsblatt für Storyboard und Medienplan nutzen und die Quellen vertiefen.</span></div></li>
+      </ul>
+    </section>
+
+    <h2 class="intro-h2">Lernziele</h2>
+    <p class="main-text">Nach Bearbeitung des Moduls können Sie …</p>
+    <ul class="intro-list">
+      <li>Figur, Ziel, Konflikt und Einsatz in einer Logline zusammenfassen,</li>
+      <li>Szenen durch Ursache und Folge verbinden und einen Wendepunkt begründen,</li>
+      <li>Spannung durch Rhythmus, Perspektive und die Reihenfolge von Informationen gestalten,</li>
+      <li>ein Storyboard entwickeln, das Bild und Ton aufeinander abstimmt,</li>
+      <li>einen transmedialen Medienplan mit eigenständigen Beiträgen, Einstiegen und Übergängen entwerfen,</li>
+      <li>einen Entwurf mit Publikum testen und gezielt überarbeiten.</li>
+    </ul>
+
+    <h2 class="intro-h2">So arbeiten Sie mit dem Modul</h2>
+    <div class="intro-grid g3">
+      <div class="intro-card soft"><div class="intro-label">1 · Ausprobieren</div><p>Lesen Sie das Fallbeispiel, probieren Sie die Aufgabe aus und prüfen Sie Ihr Verständnis mit der Kontrollfrage. Entwickeln Sie dieselbe eigene Geschichte von Labor zu Labor weiter.</p></div>
+      <div class="intro-card soft"><div class="intro-label">2 · Nachschlagen</div><p>Nutzen Sie Glossar und Vorlagen, wenn Sie einen Begriff klären oder eine Szene, ein Storyboard oder einen Medienplan ausarbeiten möchten.</p></div>
+      <div class="intro-card soft"><div class="intro-label">3 · Prüfen</div><p>Vergleichen Sie Ihre Entwürfe mit den Hinweisen zur Selbstprüfung. Das <a href="#quiz">Storytelling-Quiz</a> prüft Ihr Wissen mit ${questions.length} Fragen. Ihr Fortschritt bleibt in diesem Browser gespeichert.</p></div>
+    </div>
+    <div class="intro-note"><span class="intro-badge" aria-hidden="true">i</span><p><strong>Zeitbedarf:</strong> Rechnen Sie mit etwa 3 Stunden für alle acht Labore. Sie können die Übungen auch einzeln bearbeiten.</p></div>
+
+    <a href="#grundlagen" class="cta-button">Starten Sie mit Lektion 01
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>`,
   glossar: `<h1 class="page-title purple">Glossar</h1>${section('Begriffe zum Nachschlagen', `<dl>${terms.map(([term, definition]) => `<dt>${term}</dt><dd>${definition}</dd>`).join('')}</dl>`, true)}`,
   werkzeuge: `<h1 class="page-title purple">Vorlagen und Literatur</h1>
     ${section('Arbeitsmaterial', '<p>Das druckbare Arbeitsblatt führt von der Logline über sechs Einstellungen bis zum Medienplan. Gespeicherte Entwürfe können Sie zusätzlich als Text exportieren.</p><div class="btn-group"><a class="btn btn-download" href="storytelling-arbeitsblatt.html">Arbeitsblatt öffnen</a><button class="btn" type="button" id="export">Eigene Entwürfe herunterladen</button></div><p id="export-status" role="status"></p>', true)}
