@@ -86,7 +86,11 @@ function overview() {
         <div class="hero-actions"><div class="hero-cta">
           <a class="btn btn-primary" href="#grundlagen">Modul starten <span aria-hidden="true">→</span></a>
           <a class="btn" href="#einleitung">Zur Einleitung</a>
-        </div><a class="btn btn-download" href="storytelling-arbeitsblatt.html">↓ Arbeitsblatt öffnen</a></div>
+        </div>
+          <a class="btn btn-download" href="downloads/storytelling-arbeitsblatt.pdf" download>
+            <span aria-hidden="true">↓</span> Arbeitsblatt als PDF herunterladen
+          </a>
+        </div>
         <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>2</b> Referenzen</span><span><b>${questions.length}</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
       </div>
       <figure class="hero-media">
