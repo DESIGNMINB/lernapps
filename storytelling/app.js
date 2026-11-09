@@ -1,4 +1,4 @@
-import { lessons, quizQuestions, terms } from './content.js?v=3';
+import { lessons, quizQuestions, terms } from './content.js?v=4';
 import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=2';
 import { spineSort, heroJourney, archetypes, conflictLevels, conflictSteps, showTell, shotSizes, storyboard, jenkins, keynote, lisa, spineExamples } from './uebungen.js?v=1';
 

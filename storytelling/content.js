@@ -54,8 +54,8 @@ export const lessons = [
     ],
     case: 'Die Uhr zeigt 9:58 Uhr. In einer Einstellung sehen wir, wie sich ein Pfeiler biegt. Die nächste bleibt auf Miras Gesicht, während sie das Prüfgewicht anhebt. Die Spannung entsteht aus der erwarteten Folge.',
     check: ['Wie entsteht Suspense beim Belastungstest?', ['Das Publikum sieht das fertige Modell erst am Ende.', 'Das Publikum kennt die Schwachstelle, bevor Mira das Gewicht auflegt.', 'Der Bruch wird ohne vorherigen Hinweis gezeigt.'], 1, 'Das Vorwissen gibt dem Publikum Zeit, einen möglichen Bruch zu befürchten.'],
-    task: 'Vergleichen Sie zwei Kurven für denselben Plot. Variieren Sie Rückschlag und Entscheidung. Begründen Sie die Unterschiede mit einer offenen Frage und dem Wissen des Publikums.',
-    review: 'Ein hoher Wert braucht einen nachvollziehbaren Einsatz. Benennen Sie die Frage, die offen bleibt, und den Moment, in dem sie beantwortet wird.'
+    task: 'Stellen Sie die Spannungskurve für Ihre eigene Geschichte ein und merken Sie sie sich als Kurve A. Verändern Sie dann mindestens zwei Stationen, zum Beispiel die steigende Handlung und den Höhepunkt. Vergleichen Sie beide Kurven und begründen Sie die Unterschiede mit einer offenen Frage und dem Wissen des Publikums.',
+    review: 'Jeder hohe Wert braucht einen nachvollziehbaren Einsatz. Benennen Sie für den höchsten Punkt die Frage, die offen bleibt, und den Moment, in dem sie beantwortet wird. Prüfen Sie beim Vergleich, ob der höchste Punkt in beiden Kurven bei der wichtigsten Entscheidung liegt und ob die Auflösung dem Publikum Zeit lässt, die Folgen zu verarbeiten.'
   },
   {
     id: 'perspektive', title: 'Perspektive und Szene', subtitle: 'Wissensgrenzen und beobachtbare Details', icon: 'eye',
