@@ -96,3 +96,18 @@
   position: absolute; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px;
   background: rgba(17, 24, 39, .78); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.2;
 }
+
+.story-model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 20px;
+}
+.story-model-grid .story-section { margin: 0; }
+.story-model-steps {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--purple-soft);
+  color: var(--purple-ink);
+}
+.story-model-grid a { text-decoration: underline; }
+.story-field-prompt { display: block; font-weight: normal; }

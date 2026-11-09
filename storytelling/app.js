@@ -1,4 +1,5 @@
 import { lessons, extraQuestions, terms } from './content.js?v=2';
+import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=1';
 
 const $ = (selector) => document.querySelector(selector);
 const content = $('#story-content');
@@ -7,12 +8,17 @@ const menu = $('.menu-btn');
 const storageKey = 'storytelling:v1';
 const number = (index) => String(index + 1).padStart(2, '0');
 const questions = [...lessons.map((lesson) => lesson.check), ...extraQuestions];
+const referencePages = [
+  { id: 'glossar', title: 'Glossar', subtitle: 'Begriffe von Adaption bis Wendepunkt', icon: 'list', chip: 'A–Z' },
+  { id: 'modelle', title: 'Erzählmodelle im Vergleich', subtitle: 'Freytag, Heldenreise, Story Spine und Transmedia im UX-Kontext', icon: 'arc', chip: 'M', photo: 'struktur' },
+  { id: 'baukasten', title: 'Story-Baukasten', subtitle: 'Eine eigene UX-Fallstudie entwerfen und als Markdown exportieren', icon: 'edit', chip: 'B', photo: 'transfer' },
+  { id: 'werkzeuge', title: 'Vorlagen und Literatur', subtitle: 'Arbeitsblätter und Quellen', icon: 'book', chip: 'V' }
+];
 const pages = [
   { id: 'home', title: 'Übersicht', icon: 'grid' },
   { id: 'einleitung', title: 'Einleitung', icon: 'book' },
   ...lessons,
-  { id: 'glossar', title: 'Glossar', subtitle: 'Begriffe von Adaption bis Wendepunkt', icon: 'list' },
-  { id: 'werkzeuge', title: 'Vorlagen und Literatur', subtitle: 'Arbeitsblätter und Quellen', icon: 'book' },
+  ...referencePages,
   { id: 'quiz', title: 'Storytelling-Quiz', subtitle: 'Wissen anwenden und überprüfen', icon: 'quiz' }
 ];
 const icons = {
@@ -44,7 +50,7 @@ legacyIds.forEach((id, index) => {
 
 function save() {
   try { localStorage.setItem(storageKey, JSON.stringify({ drafts, done, answers })); }
-  catch { $('#save-note').textContent = 'Der Browser konnte Ihre Eingaben nicht speichern. Sie können sie über die Vorlagen herunterladen.'; }
+  catch { $('#save-note').textContent = 'Der Browser konnte Ihre Eingaben nicht speichern. Laden Sie Ihren Entwurf herunter, bevor Sie die Seite verlassen.'; }
 }
 
 function icon(name) {
@@ -61,7 +67,7 @@ $('#story-nav').innerHTML = [
   '<div class="nav-section-label">Laborübungen</div>',
   ...lessons.map(navItem),
   '<div class="nav-section-label">Referenz</div>',
-  ...pages.slice(-3, -1).map((page) => navItem(page)),
+  ...referencePages.map((page) => navItem(page)),
   '<div class="nav-section-label">Wissenstest</div>',
   navItem(pages.at(-1))
 ].join('');
@@ -69,7 +75,7 @@ $('#story-nav').innerHTML = [
 function tile(page, chip, label) {
   const badge = done[page.id] ? '<span class="tag-done">Erledigt</span>' : '';
   return `<li><a class="ptile" href="#${page.id}">
-    <div class="art"><img src="img/fotos/${page.id}.jpg" alt="" width="800" height="500" loading="lazy">${badge}<span class="chip-num" aria-hidden="true">${chip}</span></div>
+    <div class="art"><img src="img/fotos/${page.photo || page.id}.jpg" alt="" width="800" height="500" loading="lazy">${badge}<span class="chip-num" aria-hidden="true">${chip}</span></div>
     <div class="tile-body"><h3>${page.title}</h3><p>${page.subtitle}</p><span class="go">${label}</span></div>
   </a></li>`;
 }
@@ -92,7 +98,7 @@ function overview() {
             Zusammenfassung als PDF
           </a>
         </div>
-        <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>2</b> Referenzen</span><span><b>${questions.length}</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
+        <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>${referencePages.length}</b> Referenzen</span><span><b>${questions.length}</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
       </div>
       <figure class="hero-media">
         <img src="img/fotos/hero.jpg" alt="Studierende besprechen ein Storyboard und ein Brückenmodell in der Modellbauwerkstatt" width="1200" height="900" fetchpriority="high">
@@ -107,7 +113,7 @@ function overview() {
     <div class="home-section-label"><h2>Laborübungen</h2><span>Lektion 01–08</span></div>
     <ul class="tiles">${lessons.map((lesson, index) => tile(lesson, number(index), 'Übung starten')).join('')}</ul>
     <div class="home-section-label"><h2>Referenz</h2><span>Nachschlagen</span></div>
-    <ul class="tiles">${tile(pages.at(-3), 'A–Z', 'Öffnen')}${tile(pages.at(-2), 'V', 'Öffnen')}</ul>
+    <ul class="tiles">${referencePages.map((page) => tile(page, page.chip, 'Öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
     <ul class="tiles">${tile(pages.at(-1), '?', 'Quiz starten')}</ul>
     <p class="footer-note">Lernmodul 09 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert</p>
@@ -185,7 +191,9 @@ function lessonContent(lesson, index) {
     ${section('Fallbeispiel · Brücke um zehn', `<p>${lesson.case}</p>`, true)}
     ${section('Ausprobieren', `${practice(lesson.id)}<form id="mini-check">${question(lesson.check, 'probe')}
       <button class="btn" type="submit">Antwort prüfen</button><p class="story-result" id="mini-result" role="status"></p></form>`)}
-    ${section('Ihre Aufgabe', `<p>${lesson.task}</p>${fields(lesson)}`, true)}`;
+    ${section('Ihre Aufgabe', `<p>${lesson.task}</p>${fields(lesson)}`, true)}
+    ${uxTransfer[lesson.id] ? section('Transfer ins UX-Design', `<p>${uxTransfer[lesson.id]}</p>
+      <a class="btn" href="#${lesson.id === 'transfer' ? 'baukasten' : 'modelle'}">${lesson.id === 'transfer' ? 'Zum Story-Baukasten' : 'Erzählmodelle vergleichen'}</a>`) : ''}`;
 }
 
 const introExercises = {
@@ -246,6 +254,8 @@ const references = {
       <h2>Referenzbereich</h2>
       <ul class="exercise-list" role="list">
         <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#glossar">Glossar</a><span class="exercise-desc"> · Fachbegriffe von Adaption bis Wendepunkt nachschlagen.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#modelle">Erzählmodelle im Vergleich</a><span class="exercise-desc"> · Vier Modelle an einem UX-Fall vergleichen.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#baukasten">Story-Baukasten</a><span class="exercise-desc"> · Eine eigene UX-Fallstudie in sieben Schritten entwerfen.</span></div></li>
         <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#werkzeuge">Vorlagen und Literatur</a><span class="exercise-desc"> · Das Arbeitsblatt für Storyboard und Medienplan nutzen und die Quellen vertiefen.</span></div></li>
       </ul>
     </section>
@@ -273,6 +283,28 @@ const references = {
       <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>`,
   glossar: `<h1 class="page-title purple">Glossar</h1>${section('Begriffe zum Nachschlagen', `<dl>${terms.map(([term, definition]) => `<dt>${term}</dt><dd>${definition}</dd>`).join('')}</dl>`, true)}`,
+  modelle: `<h1 class="page-title purple">Erzählmodelle im Vergleich</h1>
+    <p class="page-intro">Nora sucht nach einer kurzfristigen Raumänderung ihren Seminarraum. Vier Modelle zeigen am selben Fall, welche Fragen Sie beim Erzählen und beim UX-Entwurf jeweils stellen können.</p>
+    <div class="story-model-grid">${modelle.map((model) => section(model.title, `
+      <p><strong>${model.question}</strong></p>
+      <p class="story-model-steps">${model.steps}</p>
+      <p>${model.example}</p>
+      <p>${model.limit}</p>
+      <p class="story-note"><a href="${model.source[1]}">${model.source[0]}</a></p>`, true)).join('')}</div>
+    ${section('Welches Modell passt zu Ihrem Entwurf?', '<p>Für eine Kette von Entscheidungen beginnen Sie mit dem Story Spine. Wenn mehrere Medien eigene Teile der Geschichte erzählen sollen, skizzieren Sie zuerst die gemeinsame Erzählwelt und die Beiträge.</p><a class="btn btn-primary" href="#baukasten">Zum Story-Baukasten</a>')}`,
+  baukasten: `<h1 class="page-title purple">Story-Baukasten</h1>
+    <p class="page-intro">Entwerfen Sie eine UX-Fallstudie mit dem Story Spine. Beschreiben Sie, wie aus einem konkreten Problem eine Entwurfsentscheidung folgt und woran sich das Ergebnis erkennen lässt.</p>
+    <details class="story-panel"><summary>Fiktives Beispiel: Nora sucht den Seminarraum</summary>
+      <dl class="story-section">${spineFields.map(({ label, example }) => `<dt><strong>${label}</strong></dt><dd>${example}</dd>`).join('')}</dl>
+    </details>
+    ${section('Ihr Entwurf', `<div class="story-fields" id="spine-fields">
+      <label>Projekttitel <input type="text" data-draft="baukasten:titel"></label>
+      ${spineFields.map(({ id, label, prompt }, index) => `<label>${index + 1}. ${label}<span class="story-note story-field-prompt">${prompt}</span>
+        <textarea data-draft="baukasten:${id}" rows="3"></textarea></label>`).join('')}
+      <button type="button" class="btn btn-primary" id="spine-export" disabled>Markdown herunterladen</button>
+      <p class="story-note" id="save-note" role="status">Ihr Entwurf wird in diesem Browser gespeichert.</p>
+    </div>`, true)}
+    ${section('Prüfen Sie die Kausalkette', '<p>Lesen Sie die beiden Folgen mit „deshalb“ vor. Prüfen Sie, ob die Entwurfsentscheidung auf das beobachtete Problem antwortet. Markieren Sie im Ergebnis, was der Test zeigt und was noch offen ist.</p>')}`,
   werkzeuge: `<h1 class="page-title purple">Vorlagen und Literatur</h1>
     ${section('Arbeitsmaterial', '<p>Das druckbare Arbeitsblatt führt von der Logline über sechs Einstellungen bis zum Medienplan. Gespeicherte Entwürfe können Sie zusätzlich als Text exportieren.</p><div class="btn-group"><a class="btn btn-download" href="storytelling-arbeitsblatt.html">Arbeitsblatt öffnen</a><button class="btn" type="button" id="export">Eigene Entwürfe herunterladen</button></div><p id="export-status" role="status"></p>', true)}
     ${section('Zum Weiterlesen', '<ul><li>Aristoteles, <cite>Poetik</cite>. Handlung, Zusammenhang und Wendung.</li><li>E. M. Forster, <cite>Aspects of the Novel</cite>. Ereignisfolge und Plot.</li><li>Scott McCloud, <cite>Understanding Comics</cite>. Bildfolge und Übergänge.</li><li>Henry Jenkins, <a href="https://henryjenkins.org/blog/2007/03/transmedia_storytelling_101.html"><cite>Transmedia Storytelling 101</cite></a>. Eigenständige Beiträge, Einstiege und Beteiligung.</li></ul>')}`,
@@ -432,12 +464,41 @@ function exportDrafts() {
     $('#export-status').textContent = 'Es sind noch keine Entwürfe vorhanden.';
     return;
   }
-  const url = URL.createObjectURL(new Blob([sections.join('\n\n')], { type: 'text/plain;charset=utf-8' }));
+  downloadText(sections.join('\n\n'), 'mein-storytelling-entwurf.txt');
+}
+
+function downloadText(text, filename) {
+  const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'mein-storytelling-entwurf.txt';
+  link.download = filename;
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function wireSpine() {
+  const fields = [...document.querySelectorAll('#spine-fields [data-draft]')];
+  const button = $('#spine-export');
+  const refresh = () => {
+    button.disabled = !fields.some((field) => field.value.trim());
+  };
+  for (const field of fields) {
+    field.value = drafts[field.dataset.draft] || '';
+    field.addEventListener('input', () => {
+      drafts[field.dataset.draft] = field.value;
+      save();
+      refresh();
+    });
+  }
+  refresh();
+  button.onclick = () => {
+    const title = drafts['baukasten:titel']?.trim().replace(/\s+/g, ' ') || 'Meine UX-Fallstudie';
+    const sections = spineFields.map(({ id, label }) => {
+      const value = drafts[`baukasten:${id}`]?.trim();
+      return value ? `## ${label}\n\n${value}` : '';
+    }).filter(Boolean);
+    downloadText([`# ${title}`, ...sections].join('\n\n') + '\n', 'meine-ux-fallstudie.md');
+  };
 }
 
 function route(focus = false) {
@@ -473,6 +534,7 @@ function route(focus = false) {
   if (index >= 0) wireLesson(page);
   if (page.id === 'quiz') wireQuiz();
   if (page.id === 'werkzeuge') $('#export').onclick = exportDrafts;
+  if (page.id === 'baukasten') wireSpine();
   if (focus) {
     const heading = content.querySelector('h1');
     heading.tabIndex = -1;
