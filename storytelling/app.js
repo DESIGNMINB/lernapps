@@ -66,10 +66,10 @@ $('#story-nav').innerHTML = [
   navItem(pages.at(-1))
 ].join('');
 
-function tile(page, chip, label, art = page.id) {
+function tile(page, chip, label) {
   const badge = done[page.id] ? '<span class="tag-done">Erledigt</span>' : '';
   return `<li><a class="ptile" href="#${page.id}">
-    <div class="art"><img src="img/${art}.svg" alt="" width="640" height="400" loading="lazy">${badge}<span class="chip-num" aria-hidden="true">${chip}</span></div>
+    <div class="art"><img src="img/fotos/${page.id}.jpg" alt="" width="800" height="500" loading="lazy">${badge}<span class="chip-num" aria-hidden="true">${chip}</span></div>
     <div class="tile-body"><h3>${page.title}</h3><p>${page.subtitle}</p><span class="go">${label}</span></div>
   </a></li>`;
 }
@@ -89,7 +89,10 @@ function overview() {
         </div><a class="btn btn-download" href="storytelling-arbeitsblatt.html">↓ Arbeitsblatt öffnen</a></div>
         <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>2</b> Referenzen</span><span><b>${questions.length}</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
       </div>
-      <figure class="hero-media"><img src="img/hero.svg" alt="Storyboard mit Brückenmodell, Bruchstelle, Miras Entscheidung und gemeinsamer Präsentation" width="640" height="400"></figure>
+      <figure class="hero-media">
+        <img src="img/fotos/hero.jpg" alt="Studierende besprechen ein Storyboard und ein Brückenmodell in der Modellbauwerkstatt" width="1200" height="900" fetchpriority="high">
+        <figcaption class="ki-badge">KI-generiert</figcaption>
+      </figure>
     </section>
     <div class="progress-band">
       <label class="label" for="home-progress">Ihr Fortschritt</label>
@@ -97,12 +100,12 @@ function overview() {
       <b>${completed} / ${lessons.length} Lektionen</b>
     </div>
     <div class="home-section-label"><h2>Laborübungen</h2><span>Lektion 01–08</span></div>
-    <ul class="tiles">${lessons.map((lesson, index) => tile(lesson, number(index), 'Übung starten', lesson.id === 'bild' ? 'hero' : lesson.id)).join('')}</ul>
+    <ul class="tiles">${lessons.map((lesson, index) => tile(lesson, number(index), 'Übung starten')).join('')}</ul>
     <div class="home-section-label"><h2>Referenz</h2><span>Nachschlagen</span></div>
-    <ul class="tiles">${tile(pages.at(-3), 'A–Z', 'Öffnen', 'grundlagen')}${tile(pages.at(-2), 'V', 'Öffnen', 'transfer')}</ul>
+    <ul class="tiles">${tile(pages.at(-3), 'A–Z', 'Öffnen')}${tile(pages.at(-2), 'V', 'Öffnen')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
-    <ul class="tiles">${tile(pages.at(-1), '?', 'Quiz starten', 'figur')}</ul>
-    <p class="footer-note">Lernmodul 09 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI</p>
+    <ul class="tiles">${tile(pages.at(-1), '?', 'Quiz starten')}</ul>
+    <p class="footer-note">Lernmodul 09 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert</p>
   </div>`;
 }
 
