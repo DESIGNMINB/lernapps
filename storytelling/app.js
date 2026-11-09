@@ -88,7 +88,8 @@ function overview() {
           <a class="btn" href="#einleitung">Zur Einleitung</a>
         </div>
           <a class="btn btn-download" href="downloads/storytelling-arbeitsblatt.pdf" download>
-            <span aria-hidden="true">↓</span> Arbeitsblatt als PDF herunterladen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Zusammenfassung als PDF
           </a>
         </div>
         <p class="hero-meta"><span><b>8</b> Laborübungen</span><span><b>2</b> Referenzen</span><span><b>${questions.length}</b> Quizfragen</span><span>ca. <b>3 Std.</b></span></p>
