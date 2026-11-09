@@ -1,6 +1,6 @@
-import { lessons, quizQuestions, terms } from './content.js?v=4';
-import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=2';
-import { spineSort, heroJourney, archetypes, conflictLevels, conflictSteps, showTell, shotSizes, storyboard, jenkins, keynote, lisa, spineExamples } from './uebungen.js?v=1';
+import { lessons, quizQuestions, terms } from './content.js?v=5';
+import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=3';
+import { spineSort, heroJourney, archetypes, conflictLevels, conflictSteps, showTell, shotSizes, storyboard, jenkins, keynote, lisa, spineExamples, needs, needsMatch } from './uebungen.js?v=2';
 
 const $ = (selector) => document.querySelector(selector);
 const content = $('#story-content');
@@ -188,6 +188,11 @@ function extraPractice(id) {
     <ol class="story-order" id="spine-order"></ol><button type="button" class="btn" id="spine-check">Reihenfolge prüfen</button>
     <p class="story-result" id="spine-result" role="status"></p></div>`;
   if (id === 'figur') return `${matchHtml('hero')}${matchHtml('arch')}
+    <div class="story-panel story-extra"><h3>Vier Grundbedürfnisse im Überblick</h3>
+    <p>Nach dem Riemann-Thomann-Modell, als Faustregel. Gegenüberliegende Ecken bilden Spannungsfelder: Nähe und Distanz, Dauer und Wechsel.</p>
+    <ul class="story-needs">${needs.map(({ key, name, pole, desc, question }) => `<li class="story-need story-need-${key}">
+      <span class="story-need-pole">${pole}</span><b>${name}</b><span>${desc}</span><span class="story-need-q">${question}</span></li>`).join('')}</ul></div>
+    ${matchHtml('needs')}
     <div class="story-panel story-extra"><h3>Konfliktebenen einstellen</h3>
     <p>Stellen Sie ein, wie stark die drei Ebenen in Ihrer Geschichte ausgeprägt sind. Die Rückmeldung beschreibt, was die Kombination für die Geschichte bedeutet. Es gibt keine richtige Einstellung.</p>
     <div class="story-conflict">${conflictLevels.map(([key, name, examples]) => `<div class="story-conflict-row">
@@ -262,6 +267,18 @@ const introExercises = {
   transmedia: 'Verteilen Sie drei eigenständige Beiträge auf mehrere Medien. Planen Sie verständliche Einstiege und Übergänge.',
   transfer: 'Verdichten Sie Ihre Geschichte in einer Logline und leiten Sie aus einem Publikumstest eine Überarbeitung ab.'
 };
+
+const goldenCircle = `<figure class="story-gc">
+  <svg viewBox="0 0 240 240" role="img" aria-labelledby="gc-title"><title id="gc-title">Golden Circle: drei Kreise, innen Warum, in der Mitte Wie, außen Was. Die Kommunikation beginnt innen.</title>
+    <circle class="gc-was" cx="120" cy="120" r="116"/><circle class="gc-wie" cx="120" cy="120" r="80"/><circle class="gc-warum" cx="120" cy="120" r="44"/>
+    <text class="gc-t gc-t-out" x="120" y="30" text-anchor="middle">Was</text><text class="gc-t gc-t-out" x="120" y="66" text-anchor="middle">Wie</text><text class="gc-t gc-t-in" x="120" y="127" text-anchor="middle">Warum</text>
+  </svg>
+  <figcaption><dl>
+    <dt>Warum</dt><dd>Anliegen und Überzeugung hinter dem Projekt</dd>
+    <dt>Wie</dt><dd>Der Ansatz, der das Projekt unterscheidet</dd>
+    <dt>Was</dt><dd>Das konkrete Produkt oder die Dienstleistung</dd>
+  </dl><p>Gesprochen wird von innen nach außen.</p></figcaption>
+</figure>`;
 
 const references = {
   einleitung: `
@@ -354,6 +371,7 @@ const references = {
     <p class="page-intro">Nora sucht nach einer kurzfristigen Raumänderung ihren Seminarraum. Vier Modelle zeigen am selben Fall, welche Fragen Sie beim Erzählen und beim UX-Entwurf jeweils stellen können.</p>
     <div class="story-model-grid">${modelle.map((model) => section(model.title, `
       ${model.tag ? `<p class="story-model-tag">${model.tag}</p>` : ''}
+      ${model.title === 'Golden Circle' ? goldenCircle : ''}
       <p><strong>${model.question}</strong></p>
       <p class="story-model-steps">${model.steps}</p>
       <p>${model.example}</p>
@@ -437,7 +455,7 @@ function wireLesson(lesson) {
   if (id === 'struktur') wireOrder({ list: $('#beat-order'), check: $('#order-check'), result: $('#order-result'), items: beats, order: [3, 1, 5, 0, 4, 2],
     success: 'Richtig. Jeder Schritt bereitet die nächste Entscheidung vor.', hint: (pos) => `Prüfen Sie ab Position ${pos}: Was muss geschehen, bevor die nächste Szene plausibel wird?` });
   if (id === 'grundlagen') wireOrder({ list: $('#spine-order'), check: $('#spine-check'), result: $('#spine-result'), items: spineSort.items, order: [...spineSort.start], success: spineSort.success, hint: spineSort.hint, label: 'Satz' });
-  if (id === 'figur') { wireMatch('hero'); wireMatch('arch'); wireConflict(); }
+  if (id === 'figur') { wireMatch('hero'); wireMatch('arch'); wireMatch('needs'); wireConflict(); }
   if (id === 'transmedia') wireMatch('jenkins');
   if (id === 'perspektive') wireShowTell();
   if (id === 'bild') wireStoryboard();
@@ -479,6 +497,9 @@ const matchSets = {
   arch: { title: 'Archetypen im Fall „KlimaMobil“', intro: archetypes.intro,
     rows: archetypes.roles.map(([role, , why]) => ({ label: role, hint: why })), options: archetypes.roles.map(([, cast]) => cast),
     done: 'Richtig zugeordnet. Die Nutzerin ist die Heldin, das Produkt der Mentor. Gegenspieler und Hürden sind hier Umstände, keine Personen.' },
+  needs: { title: 'Vier Grundbedürfnisse: dieselbe Funktion, vier Geschichten', intro: needsMatch.intro,
+    rows: needsMatch.sentences.map((sentence, i) => ({ label: sentence, hint: `Welche Frage beantwortet der Satz? Zum Beispiel: „${needs[i].question}“` })),
+    options: needs.map(({ name }) => name), done: needsMatch.done },
   jenkins: { title: 'Prinzipien im UX erkennen', intro: 'Welches Prinzip zeigt sich in welchem Beispiel? Ordnen Sie jedem Prinzip ein Beispiel aus dem UX-Design zu.',
     rows: jenkins.map(([name, desc]) => ({ label: name, hint: desc })), options: jenkins.map(([, , ux]) => ux),
     done: 'Richtig zugeordnet. Die Prinzipien beschreiben Spannungsfelder. Ein Projekt muss nicht alle sieben bedienen.' }

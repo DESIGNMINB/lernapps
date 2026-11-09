@@ -128,3 +128,21 @@ export const spineExamples = [
     ergebnis: 'Ein Pilotsemester soll zeigen, ob die Abfallmenge sinkt und die Wartezeit kürzer wird. Die Messgrößen werden vor dem Start festgelegt.'
   } }
 ];
+
+// 02 Figur · Vier Grundbedürfnisse (Riemann-Thomann-Modell), als Faustregel
+export const needs = [
+  { key: 'sicherheit', name: 'Sicherheit und Stabilität', pole: 'Dauer', desc: 'Verlässlichkeit, Ordnung, Planbarkeit', question: 'Kann ich mich darauf verlassen?' },
+  { key: 'gemeinschaft', name: 'Gemeinschaft und Zugehörigkeit', pole: 'Nähe', desc: 'Beziehung, Austausch, dazugehören', question: 'Mit wem teile ich das?' },
+  { key: 'freiheit', name: 'Freiheit und Unabhängigkeit', pole: 'Distanz', desc: 'Selbstbestimmung, eigene Wege, Kontrolle', question: 'Entscheide ich selbst?' },
+  { key: 'entfaltung', name: 'Entfaltung und Veränderung', pole: 'Wechsel', desc: 'Neues ausprobieren, wachsen, Abwechslung', question: 'Was kann ich Neues erleben oder lernen?' }
+];
+export const needsMatch = {
+  intro: 'Dieselbe Funktion, die Express-Abholung der Mensa-App, wird viermal erzählt. Welches Bedürfnis spricht jeder Satz vor allem an?',
+  sentences: [
+    'Lukas weiß vor der Klausur genau, wann sein Essen fertig ist, und kommt pünktlich in den Hörsaal.',
+    'Lena bestellt für ihre Lerngruppe mit, und alle sitzen nach fünf Minuten gemeinsam am Tisch.',
+    'Jonas entscheidet zwischen zwei Vorlesungen selbst, wann er isst, ohne sich nach den Stoßzeiten zu richten.',
+    'Mia probiert jede Woche ein Gericht aus der neuen Weltküche-Reihe, das die App ihr vorschlägt.'
+  ],
+  done: 'Richtig zugeordnet. Eine Funktion kann jedes der vier Bedürfnisse ansprechen. Welche Fassung trägt, hängt davon ab, was Ihrer Zielgruppe in der Forschung wichtig war.'
+};

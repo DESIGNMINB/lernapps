@@ -173,3 +173,26 @@
 .story-curve-feedback { padding: 12px 14px; border-radius: 8px; background: var(--purple-soft); }
 .story-curve-feedback p { margin: 0 0 8px !important; }
 .story-curve-feedback p:last-child { margin-bottom: 0 !important; }
+
+/* Golden Circle */
+.story-gc { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: center; margin: 4px 0 14px; }
+.story-gc svg { width: 100%; height: auto; display: block; }
+.story-gc .gc-was { fill: #E9DDF4; } .story-gc .gc-wie { fill: #A98BC9; } .story-gc .gc-warum { fill: #64378C; }
+.story-gc .gc-t { font-family: inherit; font-weight: 700; font-size: 20px; }
+.story-gc .gc-t-out { fill: #3D2160; } .story-gc .gc-t-in { fill: #fff; }
+[data-theme="dark"] .story-gc .gc-was { fill: #3D2160; } [data-theme="dark"] .story-gc .gc-wie { fill: #5A3A85; } [data-theme="dark"] .story-gc .gc-warum { fill: #C8A8DE; }
+[data-theme="dark"] .story-gc .gc-t-out { fill: #F3F4F6; } [data-theme="dark"] .story-gc .gc-t-in { fill: #1A1D27; }
+.story-gc figcaption { font-size: 14px; }
+.story-gc dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0 0 6px; }
+.story-gc dt { font-weight: 700; } .story-gc dd { margin: 0 !important; }
+.story-gc figcaption p { margin: 0 !important; color: var(--text-secondary); }
+@media (max-width: 420px) { .story-gc { grid-template-columns: 1fr; } .story-gc svg { max-width: 180px; } }
+
+/* Vier Grundbedürfnisse */
+.story-needs { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 0; }
+.story-need { margin: 0 !important; padding: 14px; border-radius: 10px; display: flex; flex-direction: column; gap: 4px; background: var(--purple-soft); color: var(--text-primary); }
+.story-need b { font-size: 16px; color: var(--purple-ink); }
+.story-need-pole { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); }
+.story-need-q { font-style: italic; color: var(--text-secondary); font-size: 14px; }
+.story-need-freiheit, .story-need-entfaltung { background: transparent; border: 1px solid var(--purple-ink); }
+@media (max-width: 520px) { .story-needs { grid-template-columns: 1fr; } }
