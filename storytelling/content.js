@@ -20,7 +20,9 @@ export const lessons = [
     theory: [
       ['Ziel und Bedürfnis', 'Ein äußeres Ziel lässt sich beobachten: Mira will, dass die Brücke bei der Präsentation ein Kilogramm trägt. Ihr inneres Bedürfnis könnte sein, Verantwortung mit anderen zu teilen. Diese beiden Ebenen können gegeneinander arbeiten. Je länger Mira allein repariert, desto unwahrscheinlicher wird der Erfolg.'],
       ['Widerstand und Einsatz', 'Ein Hindernis wird zum Konflikt, wenn es ein Ziel gefährdet. Der Regen ist Wetter. Der Regen auf den ungeeigneten Modellpfeilern gefährdet Miras Präsentation. Äußere Einsätze betreffen etwa einen Ausstellungsplatz. Ein persönlicher Einsatz wäre das Vertrauen ihres Teams.'],
-      ['Figuren durch Entscheidungen zeigen', 'Eine Figurenbeschreibung hilft beim Entwurf. In der Szene zeigt sich der Charakter durch eine Wahl mit Folgen. Mira kann das beschädigte Modell als intakt ausgeben oder offen erklären, was schiefging, und eine improvisierte Variante vorstellen. Beide Wege haben einen Preis.']
+      ['Figuren durch Entscheidungen zeigen', 'Eine Figurenbeschreibung hilft beim Entwurf. In der Szene zeigt sich der Charakter durch eine Wahl mit Folgen. Mira kann das beschädigte Modell als intakt ausgeben oder offen erklären, was schiefging, und eine improvisierte Variante vorstellen. Beide Wege haben einen Preis.'],
+      ['Drei Ebenen von Konflikt', 'Robert McKee beschreibt Konflikt als Lücke zwischen dem, was eine Figur erwartet, und dem, was tatsächlich geschieht. Diese Lücke kann auf drei Ebenen entstehen. Ein innerer Konflikt spielt sich in der Figur ab, etwa als Angst, Fehler zu machen. Ein sozialer Konflikt entsteht mit anderen, zum Beispiel durch Widerstand im Team. Ein systemischer Konflikt kommt aus Strukturen wie starren Vorgaben, Altsystemen oder Fristen. Miras Konflikt verbindet alle drei: ihren Stolz, das ausgeschlossene Team und den festen Präsentationstermin.'],
+      ['Wer ist in einer UX-Geschichte die Hauptfigur?', 'Als Faustregel gilt: Die Nutzerin oder der Nutzer ist die Hauptfigur, das Produkt hilft als Mentor. So bleibt der Blick auf Ziel und Hürde der Person. Die Regel ist kein Dogma. In einer Fallstudie kann auch das Designteam im Mittelpunkt stehen, etwa wenn es um eine schwierige Entscheidung im Projekt geht. Wichtig ist, dass klar bleibt, wessen Veränderung erzählt wird.']
     ],
     case: 'Mira hat das Team am Vortag weggeschickt, um die letzten Änderungen allein zu machen. Jetzt könnte ein Anruf das Modell retten. Gleichzeitig muss sie eingestehen, dass sie das Team zu früh ausgeschlossen hat.',
     check: ['Welche Änderung schafft einen persönlichen Einsatz?', ['Der Tisch bekommt eine andere Farbe.', 'Bei einem Scheitern verliert Mira womöglich das Vertrauen ihres Teams.', 'Die Uhr wird größer eingeblendet.'], 1, 'Das gefährdete Vertrauen erklärt, warum der Ausgang für Mira persönlich zählt.'],
@@ -114,30 +116,62 @@ export const lessons = [
   }
 ];
 
-export const extraQuestions = [
-  ['Was ändert sich bei einer Rückblende?', ['Die Reihenfolge, in der das Publikum Ereignisse erfährt.', 'Zwangsläufig das Ziel der Figur.', 'Die Ursachen aller Ereignisse.'], 0, 'Die Rückblende verändert die Informationsreihenfolge.'],
+/* Quiz: 15 Fragen, die über die Kontrollfragen der Lektionen hinausgehen */
+export const quizQuestions = [
+  ['Warum verbindet der Story Spine Ereignisse mit „Und deswegen“ statt mit „Und dann“?', ['Weil der Satzanfang die Geschichte kürzer macht.', 'Weil jedes Ereignis aus dem vorherigen folgen soll statt nur danach zu kommen.', 'Weil „Und dann“ nur in Rückblenden erlaubt ist.'], 1, '„Und deswegen“ verlangt eine Ursache. So wird aus einer Aufzählung eine Kette von Folgen.'],
+  ['Was ändert sich bei einer Rückblende?', ['Die Reihenfolge, in der das Publikum Ereignisse erfährt.', 'Zwangsläufig das Ziel der Figur.', 'Die Ursachen aller Ereignisse.'], 0, 'Die Rückblende verändert die Informationsreihenfolge, nicht die Handlung selbst.'],
+  ['Eine Nutzerin hat Angst, bei der Online-Steuererklärung einen Fehler zu machen. Welche Konfliktebene ist das?', ['Ein sozialer Konflikt, weil das Finanzamt beteiligt ist.', 'Ein systemischer Konflikt, weil Formulare Vorgaben machen.', 'Ein innerer Konflikt, weil er sich in der Person abspielt.'], 2, 'Die Angst liegt in der Person selbst. Die Vorgaben des Formulars wären eine zusätzliche systemische Ebene.'],
+  ['Was kennzeichnet einen Schwellenhüter in einer Produktgeschichte?', ['Eine Hürde vor dem Eintritt in die neue Welt, etwa Registrierung oder Zahlungsdaten.', 'Die Person, die das Produkt zuerst empfiehlt.', 'Das letzte Hindernis direkt vor dem Höhepunkt.'], 0, 'Der Schwellenhüter prüft, ob die Heldin den Schritt in die neue Welt wagt. Gute Gestaltung erklärt diese Hürde.'],
+  ['Was leistet das auslösende Ereignis (Inciting Incident)?', ['Es stellt die Hauptfigur zum ersten Mal vor.', 'Es bringt die Ausgangslage aus dem Gleichgewicht und erzeugt Handlungsbedarf.', 'Es beantwortet die zentrale Frage der Geschichte.'], 1, 'Erst durch die Störung muss die Figur handeln. Die Vorstellung der Figur gehört zur Ausgangslage.'],
   ['Wann ist eine ruhige Szene dramaturgisch relevant?', ['Wenn sie sich leicht entfernen lässt.', 'Wenn sie eine spätere Entscheidung vorbereitet.', 'Wenn sie genauso lang ist wie der Höhepunkt.'], 1, 'Die Szene kann Bedeutung für einen späteren Moment aufbauen.'],
+  ['Alfred Hitchcock unterschied Suspense und Überraschung am Beispiel einer Bombe unter dem Tisch. Wann entsteht Suspense?', ['Wenn die Bombe ohne Vorwarnung explodiert.', 'Wenn die Figuren am Tisch von der Bombe wissen.', 'Wenn das Publikum von der Bombe weiß, die Figuren aber nicht.'], 2, 'Das Vorwissen des Publikums erzeugt die Erwartung. Ohne Hinweis bleibt nur ein kurzer Schreck.'],
+  ['Was beschreibt Robert McKee als Lücke zwischen Erwartung und Ergebnis (Gap)?', ['Den Moment, in dem eine Handlung nicht die erwartete Wirkung hat und die Figur neu entscheiden muss.', 'Die Pause zwischen zwei Akten.', 'Den Abstand zwischen Logline und Handlung.'], 0, 'Im Interface entsteht diese Lücke etwa, wenn jemand einen Ein-Klick-Kauf erwartet und vier Pflichtfelder vorfindet.'],
+  ['Welche Einstellungsgröße eignet sich, um Anspannung im Gesicht zu zeigen?', ['Totale', 'Halbnah', 'Nah'], 2, 'Die Nahaufnahme lenkt die Aufmerksamkeit auf Mimik und Reaktion.'],
   ['Welche Aufgabe eignet sich für eine Totale?', ['Ein Zittern der Hand im Detail zeigen.', 'Jede Figur automatisch sympathisch machen.', 'Die Lage von Bühne, Tisch und Figur räumlich verständlich machen.'], 2, 'Die Totale bietet Raumorientierung.'],
   ['Was hilft, wenn jemand über einen Nebenbeitrag einsteigt?', ['Ein kurzer eigener Kontext und ein optionaler Link zur Hauptgeschichte.', 'Ein vollständiges Vorwissen als Voraussetzung.', 'Die Auflösung der Hauptgeschichte als Überschrift.'], 0, 'Ein eigenständiger Einstieg erleichtert den Zugang.'],
-  ['Was gehört in eine Story-Bibel?', ['Nur das Logo des Projekts.', 'Figuren, Zeitlinie und gemeinsame Regeln der Erzählwelt.', 'Ein Abspielplan für alle Videos ohne Bezug zur Handlung.'], 1, 'Die Story-Bibel hilft, Beiträge konsistent zu halten.'],
-  ['Wie prüfen Sie, ob die Ursache verständlich war?', ['Sie erklären sie vorab.', 'Sie vergleichen die Länge aller Szenen.', 'Sie lassen das Publikum die Ursache mit eigenen Worten schildern.'], 2, 'Eine freie Antwort zeigt, welche Hinweise tatsächlich angekommen sind.']
+  ['Was gehört in eine Story-Bibel?', ['Vor allem die Gestaltungsregeln für Logo und Farben.', 'Figuren, Zeitlinie und gemeinsame Regeln der Erzählwelt.', 'Ein Veröffentlichungsplan für alle Kanäle.'], 1, 'Die Story-Bibel hilft, Beiträge in verschiedenen Medien konsistent zu halten.'],
+  ['Wozu dient der Golden Circle von Simon Sinek in einem Pitch?', ['Er legt die Reihenfolge der Akte fest.', 'Er beginnt mit dem Warum, bevor Vorgehen und Ergebnis folgen.', 'Er misst, wie überzeugend eine Präsentation war.'], 1, 'Das Modell ordnet Argumente: Warum, wie, was. Es ist eine Faustregel für Pitches, keine Erzählstruktur mit Figur und Konflikt.'],
+  ['Welche Gefahr hat eine Case Study, die nur die Arbeitsschritte chronologisch auflistet?', ['Sie wird zu kurz für ein Portfolio.', 'Sie zeigt nicht, welches Problem eine Entscheidung ausgelöst hat und was sich dadurch verändert hat.', 'Sie verstößt gegen die Reihenfolge des Designprozesses.'], 1, 'Eine Liste zeigt Fleiß, aber keine Begründung. Erst Problem, Entscheidung und Folge machen die Arbeit nachvollziehbar.'],
+  ['Wie prüfen Sie, ob die Ursache verständlich war?', ['Sie erklären sie vor dem Test.', 'Sie vergleichen die Länge aller Szenen.', 'Sie lassen das Publikum die Ursache mit eigenen Worten schildern.'], 2, 'Eine freie Antwort zeigt, welche Hinweise tatsächlich angekommen sind.']
 ];
 
+/* Glossar: Begriff, Erklärung, Beispiel aus dem UX-Kontext */
 export const terms = [
-  ['Adaption', 'Übertragung einer bestehenden Handlung in ein anderes Medium.'],
-  ['Auslösendes Ereignis', 'Ein Ereignis, das die Ausgangslage verändert und die Handlung in Gang bringt.'],
-  ['Einsatz', 'Was eine Figur durch den Ausgang der Handlung gewinnen oder verlieren kann.'],
-  ['Einstellung', 'Kontinuierlicher Bildausschnitt zwischen zwei Schnitten.'],
-  ['Erzählperspektive', 'Organisation von Wahrnehmung und Wissen in der Erzählung.'],
-  ['Kausalität', 'Zusammenhang von Ursache und Folge.'],
-  ['Konflikt', 'Widerstand, der ein Ziel gefährdet oder zwei Ziele unvereinbar macht.'],
-  ['Logline', 'Verdichtung einer Geschichte auf einen Satz mit Figur, Ziel und Konflikt.'],
-  ['Montage', 'Auswahl und Anordnung von Einstellungen, durch die ein Zusammenhang entsteht.'],
-  ['Story-Bibel', 'Referenz für Figuren, Weltregeln, Orte und Zeitlinie eines Projekts.'],
-  ['Storyboard', 'Gezeichnete oder beschriebene Abfolge geplanter Einstellungen.'],
-  ['Storyworld', 'Gemeinsame Erzählwelt mit Figuren, Orten, Vorgeschichte und Regeln.'],
-  ['Subtext', 'Bedeutung, die aus Kontext und Verhalten erschlossen wird.'],
-  ['Suspense', 'Spannung in der Erwartung eines möglichen Ereignisses.'],
-  ['Transmediales Storytelling', 'Koordiniertes Erzählen über mehrere Medien, die jeweils eigenständige Beiträge zur gemeinsamen Erzählwelt liefern.'],
-  ['Wendepunkt', 'Ein Ereignis oder eine Entscheidung, die den weiteren Verlauf wesentlich verändert.']
+  ['Adaption', 'Übertragung einer bestehenden Handlung in ein anderes Medium.', 'Eine Fallstudie wird als kurzes Video neu erzählt.'],
+  ['Archetyp', 'Wiederkehrende Rolle in Geschichten, etwa Heldin, Mentor, Schatten oder Schwellenhüter (nach C. G. Jung und Christopher Vogler).', 'Im Onboarding übernimmt das Produkt die Rolle des Mentors.'],
+  ['Auslösendes Ereignis (Inciting Incident)', 'Ein Ereignis, das die Ausgangslage verändert und die Handlung in Gang bringt.', 'Eine Nutzerin stößt auf ein dringendes Problem und sucht nach einer Lösung.'],
+  ['Diegese', 'Die erzählte Welt mit ihren eigenen Regeln.', 'Ein Designsystem sorgt dafür, dass sich ein Produkt auf allen Geräten wie eine stimmige Welt anfühlt.'],
+  ['Einsatz', 'Was eine Figur durch den Ausgang der Handlung gewinnen oder verlieren kann.', 'Bei einem fehlgeschlagenen Ticketkauf verpasst jemand den Zug.'],
+  ['Einstellung', 'Kontinuierlicher Bildausschnitt zwischen zwei Schnitten.', 'Ein Storyboard-Panel entspricht meist einer Einstellung.'],
+  ['Einstellungsgröße', 'Wie viel von Figur und Raum ein Bild zeigt, etwa Totale, Halbnah, Nah oder Detail.', 'Ein Detail zeigt in einem Erklärvideo den Finger auf dem Button.'],
+  ['Erwartungslücke (Gap)', 'Nach Robert McKee die Lücke zwischen dem, was eine Figur erwartet, und dem, was geschieht.', 'Jemand erwartet einen Ein-Klick-Kauf und findet vier Pflichtfelder vor.'],
+  ['Erzählperspektive', 'Organisation von Wahrnehmung und Wissen in der Erzählung.', 'Eine Journey Map zeigt denselben Vorgang aus Sicht der Kundin und des Supports.'],
+  ['Golden Circle', 'Kommunikationsmodell von Simon Sinek: zuerst das Warum, dann das Wie, zuletzt das Was. Ein Pitch-Modell, keine Erzählstruktur.', 'Ein Projektpitch beginnt mit dem Anliegen, nicht mit der Feature-Liste.'],
+  ['Heldenreise (Monomythos)', 'Von Joseph Campbell beschriebenes Grundmuster: Aufbruch, Prüfung und Rückkehr einer verwandelten Figur. Christopher Vogler hat es für Drehbücher in zwölf Stationen gefasst.', 'Ein Onboarding führt von der ersten Hürde zum ersten eigenen Erfolg.'],
+  ['Hook', 'Einstieg, der in den ersten Sekunden Neugier weckt.', 'Ein Pitch beginnt mit einer Frage aus dem Alltag des Publikums.'],
+  ['Höhepunkt (Klimax)', 'Moment der größten Anspannung, in dem die zentrale Entscheidung fällt.', 'Der entscheidende Schritt im Bezahlvorgang.'],
+  ['Katharsis', 'Nach Aristoteles die Entlastung des Publikums am Ende einer Tragödie. Heute oft allgemein für die Erleichterung nach der Auflösung.', 'Die Bestätigung nach einer erledigten Aufgabe schließt den Vorgang spürbar ab.'],
+  ['Kausalität', 'Zusammenhang von Ursache und Folge.', 'Eine Case Study zeigt, welche Beobachtung zu welcher Entwurfsentscheidung geführt hat.'],
+  ['Konflikt', 'Widerstand, der ein Ziel gefährdet oder zwei Ziele unvereinbar macht. Er kann innerlich, sozial oder systemisch sein.', 'Ein Formular verlangt Daten, die die Nutzerin gerade nicht zur Hand hat.'],
+  ['Logline', 'Verdichtung einer Geschichte auf einen Satz mit Figur, Ziel und Konflikt.', 'Der erste Satz einer Portfolio-Fallstudie.'],
+  ['Medienadäquanz', 'Jedes Medium erzählt das, was es am besten kann.', 'Die Uhr zeigt nur die nächste Abfahrt, die Detailplanung bleibt auf dem Smartphone.'],
+  ['Mentor', 'Figur, die die Heldin mit Wissen oder Werkzeugen ausstattet, ohne an ihrer Stelle zu handeln.', 'Ein Einführungsdialog zeigt, wie die erste Aufgabe gelingt.'],
+  ['Migratory Cues', 'Hinweise, die zum Wechsel in ein anderes Medium einladen (Begriff aus der Transmedia-Forschung).', 'Die Uhr meldet: „Ausführliche Auswertung auf dem Smartphone“.'],
+  ['Montage', 'Auswahl und Anordnung von Einstellungen, durch die ein Zusammenhang entsteht.', 'In einem Produktvideo folgt auf den Fehler direkt die Lösung im Interface.'],
+  ['Negative Capability', 'Bewusst gelassene Lücken, die das Publikum neugierig machen und selbst füllen kann.', 'Gesperrte Bereiche deuten an, was nach den ersten Schritten möglich wird.'],
+  ['Rabbit Hole', 'Einstiegspunkt, der in eine größere Erzählwelt hineinführt.', 'Ein QR-Code auf einem Plakat führt zu einer interaktiven Projektseite.'],
+  ['Retardierendes Moment', 'Verzögerung kurz vor dem Ende, die den Ausgang noch einmal offen erscheinen lässt.', 'Im Pitch taucht kurz vor dem Ergebnis ein letztes Hindernis auf.'],
+  ['Schatten', 'Gegenspieler der Heldin. Muss keine Person sein, auch Umstände können diese Rolle einnehmen.', 'Medienbrüche, Zeitdruck oder die Angst vor Fehlern.'],
+  ['Schwellenhüter', 'Hürde vor dem Eintritt in die neue Welt, die prüft, ob die Heldin den Schritt wagt.', 'Registrierung, Zwei-Faktor-Anmeldung oder eine Bezahlschranke.'],
+  ['Show, don’t tell', 'Einen Zustand durch beobachtbare Handlung zeigen, statt ihn zu behaupten.', 'Statt „schnell und einfach“ eine Situation, in der die Zahlung vor dem Kassenbon fertig ist.'],
+  ['Story-Bibel', 'Referenz für Figuren, Weltregeln, Orte und Zeitlinie eines Projekts.', 'Ein Projektwiki hält Tonalität und Personas für alle Kanäle fest.'],
+  ['Story Spine', 'Satzgerüst von Kenn Adams, bekannt geworden über Pixar: Es war einmal … Jeden Tag … Bis eines Tages … Und deswegen … Bis schließlich … Und seitdem …', 'Gerüst für die Erzählung einer UX-Fallstudie.'],
+  ['StoryBrand (SB7)', 'Marketing-Modell von Donald Miller in sieben Schritten: Figur, Problem, Guide, Plan, Handlungsaufforderung, drohendes Scheitern, Erfolg.', 'Eine Landingpage stellt die Kundin als Heldin und das Produkt als Guide dar.'],
+  ['Storyboard', 'Gezeichnete oder beschriebene Abfolge geplanter Einstellungen.', 'Ein UX-Storyboard zeigt Kontext, Problem, Interaktion und Ergebnis in vier Bildern.'],
+  ['Storyworld', 'Gemeinsame Erzählwelt mit Figuren, Orten, Vorgeschichte und Regeln.', 'Ein Dienst mit App, Website und Ladengeschäft, die sich aufeinander beziehen.'],
+  ['Subtext', 'Bedeutung, die aus Kontext und Verhalten erschlossen wird.', 'In einem Usability-Test sagt jemand „passt schon“ und bricht den Vorgang ab.'],
+  ['Suspense', 'Spannung in der Erwartung eines möglichen Ereignisses. Im Unterschied zur Überraschung weiß das Publikum, was droht.', 'Eine Fortschrittsanzeige macht sichtbar, was noch kommt, statt Kosten am Ende zu überraschen.'],
+  ['Transmediales Storytelling', 'Koordiniertes Erzählen über mehrere Medien, die jeweils eigenständige Beiträge zur gemeinsamen Erzählwelt liefern.', 'Film, Audio und interaktive Karte erzählen je einen Teil eines Campusprojekts.'],
+  ['Wendepunkt', 'Ein Ereignis oder eine Entscheidung, die den weiteren Verlauf wesentlich verändert.', 'In einer Case Study der Testbefund, der den Entwurf umgeworfen hat.'],
+  ['Worldbuilding', 'Entwurf einer Erzählwelt, die reicher ist als eine einzelne Geschichte.', 'Eine Service Blueprint zeigt alle Orte, an denen der Dienst erlebt wird.']
 ];

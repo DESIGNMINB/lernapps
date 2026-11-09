@@ -1,5 +1,6 @@
-import { lessons, extraQuestions, terms } from './content.js?v=2';
-import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=1';
+import { lessons, quizQuestions, terms } from './content.js?v=3';
+import { modelle, spineFields, uxTransfer } from './vertiefung.js?v=2';
+import { spineSort, heroJourney, archetypes, conflictLevels, conflictSteps, showTell, shotSizes, storyboard, jenkins, keynote, lisa, spineExamples } from './uebungen.js?v=1';
 
 const $ = (selector) => document.querySelector(selector);
 const content = $('#story-content');
@@ -7,10 +8,12 @@ const sidebar = $('#sidebar');
 const menu = $('.menu-btn');
 const storageKey = 'storytelling:v1';
 const number = (index) => String(index + 1).padStart(2, '0');
-const questions = [...lessons.map((lesson) => lesson.check), ...extraQuestions];
+const questions = quizQuestions;
+const sortedTerms = [...terms].sort(([a], [b]) => a.localeCompare(b, 'de'));
+const termRange = `${sortedTerms[0][0]} bis ${sortedTerms.at(-1)[0]}`;
 const referencePages = [
-  { id: 'glossar', title: 'Glossar', subtitle: 'Begriffe von Adaption bis Wendepunkt', icon: 'list', chip: 'A–Z' },
-  { id: 'modelle', title: 'Erzählmodelle im Vergleich', subtitle: 'Freytag, Heldenreise, Story Spine und Transmedia im UX-Kontext', icon: 'arc', chip: 'M', photo: 'struktur' },
+  { id: 'glossar', title: 'Glossar', subtitle: `${terms.length} Begriffe von ${termRange}`, icon: 'list', chip: 'A–Z' },
+  { id: 'modelle', title: 'Erzählmodelle im Vergleich', subtitle: 'Freytag, Heldenreise, Story Spine, Transmedia sowie Golden Circle und StoryBrand im UX-Kontext', icon: 'arc', chip: 'M', photo: 'struktur' },
   { id: 'baukasten', title: 'Story-Baukasten', subtitle: 'Eine eigene UX-Fallstudie entwerfen und als Markdown exportieren', icon: 'edit', chip: 'B', photo: 'transfer' },
   { id: 'werkzeuge', title: 'Vorlagen und Literatur', subtitle: 'Arbeitsblätter und Quellen', icon: 'book', chip: 'V' }
 ];
@@ -160,6 +163,38 @@ function practice(id) {
   return '';
 }
 
+function extraPractice(id) {
+  if (id === 'grundlagen') return `<div class="story-panel story-extra">
+    <h3>Story Spine sortieren</h3><p>Bringen Sie die sieben Sätze in die Reihenfolge des Story Spine. Achten Sie besonders auf die beiden „Und deswegen“-Sätze: Jeder muss aus dem Satz davor folgen.</p>
+    <ol class="story-order" id="spine-order"></ol><button type="button" class="btn" id="spine-check">Reihenfolge prüfen</button>
+    <p class="story-result" id="spine-result" role="status"></p></div>`;
+  if (id === 'figur') return `${matchHtml('hero')}${matchHtml('arch')}
+    <div class="story-panel story-extra"><h3>Konfliktebenen einstellen</h3>
+    <p>Stellen Sie ein, wie stark die drei Ebenen in Ihrer Geschichte ausgeprägt sind. Die Rückmeldung beschreibt, was die Kombination für die Geschichte bedeutet. Es gibt keine richtige Einstellung.</p>
+    <div class="story-conflict">${conflictLevels.map(([key, name, examples]) => `<div class="story-conflict-row">
+      <label for="cf-${key}">${name} <output id="cf-${key}-o" for="cf-${key}"></output></label>
+      <input id="cf-${key}" type="range" min="0" max="3" step="1" value="${key === 'innen' ? 2 : 1}">
+      <span class="story-note">${examples}</span></div>`).join('')}</div>
+    <p class="story-conflict-text" id="cf-text" aria-live="polite"></p></div>`;
+  if (id === 'perspektive') return `<div class="story-panel story-extra"><h3>Show, don’t tell</h3>
+    <p>Welche Fassung zeigt die Behauptung als beobachtbare Szene?</p>
+    <form id="st-form">${showTell.map(([prompt, options], i) => question([prompt, options], `st${i}`)).join('')}
+    <button class="btn" type="submit">Auswahl prüfen</button><p class="story-result" id="st-result" role="status"></p></form></div>`;
+  if (id === 'bild') return `<div class="story-panel story-extra"><h3>Storyboard: Express-Abholung in der Mensa</h3>
+    <p>Lukas hat in 15 Minuten eine Klausur und will vorher noch essen. Wählen Sie für jedes der vier Panels die Einstellungsgröße, die seine erzählerische Aufgabe am besten erfüllt.</p>
+    <ul class="story-shot-legend">${shotSizes.map(([, name, desc]) => `<li><b>${name}</b> ${desc}</li>`).join('')}</ul>
+    <ol class="story-sb">${storyboard.map(({ title, scene, img, alt }, i) => `<li class="story-sb-panel">
+      <p class="story-sb-head"><span>Panel ${i + 1}</span> ${title}</p><p>${scene}</p>
+      <fieldset><legend>Einstellungsgröße für Panel ${i + 1}</legend>${shotSizes.map(([key, name]) => `<label><input type="radio" name="sb${i}" value="${key}"> ${name}</label>`).join('')}</fieldset>
+      <p class="story-sb-note" id="sb${i}-note"></p>
+      <figure class="story-sb-img" id="sb${i}-img" hidden><img src="img/fotos/${img}.webp" alt="${alt}" width="800" height="598" loading="lazy"><span class="ki-badge" aria-hidden="true">KI-generiert</span></figure>
+    </li>`).join('')}</ol>
+    <button type="button" class="btn" id="sb-check">Storyboard prüfen</button>
+    <p class="story-result" id="sb-result" role="status"></p></div>`;
+  if (id === 'transmedia') return matchHtml('jenkins');
+  return '';
+}
+
 function textField(key, label, rows = 3) {
   return `<label>${label}<textarea data-draft="${key}" rows="${rows}"></textarea></label>`;
 }
@@ -189,7 +224,9 @@ function lessonContent(lesson, index) {
     ${section('Lernziele', `<ul>${lesson.goals.map((goal) => `<li>${goal}</li>`).join('')}</ul>`, true)}
     ${section('Grundlagen', lesson.theory.map(([title, body]) => `<h3>${title}</h3><p>${body}</p>`).join(''))}
     ${section('Fallbeispiel · Brücke um zehn', `<p>${lesson.case}</p>`, true)}
-    ${section('Ausprobieren', `${practice(lesson.id)}<form id="mini-check">${question(lesson.check, 'probe')}
+    ${lesson.id === 'struktur' ? section('Beispiel aus einem Pitch', `<p>${keynote}</p>`, true) : ''}
+    ${lesson.id === 'transmedia' ? section('Sieben Prinzipien nach Henry Jenkins', `<p>Henry Jenkins hat 2009 sieben Prinzipien des transmedialen Erzählens beschrieben. Die ersten drei sind Begriffspaare, die ein Spannungsfeld markieren.</p><dl>${jenkins.map(([name, desc]) => `<dt>${name}</dt><dd>${desc}</dd>`).join('')}</dl><p class="story-note">Quelle: <a href="https://henryjenkins.org/blog/2009/12/the_revenge_of_the_origami_uni.html">Henry Jenkins: The Revenge of the Origami Unicorn</a> (2009).</p>`) : ''}
+    ${section('Ausprobieren', `${practice(lesson.id)}${extraPractice(lesson.id)}<form id="mini-check">${question(lesson.check, 'probe')}
       <button class="btn" type="submit">Antwort prüfen</button><p class="story-result" id="mini-result" role="status"></p></form>`)}
     ${section('Ihre Aufgabe', `<p>${lesson.task}</p>${fields(lesson)}`, true)}
     ${uxTransfer[lesson.id] ? section('Transfer ins UX-Design', `<p>${uxTransfer[lesson.id]}</p>
@@ -217,6 +254,17 @@ const references = {
       <img src="img/fotos/hero.jpg" alt="Studierende vergleichen ein gezeichnetes Storyboard mit ihrem beschädigten Brückenmodell in der Werkstatt" width="1200" height="900">
       <figcaption>„Brücke um zehn“ begleitet Sie durch das Modul. An demselben Fall erproben Sie, wie Reihenfolge, Perspektive und Medienwahl die Geschichte verändern. Bild KI-generiert.</figcaption>
     </figure>
+
+    <section class="section-card story-lisa">
+      <h2>Feature-Liste oder Geschichte?</h2>
+      <p>Dieselbe Smartwatch-Funktion, zweimal beschrieben. Schalten Sie zwischen den Fassungen um.</p>
+      <div class="story-controls" id="lisa-toggle" role="group" aria-label="Fassung wählen">
+        <button type="button" class="btn" data-lisa="features" aria-pressed="true">Feature-Liste</button>
+        <button type="button" class="btn" data-lisa="story" aria-pressed="false">Geschichte</button>
+      </div>
+      <div class="story-lisa-out" id="lisa-out" aria-live="polite"></div>
+      <p class="story-note">${lisa.note}</p>
+    </section>
 
     <h2 class="intro-h2">Was Sie in diesem Modul erwartet</h2>
     <div class="intro-grid g3">
@@ -253,9 +301,9 @@ const references = {
     <section class="section-card">
       <h2>Referenzbereich</h2>
       <ul class="exercise-list" role="list">
-        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#glossar">Glossar</a><span class="exercise-desc"> · Fachbegriffe von Adaption bis Wendepunkt nachschlagen.</span></div></li>
-        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#modelle">Erzählmodelle im Vergleich</a><span class="exercise-desc"> · Vier Modelle an einem UX-Fall vergleichen.</span></div></li>
-        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#baukasten">Story-Baukasten</a><span class="exercise-desc"> · Eine eigene UX-Fallstudie in sieben Schritten entwerfen.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#glossar">Glossar</a><span class="exercise-desc"> · ${terms.length} Fachbegriffe von ${termRange} nachschlagen, jeweils mit einem Beispiel aus dem UX-Design.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#modelle">Erzählmodelle im Vergleich</a><span class="exercise-desc"> · ${modelle.length} Modelle an einem UX-Fall vergleichen, darunter zwei Pitch-Modelle aus dem Marketing.</span></div></li>
+        <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#baukasten">Story-Baukasten</a><span class="exercise-desc"> · Eine eigene UX-Fallstudie in sieben Schritten entwerfen oder von einem fiktiven Beispiel ausgehen.</span></div></li>
         <li class="exercise-item"><span class="exercise-number" aria-hidden="true">REF</span><div><a class="exercise-label" href="#werkzeuge">Vorlagen und Literatur</a><span class="exercise-desc"> · Das Arbeitsblatt für Storyboard und Medienplan nutzen und die Quellen vertiefen.</span></div></li>
       </ul>
     </section>
@@ -282,21 +330,25 @@ const references = {
     <a href="#grundlagen" class="cta-button">Starten Sie mit Lektion 01
       <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>`,
-  glossar: `<h1 class="page-title purple">Glossar</h1>${section('Begriffe zum Nachschlagen', `<dl>${terms.map(([term, definition]) => `<dt>${term}</dt><dd>${definition}</dd>`).join('')}</dl>`, true)}`,
+  glossar: `<h1 class="page-title purple">Glossar</h1>${section('Begriffe zum Nachschlagen', `<dl>${sortedTerms.map(([term, definition, example]) => `<dt>${term}</dt><dd>${definition}${example ? `<span class="story-term-ex"><b>UX-Beispiel:</b> ${example}</span>` : ''}</dd>`).join('')}</dl>`, true)}`,
   modelle: `<h1 class="page-title purple">Erzählmodelle im Vergleich</h1>
     <p class="page-intro">Nora sucht nach einer kurzfristigen Raumänderung ihren Seminarraum. Vier Modelle zeigen am selben Fall, welche Fragen Sie beim Erzählen und beim UX-Entwurf jeweils stellen können.</p>
     <div class="story-model-grid">${modelle.map((model) => section(model.title, `
+      ${model.tag ? `<p class="story-model-tag">${model.tag}</p>` : ''}
       <p><strong>${model.question}</strong></p>
       <p class="story-model-steps">${model.steps}</p>
       <p>${model.example}</p>
       <p>${model.limit}</p>
       <p class="story-note"><a href="${model.source[1]}">${model.source[0]}</a></p>`, true)).join('')}</div>
-    ${section('Welches Modell passt zu Ihrem Entwurf?', '<p>Für eine Kette von Entscheidungen beginnen Sie mit dem Story Spine. Wenn mehrere Medien eigene Teile der Geschichte erzählen sollen, skizzieren Sie zuerst die gemeinsame Erzählwelt und die Beiträge.</p><a class="btn btn-primary" href="#baukasten">Zum Story-Baukasten</a>')}`,
+    ${section('Welches Modell passt zu Ihrem Entwurf?', '<p>Für eine Kette von Entscheidungen beginnen Sie mit dem Story Spine. Wenn mehrere Medien eigene Teile der Geschichte erzählen sollen, skizzieren Sie zuerst die gemeinsame Erzählwelt und die Beiträge. Golden Circle und StoryBrand helfen, einen Pitch oder eine Landingpage zu ordnen. Sie stammen aus dem Marketing und ersetzen keine Geschichte mit Figur und Konflikt.</p><a class="btn btn-primary" href="#baukasten">Zum Story-Baukasten</a>')}`,
   baukasten: `<h1 class="page-title purple">Story-Baukasten</h1>
     <p class="page-intro">Entwerfen Sie eine UX-Fallstudie mit dem Story Spine. Beschreiben Sie, wie aus einem konkreten Problem eine Entwurfsentscheidung folgt und woran sich das Ergebnis erkennen lässt.</p>
     <details class="story-panel"><summary>Fiktives Beispiel: Nora sucht den Seminarraum</summary>
       <dl class="story-section">${spineFields.map(({ label, example }) => `<dt><strong>${label}</strong></dt><dd>${example}</dd>`).join('')}</dl>
     </details>
+    ${section('Von einem Beispiel ausgehen', `<p>Laden Sie eine fiktive Vorlage in die Felder und passen Sie sie an Ihr Projekt an. Die Beispiele enthalten bewusst keine Erfolgszahlen. Tragen Sie in Ihrer Fallstudie nur Ergebnisse ein, die Sie selbst beobachtet oder gemessen haben.</p>
+      <div class="btn-group" id="spine-examples">${spineExamples.map(({ id, label }) => `<button type="button" class="btn" data-example="${id}">Beispiel laden: ${label}</button>`).join('')}</div>
+      <p class="story-note" id="spine-example-status" role="status"></p>`, true)}
     ${section('Ihr Entwurf', `<div class="story-fields" id="spine-fields">
       <label>Projekttitel <input type="text" data-draft="baukasten:titel"></label>
       ${spineFields.map(({ id, label, prompt }, index) => `<label>${index + 1}. ${label}<span class="story-note story-field-prompt">${prompt}</span>
@@ -363,18 +415,22 @@ function wireLesson(lesson) {
     $('#mini-result').textContent = `${correct ? 'Richtig.' : 'Noch nicht richtig.'} ${lesson.check[3]}`;
     save();
   };
-  if (id === 'struktur') wireOrder();
+  if (id === 'struktur') wireOrder({ list: $('#beat-order'), check: $('#order-check'), result: $('#order-result'), items: beats, order: [3, 1, 5, 0, 4, 2],
+    success: 'Richtig. Jeder Schritt bereitet die nächste Entscheidung vor.', hint: (pos) => `Prüfen Sie ab Position ${pos}: Was muss geschehen, bevor die nächste Szene plausibel wird?` });
+  if (id === 'grundlagen') wireOrder({ list: $('#spine-order'), check: $('#spine-check'), result: $('#spine-result'), items: spineSort.items, order: [...spineSort.start], success: spineSort.success, hint: spineSort.hint, label: 'Satz' });
+  if (id === 'figur') { wireMatch('hero'); wireMatch('arch'); wireConflict(); }
+  if (id === 'transmedia') wireMatch('jenkins');
+  if (id === 'perspektive') wireShowTell();
+  if (id === 'bild') wireStoryboard();
   if (id === 'spannung') wireCurve();
   if (id === 'transmedia') wireMedia();
 }
 
-function wireOrder() {
-  const order = [3, 1, 5, 0, 4, 2];
-  const list = $('#beat-order');
+function wireOrder({ list, check, result, items, order, success, hint, label = 'Szene' }) {
   function render(focusIndex, delta) {
-    list.innerHTML = order.map((beat, i) => `<li>${beats[beat]}
-      <button type="button" class="btn" data-index="${i}" data-step="-1" aria-label="Szene ${i + 1} nach oben" ${i === 0 ? 'disabled' : ''}>↑</button>
-      <button type="button" class="btn" data-index="${i}" data-step="1" aria-label="Szene ${i + 1} nach unten" ${i === order.length - 1 ? 'disabled' : ''}>↓</button></li>`).join('');
+    list.innerHTML = order.map((item, i) => `<li><span>${items[item]}</span>
+      <span class="story-order-btns"><button type="button" class="btn" data-index="${i}" data-step="-1" aria-label="${label} ${i + 1} nach oben" ${i === 0 ? 'disabled' : ''}>↑</button>
+      <button type="button" class="btn" data-index="${i}" data-step="1" aria-label="${label} ${i + 1} nach unten" ${i === order.length - 1 ? 'disabled' : ''}>↓</button></span></li>`).join('');
     if (focusIndex !== undefined) {
       const target = list.querySelector(`[data-index="${focusIndex}"][data-step="${delta}"]:enabled`);
       (target || list.querySelector(`[data-index="${focusIndex}"]:enabled`))?.focus();
@@ -387,16 +443,114 @@ function wireOrder() {
     const delta = Number(button.dataset.step);
     const next = index + delta;
     [order[index], order[next]] = [order[next], order[index]];
-    $('#order-result').textContent = `Szene auf Position ${next + 1} verschoben.`;
+    result.textContent = `${label} auf Position ${next + 1} verschoben.`;
     render(next, delta);
   };
-  $('#order-check').onclick = () => {
-    const mismatch = order.findIndex((beat, i) => beat !== i);
-    $('#order-result').textContent = mismatch < 0
-      ? 'Richtig. Jeder Schritt bereitet die nächste Entscheidung vor.'
-      : `Prüfen Sie ab Position ${mismatch + 1}: Was muss geschehen, bevor die nächste Szene plausibel wird?`;
+  check.onclick = () => {
+    const mismatch = order.findIndex((item, i) => item !== i);
+    result.textContent = mismatch < 0 ? success : hint(mismatch + 1);
   };
   render();
+}
+
+/* Zuordnungsübungen: jede Zeile wählt aus derselben Liste (richtig = gleicher Index) */
+const matchSets = {
+  hero: { title: 'Heldenreise im UX', intro: 'Ordnen Sie jeder Station der Heldenreise die passende Situation aus der Einführung eines Planungswerkzeugs zu.',
+    rows: heroJourney.stations.map(([station]) => ({ label: station })), options: heroJourney.stations.map(([, ux]) => ux), done: heroJourney.feedback },
+  arch: { title: 'Archetypen im Fall „KlimaMobil“', intro: archetypes.intro,
+    rows: archetypes.roles.map(([role, , why]) => ({ label: role, hint: why })), options: archetypes.roles.map(([, cast]) => cast),
+    done: 'Richtig zugeordnet. Die Nutzerin ist die Heldin, das Produkt der Mentor. Gegenspieler und Hürden sind hier Umstände, keine Personen.' },
+  jenkins: { title: 'Prinzipien im UX erkennen', intro: 'Welches Prinzip zeigt sich in welchem Beispiel? Ordnen Sie jedem Prinzip ein Beispiel aus dem UX-Design zu.',
+    rows: jenkins.map(([name, desc]) => ({ label: name, hint: desc })), options: jenkins.map(([, , ux]) => ux),
+    done: 'Richtig zugeordnet. Die Prinzipien beschreiben Spannungsfelder. Ein Projekt muss nicht alle sieben bedienen.' }
+};
+function matchHtml(key) {
+  const { title, intro, rows, options } = matchSets[key];
+  const n = options.length;
+  const perm = options.map((_, i) => (i * 3 + 2) % n);
+  return `<div class="story-panel story-extra"><h3>${title}</h3><p>${intro}</p>
+    <div class="story-match">${rows.map(({ label }, i) => `<div class="story-match-row">
+      <label for="${key}-${i}">${label}</label>
+      <select id="${key}-${i}"><option value="">Bitte wählen …</option>${perm.map((j) => `<option value="${j}">${options[j]}</option>`).join('')}</select>
+      <p class="story-match-note" id="${key}-${i}-note"></p></div>`).join('')}</div>
+    <button type="button" class="btn" id="${key}-check">Zuordnung prüfen</button>
+    <p class="story-result" id="${key}-sum" role="status"></p></div>`;
+}
+function wireMatch(key) {
+  const { rows, done: doneText } = matchSets[key];
+  $(`#${key}-check`).onclick = () => {
+    let right = 0, open = 0;
+    rows.forEach(({ hint }, i) => {
+      const value = $(`#${key}-${i}`).value;
+      const note = $(`#${key}-${i}-note`);
+      note.className = 'story-match-note';
+      if (value === '') { open++; note.textContent = ''; return; }
+      const ok = Number(value) === i;
+      right += Number(ok);
+      note.classList.add(ok ? 'is-ok' : 'is-off');
+      note.textContent = ok ? 'Passt.' : `Noch nicht.${hint ? ' Hinweis: ' + hint : ''}`;
+    });
+    $(`#${key}-sum`).textContent = right === rows.length ? doneText
+      : `${right} von ${rows.length} richtig zugeordnet.${open ? ` ${open} noch offen.` : ''} Prüfen Sie die markierten Zeilen.`;
+  };
+}
+
+function conflictText(levels) {
+  const active = levels.filter((v) => v > 0).length;
+  const strong = levels.filter((v) => v === 3).length;
+  const parts = [];
+  if (levels[0]) parts.push('Die Figur ringt mit sich selbst, etwa mit Zweifeln oder Angst vor Fehlern.');
+  if (levels[1]) parts.push('Andere Menschen stellen sich in den Weg oder widersprechen einander.');
+  if (levels[2]) parts.push('Strukturen begrenzen die Möglichkeiten, etwa Vorgaben, Altsysteme oder Fristen.');
+  let summary;
+  if (!active) summary = 'Ohne Widerstand muss die Figur nichts entscheiden. Es entsteht ein Bericht, keine Geschichte.';
+  else if (active === 1) summary = 'Eine Ebene trägt den Konflikt. Für eine kurze Szene kann das genügen. Eine längere Geschichte gewinnt oft durch eine zweite Ebene, die zur Entscheidung zwingt.';
+  else if (strong >= 2) summary = 'Mehrere Ebenen sind stark ausgeprägt. Das erzeugt Druck, kann aber überladen wirken. Prüfen Sie, ob das Publikum noch erkennt, worum es im Kern geht.';
+  else summary = 'Mehrere Ebenen greifen ineinander. Prüfen Sie, ob sie sich verstärken: Erhöht zum Beispiel die Frist den Druck im Team?';
+  return `${parts.join(' ')} ${summary}`.trim();
+}
+function wireConflict() {
+  const inputs = conflictLevels.map(([key]) => $(`#cf-${key}`));
+  const draw = () => {
+    inputs.forEach((input) => { $(`#${input.id}-o`).textContent = conflictSteps[input.value]; });
+    $('#cf-text').textContent = conflictText(inputs.map((input) => Number(input.value)));
+  };
+  inputs.forEach((input) => { input.oninput = draw; });
+  draw();
+}
+
+function wireShowTell() {
+  const form = $('#st-form');
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    let right = 0;
+    showTell.forEach(([, , correct, feedback], i) => {
+      const value = form.elements[`st${i}`].value;
+      const ok = Number(value) === correct;
+      right += Number(ok);
+      form.querySelector(`[data-feedback-for="st${i}"]`).textContent = `${ok ? 'Richtig.' : 'Noch nicht richtig.'} ${feedback}`;
+    });
+    $('#st-result').textContent = `${right} von ${showTell.length} Behauptungen in eine Szene übersetzt.`;
+  };
+}
+
+function wireStoryboard() {
+  $('#sb-check').onclick = () => {
+    let right = 0;
+    storyboard.forEach(({ answer, why }, i) => {
+      const chosen = content.querySelector(`input[name="sb${i}"]:checked`)?.value;
+      const note = $(`#sb${i}-note`);
+      const figure = $(`#sb${i}-img`);
+      if (!chosen) { note.textContent = 'Wählen Sie eine Einstellungsgröße.'; return; }
+      const ok = chosen === answer;
+      right += Number(ok);
+      const [, name] = shotSizes.find(([key]) => key === chosen);
+      const [, correctName] = shotSizes.find(([key]) => key === answer);
+      note.textContent = ok ? `Passend. ${why}` : `${name} ${shotSizes.find(([key]) => key === chosen)[2]}. Für diese Aufgabe passt ${correctName} besser. ${why}`;
+      figure.hidden = false;
+    });
+    $('#sb-result').textContent = `${right} von ${storyboard.length} Einstellungen passen zur erzählerischen Aufgabe. Unter jedem Panel sehen Sie jetzt ein Beispielbild.`;
+  };
 }
 
 function wireCurve() {
@@ -491,6 +645,20 @@ function wireSpine() {
     });
   }
   refresh();
+  $('#spine-examples').onclick = (event) => {
+    const trigger = event.target.closest('[data-example]');
+    if (!trigger) return;
+    const example = spineExamples.find(({ id }) => id === trigger.dataset.example);
+    if (fields.some((field) => field.value.trim()) && !window.confirm('Ihr bisheriger Entwurf wird durch das Beispiel ersetzt. Fortfahren?')) return;
+    for (const field of fields) {
+      const key = field.dataset.draft.split(':')[1];
+      field.value = example.values[key] || '';
+      drafts[field.dataset.draft] = field.value;
+    }
+    save();
+    refresh();
+    $('#spine-example-status').textContent = `Beispiel geladen: ${example.label}. Ersetzen Sie die fiktiven Angaben durch Ihr eigenes Projekt.`;
+  };
   button.onclick = () => {
     const title = drafts['baukasten:titel']?.trim().replace(/\s+/g, ' ') || 'Meine UX-Fallstudie';
     const sections = spineFields.map(({ id, label }) => {
@@ -499,6 +667,16 @@ function wireSpine() {
     }).filter(Boolean);
     downloadText([`# ${title}`, ...sections].join('\n\n') + '\n', 'meine-ux-fallstudie.md');
   };
+}
+
+function wireLisa() {
+  const out = $('#lisa-out');
+  const show = (mode) => {
+    out.innerHTML = mode === 'story' ? `<p class="story-lisa-story">${lisa.story}</p>` : `<ul>${lisa.features.map((f) => `<li>${f}</li>`).join('')}</ul>`;
+    $('#lisa-toggle').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lisa === mode)));
+  };
+  $('#lisa-toggle').onclick = (event) => { const b = event.target.closest('[data-lisa]'); if (b) show(b.dataset.lisa); };
+  show('features');
 }
 
 function route(focus = false) {
@@ -535,6 +713,7 @@ function route(focus = false) {
   if (page.id === 'quiz') wireQuiz();
   if (page.id === 'werkzeuge') $('#export').onclick = exportDrafts;
   if (page.id === 'baukasten') wireSpine();
+  if (page.id === 'einleitung') wireLisa();
   if (focus) {
     const heading = content.querySelector('h1');
     heading.tabIndex = -1;

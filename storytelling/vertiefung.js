@@ -30,6 +30,24 @@ export const modelle = [
     example: 'Ein kurzer Film zeigt Noras Raumwechsel. Ein Audiointerview ergänzt die Sicht einer Person, die den Weg ohne visuelle Hinweise zurücklegt. Eine interaktive Karte macht verschiedene Wege und ihre Hindernisse erkundbar.',
     limit: 'Eine Raumänderung auf Website und Smartphone zu wiederholen ist für die Orientierung sinnvoll. Eine Erzählung wird transmedial, wenn die Medien verschiedene Teile derselben Erzählwelt beitragen.',
     source: ['Henry Jenkins: Transmedia Storytelling 101', 'https://henryjenkins.org/blog/2007/03/transmedia_storytelling_101.html']
+  },
+  {
+    title: 'Golden Circle',
+    tag: 'Marketing- und Pitch-Modell',
+    question: 'Warum gibt es das Projekt, und wie folgt daraus das Ergebnis?',
+    steps: 'Warum → Wie → Was',
+    example: 'Warum: Niemand soll eine Veranstaltung verpassen, weil ein Raum kurzfristig wechselt. Wie: Raumänderungen erscheinen dort, wo Studierende ohnehin nachsehen. Was: Die Kursansicht zeigt den aktuellen Raum mit Weg.',
+    limit: 'Das Modell ordnet Argumente für einen Pitch. Es enthält keine Figur und keinen Konflikt und ersetzt deshalb keine Geschichte. Es ist eine Kommunikationsfaustregel, keine empirisch geprüfte Theorie.',
+    source: ['Simon Sinek: How great leaders inspire action (TED, 2009)', 'https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action']
+  },
+  {
+    title: 'StoryBrand (SB7)',
+    tag: 'Marketing- und Pitch-Modell',
+    question: 'Wie wird die Kundin zur Heldin und das Produkt zum Guide?',
+    steps: 'Figur → Problem → Guide → Plan → Handlungsaufforderung → drohendes Scheitern → Erfolg',
+    example: 'Nora (Figur) will pünktlich im Seminar sein. Der Raum hat sich geändert (Problem, äußerlich), sie fühlt sich auf dem Campus verloren (innerlich). Die Campus-App (Guide) zeigt drei Schritte zum neuen Raum (Plan) und fordert sie auf, die Benachrichtigungen zu aktivieren (Handlungsaufforderung). So verpasst sie den Beginn nicht (Scheitern abwenden) und kommt entspannt an (Erfolg).',
+    limit: 'Donald Miller hat das Modell für Markenkommunikation entwickelt. Es eignet sich für Landingpages und Pitches. Der Schritt „drohendes Scheitern“ führt leicht zu Angstappellen und sollte in Produkttexten sparsam eingesetzt werden.',
+    source: ['Donald Miller: Building a StoryBrand (2017)', 'https://storybrand.com/']
   }
 ];
 
