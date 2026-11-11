@@ -89,7 +89,7 @@ function overview() {
     <section class="home-hero">
       <div>
         <div class="mod-chip" aria-hidden="true">ST</div>
-        <p class="hero-eyebrow">Lernmodul 09 · Dramaturgie, Bild &amp; Medien</p>
+        <p class="hero-eyebrow">Lernmodul 10 · Dramaturgie, Bild &amp; Medien</p>
         <h1>Storytelling</h1>
         <p class="hero-lead">Wie wird aus einer Folge von Ereignissen eine Geschichte? Entwickeln Sie Figuren und Konflikte, steuern Sie Spannung und Perspektive und entwerfen Sie ein Storyboard. Im transmedialen Labor erzählen Sie dieselbe Welt aus mehreren Richtungen.</p>
         <div class="hero-actions"><div class="hero-cta">
@@ -119,7 +119,7 @@ function overview() {
     <ul class="tiles">${referencePages.map((page) => tile(page, page.chip, 'Öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
     <ul class="tiles">${tile(pages.at(-1), '?', 'Quiz starten')}</ul>
-    <p class="footer-note">Lernmodul 09 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert</p>
+    <p class="footer-note">Lernmodul 10 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert</p>
   </div>`;
 }
 
@@ -808,7 +808,7 @@ function route(focus = false) {
 
   content.innerHTML = page.id === 'home' ? overview() : `<article class="content-card">
     <div class="content-head"><a class="sidebar-header" href="#home"><span class="sidebar-logo">ST</span><span class="sidebar-brand">
-      <span class="sidebar-brand-name">Storytelling</span><span class="sidebar-brand-subtitle">09 · Lernmodul</span>
+      <span class="sidebar-brand-name">Storytelling</span><span class="sidebar-brand-subtitle">10 · Lernmodul</span>
     </span></a></div>
     ${index < 0 ? references[page.id] : lessonContent(page, index)}
     <nav class="pager" aria-label="Lektionen blättern">${pager(prev, 'prev')}${pager(next, 'next')}</nav></article>`;
@@ -821,7 +821,7 @@ function route(focus = false) {
     if (active) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
-  document.title = page.id === 'home' ? 'Storytelling · Lernmodul 09' : `${page.title} · Storytelling`;
+  document.title = page.id === 'home' ? 'Storytelling · Lernmodul 10' : `${page.title} · Storytelling`;
   setMenu(false);
   if (index >= 0) wireLesson(page);
   if (page.id === 'quiz') wireQuiz();
