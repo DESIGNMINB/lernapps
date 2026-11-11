@@ -27,7 +27,7 @@ export const chapters = [
       ['Philadelphia 1876: „billig und schlecht“', 'Auf der Weltausstellung in Philadelphia 1876 leitet der Maschinenbauer Franz Reuleaux als Reichskommissar die deutsche Abteilung. In seinen „Briefen aus Philadelphia“, die in der Berliner National-Zeitung erscheinen und 1877 als Buch herauskommen, fasst er sein Urteil über viele deutsche Exponate in drei Worten zusammen: „billig und schlecht“. Sinngemäß wirft er den Herstellern vor, über niedrige Preise statt über Qualität zu konkurrieren und ausländische Vorbilder nachzuahmen. Die Kritik löst in Deutschland eine heftige Debatte aus und ist ein Ausgangspunkt der Geschichte von „Made in Germany“ (Kapitel 05).']
     ],
     merke: ['Wedgwood trennt ab 1769 Entwurf, Fertigung und Vertrieb.', '1851 macht die Weltausstellung in London die Kluft zwischen Industrie und Gestaltung sichtbar.', 'Thonet Nr. 14 (1859) verbindet Material, Verfahren, Transport und Form.', 'Christopher Dresser entwirft schon um 1880 ornamentlose Industrieprodukte.', 'Franz Reuleaux urteilt 1876 über deutsche Produkte: „billig und schlecht“.'],
-    img: { 0: ['wedgwood-vase'], 1: ['kristallpalast'], 2: ['thonet14'], 3: ['dresser-teekanne'] },
+    img: { 0: ['wedgwood-vase'], 1: ['kristallpalast'], 2: ['thonet14'], 3: ['dresser-teekanne'], 4: ['centennial'] },
     links: [['Christopher Dresser, Überblick (The Met, Heilbrunn Timeline)', 'https://www.metmuseum.org/toah/hd/cdrs/hd_cdrs.htm'], ['Nachlass Franz Reuleaux, Findbuch (Deutsches Museum)', 'https://www.deutsches-museum.de/assets/Forschung/Archiv/Download/Findbuecher_PDF/NL_069_Reuleaux.pdf']]
   },
   {
@@ -40,7 +40,7 @@ export const chapters = [
       ['Der Widerspruch', 'Handarbeit ist teuer. Die Produkte von Morris & Co. kann sich vor allem das wohlhabende Bürgertum leisten, nicht die Arbeiter, für deren Würde Morris eintrat. Dennoch wirkt die Bewegung weiter: Ihre Ideen gelangen über Werkstätten und Schulen nach Wien, nach Deutschland und an das frühe Bauhaus.']
     ],
     merke: ['Arts and Crafts kritisiert Serienware und Arbeitsteilung.', 'Morris versteht Gestaltung als soziale Reform, seine Produkte bleiben aber teuer.', 'May Morris leitet die Stickereiabteilung und entwirft eigenständig.'],
-    img: { 1: ['strawberry-thief', 'kelmscott-chaucer'] }
+    img: { 1: ['strawberry-thief', 'kelmscott-chaucer'], 2: ['may-morris-stickerei'], 3: ['red-house'] }
   },
   {
     id: 'jugendstil', period: '1890–1914', title: 'Jugendstil, Art Nouveau und Wiener Moderne', subtitle: 'Die Linie als Ausdruck und der Streit ums Ornament',
@@ -52,7 +52,7 @@ export const chapters = [
       ['Adolf Loos: „Ornament und Verbrechen“', 'Der Architekt Adolf Loos hält 1910 in Wien den Vortrag „Ornament und Verbrechen“. Später wird der Text oft auf 1908 datiert, gedruckt erscheint er zuerst 1913 auf Französisch. Loos argumentiert, Ornament verschwende Arbeit und Material und sei für eine moderne Kultur überholt. Der Text wird zu einem Leitbild der Moderne, auch wenn sein Ton heute provozierend und in Teilen abwertend wirkt.']
     ],
     merke: ['Art Nouveau verbindet Naturform mit industriell gefertigten Bauteilen.', 'Margaret Macdonald Mackintosh ist gleichberechtigte Gestalterin der Glasgower Räume.', 'Loos macht 1910 das Ornament zur Streitfrage der Moderne.'],
-    img: { 0: ['horta-tassel', 'guimard-metro'] },
+    img: { 0: ['horta-tassel', 'guimard-metro'], 1: ['may-queen'], 2: ['secession'], 3: ['looshaus'] },
     links: [['The Hunterian, Glasgow (Sammlung Mackintosh)', 'https://www.gla.ac.uk/hunterian/']]
   },
   {
@@ -67,7 +67,7 @@ export const chapters = [
       ['Herkunft als Markenversprechen heute', 'Auch heute verbinden Unternehmen Herkunft mit Qualität, etwa mit „Designed in California“ auf Geräteverpackungen oder mit „Engineered in Germany“. Gestaltet wird dabei nicht nur das Produkt, sondern auch das Versprechen, das mit dem Ort verknüpft ist. Fragen Sie bei solchen Angaben: Was wird tatsächlich wo entworfen und hergestellt? Und hält die Gestaltung im Interface, was die Herkunftsangabe verspricht?']
     ],
     merke: ['Der Werkbund (1907) verbindet Kunst, Handwerk und Industrie.', 'Behrens gestaltet für die AEG ein frühes Corporate Design.', '1914 streiten Muthesius (Typisierung) und van de Velde (künstlerische Freiheit).', '„Made in Germany“ beginnt 1887 als britische Pflichtangabe und wird zum Qualitätsversprechen.', 'Pick, Johnston und Beck machen die Londoner Underground zum Vorbild für Informationsdesign.'],
-    img: { 1: ['behrens-aeg'] },
+    img: { 1: ['behrens-aeg'], 3: ['underground'] },
     task: { title: 'Aufgabe: Das Beck-Prinzip in der App', text: 'Harry Beck zeigt im Netzplan nicht die Geografie, sondern die Struktur: Reihenfolge, Verzweigungen und Umsteigepunkte. Übertragen Sie das auf die Navigation einer App, die Sie kennen. Zeichnen Sie die Bildschirme als Stationen und die Wege dazwischen als Linien, nur waagerecht, senkrecht und diagonal. Wo liegen die „Umsteigepunkte“, an denen Nutzende zwischen Bereichen wechseln? Was lassen Sie bewusst weg?', fields: ['App und Ausschnitt', 'Stationen (Bildschirme)', 'Linien und Umsteigepunkte', 'Was Sie weglassen und warum', 'Erkenntnis für die Navigation'] },
     links: [['Harry Becks Netzplan von 1933 (Transport for London)', 'https://tfl.gov.uk/corporate/about-tfl/culture-and-heritage/art-and-design/harry-becks-tube-map'], ['How Harry Beck revolutionised the Tube map (London Museum)', 'https://www.londonmuseum.org.uk/collections/london-stories/harry-beck-revolutionised-tube-map/'], ['E. E. Williams: Made in Germany (1896), kommentierter Auszug (German History in Documents and Images)', 'https://germanhistorydocs.org/de/das-wilhelminische-kaiserreich-und-der-erste-weltkrieg-1890-1918/e-e-williams-made-in-germany-1896'], ['„Made in Germany“ was Made in Britain, 1887 (German History Intersections)', 'https://germanhistory-intersections.org/en/germanness/ghis:document-230'], ['Bundeszentrale für politische Bildung: Made in Germany (APuZ)', 'https://www.bpb.de/shop/zeitschriften/apuz/made-in-germany-2026/579136/warnung-werbung-wunschdenken/']]
   },
@@ -81,7 +81,7 @@ export const chapters = [
       ['Sophie Taeuber-Arp', 'Sophie Taeuber-Arp (1889–1943) unterrichtet Textilgestaltung in Zürich, entwirft Stoffe, Marionetten, Möbel und abstrakte Kompositionen. Mit Hans Arp und Theo van Doesburg gestaltet sie 1926–1928 die Innenräume der Aubette in Straßburg, ein Vergnügungslokal mit farbigen Wandflächen. Ihre Arbeit verbindet Kunst und Gebrauch selbstverständlich, sie wurde aber lange vor allem als Partnerin von Hans Arp wahrgenommen.']
     ],
     merke: ['Futurismus macht Typografie zu Bewegung und Klang.', 'Dada erfindet mit Hannah Höch und anderen die Fotomontage.', 'De Stijl reduziert Gestaltung auf Fläche, Linie und Grundfarbe, Sophie Taeuber-Arp überträgt das in den Raum.'],
-    img: { 0: ['zang-tumb-tumb'], 2: ['mondrian-komposition'] },
+    img: { 0: ['zang-tumb-tumb'], 2: ['mondrian-komposition'], 3: ['taeuber'] },
     links: [['Hannah Höch (Berlinische Galerie)', 'https://berlinischegalerie.de/sammlung/'], ['Gerrit Rietveld, Rot-Blauer Stuhl (Stedelijk Museum Amsterdam)', 'https://www.stedelijk.nl/en/collection']]
   },
   {
@@ -96,7 +96,7 @@ export const chapters = [
       ['Was bleibt, wenn nur der Stil bleibt?', 'Diagonale, Rot-Schwarz und Fotomontage tauchen bis heute in Plattencovern, Werbung und Branding auf. Die politische Absicht, eine neue Gesellschaft zu gestalten, verschwindet dabei meist. Fragen Sie bei einem Zitat dieses Stils immer: Was übernehme ich, und was lasse ich weg?']
     ],
     merke: ['Nach 1917 soll Kunst als Produktion den Alltag gestalten.', 'Lissitzky, Rodtschenko, Klucis und die Stenbergs prägen Plakat und Buch, Stepanowa und Popowa den Stoffdruck.', 'Die WChUTEMAS ist das Gegenstück zum Bauhaus, Tschichold bringt die Ideen in die westliche Typografie.'],
-    img: { 0: ['malewitsch-quadrat'], 2: ['lissitzky-keil'], 3: ['popowa-stoff'] },
+    img: { 0: ['malewitsch-quadrat'], 1: ['tatlin'], 2: ['lissitzky-keil', 'klucis'], 3: ['popowa-stoff'] },
     links: [['Alexander Rodtschenko (MoMA, Sammlungssuche)', 'https://www.moma.org/collection/?q=Rodchenko'], ['Warwara Stepanowa, Stoffentwürfe (Victoria and Albert Museum)', 'https://collections.vam.ac.uk/search/?q=stepanova'], ['Brüder Stenberg, Filmplakate (MoMA, Sammlungssuche)', 'https://www.moma.org/collection/?q=Stenberg']],
     task: { title: 'Aufgabe: Plakatanalyse', text: 'Analysieren Sie Lissitzkys Plakat „Schlagt die Weißen mit dem roten Keil“ oder ein anderes Plakat der russischen Avantgarde. Beschreiben Sie Diagonale, Farbe, Schrift und Bildmittel. Welche politische Aussage entsteht nur aus der Form? Suchen Sie ein heutiges Beispiel, das diesen Stil zitiert, und vergleichen Sie die Absicht.', fields: ['Diagonale und Bewegung', 'Farbe', 'Schrift und Fotomontage', 'Politische Aussage', 'Heutiges Zitat und Vergleich'] }
   },
@@ -112,7 +112,7 @@ export const chapters = [
       ['Neues Bauen: Lilly Reich und Margarete Schütte-Lihotzky', 'Lilly Reich ist Mitglied im Vorstand des Werkbunds und arbeitet ab 1927 eng mit Mies van der Rohe zusammen, an Ausstellungen und Möbeln. Ihr Anteil an Arbeiten, die lange nur Mies zugeschrieben wurden, wird heute neu bewertet. 1932/33 leitet sie die Ausbauwerkstatt und Weberei am Bauhaus. Margarete Schütte-Lihotzky entwirft 1926 im Neuen Frankfurt die „Frankfurter Küche“, eine platzsparende Einbauküche, deren Abläufe sie nach dem Vorbild der Arbeitsstudien wie einen Arbeitsplatz analysiert. Sie wird in Tausenden Wohnungen eingebaut.'],
       ['Mythos „Bauhaus-Stil“', 'Weiße Kuben, Stahlrohr und Grundfarben gelten heute als „Bauhaus-Stil“. Die Schule selbst lehnte einen festen Stil ab. Vieles, was später so genannt wurde, entstand anderswo oder nach 1933 im Exil. Das Bild wurde auch durch die Ausstellung „Bauhaus 1919–1928“ im Museum of Modern Art 1938 geprägt.']
     ],
-    img: { 4: ['ford-fliessband'] }, noTileImg: true,
+    img: { 0: ['bauhaus-dessau'], 4: ['ford-fliessband'] },
     merke: ['Das Bauhaus (1919–1933) entwickelt sich vom Handwerk zum Prototyp für die Industrie.', 'Gunta Stölzl leitet ab 1927 die Weberei, Marianne Brandt 1928/29 die Metallwerkstatt.', 'Lilly Reich und Margarete Schütte-Lihotzky prägen Ausstellung, Möbel und Küche des Neuen Bauens.', 'Taylorismus und Fordismus (Fließband ab 1913) prägen das Denken in Typen und Abläufen.'],
     links: [['Bauhaus-Archiv / Museum für Gestaltung, Berlin', 'https://www.bauhaus.de/'], ['Frankfurter Küche (MAK Wien)', 'https://sammlung.mak.at/sammlung_online?&q=Frankfurter%20K%C3%BCche']]
   },
@@ -126,6 +126,7 @@ export const chapters = [
       ['Styling, Obsoleszenz und MAYA', 'Styling bedeutet, die Oberfläche eines Produkts zu verändern, ohne seine Technik zu ändern. Jährlich neue Modelle sollen zum Kauf anregen, eine Strategie, die später als geplante Obsoleszenz kritisiert wird. Loewy beschreibt sein Prinzip als MAYA, „Most Advanced Yet Acceptable“: so modern wie möglich, aber noch vertraut genug, um gekauft zu werden. Auf der New Yorker Weltausstellung 1939 zeigt Bel Geddes in „Futurama“ für General Motors eine Stadt der Zukunft mit Autobahnen.'],
       ['Gegenbild zu Bauhaus und Werkbund', 'Werkbund und Bauhaus wollten mit Typ und Norm langlebige Produkte schaffen. Das amerikanische Industrial Design zielt auf Verkauf, Wechsel und Gefühl. Beide Haltungen bestimmen das Design des 20. Jahrhunderts, und beide finden Sie heute in der Produktentwicklung digitaler Dienste wieder.']
     ],
+    img: { 0: ['paris1925'], 2: ['prr-s1'], 3: ['gm1939'] },
     merke: ['Paris 1925 steht für Art déco, Eileen Gray und Charlotte Perriand gestalten die Moderne mit.', 'In den USA wird Design nach 1929 zum Verkaufsargument, der Industrial Designer entsteht als Beruf.', 'Stromlinie, Styling und MAYA verbinden Fortschrittssymbol und Kaufanreiz.'],
     links: [['Raymond Loewy (Cooper Hewitt)', 'https://collection.cooperhewitt.org/search/collection?query=loewy'], ['Norman Bel Geddes, Emerson Patriot Radio (The Met)', 'https://metmuseum.org/art/collection/search/490786'], ['Eileen Gray (Centre Pompidou)', 'https://www.centrepompidou.fr/fr/recherche/oeuvres?terms=eileen%20gray']]
   },
@@ -142,6 +143,7 @@ export const chapters = [
       ['Exil in London und die britische Moderne', 'London ist für einige Bauhaus-Lehrer eine Zwischenstation. Der Unternehmer Jack Pritchard und Molly Pritchard lassen von Wells Coates die Lawn Road Flats in Hampstead bauen, ein modernes Apartmenthaus, das 1934 eröffnet. Walter Gropius wohnt dort von 1934 bis 1937 und arbeitet für Pritchards Firma Isokon, Marcel Breuer entwirft für Isokon Möbel aus Sperrholz, etwa eine Liege. Wells Coates gestaltet zudem das runde Bakelit-Radio Ekco AD65 (Entwurf 1932, ab 1934 hergestellt). Mehrheitsfähig ist diese Moderne in Großbritannien nicht: Die meisten Käuferinnen und Käufer wählen Häuser im Stil nachgeahmter Tudor-Fachwerkbauten und gepolsterte Sitzgarnituren. Gropius und Breuer gehen 1937 weiter in die USA.'],
       ['Kontinuitäten nach 1945', 'Viele Gestalter, Firmen und Hochschullehrer, die im Nationalsozialismus gearbeitet haben, setzen ihre Karriere nach 1945 fort. Die Erzählung einer „Stunde Null“ verdeckt diese Kontinuitäten. Die Forschung zur Designgeschichte dieser Zeit ist bis heute nicht abgeschlossen.']
     ],
+    img: { 6: ['isokon'] }, noTileImg: true,
     merke: ['Gestaltung wird nach 1933 gleichgeschaltet und für Propaganda genutzt.', 'Funktionale Moderne und völkischer Heimatstil bestehen nebeneinander.', 'Verfolgung, Ermordung und Exil zerstören Lebenswege, das Exil trägt die Moderne in die USA.', 'Kanister und Utility-Möbel zeigen: Gute Ergonomie sagt nichts über den Zweck, Rationierung kann demokratisch gestaltet werden.'],
     noImages: true,
     links: [['Volksempfänger (LeMO, Deutsches Historisches Museum)', 'https://www.dhm.de/lemo/kapitel/ns-regime/alltagsleben/volksempfaenger'], ['Friedl Dicker-Brandeis (Jüdisches Museum Prag)', 'https://www.jewishmuseum.cz/en/'], ['Normalschrifterlass, Faksimile (Universität Heidelberg)', 'https://www.uni-heidelberg.de/unimut/themen/fraktur-verbot.html'], ['Utility Furniture, Objekte und Katalog (Victoria and Albert Museum)', 'https://collections.vam.ac.uk/search/?q=utility%20furniture'], ['Wells Coates, Ekco AD65 (Victoria and Albert Museum)', 'https://collections.vam.ac.uk/item/O22790/ekco-ad-65-radio-coates-wells'], ['Isokon Gallery, London', 'https://isokongallery.org/pages/the-isokon-story']]
@@ -182,6 +184,7 @@ export const chapters = [
       ['Corporate Design', 'Otl Aicher und seine Entwicklungsgruppe an der HfG Ulm entwickeln 1962/63 das Erscheinungsbild der Lufthansa: den Kranich im Kreis, Blau und Gelb, Helvetica und ein Handbuch mit verbindlichen Regeln. Für die Olympischen Spiele 1972 in München gestaltet Aicher ein heiteres Erscheinungsbild mit einer hellen Farbpalette, in der Rot bewusst fehlt, und mit Piktogrammen für die Sportarten, bewusst als Gegenbild zur Inszenierung von 1936.'],
       ['Verbindung zu anderen Modulen', 'Raster und Satzspiegel vertiefen Sie im Modul „Layout und Raster“, Grotesk, Schriftklassifikation und Lesbarkeit im Modul „Typografie“.']
     ],
+    img: { 3: ['olympia'] },
     merke: ['Swiss Style verbindet Raster, Grotesk und objektive Fotografie.', '1957 erscheinen Helvetica (als Neue Haas Grotesk) und Univers.', 'Aichers Lufthansa-Erscheinungsbild und Olympia 1972 sind Meilensteine des Corporate Designs.'],
     links: [['Museum für Gestaltung Zürich (Sammlung Plakate und Grafik)', 'https://www.museum-gestaltung.ch/'], ['Pinakothek der Moderne, München (Die Neue Sammlung)', 'https://www.pinakothek-der-moderne.de/'], ['Modul Layout und Raster', '../layout-raster/'], ['Modul Typografie', '../typografie/']]
   },

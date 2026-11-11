@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=4';
+import { chapters } from './kapitel.js?v=5';
 import { people, timeline, terms, quiz, literature } from './wissen.js?v=3';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen } from './uebungen.js?v=1';
-import { bilder } from './bilder.js?v=3';
+import { bilder } from './bilder.js?v=4';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -144,7 +144,7 @@ function chapterPage(c, i) {
     <h1 class="page-title purple">${c.title}</h1><p class="page-intro">${c.lead}</p>
     ${c.leitfragen ? section('Leitfragen durch alle Kapitel', `<ul class="dg-leitfragen">${c.leitfragen.map((q) => `<li>${q}</li>`).join('')}</ul>`, true) : ''}
     ${c.sections.map(([h, t], j) => `<section class="story-section"><h2>${h}</h2><p>${t}</p>${c.img?.[j] ? `<div class="dg-figs${c.img[j].length > 1 ? ' two' : ''}">${c.img[j].map((k) => figure(k)).join('')}</div>` : ''}</section>`).join('')}
-    ${c.noImages ? '<p class="story-note dg-note">Dieses Kapitel zeigt bewusst keine Abbildungen. Propagandabilder und Symbole des Nationalsozialismus werden nicht als Schmuck verwendet. Über die Links unten gelangen Sie zu kommentierten Quellen.</p>' : ''}
+    ${c.noImages ? '<p class="story-note dg-note">Dieses Kapitel zeigt bewusst keine Propagandabilder und keine Symbole des Nationalsozialismus. Die einzige Abbildung zeigt einen Ort des Exils in London. Über die Links unten gelangen Sie zu kommentierten Quellen.</p>' : ''}
     ${c.links?.length ? section('Werke und Quellen ansehen', `<p class="story-note">Geschützte Werke zeigen wir nicht, sondern verlinken auf Sammlungen und Archive.</p><ul class="dg-links">${c.links.map(([t, u]) => `<li><a href="${u}">${t}</a></li>`).join('')}</ul>`) : ''}
     ${people.length ? section('Köpfe in diesem Kapitel', `<ul class="dg-people-mini">${people.map(([n, d, , w]) => `<li>${n} <span>(${d})</span>${w ? ' <span class="dg-tag">Gestalterin</span>' : ''}</li>`).join('')}</ul><a class="btn" href="#koepfe">Alle Köpfe</a>`) : ''}
     ${c.task ? section(c.task.title, `<p>${c.task.text}</p><div class="story-fields">${c.task.fields.map((f, j) => `<label>${f}<textarea data-draft="${c.id}:${j}" rows="3"></textarea></label>`).join('')}<p class="story-note" role="status">Ihre Notizen werden in diesem Browser gespeichert.</p></div>`, true) : ''}
