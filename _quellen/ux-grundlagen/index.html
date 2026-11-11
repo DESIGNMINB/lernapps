@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../theme.js?v=17"></script>
+    <link rel="icon" href="../favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="../fonts/ibm-plex-sans.css">
+    <title>UX Grundlagen Lernmodul</title>
+      <style>
+      /* Vorschlag: Link zur Übersicht der Lern-Apps auf dem Desktop als lila Rahmen statt gefüllter Fläche */
+      @media (min-width: 768px) {
+        .lern-back { background: transparent !important; color: #64378C !important; border-color: transparent !important; }
+        .lern-back:hover, .lern-back:focus-visible { background: #F1EEF4 !important; }
+        .lern-back:focus-visible { box-shadow: 0 0 0 3px rgba(100, 55, 140, .3) !important; }
+        .lern-back > svg { color: #64378C !important; }
+        .lern-back > span:first-of-type { background: #64378C !important; color: #fff !important; box-shadow: 3px -3px 0 rgba(100, 55, 140, .45), 6px -6px 0 rgba(100, 55, 140, .22) !important; }
+        .lern-back small { color: #64378C !important; }
+        [data-theme="dark"] .lern-back { color: #C8A8DE !important; border-color: transparent !important; }
+        [data-theme="dark"] .lern-back:hover, [data-theme="dark"] .lern-back:focus-visible { background: #2A2140 !important; }
+        [data-theme="dark"] .lern-back > svg, [data-theme="dark"] .lern-back small { color: #C8A8DE !important; }
+        [data-theme="dark"] .lern-back > span:first-of-type { background: #C8A8DE !important; color: #1A1D27 !important; box-shadow: 3px -3px 0 rgba(200, 168, 222, .45), 6px -6px 0 rgba(200, 168, 222, .22) !important; }
+      }
+      /* Navigation: Home ohne lila Fläche. Icon lila, Text fett, Hover grau wie bei den übrigen Punkten,
+         aktiv mit lila Balken links */
+      .nav-home { background: transparent !important; color: #1F2937 !important; font-weight: 700 !important; }
+      .nav-home svg { color: #64378C !important; stroke-width: 2.25 !important; }
+      .nav-home:hover { background: #F3F4F6 !important; }
+      .nav-home:focus-visible { outline: 2px solid #64378C; outline-offset: 2px; }
+      [data-theme="dark"] .nav-home { color: #E5E7EB !important; }
+      [data-theme="dark"] .nav-home svg { color: #C8A8DE !important; }
+      [data-theme="dark"] .nav-home:hover { background: #252836 !important; }
+      [data-theme="dark"] .nav-home:focus-visible { outline-color: #C8A8DE; }
+      /* App-Kopf auf dem Desktop oben im Contentbereich statt in der Seitenleiste (nicht auf der Übersicht) */
+      .ux-content-head { display: none; }
+      @media (min-width: 768px) {
+        .ux-content-head { display: flex; align-items: center; justify-content: flex-start; gap: 12px; width: 100%; max-width: 1024px; margin: 0 auto 32px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+        .ux-content-head .mark { width: 40px; height: 40px; border-radius: 10px; background: #64378C; color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+        .ux-content-head .name { display: flex; flex-direction: column; font-size: 20px; font-weight: 700; line-height: 1.2; color: #1F2937; }
+        .ux-content-head .name small { margin-top: 2px; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #5B6270; }
+        [data-theme="dark"] .ux-content-head .name { color: #F3F4F6; }
+        [data-theme="dark"] .ux-content-head .name small { color: #9CA3AF; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+# Abhängigkeiten und Build
+node_modules/
+dist/
+
+# Umgebungsvariablen / Schlüssel
+.env
+.env.*
+!.env.example
+
+# Lokale Editor-/Tool-Einstellungen
+.claude/settings.local.json
+.DS_Store
+*.log
