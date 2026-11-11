@@ -148,5 +148,7 @@ export const bilder = {
   "license": "gemeinfrei",
   "licenseUrl": "",
   "page": "https://commons.wikimedia.org/wiki/File:Textile_design_-_Liubov_Popova_-_c.1924.jpg"
- }
+ },
+ "wedgwood-vase": {"file": "wedgwood-vase.webp", "w": 667, "h": 1000, "caption": "Josiah Wedgwood und Thomas Bentley, „First Day’s Vase“, gedreht am Eröffnungstag der Fabrik Etruria, 13. Juni 1769 (Wedgwood Museum, Barlaston)", "alt": "Schwarze Vase mit zwei Henkeln und Deckel, darauf eine Inschrift zum Eröffnungstag von Etruria am 13. Juni 1769", "artist": "Daderot", "license": "gemeinfrei", "licenseUrl": "", "page": "https://commons.wikimedia.org/wiki/File:First_Day_Vase,_shape_49_in_the_Shape_Number_One_Book,_inscription,_13_June_1769,_basalt_with_encaustic_decoration_-_Wedgwood_Museum_-_Barlaston,_Stoke-on-Trent,_England_-_DSC09576.jpg"},
+ "ford-fliessband": {"file": "ford-fliessband.webp", "w": 1000, "h": 722, "caption": "Fließbandfertigung von Magnetzündern bei Ford in Highland Park, 1913", "alt": "Schwarzweißfoto: Arbeiter stehen an einem langen Montageband und bauen gleichartige runde Bauteile zusammen", "artist": "unbekannt (Ford Motor Company)", "license": "gemeinfrei", "licenseUrl": "", "page": "https://commons.wikimedia.org/wiki/File:Ford_assembly_line_-_1913.jpg"}
 };

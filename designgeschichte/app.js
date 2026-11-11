@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=3';
-import { people, timeline, terms, quiz, literature } from './wissen.js?v=2';
+import { chapters } from './kapitel.js?v=4';
+import { people, timeline, terms, quiz, literature } from './wissen.js?v=3';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen } from './uebungen.js?v=1';
-import { bilder } from './bilder.js?v=2';
+import { bilder } from './bilder.js?v=3';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -24,7 +24,7 @@ const exercises = [
   { id: 'u-rams', title: 'Rams’ Thesen am Interface', subtitle: 'Eine heutige App bewerten und als Word-Dokument exportieren', icon: 'check' }
 ];
 const wissenPages = [
-  { id: 'zeitleiste', title: 'Zeitleiste', subtitle: `${timeline.length} Stationen von 1851 bis heute`, icon: 'clock', chip: 'Z' },
+  { id: 'zeitleiste', title: 'Zeitleiste', subtitle: `${timeline.length} Stationen von 1707 bis heute`, icon: 'clock', chip: 'Z' },
   { id: 'koepfe', title: 'Köpfe', subtitle: `${people.length} Kurzporträts, filterbar nach Epoche`, icon: 'people', chip: 'K' },
   { id: 'glossar', title: 'Glossar', subtitle: `${terms.length} Begriffe von ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de'))[0][0]} bis ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).at(-1)[0]}`, icon: 'book', chip: 'A–Z' },
   { id: 'literatur', title: 'Literatur und Bildnachweis', subtitle: 'Bücher zum Weiterlesen und Quellen der Abbildungen', icon: 'book', chip: 'L' }
@@ -81,7 +81,7 @@ function figure(key, cls = '') {
     <figcaption>${esc(b.caption)} <span class="dg-credit">${b.ki ? 'KI-generiert mit Magnific, Stimmungsbild ohne reale Vorlage' : `Nachweis: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}`}</span></figcaption></figure>`;
 }
 function tileArt(page, chip) {
-  const key = page.img ? Object.values(page.img)[0][0] : null;
+  const key = page.img && !page.noTileImg ? Object.values(page.img)[0][0] : null;
   const b = key && bilder[key];
   const badge = done[page.id] ? '<span class="tag-done">Erledigt</span>' : '';
   const art = b ? `<img src="img/${b.file}" alt="" width="${b.w}" height="${b.h}" loading="lazy">${b.ki ? '<span class="ki-badge" aria-hidden="true">KI-generiert</span>' : ''}` : (page.period ? `<span class="dg-tile-plain" aria-hidden="true">${esc(page.period)}</span>` : `<span class="dg-tile-icon" aria-hidden="true">${icon(page.icon || 'chapter')}</span>`);
@@ -344,8 +344,8 @@ function wireRams() {
 /* ---------- Wissen ---------- */
 function wissenPage(p) {
   const head = `<h1 class="page-title purple">${p.title}</h1>`;
-  if (p.id === 'zeitleiste') return head + `<p class="page-intro">Von der Weltausstellung 1851 bis heute. Jeder Eintrag führt zum passenden Kapitel.</p>
-    <ol class="dg-timeline">${timeline.map(([, y, t, ch]) => `<li><span class="dg-year">${y}</span><a href="#${ch}">${t}</a></li>`).join('')}</ol>`;
+  if (p.id === 'zeitleiste') return head + `<p class="page-intro">Vom Sandguss-Patent 1707 bis heute. Jeder Eintrag führt zum passenden Kapitel.</p>
+    <ol class="dg-timeline">${[...timeline].sort((x, y) => x[0] - y[0]).map(([, y, t, ch]) => `<li><span class="dg-year">${y}</span><a href="#${ch}">${t}</a></li>`).join('')}</ol>`;
   if (p.id === 'koepfe') {
     const eras = chapters.filter((c) => people.some((x) => x[2] === c.id));
     return head + `<p class="page-intro">${people.length} Gestalterinnen und Gestalter, Kritiker und Lehrende, nach Kapiteln geordnet. Die Lebensdaten sind mit Wikidata abgeglichen.</p>
