@@ -1,5 +1,5 @@
 import { chapters } from './kapitel.js?v=7';
-import { people, timeline, terms, quiz, literature } from './wissen.js?v=5';
+import { people, timeline, terms, quiz, literature } from './wissen.js?v=6';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=3';
 import { bilder } from './bilder.js?v=6';
 import { makeDocx } from './docx.js?v=1';
