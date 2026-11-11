@@ -101,3 +101,11 @@ export const thesen = [
   ['Gutes Design ist so wenig Design wie möglich.', 'Ist alles Überflüssige weggelassen?']
 ];
 export const thesenStufen = [['ja', 'trifft zu'], ['teils', 'teilweise'], ['nein', 'trifft nicht zu']];
+
+// Ergänzung zu Übung 6: Inklusion (nicht Teil von Rams’ Thesen)
+export const inklusion = [
+  ['Bedienbar mit der Tastatur', 'Lassen sich alle Funktionen ohne Maus oder Touch erreichen, in sinnvoller Reihenfolge?'],
+  ['Sichtbarer Fokus', 'Ist jederzeit erkennbar, welches Element gerade ausgewählt ist?'],
+  ['Verständliche Beschriftungen', 'Haben Schaltflächen, Felder und Symbole eindeutige Namen, auch für Screenreader?'],
+  ['Information nicht nur über Farbe', 'Werden Zustände wie Fehler oder Auswahl auch durch Text, Form oder Symbol vermittelt?']
+];

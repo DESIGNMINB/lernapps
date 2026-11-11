@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=5';
-import { people, timeline, terms, quiz, literature } from './wissen.js?v=3';
-import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen } from './uebungen.js?v=1';
-import { bilder } from './bilder.js?v=4';
+import { chapters } from './kapitel.js?v=6';
+import { people, timeline, terms, quiz, literature } from './wissen.js?v=4';
+import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=2';
+import { bilder } from './bilder.js?v=5';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -147,7 +147,7 @@ function chapterPage(c, i) {
     ${c.noImages ? '<p class="story-note dg-note">Dieses Kapitel zeigt bewusst keine Propagandabilder und keine Symbole des Nationalsozialismus. Die einzige Abbildung zeigt einen Ort des Exils in London. Über die Links unten gelangen Sie zu kommentierten Quellen.</p>' : ''}
     ${c.links?.length ? section('Werke und Quellen ansehen', `<p class="story-note">Geschützte Werke zeigen wir nicht, sondern verlinken auf Sammlungen und Archive.</p><ul class="dg-links">${c.links.map(([t, u]) => `<li><a href="${u}">${t}</a></li>`).join('')}</ul>`) : ''}
     ${people.length ? section('Köpfe in diesem Kapitel', `<ul class="dg-people-mini">${people.map(([n, d, , w]) => `<li>${n} <span>(${d})</span>${w ? ' <span class="dg-tag">Gestalterin</span>' : ''}</li>`).join('')}</ul><a class="btn" href="#koepfe">Alle Köpfe</a>`) : ''}
-    ${c.task ? section(c.task.title, `<p>${c.task.text}</p><div class="story-fields">${c.task.fields.map((f, j) => `<label>${f}<textarea data-draft="${c.id}:${j}" rows="3"></textarea></label>`).join('')}<p class="story-note" role="status">Ihre Notizen werden in diesem Browser gespeichert.</p></div>`, true) : ''}
+    ${[].concat(c.task || []).map((task, ti) => section(task.title, `<p>${task.text}</p><div class="story-fields">${task.fields.map((f, j) => `<label>${f}<textarea data-draft="${c.id}:${ti ? ti + ':' : ''}${j}" rows="3"></textarea></label>`).join('')}<p class="story-note" role="status">Ihre Notizen werden in diesem Browser gespeichert.</p></div>`, true)).join('')}
     ${section('Zum Merken', `<ul>${c.merke.map((m) => `<li>${m}</li>`).join('')}</ul>
       <label class="dg-done"><input type="checkbox" id="chapter-done"> Kapitel gelesen</label>`, true, 'dg-merke')}`;
 }
@@ -211,7 +211,7 @@ function exercisePage(e, i) {
       <label for="st-m-${j}">Merkmal</label><select id="st-m-${j}">${opts(shuffleFixed(stuhlMerkmale))}</select>
       <p class="story-match-note" id="st-${j}-note"></p></div>`).join('')}</div>
     <button type="button" class="btn btn-primary" id="st-check">Zuordnung prüfen</button><p class="story-result" id="st-result" role="status"></p>`, true);
-  if (e.id === 'u-radio') return head + section('Drei Radios', `<p>Drei Radios aus drei Jahrzehnten zeigen drei Haltungen. Ordnen Sie Haltung, Material und Formensprache zu.</p>
+  if (e.id === 'u-radio') return head + section('Drei Radios', `<p>Drei Radios aus drei Jahrzehnten lassen sich aus drei Perspektiven lesen: verkaufen, ordnen, begeistern. Diese Perspektiven sind eine Lernhilfe. In jedem Gerät überlagern sie sich, und sie sind keine nationalen Eigenschaften: Henry Dreyfuss stellte in den USA die Ergonomie in den Mittelpunkt, Olivettis Lettera 22 ist vor allem eine präzise technische Lösung. Ordnen Sie zu, welche Perspektive, welches Material und welche Formensprache jeweils am deutlichsten hervortreten.</p>
     <div class="dg-cards">${radios.map((r) => `<div class="dg-card"><h3>${r.name}</h3><p class="story-note">${r.example}</p><p>${r.desc}</p>
       ${Object.entries(radioOptionen).map(([k, list]) => `<label for="ra-${r.id}-${k}">${{ haltung: 'Haltung', material: 'Material', form: 'Formensprache' }[k]}</label><select id="ra-${r.id}-${k}">${opts(list)}</select>`).join('')}
       <p class="story-match-note" id="ra-${r.id}-note"></p></div>`).join('')}</div>
@@ -229,12 +229,19 @@ function exercisePage(e, i) {
     <button type="button" class="btn btn-primary" id="zi-check">Zuordnung prüfen</button><p class="story-result" id="zi-result" role="status"></p>`, true);
   if (e.id === 'u-rams') return head + section('Eine App bewerten', `<p>Dieter Rams hat zehn Thesen für gutes Design formuliert (<a href="https://www.vitsoe.com/de/about/good-design">Wortlaut bei Vitsœ</a>). Wenden Sie sie auf eine App an, die Sie täglich nutzen. Bewerten Sie jede These und notieren Sie eine Beobachtung.</p>
     <div class="story-fields"><label>Bewertete App<input type="text" id="rams-app" placeholder="z. B. eine Nahverkehrs-App"></label></div>
-    <ol class="dg-rams">${thesen.map(([t, q], j) => `<li><fieldset><legend><b>${t}</b> <span class="story-note">${q}</span></legend>
-      <div class="dg-rams-scale">${thesenStufen.map(([k, l]) => `<label><input type="radio" name="rams${j}" value="${k}"> ${l}</label>`).join('')}</div>
-      <label class="dg-rams-note">Beobachtung<input type="text" data-rams-note="${j}"></label></fieldset></li>`).join('')}</ol>
+    <div class="dg-rams-wrap"><ol class="dg-rams">${thesen.map(([t, q], j) => ramsItem(j, t, q)).join('')}</ol>
+    <h3>Ergänzung: Inklusion</h3>
+    <p>Rams’ Thesen sagen wenig darüber, ob alle Menschen ein Produkt nutzen können. Prüfen Sie deshalb zusätzlich vier Grundkriterien der Barrierefreiheit. Mehr dazu im Kapitel <a href="../ux-grundlagen/#accessibility">Barrierefreiheit der UX Grundlagen</a>.</p>
+    <ol class="dg-rams dg-rams-inkl">${inklusion.map(([t, q], j) => ramsItem('i' + j, t, q)).join('')}</ol></div>
     <p class="story-result" id="rams-sum" role="status"></p>
     <div class="btn-group"><button type="button" class="btn btn-download" id="rams-docx" aria-label="Bewertung als Word-Dokument herunterladen">Word-Dokument</button><button type="button" class="btn" id="rams-md" aria-label="Bewertung als Markdown herunterladen">Markdown</button></div>`, true);
   return head;
+}
+
+function ramsItem(key, t, q) {
+  return `<li><fieldset><legend><b>${t}</b> <span class="story-note">${q}</span></legend>
+      <div class="dg-rams-scale">${thesenStufen.map(([k, l]) => `<label><input type="radio" name="rams${key}" value="${k}"> ${l}</label>`).join('')}</div>
+      <label class="dg-rams-note">Beobachtung<input type="text" data-rams-note="${key}"></label></fieldset></li>`;
 }
 
 function feedbackRow(note, ok, text) { note.className = `story-match-note ${ok ? 'is-ok' : 'is-off'}`; note.textContent = text; }
@@ -304,19 +311,20 @@ function wireRams() {
   const app = $('#rams-app');
   app.value = rams.app || '';
   app.oninput = () => { rams.app = app.value; save(); };
-  thesen.forEach((_, j) => {
+  const keys = [...thesen.map((_, j) => String(j)), ...inklusion.map((_, j) => 'i' + j)];
+  keys.forEach((j) => {
     const v = rams.rating[j];
     if (v) content.querySelector(`input[name="rams${j}"][value="${v}"]`).checked = true;
     content.querySelector(`[data-rams-note="${j}"]`).value = rams.notes[j] || '';
   });
   const summary = () => {
     const c = { ja: 0, teils: 0, nein: 0 };
-    Object.values(rams.rating).forEach((v) => { c[v]++; });
+    thesen.forEach((_, j) => { const v = rams.rating[j]; if (v) c[v]++; });
     const n = c.ja + c.teils + c.nein;
     $('#rams-sum').textContent = n ? `${n} von ${thesen.length} Thesen bewertet: ${c.ja} trifft zu, ${c.teils} teilweise, ${c.nein} trifft nicht zu.` : '';
     if (n === thesen.length) markDone('u-rams');
   };
-  content.querySelector('.dg-rams').addEventListener('input', (ev) => {
+  content.querySelector('.dg-rams-wrap').addEventListener('input', (ev) => {
     const t = ev.target;
     if (t.name?.startsWith('rams')) rams.rating[t.name.slice(4)] = t.value;
     if (t.dataset.ramsNote) rams.notes[t.dataset.ramsNote] = t.value;
@@ -330,12 +338,14 @@ function wireRams() {
       { eyebrow: true, text: `LERNMODUL ${MODUL} · DESIGNGESCHICHTE · ÜBUNG 6` },
       { h: 1, text: title() },
       { meta: true, text: `Erstellt am ${new Date().toLocaleDateString('de-DE')} · Thesen nach Dieter Rams` },
-      ...thesen.flatMap(([t], j) => [{ h: 2, text: `${j + 1}. ${t}` }, { text: `Bewertung: ${label(j)}` }, { text: rams.notes[j] ? `Beobachtung: ${rams.notes[j]}` : 'Beobachtung: –' }])
+      ...thesen.flatMap(([t], j) => [{ h: 2, text: `${j + 1}. ${t}` }, { text: `Bewertung: ${label(j)}` }, { text: rams.notes[j] ? `Beobachtung: ${rams.notes[j]}` : 'Beobachtung: –' }]),
+      { h: 2, text: 'Ergänzung: Inklusion' },
+      ...inklusion.flatMap(([t], j) => [{ text: `${t}: ${label('i' + j)}${rams.notes['i' + j] ? ` · ${rams.notes['i' + j]}` : ''}` }])
     ];
     download(makeDocx(title(), blocks), 'rams-thesen-bewertung.docx');
   };
   $('#rams-md').onclick = () => {
-    const md = `# ${title()}\n\nThesen nach Dieter Rams · ${new Date().toLocaleDateString('de-DE')}\n\n` + thesen.map(([t], j) => `## ${j + 1}. ${t}\n\n- Bewertung: ${label(j)}\n- Beobachtung: ${rams.notes[j] || '–'}\n`).join('\n');
+    const md = `# ${title()}\n\nThesen nach Dieter Rams · ${new Date().toLocaleDateString('de-DE')}\n\n` + thesen.map(([t], j) => `## ${j + 1}. ${t}\n\n- Bewertung: ${label(j)}\n- Beobachtung: ${rams.notes[j] || '–'}\n`).join('\n') + `\n## Ergänzung: Inklusion\n\n` + inklusion.map(([t], j) => `- ${t}: ${label('i' + j)}${rams.notes['i' + j] ? ` · ${rams.notes['i' + j]}` : ''}`).join('\n') + '\n';
     download(new Blob([md], { type: 'text/markdown;charset=utf-8' }), 'rams-thesen-bewertung.md');
   };
   summary();

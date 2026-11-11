@@ -27,7 +27,7 @@ export const people = [
   ['Hermann Muthesius', '1861–1927', 'werkbund', false, 'Mitbegründer des Werkbunds, fordert 1914 die Typisierung.'],
   ['Henry van de Velde', '1863–1957', 'werkbund', false, 'Belgischer Gestalter, verteidigt 1914 die künstlerische Freiheit gegen die Typisierung.'],
   ['Filippo Tommaso Marinetti', '1876–1944', 'avantgarden', false, 'Begründer des Futurismus, Typografie als „parole in libertà“.'],
-  ['Hannah Höch', '1889–1978', 'avantgarden', true, 'Dada-Künstlerin in Berlin, eine der Erfinderinnen der Fotomontage.'],
+  ['Hannah Höch', '1889–1978', 'avantgarden', true, 'Dada-Künstlerin in Berlin, macht die Fotomontage zu einem zentralen künstlerischen Mittel.'],
   ['John Heartfield', '1891–1968', 'avantgarden', false, 'Entwickelt die politische Fotomontage, später gegen den Nationalsozialismus.'],
   ['Theo van Doesburg', '1883–1931', 'avantgarden', false, 'Gründet 1917 die Gruppe und Zeitschrift De Stijl.'],
   ['Piet Mondrian', '1872–1944', 'avantgarden', false, 'Maler des De Stijl, Kompositionen aus Linien und Grundfarben.'],
@@ -74,7 +74,7 @@ export const people = [
   ['Cini Boeri', '1924–2020', 'italien', true, 'Architektin und Designerin, modulare Sitzmöbel wie Serpentone (1971).'],
   ['Ettore Sottsass', '1917–2007', 'pop', false, 'Gestaltet für Olivetti, gründet 1980/81 die Gruppe Memphis.'],
   ['Josef Müller-Brockmann', '1914–1996', 'swiss', false, 'Prägt den Swiss Style mit Plakaten und dem Buch über Rastersysteme.'],
-  ['Rosmarie Tissi', '1937', 'swiss', true, 'Schweizer Grafikerin, Partnerin im Büro Odermatt & Tissi, farbige und spielerische Plakate.'],
+  ['Rosmarie Tissi', '1937', 'swiss', true, 'Schweizer Grafikerin, ab 1968 Partnerin im Büro Odermatt & Tissi, farbige und spielerische Plakate.'],
   ['Adrian Frutiger', '1928–2015', 'swiss', false, 'Schriftgestalter, Univers (1957) und Frutiger.'],
   ['Verner Panton', '1926–1998', 'pop', false, 'Dänischer Gestalter, Kunststoff-Freischwinger und farbige Raumwelten.'],
   ['Nathalie Du Pasquier', '1957', 'pop', true, 'Entwirft Muster und Textilien für Memphis.'],
@@ -83,6 +83,7 @@ export const people = [
   ['Terence Conran', '1931–2020', 'pop', false, 'Gestalter und Unternehmer. Gründet 1964 Habitat.'],
   ['Philippe Starck', '1949', 'pop', false, 'Französischer Designer. Zitruspresse „Juicy Salif“ für Alessi (1990).'],
   ['Neville Brody', '1957', 'pop', false, 'Grafikdesigner, gestaltet die Zeitschrift „The Face“ in den 1980er-Jahren.'],
+  ['Douglas Engelbart', '1925–2013', 'digital', false, 'Computerpionier. Zeigt 1968 Maus, Hypertext und gemeinsames Arbeiten am Bildschirm.'],
   ['Susan Kare', '1954', 'digital', true, 'Gestaltet 1984 Icons und Schriften für den Apple Macintosh.'],
   ['James Dyson', '1947', 'digital', false, 'Erfinder und Unternehmer. Beutelloser Staubsauger DC01 (1993) nach vielen Prototypen.'],
   ['Hella Jongerius', '1963', 'digital', true, 'Niederländische Designerin, verbindet Industrie und Handwerk, Farbforschung.'],
@@ -146,6 +147,9 @@ export const timeline = [
   [1972, '1972', 'Olympia München, Gestaltung Otl Aicher', 'swiss'],
   [1979, '1979', 'Sony Walkman', 'pop'],
   [1981, '1981', 'Erste Memphis-Ausstellung', 'pop'],
+  [1968, '1968', 'Engelbart führt Maus und Hypertext vor', 'digital'],
+  [1973.5, '1973', 'Xerox Alto mit Fenstern und Maus', 'digital'],
+  [1981.5, '1981', 'Xerox Star mit Desktop-Symbolen', 'digital'],
   [1984, '1984', 'Apple Macintosh mit Icons von Susan Kare', 'digital'],
   [1990, '1990', 'Starck: Juicy Salif', 'pop'],
   [1991, '1991', 'World Wide Web wird öffentlich', 'digital'],
@@ -154,11 +158,13 @@ export const timeline = [
   [2013, '2013', 'Flat Design setzt sich durch (iOS 7)', 'digital']
 ];
 
+timeline.sort((a, b) => a[0] - b[0]);
+
 // [Begriff, Erklärung]
 export const terms = [
   ['Art déco', 'Stil der 1920er- und 1930er-Jahre mit geometrischen Ornamenten und kostbaren Materialien, benannt nach der Pariser Ausstellung von 1925.'],
   ['Art Nouveau', 'Französisch-belgische Bezeichnung für den Jugendstil um 1900 mit geschwungenen, pflanzlichen Linien.'],
-  ['Arts and Crafts', 'Britische Reformbewegung ab etwa 1860, die gegen Serienware ehrliches Handwerk setzt.'],
+  ['Arts and Crafts', 'Britische Reformbewegung ab etwa 1860, die gegen entfremdete Fabrikarbeit und billige Serienware gute Materialien und sorgfältiges Handwerk setzt.'],
   ['Bauhaus', 'Kunstschule 1919–1933 in Weimar, Dessau und Berlin, die Kunst, Handwerk und später Industrie verbindet.'],
   ['Bel Design', 'Bezeichnung für das italienische Design nach 1945, das Eleganz und Gefühl betont.'],
   ['Compasso d’Oro', 'Italienischer Designpreis, seit 1954 verliehen.'],
@@ -169,7 +175,8 @@ export const terms = [
   ['Desktop-Publishing', 'Gestaltung und Satz am Computer ab Mitte der 1980er-Jahre.'],
   ['Entwurf', 'Festlegung von Form, Material und Funktion eines Produkts vor der Herstellung.'],
   ['Flat Design', 'Reduzierte Bildschirmgestaltung ohne Nachahmung von Materialien und räumlichen Effekten.'],
-  ['Fotomontage', 'Zusammensetzen von Fotoausschnitten zu einem neuen Bild, entwickelt von Dada und der russischen Avantgarde.'],
+  ['Material Design', 'Gestaltungssystem von Google (2014): reduzierte Formen, aber mit der Metapher von Papierebenen, Licht und Schatten für Hierarchie und Bewegung.'],
+  ['Fotomontage', 'Zusammensetzen von Fotoausschnitten zu einem neuen Bild. Fotocollagen gab es schon im 19. Jahrhundert, Berliner Dada und die russische Avantgarde machen sie zum künstlerisch-politischen Mittel.'],
   ['Fraktur', 'Gebrochene Schrift, im 20. Jahrhundert als „deutsche Schrift“ politisch aufgeladen, 1941 amtlich verboten.'],
   ['Funktionalismus', 'Haltung, nach der die Form eines Gegenstands aus seiner Funktion, seinem Material und seiner Herstellung entwickelt wird.'],
   ['Futurismus', 'Italienische Bewegung ab 1909, die Technik und Geschwindigkeit verherrlicht.'],
@@ -177,6 +184,7 @@ export const terms = [
   ['Gesamtkunstwerk', 'Gestaltung, die Architektur, Möbel, Gegenstände und Grafik als Einheit entwirft.'],
   ['Gleichschaltung', 'Unterwerfung von Verbänden und Institutionen unter die nationalsozialistische Kontrolle ab 1933.'],
   ['Grotesk', 'Serifenlose Schrift mit gleichmäßiger Strichstärke, etwa Helvetica oder Univers.'],
+  ['Grafische Benutzeroberfläche (GUI)', 'Bedienung über Fenster, Symbole, Menüs und Zeiger statt über eingetippte Befehle, entwickelt unter anderem bei Xerox PARC.'],
   ['Gute Form', 'Leitbild sachlicher, funktionaler und langlebiger Gestaltung nach 1945, benannt nach einer Ausstellung von Max Bill (1949).'],
   ['HfG Ulm', 'Hochschule für Gestaltung Ulm (1953–1968), bekannt für systematisches, methodisches Design.'],
   ['Industriedesigner', 'Gestalter, der Produkte für die Serienfertigung entwirft, als eigener Beruf vor allem ab den 1920er-Jahren.'],
@@ -239,8 +247,8 @@ export const quiz = [
   ['Was unterscheidet das britische Utility-Furniture-Programm (ab 1942) von den NS-„Volksprodukten“?', ['Es stellte Luxusmöbel für den Export her.', 'Es sicherte in der Rationierung solide Standardmöbel für Bedürftige, ohne Propagandazweck.', 'Es verbot jede Form von Möbelproduktion.'], 1, 'Utility Furniture war Rationierung mit demokratischem Anspruch, die Volksprodukte dienten auch der Propaganda.'],
   ['Wozu diente der Volksempfänger VE 301 politisch?', ['Er sollte möglichst viele ausländische Sender empfangen.', 'Er brachte preiswert Radio in viele Haushalte und verbreitete so die nationalsozialistische Propaganda.', 'Er war ein Luxusgerät für Sammler.'], 1, 'Preis und einfache Technik dienten der Reichweite der Propaganda.'],
   ['Was regelte der Normalschrifterlass von 1941?', ['Er schrieb die Fraktur für alle Behörden vor.', 'Er verbot die Fraktur im amtlichen Gebrauch und erklärte die Antiqua zur Normalschrift.', 'Er führte die Helvetica ein.'], 1, 'Die antisemitische Begründung war erfunden, vermutlich ging es um Lesbarkeit in besetzten Gebieten.'],
-  ['Welche Haltung prägt das italienische Design nach 1945 im Vergleich zur deutschen „Guten Form“?', ['Strenge Normen und Typisierung.', 'Eleganz, Ironie und Gefühl, oft mit neuen Materialien in Familienbetrieben.', 'Ausschließlich Handarbeit ohne Industrie.'], 1, 'Italien setzt Gefühl und Experiment gegen die rationale Gute Form.'],
-  ['Welche Debatte wiederholt der Streit zwischen Skeuomorphismus und Flat Design?', ['Den Streit um das Ornament um 1900.', 'Den Typisierungsstreit von 1914.', 'Den Streit um den Normalschrifterlass.'], 0, 'Wie beim Ornament geht es um nachgeahmte Oberfläche gegen reduzierte Form. Auch der Typisierungsstreit wirkt in Designsystemen nach.']
+  ['Was unterscheidet das Radio Brionvega TS 502 (Zanuso/Sapper, 1964) von der Braun SK 4 (Rams/Gugelot, 1956)?', ['Die TS 502 ist ein Holzmöbel mit verzierter Front.', 'Die TS 502 klappt wie ein Koffer auf und macht das Öffnen zum Erlebnis, die SK 4 ordnet Bedienelemente ruhig unter einer Plexiglashaube.', 'Beide sind baugleich und unterscheiden sich nur in der Farbe.'], 1, 'Beide Geräte sind technisch präzise. Sie zeigen unterschiedliche Schwerpunkte, keine nationalen Eigenschaften.'],
+  ['An welche frühere Debatte erinnert der Streit zwischen Skeuomorphismus und Flat Design am ehesten?', ['An den Streit um das Ornament um 1900.', 'An den Normalschrifterlass von 1941.', 'An die Gründung der Kelmscott Press.'], 0, 'In beiden Fällen geht es um nachgeahmte Oberfläche gegen reduzierte Form. Heute kommen Fragen nach Erkennbarkeit und Barrierefreiheit hinzu, die Debatten sind also verwandt, aber nicht gleich.']
 ];
 
 // [Autorin/Autor, Titel, Ort: Verlag, Jahr, Hinweis]
