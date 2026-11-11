@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=2';
+import { chapters } from './kapitel.js?v=3';
 import { people, timeline, terms, quiz, literature } from './wissen.js?v=2';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen } from './uebungen.js?v=1';
-import { bilder } from './bilder.js?v=1';
+import { bilder } from './bilder.js?v=2';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -77,13 +77,14 @@ function figure(key, cls = '') {
   const b = bilder[key];
   if (!b) return '';
   return `<figure class="dg-fig ${cls}"><img src="img/${b.file}" alt="${esc(b.alt)}" width="${b.w}" height="${b.h}" loading="lazy">
-    <figcaption>${esc(b.caption)} <span class="dg-credit">Nachweis: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}</span></figcaption></figure>`;
+    ${b.ki ? '<span class="ki-badge" aria-hidden="true">KI-generiert</span>' : ''}
+    <figcaption>${esc(b.caption)} <span class="dg-credit">${b.ki ? 'KI-generiert mit Magnific, Stimmungsbild ohne reale Vorlage' : `Nachweis: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}`}</span></figcaption></figure>`;
 }
 function tileArt(page, chip) {
   const key = page.img ? Object.values(page.img)[0][0] : null;
   const b = key && bilder[key];
   const badge = done[page.id] ? '<span class="tag-done">Erledigt</span>' : '';
-  const art = b ? `<img src="img/${b.file}" alt="" width="${b.w}" height="${b.h}" loading="lazy">` : (page.period ? `<span class="dg-tile-plain" aria-hidden="true">${esc(page.period)}</span>` : `<span class="dg-tile-icon" aria-hidden="true">${icon(page.icon || 'chapter')}</span>`);
+  const art = b ? `<img src="img/${b.file}" alt="" width="${b.w}" height="${b.h}" loading="lazy">${b.ki ? '<span class="ki-badge" aria-hidden="true">KI-generiert</span>' : ''}` : (page.period ? `<span class="dg-tile-plain" aria-hidden="true">${esc(page.period)}</span>` : `<span class="dg-tile-icon" aria-hidden="true">${icon(page.icon || 'chapter')}</span>`);
   return `<div class="art${b ? '' : ' art-plain'}">${art}${badge}<span class="chip-num" aria-hidden="true">${chip}</span></div>`;
 }
 function tile(page, chip, label) {
@@ -130,7 +131,7 @@ function overview() {
     <ul class="tiles">${wissenPages.map((p) => tile(p, p.chip, 'Öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
     <ul class="tiles">${tile(quizPage, '?', 'Quiz starten')}</ul>
-    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Startbild KI-generiert, Werkabbildungen gemeinfrei oder frei lizenziert (Nachweis unter jedem Bild und in der Literaturliste)</p>
+    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Startbild und Bild zu Kapitel 01 KI-generiert, Werkabbildungen gemeinfrei oder frei lizenziert (Nachweis unter jedem Bild und in der Literaturliste)</p>
   </div>`;
 }
 
@@ -358,8 +359,8 @@ function wissenPage(p) {
   }
   if (p.id === 'glossar') return head + section('Begriffe zum Nachschlagen', `<dl>${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('')}</dl>`, true);
   if (p.id === 'literatur') return head + section('Zum Weiterlesen', `<ul class="dg-lit">${literature.map(([a, t, v, y, n]) => `<li><b>${a}:</b> <cite>${t}</cite>. ${v}, ${y}. <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
-    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild ist KI-generiert (Magnific) und zeigt keine realen Designobjekte.</p>
-      <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}</li>`).join('')}</ul>`)
+    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild und das Bild zu Kapitel 01 sind KI-generiert (Magnific) und zeigen keine realen Designobjekte.</p>
+      <ul class="dg-lit">${Object.values(bilder).filter((b) => !b.ki).map((b) => `<li>${esc(b.caption)}: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}</li>`).join('')}</ul>`)
     + section('Weitere Module', '<p>Raster und Satzspiegel vertiefen Sie in <a href="../layout-raster/">Layout und Raster</a>, Schriftgeschichte und Klassifikation in <a href="../typografie/">Typografie</a>.</p>');
   return head;
 }

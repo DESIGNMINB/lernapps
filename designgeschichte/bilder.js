@@ -1,5 +1,11 @@
 /* Bildnachweise, automatisch aus den Wikimedia-Commons-Metadaten übernommen (November 2026). Nur gemeinfreie Werke. */
 export const bilder = {
+ "ueberblick": {
+  "file": "ueberblick.webp", "w": 1000, "h": 747, "ki": true,
+  "caption": "Werktisch zwischen Handwerk und Serie: geschnitztes Holzstück, Entwurfsskizzen mit Papiermodell und eine Reihe gleicher Metallteile",
+  "alt": "Werkbank mit Schnitzwerkzeug und Holzspänen links, Skizzen und einem weißen Papiermodell in der Mitte und einer Reihe identischer Metallteile rechts",
+  "artist": "KI-generiert mit Magnific", "license": "Stimmungsbild, keine reale Vorlage", "licenseUrl": "", "page": ""
+ },
  "kristallpalast": {
   "file": "kristallpalast.webp",
   "w": 1000,

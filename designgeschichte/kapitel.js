@@ -11,6 +11,7 @@ export const chapters = [
       ['Warum das für die Medieninformatik zählt', 'Viele Begriffe, die Sie im Interface-Design verwenden, haben eine Geschichte: Raster, Grotesk, Piktogramm, Corporate Design, „Form folgt Funktion“. Wer ihre Herkunft kennt, kann sie bewusst einsetzen, statt einen Stil nur zu kopieren. Die Debatte um Skeuomorphismus und Flat Design wiederholt zum Beispiel einen Streit, der um 1900 über das Ornament geführt wurde.']
     ],
     leitfragen: ['Ornament oder Funktion?', 'Handwerk oder Serie?', 'Für wen wird gestaltet, in wessen Auftrag?', 'Welche Technik prägt die Form?', 'Darf Design auch Gefühl sein?', 'Wer wird erinnert und wer nicht?'],
+    img: { 0: ['ueberblick'] },
     merke: ['Design im modernen Sinn beginnt mit der Trennung von Entwurf und Herstellung.', 'Gestaltung steht immer in einem wirtschaftlichen, technischen und politischen Zusammenhang.', 'Die Leitfragen begleiten Sie durch alle Kapitel.']
   },
   {

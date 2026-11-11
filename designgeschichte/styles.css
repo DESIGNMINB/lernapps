@@ -256,3 +256,5 @@
 @media (max-width: 520px) { .dg-timeline li { grid-template-columns: 1fr; gap: 0; } }
 .dg-tile-icon { color: var(--purple-ink); opacity: .8; }
 .dg-tile-icon .icon-svg { width: 64px; height: 64px; stroke-width: 1.4; }
+.dg-fig { position: relative; }
+.dg-fig .ki-badge, .ptile .art .ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .78); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.2; pointer-events: none; }
