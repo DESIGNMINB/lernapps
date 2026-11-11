@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <script src="../theme.js?v=16"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../favicon.ico?v=2" sizes="any">
+  <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=2">
+  <title>Designgeschichte · Lernmodul 10</title>
+  <link rel="stylesheet" href="../fonts/ibm-plex-sans.css">
+  <link rel="stylesheet" href="../typografie/css/style.css?v=20261107f">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <a class="story-skip" href="#main">Zum Hauptinhalt</a>
+  <header class="mobile-topbar">
+    <span class="topbar-title">Designgeschichte</span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="sidebar" aria-label="Menü öffnen">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </header>
+  <nav id="sidebar" class="sidebar" aria-label="Kapitelnavigation">
+    <a href="../" class="home-back" aria-label="Zurück zur Übersicht aller Lern-Apps"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="home-back-logo">L</span><span class="home-back-text">Lern-Apps<small>Alle Module</small></span></a>
+    <div class="sidebar-nav" id="dg-nav"></div>
+    <div class="sidebar-footer">
+      <button type="button" class="dark-toggle" id="dark-toggle-btn" data-theme-toggle aria-pressed="false">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+        <span class="dark-toggle-label">Dunkelmodus</span>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+  </svg>
+      </button>
+      <a class="feedback-link" href="#" data-feedback><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><span>Feedback senden<small>Fehler oder Verbesserungsvorschläge</small></span></a>
+    </div>
+  </nav>
+  <main class="main" id="main" tabindex="-1">
+    <noscript><p>Für die Übungen und den Wissenstest benötigen Sie JavaScript.</p></noscript>
+    <div id="dg-content"></div>
+  </main>
+  <script type="module" src="app.js?v=1"></script>
+</body>
+</html>
