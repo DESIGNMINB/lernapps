@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=6';
-import { people, timeline, terms, quiz, literature } from './wissen.js?v=4';
-import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=2';
-import { bilder } from './bilder.js?v=5';
+import { chapters } from './kapitel.js?v=7';
+import { people, timeline, terms, quiz, literature } from './wissen.js?v=5';
+import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=3';
+import { bilder } from './bilder.js?v=6';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -18,7 +18,7 @@ const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').
 const exercises = [
   { id: 'u-zeitstrahl', title: 'Zeitstrahl ordnen', subtitle: 'Acht Stationen von 1851 bis 1984 in die richtige Reihenfolge bringen', icon: 'list' },
   { id: 'u-stuehle', title: 'Stuhl-Detektiv', subtitle: 'Sieben Stühle Epoche und Merkmal zuordnen', icon: 'chair' },
-  { id: 'u-radio', title: 'Drei Haltungen, ein Radio', subtitle: 'Verkaufen, ordnen, begeistern – und welche Haltung zu welcher App passt', icon: 'radio' },
+  { id: 'u-radio', title: 'Haltungen an Geräten', subtitle: 'Drei Radios und ein Moped: verkaufen, ordnen, begeistern, erhalten – und welche Perspektive zu welcher App passt', icon: 'radio' },
   { id: 'u-quelle', title: 'Form und Zweck im NS-Staat', subtitle: 'Den Volksempfänger als historische Quelle untersuchen', icon: 'search' },
   { id: 'u-zitate', title: 'Wer hat’s gesagt?', subtitle: 'Acht Positionen von Morris bis Sottsass zuordnen', icon: 'quote' },
   { id: 'u-rams', title: 'Rams’ Thesen am Interface', subtitle: 'Eine heutige App bewerten und als Word-Dokument exportieren', icon: 'check' }
@@ -211,7 +211,7 @@ function exercisePage(e, i) {
       <label for="st-m-${j}">Merkmal</label><select id="st-m-${j}">${opts(shuffleFixed(stuhlMerkmale))}</select>
       <p class="story-match-note" id="st-${j}-note"></p></div>`).join('')}</div>
     <button type="button" class="btn btn-primary" id="st-check">Zuordnung prüfen</button><p class="story-result" id="st-result" role="status"></p>`, true);
-  if (e.id === 'u-radio') return head + section('Drei Radios', `<p>Drei Radios aus drei Jahrzehnten lassen sich aus drei Perspektiven lesen: verkaufen, ordnen, begeistern. Diese Perspektiven sind eine Lernhilfe. In jedem Gerät überlagern sie sich, und sie sind keine nationalen Eigenschaften: Henry Dreyfuss stellte in den USA die Ergonomie in den Mittelpunkt, Olivettis Lettera 22 ist vor allem eine präzise technische Lösung. Ordnen Sie zu, welche Perspektive, welches Material und welche Formensprache jeweils am deutlichsten hervortreten.</p>
+  if (e.id === 'u-radio') return head + section('Drei Radios und ein Moped', `<p>Drei Radios aus drei Jahrzehnten lassen sich aus drei Perspektiven lesen: verkaufen, ordnen, begeistern. Das Moped Simson S50 aus der DDR ergänzt eine vierte: erhalten. Diese Perspektiven sind eine Lernhilfe. In jedem Gerät überlagern sie sich, und sie sind keine nationalen Eigenschaften: Henry Dreyfuss stellte in den USA die Ergonomie in den Mittelpunkt, Olivettis Lettera 22 ist vor allem eine präzise technische Lösung. Ordnen Sie zu, welche Perspektive, welches Material und welche Formensprache jeweils am deutlichsten hervortreten.</p>
     <div class="dg-cards">${radios.map((r) => `<div class="dg-card"><h3>${r.name}</h3><p class="story-note">${r.example}</p><p>${r.desc}</p>
       ${Object.entries(radioOptionen).map(([k, list]) => `<label for="ra-${r.id}-${k}">${{ haltung: 'Haltung', material: 'Material', form: 'Formensprache' }[k]}</label><select id="ra-${r.id}-${k}">${opts(list)}</select>`).join('')}
       <p class="story-match-note" id="ra-${r.id}-note"></p></div>`).join('')}</div>
@@ -272,7 +272,7 @@ function wireExercise(e) {
         right += Number(!wrong.length);
         feedbackRow(note, !wrong.length, wrong.length ? `Prüfen Sie: ${wrong.join(', ')}.` : `Passt. ${r.zitat}`);
       });
-      $('#ra-result').textContent = `${right} von ${radios.length} Radios vollständig richtig.`;
+      $('#ra-result').textContent = `${right} von ${radios.length} Geräten vollständig richtig.`;
       if (right === radios.length) markDone(e.id);
     };
     $('#rt-check').onclick = () => radioTransfer.forEach(([, best, why], j) => {

@@ -45,17 +45,19 @@ export const stuehle = [
 export const radios = [
   { id: 'us', name: 'US-Stromlinienradio', example: 'zum Beispiel Emerson Patriot von Norman Bel Geddes (1940)', desc: 'Gehäuse aus farbigem Gussharz (Catalin) in Rot, Weiß und Blau, gerundete Kanten und Stromlinien-Rippen.', haltung: 'verkaufen', material: 'catalin', form: 'stromlinie', zitat: 'Loewy nannte sein Prinzip MAYA: so modern wie möglich, aber noch vertraut genug, um gekauft zu werden.' },
   { id: 'braun', name: 'Braun SK 4', example: 'Dieter Rams und Hans Gugelot (1956)', desc: 'Weißes Blechgehäuse mit Holzwangen, Bedienelemente geordnet auf der Oberseite, Haube aus Plexiglas.', haltung: 'ordnen', material: 'blech', form: 'raster', zitat: 'Rams fasst seine Haltung später als „Weniger, aber besser“ zusammen.' },
-  { id: 'brionvega', name: 'Brionvega TS 502', example: 'Marco Zanuso und Richard Sapper (1964)', desc: 'Zwei Kunststoffhälften, die sich wie ein Koffer aufklappen. Geschlossen ein glatter Würfel, geöffnet Lautsprecher und Bedienteil.', haltung: 'begeistern', material: 'abs', form: 'klappwuerfel', zitat: 'Das Radio überrascht beim Öffnen: Bedienung wird zum Erlebnis.' }
+  { id: 'brionvega', name: 'Brionvega TS 502', example: 'Marco Zanuso und Richard Sapper (1964)', desc: 'Zwei Kunststoffhälften, die sich wie ein Koffer aufklappen. Geschlossen ein glatter Würfel, geöffnet Lautsprecher und Bedienteil.', haltung: 'begeistern', material: 'abs', form: 'klappwuerfel', zitat: 'Das Radio überrascht beim Öffnen: Bedienung wird zum Erlebnis.' },
+  { id: 'simson', name: 'Simson S50 (Moped, DDR)', example: 'Karl Clauss Dietel und Lutz Rudolph (1975), als vierte Perspektive', desc: 'Rahmen, Tank, Sitzbank und Motor sind als sichtbare, einzeln austauschbare Baugruppen gestaltet. Viele Teile lassen sich selbst reparieren und nachrüsten.', haltung: 'erhalten', material: 'normteile', form: 'offen', zitat: 'Dietel und Rudolph nannten diese Haltung das „offene Prinzip“: reparieren und weiterentwickeln statt ersetzen.' }
 ];
 export const radioOptionen = {
-  haltung: [['verkaufen', 'Verkaufen: Modernität zeigen, Kauf anregen'], ['ordnen', 'Ordnen: Klarheit, Zurückhaltung, Langlebigkeit'], ['begeistern', 'Begeistern: Überraschung, Spiel, Gefühl']],
-  material: [['catalin', 'Farbiges Gussharz (Catalin)'], ['blech', 'Lackiertes Blech, Holz und Plexiglas'], ['abs', 'Glänzender Kunststoff (ABS)']],
-  form: [['stromlinie', 'Gerundete Stromlinie als Fortschrittssymbol'], ['raster', 'Geordnete Flächen und Raster'], ['klappwuerfel', 'Aufklappbarer Würfel mit Überraschungseffekt']]
+  haltung: [['verkaufen', 'Verkaufen: Modernität zeigen, Kauf anregen'], ['ordnen', 'Ordnen: Klarheit, Zurückhaltung, Langlebigkeit'], ['begeistern', 'Begeistern: Überraschung, Spiel, Gefühl'], ['erhalten', 'Erhalten: reparieren, nachrüsten, lange nutzen']],
+  material: [['catalin', 'Farbiges Gussharz (Catalin)'], ['blech', 'Lackiertes Blech, Holz und Plexiglas'], ['abs', 'Glänzender Kunststoff (ABS)'], ['normteile', 'Stahlblech und Normteile, die sich austauschen lassen']],
+  form: [['stromlinie', 'Gerundete Stromlinie als Fortschrittssymbol'], ['raster', 'Geordnete Flächen und Raster'], ['klappwuerfel', 'Aufklappbarer Würfel mit Überraschungseffekt'], ['offen', 'Sichtbare, austauschbare Baugruppen']]
 };
 export const radioTransfer = [
   ['Eine Banking-App soll Vertrauen schaffen und jahrelang gleich bedienbar bleiben.', 'ordnen', 'Ordnen passt: Klarheit und Beständigkeit stützen Vertrauen. Ein Hauch „Begeistern“ kann in Mikroanimationen liegen.'],
   ['Eine Streaming-App will jede Saison mit neuem Look Aufmerksamkeit erzeugen.', 'verkaufen', 'Das ähnelt dem Styling der 1930er-Jahre. Prüfen Sie, ob häufige Änderungen die Bedienung stören.'],
-  ['Eine Lern-App für Kinder soll beim Öffnen neugierig machen.', 'begeistern', 'Begeistern passt: Überraschung und Spiel laden ein. Ordnung braucht es trotzdem, damit Kinder sich zurechtfinden.']
+  ['Eine Lern-App für Kinder soll beim Öffnen neugierig machen.', 'begeistern', 'Begeistern passt: Überraschung und Spiel laden ein. Ordnung braucht es trotzdem, damit Kinder sich zurechtfinden.'],
+  ['Eine App für ein Lastenrad-Sharing soll jahrelang mit verschiedenen Geräten und Ersatzteilen funktionieren.', 'erhalten', 'Erhalten passt: modulare Funktionen und verständliche Reparatur-Hinweise verlängern die Nutzung. Ordnung hilft zusätzlich.']
 ];
 
 // 4 · Form und Zweck im NS-Staat: Volksempfänger als Quelle

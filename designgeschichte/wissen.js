@@ -65,8 +65,26 @@ export const people = [
   ['Dieter Rams', '1932', 'guteform', false, 'Gestaltet für Braun, formuliert zehn Thesen für gutes Design.'],
   ['Robin Day', '1915–2010', 'guteform', false, 'Britischer Möbelgestalter. Stapelstuhl aus Polypropylen für Hille (1963).'],
   ['Lucienne Day', '1917–2010', 'guteform', true, 'Britische Textilgestalterin. Stoff „Calyx“ (1951) und viele Muster für das moderne Wohnen.'],
-  ['Aino Aalto', '1894–1949', 'guteform', true, 'Architektin und Gestalterin, Mitbegründerin von Artek, Glasserie Bölgeblick (1932).'],
-  ['Greta Magnusson-Grossman', '1906–1999', 'guteform', true, 'Schwedische Architektin und Gestalterin in Los Angeles, Leuchte „Grasshopper“.'],
+  ['Gregor Paulsson', '1889–1977', 'skandinavien', false, 'Schwedischer Kunsthistoriker. „Vackrare vardagsvara“ (1919) fordert schönere Alltagsware für alle.'],
+  ['Kaare Klint', '1888–1954', 'skandinavien', false, 'Dänischer Architekt. Entwickelt Möbel aus genauen Maßstudien und bewährten Typen.'],
+  ['Alvar Aalto', '1898–1976', 'skandinavien', false, 'Finnischer Architekt. Sanatorium Paimio und Schichtholzmöbel mit Aino Aalto, Mitgründer von Artek.'],
+  ['Poul Henningsen', '1894–1967', 'skandinavien', false, 'Dänischer Gestalter. Mehrschirmige Leuchten, die das Licht blendfrei lenken.'],
+  ['Arne Jacobsen', '1902–1971', 'skandinavien', false, 'Dänischer Architekt. Stuhl „Ameise“ und das SAS Royal Hotel als Gesamtgestaltung.'],
+  ['Hans J. Wegner', '1914–2007', 'skandinavien', false, 'Dänischer Möbelgestalter. „The Chair“ (1949).'],
+  ['Armi Ratia', '1912–1979', 'skandinavien', true, 'Gründet 1951 Marimekko in Helsinki.'],
+  ['Maija Isola', '1927–2001', 'skandinavien', true, 'Finnische Textilgestalterin. Muster „Unikko“ (1964) für Marimekko.'],
+  ['Ingvar Kamprad', '1926–2018', 'skandinavien', false, 'Gründer von IKEA. Flachpaket und Selbstmontage ab 1956.'],
+  ['Maria Benktzon', '1946', 'skandinavien', true, 'Schwedische Designerin. Forscht mit Sven-Eric Juhlin zu Griffen und Geräten für alle (Design for All).'],
+  ['Sven-Eric Juhlin', '1940', 'skandinavien', false, 'Schwedischer Designer. Ergonomische Alltagsgeräte mit Maria Benktzon.'],
+  ['Pelle Ehn', '1950', 'skandinavien', false, 'Schwedischer Informatiker. Leitet das Projekt UTOPIA (1981–1985), eine Wurzel des Participatory Design.'],
+  ['Aino Aalto', '1894–1949', 'skandinavien', true, 'Architektin und Gestalterin, Mitbegründerin von Artek, Glasserie Bölgeblick (1932).'],
+  ['Greta Magnusson-Grossman', '1906–1999', 'skandinavien', true, 'Schwedische Architektin und Gestalterin in Los Angeles, Leuchte „Grasshopper“.'],
+  ['Rudolf Horn', '1929', 'guteform', false, 'DDR-Gestalter. Montagemöbelprogramm MDW für die Deutschen Werkstätten Hellerau (ab 1967).'],
+  ['Karl Clauss Dietel', '1934–2022', 'guteform', false, 'DDR-Gestalter. Simson-Mopeds und Schreibmaschine Erika, „offenes Prinzip“ mit Lutz Rudolph.'],
+  ['Margarete Jahny', '1923–2016', 'guteform', true, 'DDR-Gestalterin. Hotelgeschirr „Rationell“ und Glas mit Erich Müller, Superfest-Gläser.'],
+  ['Erich Müller', '1907–1992', 'guteform', false, 'DDR-Gestalter. Geschirr und Glas mit Margarete Jahny.'],
+  ['Christa Petroff-Bohne', '1934', 'guteform', true, 'DDR-Gestalterin. Geschirr „Christa“ (1956) und Besteck für Gastronomie und Hotels.'],
+  ['Karl Peglau', '1927–2009', 'guteform', false, 'Verkehrspsychologe. Entwirft 1961 das Ampelmännchen.'],
   ['Gio Ponti', '1891–1979', 'italien', false, 'Architekt, gründet 1928 die Zeitschrift Domus, Stuhl Superleggera (1957).'],
   ['Achille Castiglioni', '1918–2002', 'italien', false, 'Entwirft mit seinem Bruder Pier Giacomo die Leuchte Arco (1962).'],
   ['Anna Castelli Ferrieri', '1918–2006', 'italien', true, 'Architektin, Mitbegründerin von Kartell, Rundcontainer Componibili (1967).'],
@@ -155,7 +173,19 @@ export const timeline = [
   [1991, '1991', 'World Wide Web wird öffentlich', 'digital'],
   [1993, '1993', 'Dyson DC01', 'digital'],
   [1998, '1998', 'Apple iMac', 'digital'],
-  [2013, '2013', 'Flat Design setzt sich durch (iOS 7)', 'digital']
+  [2013, '2013', 'Flat Design setzt sich durch (iOS 7)', 'digital'],
+  [1919.5, '1919', 'Paulsson: „Vackrare vardagsvara“', 'skandinavien'],
+  [1935.5, '1935', 'Artek gegründet', 'skandinavien'],
+  [1951, '1951', 'Marimekko gegründet', 'skandinavien'],
+  [1954.6, '1954', '„Design in Scandinavia“ tourt bis 1957 durch die USA und Kanada', 'skandinavien'],
+  [1956.5, '1956', 'IKEA verkauft Möbel im Flachpaket', 'skandinavien'],
+  [1961, '1961', 'Peglau entwirft das Ampelmännchen', 'guteform'],
+  [1967, '1967', 'Horns Montagemöbelprogramm MDW', 'guteform'],
+  [1969, '1969', 'Geschirr „Rationell“ von Jahny und Müller', 'guteform'],
+  [1972.5, '1972', 'Amt für industrielle Formgestaltung der DDR', 'guteform'],
+  [1976, '1976', 'Bauhaus Dessau saniert wiedereröffnet', 'guteform'],
+  [1980, '1980', 'Superfest-Gläser (bis 1990)', 'guteform'],
+  [1981.7, '1981', 'Projekt UTOPIA zur Nutzerbeteiligung (bis 1985)', 'skandinavien']
 ];
 
 timeline.sort((a, b) => a[0] - b[0]);
@@ -230,6 +260,12 @@ export const terms = [
   ['Prototyp', 'Vorläufiges Modell, mit dem eine Idee getestet und verbessert wird, vom Staubsauger bis zum App-Entwurf.'],
   ['Taylorismus', 'Wissenschaftliche Betriebsführung nach Frederick W. Taylor: Arbeit wird in kleinste Schritte zerlegt, gemessen und optimiert.'],
   ['Utility Furniture', 'Britisches Programm rationierter Standardmöbel ab 1942, solide und einfach gestaltet.'],
+  ['Formalismusstreit', 'Kampagne der SED Anfang der 1950er-Jahre gegen abstrakte, „formalistische“ Kunst und zunächst auch gegen das Bauhaus.'],
+  ['Amt für industrielle Formgestaltung (AiF)', 'Staatliche Behörde der DDR ab 1972, die Gestaltung in der Industrie lenkte und begutachtete.'],
+  ['Offenes Prinzip', 'Gestaltungsansatz von Karl Clauss Dietel und Lutz Rudolph: Produkte sollen reparierbar, nachrüstbar und erweiterbar sein.'],
+  ['Design for All', 'Gestaltung, die von Anfang an Menschen mit unterschiedlichen Fähigkeiten einbezieht, verwandt mit Universal und Inclusive Design.'],
+  ['Participatory Design', 'Beteiligung der späteren Nutzenden am Entwurf, entwickelt unter anderem im skandinavischen Projekt UTOPIA (1981–1985).'],
+  ['Flachpaket', 'Zerlegt verpackte Möbel zur Selbstmontage, bei IKEA ab 1956: günstiger Transport, aber Arbeit und Verantwortung gehen an die Kundschaft.']
 ];
 
 // Quiz: [Frage, Antworten, richtig, Erklärung]
@@ -242,13 +278,14 @@ export const quiz = [
   ['Wer leitete ab 1927 die Weberei am Bauhaus?', ['Anni Albers', 'Gunta Stölzl', 'Marianne Brandt'], 1, 'Gunta Stölzl leitete die Weberei von 1927 bis 1931. Anni Albers arbeitete dort, Marianne Brandt in der Metallwerkstatt.'],
   ['Warum arbeiteten so viele Frauen am Bauhaus in der Weberei?', ['Weil sie sich alle frei dafür entschieden.', 'Weil die Leitung Frauen gezielt in die Weberei lenkte, die als „weibliches“ Handwerk galt.', 'Weil andere Werkstätten erst nach 1933 eröffneten.'], 1, 'Trotz versprochener Gleichberechtigung wurden Frauen in die Weberei gelenkt. Das prägt bis heute die Wahrnehmung.'],
   ['Was macht Harry Becks Netzplan der Londoner Underground (1933) besonders?', ['Er zeigt die Stationen maßstabsgetreu auf einem Stadtplan.', 'Er verzichtet auf Geografie und zeigt Reihenfolge und Umsteigepunkte in einem abstrakten Raster.', 'Er nutzt für jede Linie eine eigene Schrift.'], 1, 'Für Fahrgäste zählt die Struktur, nicht die Entfernung. Dieses Prinzip prägt auch Interface-Diagramme.'],
-  ['Wofür steht Raymond Loewys Prinzip MAYA?', ['Möglichst wenig Design.', 'So modern wie möglich, aber noch vertraut genug, um gekauft zu werden.', 'Gestaltung nur mit Grundfarben.'], 1, '„Most Advanced Yet Acceptable“ verbindet Neuheit und Akzeptanz.'],
+  ['Was war das Ziel des skandinavischen Projekts UTOPIA (1981–1985)?', ['Ein Möbelprogramm für Flachpakete zu entwickeln.', 'Mit Schriftsetzern und Grafikern gemeinsam Computerwerkzeuge für ihre Arbeit zu entwerfen.', 'Eine Ausstellung über Design in den USA zu zeigen.'], 1, 'UTOPIA gilt als eine Wurzel des Participatory Design und der nutzerzentrierten Methoden.'],
   ['Wie entstand die Herkunftsangabe „Made in Germany“?', ['Als Gütesiegel, das der Deutsche Werkbund 1907 einführte.', 'Als britische Pflichtangabe von 1887, die vor Nachahmungen warnen sollte und später zum Qualitätsversprechen wurde.', 'Als Marke der AEG, die andere Firmen übernahmen.'], 1, 'Der Merchandise Marks Act 1887 sollte britische Kundschaft warnen. Qualitätsarbeit, auch im Sinne des Werkbunds, machte daraus ein Versprechen.'],
   ['Was unterscheidet das britische Utility-Furniture-Programm (ab 1942) von den NS-„Volksprodukten“?', ['Es stellte Luxusmöbel für den Export her.', 'Es sicherte in der Rationierung solide Standardmöbel für Bedürftige, ohne Propagandazweck.', 'Es verbot jede Form von Möbelproduktion.'], 1, 'Utility Furniture war Rationierung mit demokratischem Anspruch, die Volksprodukte dienten auch der Propaganda.'],
   ['Wozu diente der Volksempfänger VE 301 politisch?', ['Er sollte möglichst viele ausländische Sender empfangen.', 'Er brachte preiswert Radio in viele Haushalte und verbreitete so die nationalsozialistische Propaganda.', 'Er war ein Luxusgerät für Sammler.'], 1, 'Preis und einfache Technik dienten der Reichweite der Propaganda.'],
   ['Was regelte der Normalschrifterlass von 1941?', ['Er schrieb die Fraktur für alle Behörden vor.', 'Er verbot die Fraktur im amtlichen Gebrauch und erklärte die Antiqua zur Normalschrift.', 'Er führte die Helvetica ein.'], 1, 'Die antisemitische Begründung war erfunden, vermutlich ging es um Lesbarkeit in besetzten Gebieten.'],
   ['Was unterscheidet das Radio Brionvega TS 502 (Zanuso/Sapper, 1964) von der Braun SK 4 (Rams/Gugelot, 1956)?', ['Die TS 502 ist ein Holzmöbel mit verzierter Front.', 'Die TS 502 klappt wie ein Koffer auf und macht das Öffnen zum Erlebnis, die SK 4 ordnet Bedienelemente ruhig unter einer Plexiglashaube.', 'Beide sind baugleich und unterscheiden sich nur in der Farbe.'], 1, 'Beide Geräte sind technisch präzise. Sie zeigen unterschiedliche Schwerpunkte, keine nationalen Eigenschaften.'],
-  ['An welche frühere Debatte erinnert der Streit zwischen Skeuomorphismus und Flat Design am ehesten?', ['An den Streit um das Ornament um 1900.', 'An den Normalschrifterlass von 1941.', 'An die Gründung der Kelmscott Press.'], 0, 'In beiden Fällen geht es um nachgeahmte Oberfläche gegen reduzierte Form. Heute kommen Fragen nach Erkennbarkeit und Barrierefreiheit hinzu, die Debatten sind also verwandt, aber nicht gleich.']
+  ['An welche frühere Debatte erinnert der Streit zwischen Skeuomorphismus und Flat Design am ehesten?', ['An den Streit um das Ornament um 1900.', 'An den Normalschrifterlass von 1941.', 'An die Gründung der Kelmscott Press.'], 0, 'In beiden Fällen geht es um nachgeahmte Oberfläche gegen reduzierte Form. Heute kommen Fragen nach Erkennbarkeit und Barrierefreiheit hinzu, die Debatten sind also verwandt, aber nicht gleich.'],
+  ['Was meint das „offene Prinzip“ von Karl Clauss Dietel und Lutz Rudolph?', ['Produkte werden ohne Gehäuse verkauft.', 'Produkte sollen sich reparieren, nachrüsten und erweitern lassen, statt ersetzt zu werden.', 'Jede Person darf das Design frei kopieren.'], 1, 'Unter Mangelbedingungen entstanden, wirkt das Prinzip heute wie ein Vorbild für nachhaltiges Design.']
 ];
 
 // [Autorin/Autor, Titel, Ort: Verlag, Jahr, Hinweis]
