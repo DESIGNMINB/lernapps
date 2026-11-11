@@ -259,3 +259,11 @@
 .dg-fig { position: relative; }
 .dg-fig .ki-badge, .ptile .art .ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .78); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.2; pointer-events: none; }
 @media (max-width: 520px) { .dg-fig img { max-height: 420px; } }
+
+/* Links im Inhalt deutlich als Links */
+.content-card .story-section p a, .content-card .page-intro a, .content-card .story-note a, .dg-ext { color: var(--purple-ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 2px; font-weight: 500; }
+.content-card .story-section p a:hover, .dg-ext:hover { text-decoration-thickness: 2.5px; }
+.content-card a:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 2px; border-radius: 2px; }
+[data-theme="dark"] .content-card .story-section p a, [data-theme="dark"] .dg-ext { color: #D9C3EE; }
+.dg-ext-icon { display: inline-block; margin-left: 3px; vertical-align: -1px; }
+.dg-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

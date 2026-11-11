@@ -227,7 +227,7 @@ function exercisePage(e, i) {
   if (e.id === 'u-zitate') return head + section('Acht Positionen', `<p>Ordnen Sie jede Aussage einer Person zu. Wörtliche Zitate stehen in Anführungszeichen, sinngemäße Zusammenfassungen ohne. Nach dem Prüfen sehen Sie die Quelle.</p>
     ${zitate.map(([t], j) => `<div class="dg-quote"><blockquote>${t}</blockquote><label for="zi-${j}">Wer vertritt diese Position?</label><select id="zi-${j}">${opts(shuffleFixed(zitatPersonen))}</select><p class="story-match-note" id="zi-${j}-note"></p></div>`).join('')}
     <button type="button" class="btn btn-primary" id="zi-check">Zuordnung prüfen</button><p class="story-result" id="zi-result" role="status"></p>`, true);
-  if (e.id === 'u-rams') return head + section('Eine App bewerten', `<p>Dieter Rams hat zehn Thesen für gutes Design formuliert (<a href="https://www.vitsoe.com/de/about/good-design">Wortlaut bei Vitsœ</a>). Wenden Sie sie auf eine App an, die Sie täglich nutzen. Bewerten Sie jede These und notieren Sie eine Beobachtung.</p>
+  if (e.id === 'u-rams') return head + section('Eine App bewerten', `<p>Dieter Rams hat zehn Thesen für gutes Design formuliert (<a href="https://www.vitsoe.com/de/about/good-design">Wortlaut der Thesen bei Vitsœ</a>). Wenden Sie sie auf eine App an, die Sie täglich nutzen. Bewerten Sie jede These und notieren Sie eine Beobachtung.</p>
     <div class="story-fields"><label>Bewertete App<input type="text" id="rams-app" placeholder="z. B. eine Nahverkehrs-App"></label></div>
     <div class="dg-rams-wrap"><ol class="dg-rams">${thesen.map(([t, q], j) => ramsItem(j, t, q)).join('')}</ol>
     <h3>Ergänzung: Inklusion</h3>
@@ -410,6 +410,19 @@ function wireQuiz() {
   };
 }
 
+/* Externe Links: sichtbar als Link, neues Fenster, Hinweis für Screenreader */
+const EXT_ICON = '<svg class="dg-ext-icon" aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+function markExternal(root) {
+  root.querySelectorAll('a[href^="http"]').forEach((a) => {
+    if (a.dataset.ext) return;
+    a.dataset.ext = '1';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.classList.add('dg-ext');
+    a.insertAdjacentHTML('beforeend', `${EXT_ICON}<span class="dg-sr"> (öffnet in neuem Fenster)</span>`);
+  });
+}
+
 /* ---------- Menü und Routing ---------- */
 function setMenu(open, returnFocus = false) {
   document.body.classList.toggle('nav-open', open);
@@ -440,6 +453,7 @@ function route(focus = false) {
       <span class="sidebar-brand-name">Designgeschichte</span><span class="sidebar-brand-subtitle">${MODUL} · Lernmodul</span></span></a></div>
     ${body}
     <nav class="pager" aria-label="Seiten blättern">${pager(prev, 'prev')}${pager(next, 'next')}</nav></article>`;
+  markExternal(content);
   sidebar.querySelectorAll('.nav-item').forEach((link) => {
     const id = link.hash.slice(1), active = id === page.id;
     link.classList.toggle('active', active);
