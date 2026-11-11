@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=7';
+import { chapters } from './kapitel.js?v=8';
 import { people, timeline, terms, quiz, literature } from './wissen.js?v=6';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=3';
-import { bilder } from './bilder.js?v=6';
+import { bilder } from './bilder.js?v=7';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -131,7 +131,7 @@ function overview() {
     <ul class="tiles">${wissenPages.map((p) => tile(p, p.chip, 'Öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
     <ul class="tiles">${tile(quizPage, '?', 'Quiz starten')}</ul>
-    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Startbild und Bild zu Kapitel 01 KI-generiert, Werkabbildungen gemeinfrei oder frei lizenziert (Nachweis unter jedem Bild und in der Literaturliste)</p>
+    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Startbild und Stimmungsbilder zu Kapitel 01, 13 und 15 KI-generiert, Werkabbildungen gemeinfrei oder frei lizenziert (Nachweis unter jedem Bild und in der Literaturliste)</p>
   </div>`;
 }
 
@@ -144,7 +144,7 @@ function chapterPage(c, i) {
     <h1 class="page-title purple">${c.title}</h1><p class="page-intro">${c.lead}</p>
     ${c.leitfragen ? section('Leitfragen durch alle Kapitel', `<ul class="dg-leitfragen">${c.leitfragen.map((q) => `<li>${q}</li>`).join('')}</ul>`, true) : ''}
     ${c.sections.map(([h, t], j) => `<section class="story-section"><h2>${h}</h2><p>${t}</p>${c.img?.[j] ? `<div class="dg-figs${c.img[j].length > 1 ? ' two' : ''}">${c.img[j].map((k) => figure(k)).join('')}</div>` : ''}</section>`).join('')}
-    ${c.noImages ? '<p class="story-note dg-note">Dieses Kapitel zeigt bewusst keine Propagandabilder und keine Symbole des Nationalsozialismus. Die einzige Abbildung zeigt einen Ort des Exils in London. Über die Links unten gelangen Sie zu kommentierten Quellen.</p>' : ''}
+    ${c.noImages ? '<p class="story-note dg-note">Dieses Kapitel zeigt bewusst keine Propagandabilder und keine Symbole des Nationalsozialismus. Die einzige Abbildung, auch auf der Kachel der Übersicht, zeigt einen Ort des Exils in London. Über die Links unten gelangen Sie zu kommentierten Quellen.</p>' : ''}
     ${c.links?.length ? section('Werke und Quellen ansehen', `<p class="story-note">Geschützte Werke zeigen wir nicht, sondern verlinken auf Sammlungen und Archive.</p><ul class="dg-links">${c.links.map(([t, u]) => `<li><a href="${u}">${t}</a></li>`).join('')}</ul>`) : ''}
     ${people.length ? section('Köpfe in diesem Kapitel', `<ul class="dg-people-mini">${people.map(([n, d, , w]) => `<li>${n} <span>(${d})</span>${w ? ' <span class="dg-tag">Gestalterin</span>' : ''}</li>`).join('')}</ul><a class="btn" href="#koepfe">Alle Köpfe</a>`) : ''}
     ${[].concat(c.task || []).map((task, ti) => section(task.title, `<p>${task.text}</p><div class="story-fields">${task.fields.map((f, j) => `<label>${f}<textarea data-draft="${c.id}:${ti ? ti + ':' : ''}${j}" rows="3"></textarea></label>`).join('')}<p class="story-note" role="status">Ihre Notizen werden in diesem Browser gespeichert.</p></div>`, true)).join('')}
@@ -369,7 +369,7 @@ function wissenPage(p) {
   }
   if (p.id === 'glossar') return head + section('Begriffe zum Nachschlagen', `<dl>${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('')}</dl>`, true);
   if (p.id === 'literatur') return head + section('Zum Weiterlesen', `<ul class="dg-lit">${literature.map(([a, t, v, y, n]) => `<li><b>${a}:</b> <cite>${t}</cite>. ${v}, ${y}. <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
-    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild und das Bild zu Kapitel 01 sind KI-generiert (Magnific) und zeigen keine realen Designobjekte.</p>
+    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild und die Stimmungsbilder zu den Kapiteln 01, 13 und 15 sind KI-generiert (Magnific) und zeigen keine realen Designobjekte.</p>
       <ul class="dg-lit">${Object.values(bilder).filter((b) => !b.ki).map((b) => `<li>${esc(b.caption)}: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}</li>`).join('')}</ul>`)
     + section('Weitere Module', '<p>Raster und Satzspiegel vertiefen Sie in <a href="../layout-raster/">Layout und Raster</a>, Schriftgeschichte und Klassifikation in <a href="../typografie/">Typografie</a>.</p>');
   return head;
