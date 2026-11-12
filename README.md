@@ -12,6 +12,7 @@ Startseite und Lern-Apps, veröffentlicht über GitHub Pages.
 | `ux-animation/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Evaluations-App, `an.css`, `app.js`, `media/`); PDF-Zusammenfassung mit `python3 ../summaries/build.py anim` | Direkt in diesem Ordner bearbeiten |
 | `ux-ki/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Animations-App, `ki.css`, `app.js`, `media/` mit Prompt-Protokoll im Kapitel Literatur); PDF-Zusammenfassung mit `python3 ../summaries/build.py ki` | Direkt in diesem Ordner bearbeiten |
 | `layout-raster/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Farb-App, `lr.css`, `app.js`, `media/` mit Magnific-Bildern und -Video); PDF-Zusammenfassung mit `python3 ../summaries/build.py layout` | Direkt in diesem Ordner bearbeiten |
+| `designsysteme/` | Modul 11, statisches HTML und JavaScript-Module; nutzt das bestehende IWI-Basislayout aus `ux-ki/styles.css` | Inhalte in `content.js`, Übungen in `app.js`, Token-/Exportlogik in `model.js`; siehe `designsysteme/README.md` |
 
 ## Suche über alle Lern-Apps
 

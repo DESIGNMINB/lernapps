@@ -1,0 +1,121 @@
+/* Das unveränderte Basislayout wird aus ../ux-ki/styles.css geladen.
+   Hier stehen ausschließlich die Ergänzungen für die Designsystem-Labore. */
+:root { --mod: #64378C; }
+.ds-hero { position: relative; }
+.ki-badge { position:absolute;right:10px;bottom:10px;background:rgba(20,20,25,.75);color:#fff;padding:4px 8px;border-radius:5px;font-size:11px; }
+.ds-hero .ki-badge { top:10px;bottom:auto;left:auto;width:auto; }
+.home-hero h1 { hyphens:auto; }
+.ds-lab { display:grid;grid-template-columns:minmax(210px,.65fr) minmax(0,1.35fr);gap:24px;align-items:start;margin:22px 0; }
+.ds-controls { min-width:0;display:grid;gap:8px; }
+.ds-field { display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:600;margin:0 0 16px;min-width:0; }
+.ds-field input:not([type=range]):not([type=color]),.ds-field select,.ds-field textarea { width:100%;font:400 15px/1.5 var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--control-border);border-radius:8px;padding:10px 12px;min-height:44px; }
+.ds-field textarea { resize:vertical; }
+.ds-field output { font:500 13px var(--f-mono);color:var(--muted); }
+.ds-field input[type=range] { width:100%;accent-color:var(--accent);min-height:28px; }
+.ds-color>span { display:flex;align-items:center;gap:10px; }
+.ds-color input[type=color] { width:54px;height:42px;padding:3px;background:var(--paper);border:1px solid var(--control-border);border-radius:7px;cursor:pointer; }
+.ds-actions { display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px; }
+.ds-actions .btn[aria-pressed=true] { background:var(--accent);color:#fff;border-color:var(--accent); }
+.ds-preview-shell { padding:16px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;min-width:0; }
+.ds-screen { --ds-action:#64378c;--ds-surface:#fff;--ds-text:#1f2937;--ds-on:#fff;--ds-error:#b42318;--ds-radius:10px;--ds-gap:16px;--ds-size:16px;--ds-font:'IBM Plex Sans',sans-serif;max-width:680px;min-width:0;width:100%;margin:0 auto;overflow:hidden;background:var(--ds-surface);color:var(--ds-text);border:1px solid var(--ds-text);border-radius:var(--ds-radius);font:var(--ds-size)/1.5 var(--ds-font);container-type:inline-size; }
+.ds-screen.ds-narrow { max-width:320px; }
+.ds-screen-head { display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--ds-text);padding:var(--ds-gap);flex-wrap:wrap; }
+.ds-screen-tag { margin-left:auto;font-size:.72em; }
+.ds-mark { background:var(--ds-action);color:var(--ds-on);padding:4px 10px;border-radius:calc(var(--ds-radius) / 2);font-weight:700; }
+.ds-screen-body { padding:var(--ds-gap); }
+.ds-screen .ds-kicker { text-transform:uppercase;letter-spacing:.08em;font-size:.65em;margin:0 0 8px; }
+.ds-screen h3 { font:700 1.5em/1.2 var(--ds-font);color:var(--ds-text);margin:0 0 12px; }
+.ds-screen p { font-size:inherit;line-height:1.5;color:inherit; }
+.ds-screen .ds-screen-copy { margin-bottom:var(--ds-gap);font-size:.85em; }
+.ds-room-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--ds-gap); }
+.ds-room { border:1px solid var(--ds-text);border-radius:var(--ds-radius);padding:var(--ds-gap);min-width:0;display:flex;flex-direction:column;gap:10px; }
+.ds-room p,.ds-room small { font-size:.78em;margin:0; }
+.ds-room-photo { position:relative; }
+.ds-room-photo img { display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover; }
+.ds-availability { position:absolute;left:12px;bottom:12px;background:var(--ds-surface);color:var(--ds-text);padding:5px 10px;border-radius:99px;font-size:.65em;font-weight:600;box-shadow:0 2px 12px #0002; }
+.ds-room-details { padding:var(--ds-gap);display:grid;gap:10px; }
+.ds-room-title { font-size:1.2em;line-height:1.2; }
+.ds-amenities { display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;font-size:.65em; }
+.ds-amenities span { padding:5px 9px;background:color-mix(in srgb,var(--ds-text) 6%,var(--ds-surface));border-radius:6px; }
+.ds-form-title { font-size:1.1em; }
+.ds-booking-slot { display:grid;gap:3px;padding:14px 0;margin-bottom:4px;border-block:1px solid color-mix(in srgb,var(--ds-text) 15%,var(--ds-surface)); }
+.ds-booking-slot>span { font-size:.6em;letter-spacing:.12em; }
+.ds-booking-slot>strong { font-size:1.25em;letter-spacing:-.04em; }
+.ds-sample-button { background:var(--ds-action);border:2px solid var(--ds-action);color:var(--ds-on);border-radius:var(--ds-radius);padding:10px var(--ds-gap);font:600 .85em/1.4 var(--ds-font);min-height:44px;cursor:pointer;margin-top:auto; }
+.ds-sample-button.ds-secondary { background:var(--ds-surface);color:var(--ds-action); }
+.ds-sample-button.ds-size-small { min-height:36px;padding-block:6px; }
+.ds-sample-button.ds-size-large { min-height:52px;padding-block:14px; }
+.ds-sample-button:hover:not(:disabled),.ds-sample-button.ds-state-hover { text-decoration:underline;text-underline-offset:3px; }
+.ds-sample-button:focus-visible,.ds-sample-button.ds-state-focus,.ds-sample-input:focus-visible { outline:3px solid var(--ds-action);outline-offset:3px; }
+.ds-sample-button:active:not(:disabled),.ds-state-active { transform:translateY(1px); }
+.ds-sample-button:disabled { opacity:.5;cursor:not-allowed; }
+.ds-form label { font-size:.8em;font-weight:600; }
+.ds-sample-input { background:var(--ds-surface);color:var(--ds-text);width:100%;font:inherit;min-height:44px;border:1px solid var(--ds-text);border-radius:var(--ds-radius);padding:8px; }
+.ds-sample-input[aria-invalid=true] { border:2px solid var(--ds-error); }
+.ds-screen .ds-error { color:var(--ds-error); }
+.ds-booking-summary { display:grid;gap:7px;font-size:.75em;padding-top:var(--ds-gap);margin-top:auto;border-top:1px solid var(--ds-text); }
+.ds-screen .ds-book-result { font-size:.78em;margin:12px 0 0; }
+.ds-book-result:empty { display:none; }
+@container (max-width:400px) { .ds-room-grid { grid-template-columns:1fr; } }
+.ds-code { padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;max-height:450px;overflow:auto;font:13px/1.65 var(--f-mono);tab-size:2; }
+.ds-token-chain { font-size:12px!important;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px!important; }
+code { font-family:var(--f-mono);font-size:.88em;overflow-wrap:anywhere; }
+.ds-checks { border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0;background:var(--paper); }
+.ds-checks>p:not(.muted) { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;max-width:none;border-bottom:1px solid var(--line);padding:10px 0;margin:0; }
+.ds-checks small { grid-column:1/-1;color:var(--muted); }
+.ds-checks .ds-pass>b { color:var(--ok); }.ds-checks .ds-fail>b { color:var(--bad); }
+.ds-checks>.muted { margin:12px 0 0; }
+.ds-checklist { display:grid;gap:12px;margin:20px 0; }
+.ds-checklist label { display:flex;gap:12px;align-items:start;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font-size:15px; }
+.ds-checklist input,.ds-choice input { width:19px;height:19px;flex-shrink:0;accent-color:var(--accent);margin-top:2px; }
+.ds-consistency { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0; }
+.ds-consistency .card { padding:18px; }.ds-consistency h3 { font-size:17px; }
+.ds-faux-button { display:inline-block;padding:8px 14px;color:#fff;font:600 14px/1.4 var(--f-body);text-align:center; }
+.sample-0 { background:#64378c;border-radius:10px; }.sample-1{background:#16757b;border-radius:0;padding:12px 10px;font-size:12px}.sample-2{background:#af411d;border-radius:30px;padding:6px 12px;font-family:Georgia,serif}
+.is-consistent .ds-faux-button { background:#64378c;border-radius:10px;padding:10px 14px;font:600 14px/1.4 var(--f-body); }
+.ds-atomic-visual { background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:clamp(20px,4vw,40px);margin:22px 0; }
+.ds-atomic-visual>div { display:grid;gap:20px; }.ds-atomic-visual strong{font-size:24px}
+.ds-mini-search { display:flex;border:1px solid var(--control-border);border-radius:8px;overflow:hidden;font-size:14px; }.ds-mini-search span{flex:1;padding:12px}.ds-mini-search b{background:var(--accent);color:white;padding:12px}
+.ds-mini-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:12px; }.ds-mini-cards span{padding:30px 8px;background:var(--accent-soft);text-align:center;border-radius:8px;color:var(--accent-ink)}
+.ds-level-3 .ds-mini-cards span { font-size:0;min-height:75px;background:var(--surface-2); }.ds-level-3 .ds-mini-search{opacity:.6}
+.ds-contrast-controls { display:flex;flex-wrap:wrap;align-items:center;gap:24px; }
+.ds-contrast-sample { padding:24px;border:1px solid var(--control-border);border-radius:12px; }.ds-contrast-sample strong{font-size:26px;line-height:1.3;display:block;margin-bottom:12px}.ds-contrast-sample p{font-size:16px;margin:0}
+.ds-contrast-result { display:flex;align-items:center;gap:24px;margin:18px 0;flex-wrap:wrap; }.ds-contrast-result b{font:700 32px var(--f-mono)}
+.ds-choice-grid { display:grid;gap:10px;margin:22px 0; }
+.ds-choice { display:flex;align-items:start;gap:12px;border:1px solid var(--control-border);border-radius:10px;padding:16px;background:var(--paper);cursor:pointer;font-size:15px; }
+.ds-choice small { display:block;color:var(--muted);margin-top:5px; }
+.ds-choice:has(input:checked) { border-color:var(--accent);background:var(--accent-soft); }
+.ds-feedback:not(:empty) { border-left:3px solid var(--accent);padding:16px 20px;background:var(--accent-soft);border-radius:0 10px 10px 0;margin:20px 0; }
+.ds-feedback li { margin:12px 0; }.ds-feedback p:last-child{margin-bottom:0}
+.ds-assignments { display:grid;gap:12px;margin-bottom:22px; }.ds-assignments .ds-field{margin:0}.ds-assignments .small:empty{display:none}.ds-assignments .small{margin:12px 0 0}
+.ds-drag-source>span { padding:10px 16px;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent-ink);border-radius:8px;cursor:grab;font-size:14px; }
+.ds-import { display:flex;flex-wrap:wrap;align-items:center;gap:20px;border-top:1px solid var(--line);padding-top:24px;margin-top:24px; }
+.ds-guide-text { font:14px/1.6 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere; }
+.ds-sources { font-size:13px;color:var(--muted);margin-top:30px!important; }
+.ds-quiz-fieldset { border:0;padding:0;margin:16px 0 24px;min-width:0; }.ds-quiz-fieldset legend{margin-bottom:20px}.ds-quiz-fieldset label{margin-bottom:10px}
+.ds-quiz-progress { width:100%;height:7px;accent-color:var(--accent); }
+.ds-quiz-review { border-bottom:1px solid var(--line);padding:16px 0; }.ds-quiz-review p{margin:14px 0}
+details>summary { cursor:pointer;font-weight:600;padding:14px 0; }
+.ds-glossary { margin:30px 0; }.ds-glossary>div{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;border-top:1px solid var(--line);padding:22px 0}.ds-glossary dt{font-weight:700;color:var(--accent-ink)}.ds-glossary dd{margin:0}
+.ds-nav-close { display:none; }
+@media(max-width:1100px){.ds-lab{grid-template-columns:1fr}.ds-controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.ds-controls>p,.ds-controls>.ds-actions{grid-column:1/-1}}
+@media(max-width:880px){.ds-nav-close{display:block;margin:10px 12px 0;min-height:44px}.ds-preview-shell{padding:10px}}
+@media(max-width:600px){.ds-consistency,.ds-controls{grid-template-columns:1fr}.ds-glossary>div{grid-template-columns:1fr;gap:6px}.ds-mini-cards{gap:6px}.ds-contrast-result{gap:12px}.ds-checks{padding:14px}.ds-screen-body{padding:min(var(--ds-gap),16px)}.ds-lab{gap:16px}}
+@media(forced-colors:active){.ds-sample-button{border-color:ButtonText}.ds-sample-button:focus-visible,.ds-sample-input:focus-visible{outline-color:Highlight}.ds-faux-button,.ds-mark{border:1px solid ButtonText}}
+@media print{.sidebar,.content-head,.topbar,.pager,.toast,.ls-trigger,.ds-actions,.ex-done{display:none!important}.app{display:block}.page{padding:0}.demo,.card{break-inside:avoid}body{background:white;color:black}}
+
+/* CampusPlan: tokenbasierte Raumkarte und getrennte Reservierung. */
+.ds-preview-shell { padding:clamp(10px,2vw,22px);background:color-mix(in srgb,var(--surface-2) 65%,var(--paper)); }
+.ds-screen { border-color:color-mix(in srgb,var(--ds-text) 15%,var(--ds-surface));box-shadow:0 12px 32px #0000000d;overflow-wrap:anywhere; }
+.ds-screen-head { border-color:color-mix(in srgb,var(--ds-text) 12%,var(--ds-surface));padding:calc(var(--ds-gap) + 4px); }
+.ds-mark { width:32px;height:32px;display:grid;place-items:center;padding:0; }
+.ds-screen-body { padding:calc(var(--ds-gap) + 4px); }
+.ds-screen h3 { font-size:1.8em;letter-spacing:-.045em;margin-top:8px; }
+.ds-screen .ds-screen-copy { margin:0 0 22px; }
+.ds-room-grid { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start; }
+.ds-room { padding:0;gap:0;overflow:hidden;border-color:color-mix(in srgb,var(--ds-text) 15%,var(--ds-surface)); }
+.ds-form { padding:var(--ds-gap);gap:12px;background:color-mix(in srgb,var(--ds-action) 4%,var(--ds-surface));border-color:transparent; }
+.ds-booking-summary { border-color:color-mix(in srgb,var(--ds-text) 15%,var(--ds-surface));font-size:.65em;gap:3px; }
+.ds-sample-input { font-size:.8em;padding:10px;border-color:color-mix(in srgb,var(--ds-text) 45%,var(--ds-surface)); }
+.ds-form #preview-hint { font-size:.65em; }
+@container (max-width:460px) { .ds-room-grid { grid-template-columns:1fr; }.ds-screen h3{font-size:1.65em}.ds-screen-tag{font-size:.6em}.ds-room-photo img{aspect-ratio:16/9} }
