@@ -54,7 +54,7 @@ export const UX_LAWS_DATA: UxLaw[] = [
     id: "teslers-law",
     name: "Tesler's Law",
     description: "Das Gesetz der Erhaltung der Komplexität besagt, dass es für jedes System eine gewisse Komplexität gibt, die nicht reduziert werden kann.",
-    takeaway: "Entweder muss der Ingenieur die Komplexität bewältigen oder der Nutzer. Nehmen Sie dem Nutzer die Last ab.",
+    takeaway: "Entweder bewältigt das Entwicklungsteam die Komplexität oder die Person, die das Produkt nutzt. Nehmen Sie den Nutzenden die Last ab.",
     category: "Prinzip"
   },
   {

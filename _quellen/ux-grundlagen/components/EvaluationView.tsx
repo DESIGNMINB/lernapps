@@ -36,8 +36,8 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
     id: 'heuristic',
     title: 'Heuristische Evaluation',
     icon: '🔍',
-    shortDesc: 'Kein User-Test, sondern eine Experten-Inspektion. UX-Profis prüfen das Interface anhand anerkannter Regeln.',
-    fullDesc: 'Bei der heuristischen Evaluation prüfen 3-5 Usability-Experten das Interface unabhängig voneinander anhand eines Sets von anerkannten Gestaltungsregeln (Heuristiken, z. B. nach Nielsen). Sie durchlaufen typische Aufgabenpfade und notieren jeden Verstoß gegen diese Regeln samt Schweregrad.',
+    shortDesc: 'Kein User-Test, sondern eine Inspektion durch Fachleute. UX-Profis prüfen das Interface anhand anerkannter Regeln.',
+    fullDesc: 'Bei der heuristischen Evaluation prüfen 3–5 Fachleute für Usability das Interface unabhängig voneinander anhand eines Sets von anerkannten Gestaltungsregeln (Heuristiken, z. B. nach Nielsen). Sie durchlaufen typische Aufgabenpfade und notieren jeden Verstoß gegen diese Regeln samt Schweregrad.',
     output: 'Verstoß gegen Heuristik #4 (Konsistenz) auf Seite 3: Der „Speichern“-Button ist hier rot statt grün.',
     pros: [
       'Sehr schnell und vergleichsweise kostengünstig (keine Probandenrekrutierung)',
@@ -45,7 +45,7 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
       'Gut in frühen Entwicklungsphasen einsetzbar'
     ],
     cons: [
-      'Findet oft „False Positives“ (Probleme, die echte Nutzer gar nicht stören)',
+      'Findet oft „False Positives“ (Probleme, die echte Nutzende gar nicht stören)',
       'Hängt stark von der Expertise der Evaluatoren ab',
       'Keine „echten“ Nutzerdaten oder Überraschungsmomente'
     ]
@@ -55,11 +55,11 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
     title: 'Fokusgruppen',
     icon: '👥',
     shortDesc: 'Moderierte Gruppendiskussion (5-10 Personen) über Einstellungen, Wünsche und Meinungen zu einem Konzept.',
-    fullDesc: 'Fokusgruppen sind eine qualitative Methode, die primär in frühen Phasen (Requirements Engineering) genutzt wird. Ein Moderator leitet eine Diskussion, um die Einstellungen, Bedürfnisse und das Vokabular der Zielgruppe zu verstehen. Wichtig: Fokusgruppen sind KEIN Usability-Test. Menschen sagen oft das eine, tun aber das andere.',
-    output: '„Die Teilnehmer waren sich einig, dass Datenschutz wichtiger ist als Komfortfunktionen.“',
+    fullDesc: 'Fokusgruppen sind eine qualitative Methode, die primär in frühen Phasen (Requirements Engineering) genutzt wird. Eine Person moderiert eine Diskussion, um die Einstellungen, Bedürfnisse und das Vokabular der Zielgruppe zu verstehen. Wichtig: Fokusgruppen sind KEIN Usability-Test. Menschen sagen oft das eine, tun aber das andere.',
+    output: '„Die Teilnehmenden waren sich einig, dass Datenschutz wichtiger ist als Komfortfunktionen.“',
     pros: [
-      'Synergieeffekte: Aussagen eines Teilnehmers regen andere an',
-      'Schneller Überblick über Meinungen und Sprache der Nutzer',
+      'Synergieeffekte: Aussagen einer Person regen andere an',
+      'Schneller Überblick über Meinungen und Sprache der Nutzenden',
       'Hilft beim Verständnis von sozialen Normen und Akzeptanz'
     ],
     cons: [
@@ -109,8 +109,8 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
     title: 'Card Sorting',
     icon: '🃏',
     shortDesc: 'Nutzende sortieren Begriffe in Kategorien. Essentiell für den Aufbau einer intuitiven Informationsarchitektur (Menüs).',
-    fullDesc: 'Beim Card Sorting erhalten Nutzende Kärtchen mit Begriffen (z. B. Produktnamen) und sollen diese in Gruppen sortieren, die für sie Sinn ergeben. Beim „Open Card Sorting“ benennen sie die Kategorien selbst, beim „Closed Card Sorting“ sind Kategorien vorgegeben. Das Ergebnis hilft, Menüstrukturen zu entwickeln, die dem mentalen Modell der Nutzer entsprechen.',
-    output: '85% der Nutzer suchen „Rücksendungen“ unter „Kundenservice“, nicht unter „Mein Konto“.',
+    fullDesc: 'Beim Card Sorting erhalten Nutzende Kärtchen mit Begriffen (z. B. Produktnamen) und sollen diese in Gruppen sortieren, die für sie Sinn ergeben. Beim „Open Card Sorting“ benennen sie die Kategorien selbst, beim „Closed Card Sorting“ sind Kategorien vorgegeben. Das Ergebnis hilft, Menüstrukturen zu entwickeln, die dem mentalen Modell der Nutzenden entsprechen.',
+    output: '85% der Nutzenden suchen „Rücksendungen“ unter „Kundenservice“, nicht unter „Mein Konto“.',
     pros: [
       'Hilft, die Informationsarchitektur (IA) nutzerzentriert aufzubauen',
       'Deckt Missverständnisse bei Bezeichnungen (Wording) auf',
@@ -132,7 +132,7 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
     pros: [
       'Misst tatsächliches Verhalten, keine Meinungen',
       'Liefert statistisch signifikante, „harte“ Zahlen für das Management',
-      'Geringes Risiko, da Änderungen nur einem Teil der Nutzer gezeigt werden'
+      'Geringes Risiko, da Änderungen nur einem Teil der Nutzenden gezeigt werden'
     ],
     cons: [
       'Erklärt nicht das „Warum“ (nur das „Was“)',
@@ -146,7 +146,7 @@ const EVALUATION_METHODS: EvaluationMethod[] = [
     icon: '👀',
     shortDesc: 'Spezielle Kameras zeichnen auf, wohin Nutzende schauen (Fixationen) und wie sich der Blick bewegt (Sakkaden).',
     fullDesc: 'Eye Tracking misst physiologische Augenbewegungen. Es zeigt objektiv, welche Elemente Aufmerksamkeit erregen und welche übersehen werden. Ergebnisse werden oft als „Heatmaps“ (heiße Zonen = viel Aufmerksamkeit) oder „Gaze Plots“ (Reihenfolge der Blicke) visualisiert. Es unterscheidet zwischen Fixationen (Aufnahme von Information) und Sakkaden (schnelle Augenbewegung).',
-    output: 'Heatmap zeigt: 90% der Nutzer schauen auf das Gesicht des Models, aber niemand liest die Headline daneben.',
+    output: 'Heatmap zeigt: 90% der Nutzenden schauen auf das Gesicht des Models, aber niemand liest die Headline daneben.',
     pros: [
       'Objektive Daten über unbewusste Aufmerksamkeit',
       'Deckt auf, wenn Elemente ignoriert werden (Banner Blindness)',
@@ -234,7 +234,7 @@ export const EvaluationView: React.FC = () => {
         <div>
           <h3 className="text-2xl font-serif font-bold text-stone-900 mb-4">Warum evaluieren wir?</h3>
           <p className="text-stone-600 leading-relaxed mb-6">
-            Die Evaluation ist der kritische Moment der Wahrheit im User Centered Design Prozess. Hier wird der „Genaue Prototyp“ getestet, indem Testpersonen (Probanden) diesen verwenden.
+            Die Evaluation ist der kritische Moment der Wahrheit im User Centered Design Prozess. Hier wird der „Genaue Prototyp“ getestet, indem Testpersonen diesen verwenden.
           </p>
           <div className="space-y-4">
             <div className="bg-white p-6 rounded border border-stone-200 shadow-sm">
@@ -261,7 +261,7 @@ export const EvaluationView: React.FC = () => {
               „Du bist nicht der Nutzer.“
             </p>
             <p className="text-stone-600 text-sm leading-relaxed">
-              Dieses Mantra ist der wichtigste Grund für Evaluation. Als Gestalter und Entwickler haben wir zu viel Vorwissen über unser eigenes System (Betriebsblindheit). Nur echte Nutzende offenbaren die wahren Probleme.
+              Dieses Mantra ist der wichtigste Grund für Evaluation. Als Gestaltende und Entwickelnde haben wir zu viel Vorwissen über unser eigenes System (Betriebsblindheit). Nur echte Nutzende offenbaren die wahren Probleme.
             </p>
         </div>
       </section>

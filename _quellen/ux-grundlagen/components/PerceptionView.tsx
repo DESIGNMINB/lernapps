@@ -14,7 +14,7 @@ export const PerceptionView = () => {
           Wahrnehmung & UX
         </h1>
         <p className="text-stone-600 mt-4 text-lg font-light max-w-3xl">
-          Design passiert nicht auf dem Bildschirm, sondern im Gehirn des Nutzers. 
+          Design passiert nicht auf dem Bildschirm, sondern im Gehirn der Nutzenden. 
           Wie wir Informationen aufnehmen, filtern und verarbeiten, bestimmt die Qualität der User Experience.
         </p>
       </header>
@@ -78,8 +78,8 @@ export const PerceptionView = () => {
             Visuelle Hierarchie & Scanning
           </h2>
           <p className="text-stone-700 leading-relaxed">
-            Nutzer lesen Webseiten nicht, sie scannen sie. Je nach Layout entstehen typische Muster wie das <strong>F-Pattern</strong> (bei viel Text) oder das <strong>Z-Pattern</strong> (bei strukturierten Landingpages).
-            Um zu testen, ob die Hierarchie funktioniert, nutzen Designer oft den „Squint Test“ (Augen zusammenkneifen).
+            Nutzende lesen Webseiten nicht, sie scannen sie. Je nach Layout entstehen typische Muster wie das <strong>F-Pattern</strong> (bei viel Text) oder das <strong>Z-Pattern</strong> (bei strukturierten Landingpages).
+            Um zu testen, ob die Hierarchie funktioniert, nutzen Designteams oft den „Squint Test“ (Augen zusammenkneifen).
           </p>
         </div>
 

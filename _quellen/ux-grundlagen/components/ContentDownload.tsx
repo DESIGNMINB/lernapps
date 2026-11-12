@@ -137,7 +137,7 @@ export const ContentDownload: React.FC = () => {
     text += "--------------------------\n";
     LITERATURE_ITEMS.forEach(book => {
       text += `Titel: ${book.title}\n`;
-      text += `Autor: ${book.author} (${book.year})\n`;
+      text += `Verfasst von: ${book.author} (${book.year})\n`;
       text += `Beschreibung: ${book.description}\n`;
       text += `Kategorie: ${book.category}\n\n`;
     });

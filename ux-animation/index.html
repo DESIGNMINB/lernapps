@@ -2,7 +2,7 @@
 <html lang="de" data-theme="light">
 <head>
 <meta charset="utf-8">
-<script src="../theme.js?v=21"></script>
+<script src="../theme.js?v=22"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../favicon.ico?v=2" sizes="any">
@@ -475,7 +475,7 @@ if (document.startViewTransition) {
 
         <h2>Tricks, die tatsächlich wirken</h2>
         <div class="grid g2">
-          <div class="card"><h3>Fortschritt, der zum Ende hin schneller wird</h3><p class="small muted">Chris Harrison und Kollegen haben 2010 gezeigt, dass Balken, die gegen Ende beschleunigen, als kürzer empfunden werden als gleichmäßige.</p></div>
+          <div class="card"><h3>Fortschritt, der zum Ende hin schneller wird</h3><p class="small muted">Chris Harrison und sein Forschungsteam haben 2010 gezeigt, dass Balken, die gegen Ende beschleunigen, als kürzer empfunden werden als gleichmäßige.</p></div>
           <div class="card"><h3>Schrittweise anzeigen</h3><p class="small muted">Was schon da ist, wird sofort gezeigt: zuerst Text, dann Bilder in niedriger Auflösung, dann scharf.</p></div>
           <div class="card"><h3>Vorausladen</h3><p class="small muted">Was die Person wahrscheinlich als Nächstes öffnet, kann schon geladen werden, während sie noch liest.</p></div>
           <div class="card"><h3>Ehrlich bleiben</h3><p class="small muted">Ein Balken, der bei 99 % stehen bleibt, zerstört das Vertrauen. Lieber einen unbestimmten Indikator als einen falschen Prozentwert.</p></div>
@@ -548,7 +548,7 @@ reduziert.addEventListener('change', () =&gt; passeAnimationenAn(reduziert.match
         <h1>Umsetzung und Übergabe</h1>
         <p class="lead">Eine Animation ist erst gut, wenn sie auf dem Gerät flüssig läuft und genau so gebaut wird, wie sie gestaltet wurde. Dafür brauchen Sie zwei Dinge: Wissen darüber, was sich günstig animieren lässt, und eine Spezifikation, die keine Fragen offenlässt.</p>
         <hr class="rule">
-        <figure class="media"><img src="media/umsetzung.jpg" alt="Entwickler an einem Schreibtisch mit zwei Monitoren, links Programmcode, rechts eine App-Vorschau mit einer einschwebenden orangefarbenen Karte" loading="lazy" width="1600" height="900"><figcaption>Gestaltung und Code müssen dieselbe Sprache sprechen. KI-generiert mit Magnific.</figcaption></figure>
+        <figure class="media"><img src="media/umsetzung.jpg" alt="Person an einem Schreibtisch mit zwei Monitoren, links Programmcode, rechts eine App-Vorschau mit einer einschwebenden orangefarbenen Karte" loading="lazy" width="1600" height="900"><figcaption>Gestaltung und Code müssen dieselbe Sprache sprechen. KI-generiert mit Magnific.</figcaption></figure>
 
         <h2>Was sich günstig animieren lässt</h2>
         <p>Der Browser berechnet jedes Bild in Schritten: Stil, <strong>Layout</strong> (Größen und Positionen), <strong>Paint</strong> (Pixel zeichnen) und <strong>Composite</strong> (Ebenen zusammensetzen). Ändern Sie <span class="mono">width</span>, <span class="mono">height</span>, <span class="mono">top</span> oder <span class="mono">left</span>, muss für jedes Bild das Layout neu berechnet werden. <span class="mono">transform</span> und <span class="mono">opacity</span> dagegen kann die Grafikkarte allein erledigen, auch wenn das Programm gerade beschäftigt ist. Native Plattformen funktionieren ähnlich.</p>

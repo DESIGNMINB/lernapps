@@ -95,7 +95,7 @@ export const AiUxView = () => {
             Core Mindset
           </h3>
           <p className="text-stone-700">
-            „KI wird UX-Designer nicht ersetzen. Aber UX-Designer, die KI nutzen, werden diejenigen ersetzen, die es nicht tun.“
+            „KI wird UX-Designerinnen und -Designer nicht ersetzen. Aber wer im UX-Design KI nutzt, wird diejenigen ersetzen, die es nicht tun.“
           </p>
         </div>
       </div>

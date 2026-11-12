@@ -324,8 +324,8 @@ function initProzess() {
    Kapitel 04: Prompt-Baukasten
    ================================================================ */
 const PB = [
-  { k: 'r', c: 'c-r', l: 'Rolle (optional)', ph: 'z. B. Du bist ein erfahrener Senior UX Designer …', ex: 'Du bist ein erfahrener Senior UX Designer und Experte für Mobile User Experience und Conversion-Optimierung.' },
-  { k: 'm', c: 'c-m', l: 'Motivation: Warum?', ph: 'Kontext und Ziel des Projekts', ex: 'Wir entwickeln eine urbane E-Bike-Sharing-App für Pendler. 45 % der Nutzer verlassen die App während der Registrierung. Wir wollen Hürden abbauen und Vertrauen stärken, um die Absprungrate zu senken.', core: 1 },
+  { k: 'r', c: 'c-r', l: 'Rolle (optional)', ph: 'z. B. Du arbeitest als erfahrene UX-Fachperson …', ex: 'Du arbeitest als erfahrene UX-Fachperson mit Schwerpunkt Mobile User Experience und Conversion-Optimierung.' },
+  { k: 'm', c: 'c-m', l: 'Motivation: Warum?', ph: 'Kontext und Ziel des Projekts', ex: 'Wir entwickeln eine urbane E-Bike-Sharing-App für Pendelnde. 45 % der Nutzenden verlassen die App während der Registrierung. Wir wollen Hürden abbauen und Vertrauen stärken, um die Absprungrate zu senken.', core: 1 },
   { k: 'a', c: 'c-a', l: 'Aufgabe: Was genau?', ph: 'klare, konkrete Handlungsanweisung', ex: 'Konzipiere einen nutzerfreundlichen, vierteiligen Onboarding-Flow. Beschreibe für jeden Screen das UX-Ziel, den psychologischen Auslöser und die wichtigsten UI-Elemente.', core: 1 },
   { k: 'res', c: 'c-res', l: 'Resultat: Welches Format?', ph: 'Format, Länge, Tonalität', ex: 'Erstelle eine Markdown-Tabelle mit den Spalten Screen, UX-Ziel, Psychologischer Auslöser und UI-Elemente. Tonfall: professionell, analytisch, praxisnah.', core: 1 },
   { k: 'e', c: 'c-e', l: 'Exempel: Woran orientieren?', ph: 'Beispiel oder Referenz', ex: 'Beispielzeile: Screen 1 „Willkommen“ | Mehrwert sofort zeigen | Benefit Framing | großes Bild, ein prägnanter Satz, Button „Loslegen“.', core: 1 },

@@ -281,7 +281,7 @@ const RecognitionVisual = () => {
         )}
       </div>
       <p className="text-[10px] text-stone-400 text-center mt-auto">
-        Verlauf zeigt Optionen an, statt dass der Nutzer sie tippen muss.
+        Verlauf zeigt Optionen an, statt dass man sie tippen muss.
       </p>
     </div>
   );
@@ -312,12 +312,12 @@ const FlexibilityVisual = () => {
           >
             Klick mich (+1)
           </button>
-          <div className="text-xs text-stone-400 font-mono border border-stone-200 rounded px-2 py-1 bg-stone-100" title="Shortcut für Experten">
+          <div className="text-xs text-stone-400 font-mono border border-stone-200 rounded px-2 py-1 bg-stone-100" title="Shortcut für Erfahrene">
             ⌘K
           </div>
         </div>
         <p className="text-[10px] text-stone-400 text-center">
-          Shortcuts sind unsichtbare Beschleuniger für Experten.
+          Shortcuts sind unsichtbare Beschleuniger für Erfahrene.
         </p>
      </div>
   );

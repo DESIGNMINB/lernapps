@@ -30,7 +30,7 @@ export const UxLawsView: React.FC = () => {
           UX Grundsätze
         </h1>
         <p className="text-xl text-stone-600 font-light max-w-3xl leading-relaxed">
-          Eine Sammlung von Best Practices, die Designer nutzen, um intuitive Benutzeroberflächen zu gestalten. 
+          Eine Sammlung von Best Practices, die Designteams nutzen, um intuitive Benutzeroberflächen zu gestalten. 
           Diese Gesetze stammen aus der Psychologie und der Human-Computer-Interaction (HCI).
         </p>
       </header>

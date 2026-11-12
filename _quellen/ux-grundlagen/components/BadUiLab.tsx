@@ -54,7 +54,7 @@ export const BadUiLab: React.FC = () => {
 
   const handleBadAction = (action: string) => {
     const messages: Record<string, string> = {
-      'placeholder': "Memory Load: Sobald man tippt, verschwindet der Hinweis, was in das Feld gehört. Nutzer müssen sich erinnern.",
+      'placeholder': "Memory Load: Sobald man tippt, verschwindet der Hinweis, was in das Feld gehört. Nutzende müssen sich erinnern.",
       'contrast': "Barrierefreiheit (WCAG): Der Kontrast zwischen Text und Hintergrund ist zu gering (< 4.5:1).",
       'ghost-button': "Hierarchie: Der primäre Button (Login) sieht aus wie ein sekundärer oder deaktivierter Button.",
       'destructive-pos': "Erwartungskonformität: 'Löschen' steht dort, wo man 'Weiter' erwartet (rechts unten).",

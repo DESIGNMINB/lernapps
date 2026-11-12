@@ -1,7 +1,7 @@
-import { chapters } from './kapitel.js?v=8';
-import { people, timeline, terms, quiz, literature } from './wissen.js?v=6';
-import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=3';
-import { bilder } from './bilder.js?v=8';
+import { chapters } from './kapitel.js?v=9';
+import { people, timeline, terms, quiz, literature } from './wissen.js?v=7';
+import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=4';
+import { bilder } from './bilder.js?v=9';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -358,7 +358,7 @@ function wissenPage(p) {
     <ol class="dg-timeline">${[...timeline].sort((x, y) => x[0] - y[0]).map(([, y, t, ch]) => `<li><span class="dg-year">${y}</span><a href="#${ch}">${t}</a></li>`).join('')}</ol>`;
   if (p.id === 'koepfe') {
     const eras = chapters.filter((c) => people.some((x) => x[2] === c.id));
-    return head + `<p class="page-intro">${people.length} Gestalterinnen und Gestalter, Kritiker und Lehrende, nach Kapiteln geordnet. Die Lebensdaten sind mit Wikidata abgeglichen.</p>
+    return head + `<p class="page-intro">${people.length} Gestalterinnen und Gestalter, Kritikerinnen und Kritiker sowie Lehrende, nach Kapiteln geordnet. Die Lebensdaten sind mit Wikidata abgeglichen.</p>
       <div class="story-controls dg-filter" id="kf" role="group" aria-label="Köpfe filtern">
         <button type="button" class="btn" data-f="alle" aria-pressed="true">Alle</button>
         <button type="button" class="btn" data-f="frauen" aria-pressed="false">Gestalterinnen</button>
