@@ -1,6 +1,6 @@
-import { chapters } from './kapitel.js?v=2';
+import { chapters } from './kapitel.js?v=3';
 import { terms, quiz, plugins, pluginKategorien, quellen } from './wissen.js?v=2';
-import { musterOptionen, musterFaelle, storyboard, werkzeugOptionen, werkzeugFaelle, promptKriterien, promptBausteine, a11yFaelle, projektFelder, projektSchritte } from './uebungen.js?v=1';
+import { musterOptionen, musterFaelle, storyboard, werkzeugOptionen, werkzeugFaelle, promptKriterien, promptBausteine, a11yFaelle, projektFelder, projektSchritte } from './uebungen.js?v=2';
 import { bilder } from './bilder.js?v=1';
 import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
@@ -192,7 +192,7 @@ function sectionHtml(s) {
     ${(s.p || []).map((t) => `<p>${t}</p>`).join('')}
     ${s.list ? `<ul>${s.list.map((l) => `<li>${l}</li>`).join('')}</ul>` : ''}
     ${s.table ? table(s.table) : ''}
-    ${s.code ? `<div class="sc-code"><div class="sc-code-head"><span>Beispiel-Prompt</span><button type="button" class="btn" data-copy>Kopieren</button></div><pre tabindex="0"><code>${esc(s.code)}</code></pre></div>` : ''}
+    ${s.code ? `<div class="sc-code"><div class="sc-code-head"><span>Beispiel-Prompt</span><button type="button" class="btn" data-copy>Kopieren</button></div><pre tabindex="0"><code>${esc(s.code)}</code></pre></div>${s.note ? `<p class="story-note dg-note">${s.note}</p>` : ''}` : ''}
     ${s.demo === 'sticky' ? demoSticky() : ''}
     ${s.fig ? `<div class="dg-figs">${diagram(s.fig)}</div>` : ''}
     ${imgs.length ? `<div class="dg-figs${imgs.length > 1 ? ' two' : ''}">${imgs.map((k) => figure(k)).join('')}</div>` : ''}

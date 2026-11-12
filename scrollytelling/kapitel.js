@@ -48,7 +48,7 @@ export const chapters = [
           ['1', 'Regen fällt auf die Berge.', 'Landschaft in drei Ebenen', 'Wolken langsamer als Berge', 'Parallax'],
           ['2', 'Das Wasser versickert.', 'Querschnitt durch den Boden', 'Grafik bleibt stehen, Wasser sinkt ab', 'Sticky, Scrubbing'],
           ['3', 'Brunnen fördern Grundwasser.', 'Querschnitt mit Brunnen', 'Brunnen blendet ein', 'Sticky, Einblenden'],
-          ['4', '128 Liter pro Kopf und Tag.', 'Großes Zahlenbild', 'Zahl zählt hoch', 'Einblenden'],
+          ['4', 'Rund 122 Liter pro Person und Tag.', 'Großes Zahlenbild', 'Zahl zählt hoch', 'Einblenden'],
           ['5', 'Was Sie tun können.', 'Drei Tipps als Karten', 'Keine Bewegung', 'Ruhepunkt']
         ] }, fig: 'storyboard' },
       { h: 'Bilder in Ebenen denken', p: [
@@ -183,12 +183,12 @@ export const chapters = [
       ], img: ['make-arbeitsplatz'] },
       { h: 'Ein guter Prompt für Scrollytelling', p: ['Make setzt um, was Sie beschreiben, und erfindet, was Sie offenlassen. Beschreiben Sie deshalb Inhalt, Struktur und Bewegung genau. Ein bewährter Aufbau:'], list: [
         '<b>Ziel und Inhalt:</b> Worum geht es, für wen, auf welchem Gerät?',
-        '<b>Struktur:</b> Welche Abschnitte in welcher Reihenfolge? Verweisen Sie auf die angehängten Frames.',
+        '<b>Struktur:</b> Welche Abschnitte in welcher Reihenfolge? Verweisen Sie nur auf Frames, die Sie tatsächlich angehängt haben.',
         '<b>Muster pro Abschnitt:</b> Sticky-Grafik, Einblenden, Parallax oder Scrubbing.',
         '<b>Bewegung präzise:</b> Auslöser, Richtung, Distanz, Dauer und Easing.',
         '<b>Barrierefreiheit:</b> reduzierte Bewegung beachten, Tastaturbedienung, Alternativtexte, Inhalte auch ohne Animation sichtbar.',
         '<b>Technik, wenn Sie sie kennen:</b> zum Beispiel CSS „position: sticky“, den Intersection Observer oder CSS Scroll-driven Animations.'
-      ], code: 'Baue eine Scrollytelling-Seite „Der Weg des Wassers“ nach den angehängten Frames, zuerst für Smartphones (390 px), dann für Desktop.\n\nAbschnitt 1: Landschaft aus drei Ebenen (hg-himmel, mg-berge, vg-gras) mit Parallax. Hintergrund bewegt sich mit 30 %, Mittelgrund mit 60 %, Vordergrund mit 100 % der Scrollgeschwindigkeit.\n\nAbschnitt 2–3: Die Querschnitt-Grafik bleibt sticky stehen. Rechts (mobil: darunter) scrollen drei Textschritte vorbei. Erreicht ein Schritt die Bildschirmmitte, wechselt die Grafik in den passenden Zustand (Überblendung 300 ms, ease-out).\n\nAbschnitt 4: Die Zahl 128 zählt einmal hoch, wenn sie ins Bild kommt.\n\nAbschnitt 5: Drei Karten ohne Animation.\n\nWenn „prefers-reduced-motion: reduce“ aktiv ist: keine Parallax- und Zählanimation, Zustände wechseln ohne Übergang. Alle Texte bleiben ohne Animation lesbar. Nutze semantische Überschriften und Alternativtexte aus den Ebenennamen.' },
+      ], code: 'Baue eine Scrollytelling-Seite „Der Weg des Wassers“. Es gibt keine Vorlagen: Erzeuge alle Grafiken selbst als einfache, flächige SVG-Illustrationen. Gestalte zuerst für Smartphones (390 px), dann für Desktop. Stil: ruhig und hell, Blau- und Grüntöne, gut lesbare serifenlose Schrift, Fließtext mindestens 18 px.\n\nAbschnitt 1: Titel „Der Weg des Wassers“ über einer Landschaft aus drei Ebenen: Himmel mit Wolken, Berge, Wiese im Vordergrund. Parallax: Himmel bewegt sich mit 30 %, Berge mit 60 %, Wiese mit 100 % der Scrollgeschwindigkeit.\n\nAbschnitt 2–3: Eine Querschnitt-Grafik durch den Boden (Erde, Kies, Gestein, Grundwasser, ein Brunnen) bleibt sticky stehen. Rechts (mobil: darunter) scrollen drei kurze Textschritte vorbei: 1. Regen versickert im Boden. 2. Das Wasser sammelt sich als Grundwasser. 3. Ein Brunnen fördert es zum Wasserwerk. Erreicht ein Schritt die Bildschirmmitte, hebt die Grafik die passende Schicht hervor (Überblendung 300 ms, ease-out).\n\nAbschnitt 4: Die Zahl „rund 122 Liter“ mit der Unterzeile „Trinkwasser pro Person und Tag in Deutschland“ zählt einmal hoch, wenn sie ins Bild kommt.\n\nAbschnitt 5: Drei Karten ohne Animation mit Spartipps: kürzer duschen, Wasserhahn beim Zähneputzen zudrehen, Waschmaschine nur voll laden.\n\nWenn „prefers-reduced-motion: reduce“ aktiv ist: keine Parallax- und Zählanimation, Zustände wechseln ohne Übergang. Alle Texte bleiben ohne Animation lesbar. Nutze semantische Überschriften, Alternativtexte für alle Grafiken und einen sichtbaren Tastaturfokus.', note: 'Dieser Prompt funktioniert ohne Vorlagen, Make erzeugt die Grafiken selbst. Wenn Sie eigene Frames aus Figma Design anhängen, ergänzen Sie einen Satz wie „Übernimm Layout, Farben, Schriften und Ebenen aus den angehängten Frames“. Erwähnen Sie Frames nur, wenn Sie sie auch anhängen, sonst fragt Make danach.' },
       { h: 'Schrittweise verbessern', list: [
         'Ändern Sie pro Prompt nur eine Sache. So erkennen Sie, was welche Wirkung hat.',
         'Prüfen Sie das Ergebnis auf dem Smartphone, mit Tastatur und mit eingeschalteter Einstellung „Bewegung reduzieren“.',
@@ -286,7 +286,7 @@ export const chapters = [
       ], table: {
         head: ['Element', 'Auslöser', 'Eigenschaft', 'Von → Bis', 'Dauer, Easing'],
         rows: [
-          ['Zahl „128“', 'kommt ins Bild', 'Zahlenwert, Deckkraft', '0 → 128, 0 → 1', '800 ms, ease-out'],
+          ['Zahl „122“', 'kommt ins Bild', 'Zahlenwert, Deckkraft', '0 → 122, 0 → 1', '800 ms, ease-out'],
           ['mg-berge', 'Scrollen in Abschnitt 1', 'Verschiebung y', 'Faktor 0,6', 'an Scroll gekoppelt'],
           ['Grafik Schritt 2', 'Textschritt 2 in Bildmitte', 'Deckkraft', '0 → 1', '300 ms, ease-out']
         ] } },

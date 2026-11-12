@@ -26,7 +26,7 @@ export const storyboard = {
     ['Ursprung', 'Regen fällt auf eine Landschaft aus drei Parallax-Ebenen.'],
     ['Weg', 'Sticky-Querschnitt: Das Wasser versickert durch Boden- und Gesteinsschichten.'],
     ['Wendepunkt', 'Ein Brunnen fördert das Grundwasser, das Wasserwerk reinigt es.'],
-    ['Höhepunkt', 'Die Zahl 128 Liter pro Kopf und Tag zählt hoch.'],
+    ['Höhepunkt', 'Die Zahl „rund 122 Liter pro Person und Tag“ zählt hoch.'],
     ['Ruhepunkt und Ausblick', 'Drei Karten ohne Animation: Was Sie selbst tun können.']
   ],
   start: [3, 0, 5, 1, 4, 2],
@@ -55,11 +55,12 @@ export const promptKriterien = [
   ['Auslöser genannt', ['wenn', 'sobald', 'erreicht', 'ins bild', 'beim scrollen', 'in view'], 'Wann startet die Bewegung? Nennen Sie den Auslöser.'],
   ['Reduzierte Bewegung berücksichtigt', ['reduced-motion', 'reduzierte bewegung', 'bewegung reduzieren', 'ohne animation'], 'Was passiert, wenn jemand „Bewegung reduzieren“ eingeschaltet hat?'],
   ['Weitere Barrierefreiheit (Tastatur, Alternativtexte, Überschriften)', ['tastatur', 'alternativtext', 'alt-text', 'überschrift', 'kontrast', 'screenreader'], 'Nennen Sie Tastaturbedienung, Alternativtexte oder Kontrast.'],
-  ['Bezug auf angehängte Entwürfe', ['angehängt', 'frame', 'entwurf', 'figma design'], 'Verweisen Sie auf die angehängten Frames, damit Make Ihr Design übernimmt.']
+  ['Gestaltung festgelegt (Stil, Farben, Schrift oder angehängte Frames)', ['angehängt', 'frame', 'stil', 'farbe', 'schrift', 'illustration', 'farben'], 'Beschreiben Sie Stil, Farben und Schrift. Verweisen Sie nur auf Frames, die Sie wirklich anhängen, sonst fragt Make danach.']
 ];
 export const promptBausteine = [
   ['Ziel', 'Baue eine Scrollytelling-Seite zum Thema „…“ für Studierende, zuerst für Smartphones (390 px).'],
-  ['Entwurf', 'Übernimm Layout, Farben und Schriften aus den angehängten Frames.'],
+  ['Gestaltung', 'Stil: ruhig und hell, Blau- und Grüntöne, serifenlose Schrift, Fließtext mindestens 18 px. Erzeuge alle Grafiken als einfache SVG-Illustrationen.'],
+  ['Nur mit Frames', 'Übernimm Layout, Farben, Schriften und Ebenen aus den angehängten Frames.'],
   ['Abschnitte', 'Abschnitt 1: … Abschnitt 2: … Abschnitt 3: …'],
   ['Parallax', 'Abschnitt 1 zeigt drei Ebenen mit Parallax: Hintergrund 30 %, Mittelgrund 60 %, Vordergrund 100 % der Scrollgeschwindigkeit.'],
   ['Sticky', 'Die Grafik in Abschnitt 2 bleibt sticky stehen. Sobald ein Textschritt die Bildschirmmitte erreicht, wechselt sie in den passenden Zustand (Überblendung 300 ms, ease-out).'],
