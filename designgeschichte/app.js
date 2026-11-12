@@ -1,7 +1,7 @@
 import { chapters } from './kapitel.js?v=8';
 import { people, timeline, terms, quiz, literature } from './wissen.js?v=6';
 import { zeitstrahl, stuhlEpochen, stuhlMerkmale, stuehle, radios, radioOptionen, radioTransfer, quelle, zitatPersonen, zitate, thesen, thesenStufen, inklusion } from './uebungen.js?v=3';
-import { bilder } from './bilder.js?v=7';
+import { bilder } from './bilder.js?v=8';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
@@ -16,20 +16,20 @@ const nr = (i) => String(i + 1).padStart(2, '0');
 const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const exercises = [
-  { id: 'u-zeitstrahl', title: 'Zeitstrahl ordnen', subtitle: 'Acht Stationen von 1851 bis 1984 in die richtige Reihenfolge bringen', icon: 'list' },
-  { id: 'u-stuehle', title: 'Stuhl-Detektiv', subtitle: 'Sieben Stühle Epoche und Merkmal zuordnen', icon: 'chair' },
-  { id: 'u-radio', title: 'Haltungen an Geräten', subtitle: 'Drei Radios und ein Moped: verkaufen, ordnen, begeistern, erhalten – und welche Perspektive zu welcher App passt', icon: 'radio' },
-  { id: 'u-quelle', title: 'Form und Zweck im NS-Staat', subtitle: 'Den Volksempfänger als historische Quelle untersuchen', icon: 'search' },
-  { id: 'u-zitate', title: 'Wer hat’s gesagt?', subtitle: 'Acht Positionen von Morris bis Sottsass zuordnen', icon: 'quote' },
-  { id: 'u-rams', title: 'Rams’ Thesen am Interface', subtitle: 'Eine heutige App bewerten und als Word-Dokument exportieren', icon: 'check' }
+  { id: 'u-zeitstrahl', tile: 'kristallpalast', title: 'Zeitstrahl ordnen', subtitle: 'Acht Stationen von 1851 bis 1984 in die richtige Reihenfolge bringen', icon: 'list' },
+  { id: 'u-stuehle', tile: 'thonet14', title: 'Stuhl-Detektiv', subtitle: 'Sieben Stühle Epoche und Merkmal zuordnen', icon: 'chair' },
+  { id: 'u-radio', tile: 'prr-s1', title: 'Haltungen an Geräten', subtitle: 'Drei Radios und ein Moped: verkaufen, ordnen, begeistern, erhalten – und welche Perspektive zu welcher App passt', icon: 'radio' },
+  { id: 'u-quelle', tile: 'archiv-lesesaal', title: 'Form und Zweck im NS-Staat', subtitle: 'Den Volksempfänger als historische Quelle untersuchen', icon: 'search' },
+  { id: 'u-zitate', tile: 'looshaus', title: 'Wer hat’s gesagt?', subtitle: 'Acht Positionen von Morris bis Sottsass zuordnen', icon: 'quote' },
+  { id: 'u-rams', tile: 'interface-review', title: 'Rams’ Thesen am Interface', subtitle: 'Eine heutige App bewerten und als Word-Dokument exportieren', icon: 'check' }
 ];
 const wissenPages = [
-  { id: 'zeitleiste', title: 'Zeitleiste', subtitle: `${timeline.length} Stationen von 1707 bis heute`, icon: 'clock', chip: 'Z' },
-  { id: 'koepfe', title: 'Köpfe', subtitle: `${people.length} Kurzporträts, filterbar nach Epoche`, icon: 'people', chip: 'K' },
-  { id: 'glossar', title: 'Glossar', subtitle: `${terms.length} Begriffe von ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de'))[0][0]} bis ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).at(-1)[0]}`, icon: 'book', chip: 'A–Z' },
-  { id: 'literatur', title: 'Literatur und Bildnachweis', subtitle: 'Bücher zum Weiterlesen und Quellen der Abbildungen', icon: 'book', chip: 'L' }
+  { id: 'zeitleiste', tile: 'centennial', title: 'Zeitleiste', subtitle: `${timeline.length} Stationen von 1707 bis heute`, icon: 'clock', chip: 'Z' },
+  { id: 'koepfe', tile: 'simson-werk', title: 'Köpfe', subtitle: `${people.length} Kurzporträts, filterbar nach Epoche`, icon: 'people', chip: 'K' },
+  { id: 'glossar', tile: 'underground', title: 'Glossar', subtitle: `${terms.length} Begriffe von ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de'))[0][0]} bis ${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).at(-1)[0]}`, icon: 'book', chip: 'A–Z' },
+  { id: 'literatur', tile: 'kelmscott-chaucer', title: 'Literatur und Bildnachweis', subtitle: 'Bücher zum Weiterlesen und Quellen der Abbildungen', icon: 'book', chip: 'L' }
 ];
-const quizPage = { id: 'quiz', title: 'Quiz Designgeschichte', subtitle: `${quiz.length} Fragen quer durch alle Kapitel`, icon: 'quiz' };
+const quizPage = { id: 'quiz', tile: 'mondrian-komposition', title: 'Quiz Designgeschichte', subtitle: `${quiz.length} Fragen quer durch alle Kapitel`, icon: 'quiz' };
 const pages = [{ id: 'home', title: 'Übersicht', icon: 'grid' }, ...chapters, ...exercises, ...wissenPages, quizPage];
 
 const icons = {
@@ -81,7 +81,7 @@ function figure(key, cls = '') {
     <figcaption>${esc(b.caption)} <span class="dg-credit">${b.ki ? 'KI-generiert mit Magnific, Stimmungsbild ohne reale Vorlage' : `Nachweis: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}`}</span></figcaption></figure>`;
 }
 function tileArt(page, chip) {
-  const key = page.img && !page.noTileImg ? Object.values(page.img)[0][0] : null;
+  const key = page.tile || (page.img && !page.noTileImg ? Object.values(page.img)[0][0] : null);
   const b = key && bilder[key];
   const badge = done[page.id] ? '<span class="tag-done">Erledigt</span>' : '';
   const art = b ? `<img src="img/${b.file}" alt="" width="${b.w}" height="${b.h}" loading="lazy">${b.ki ? '<span class="ki-badge" aria-hidden="true">KI-generiert</span>' : ''}` : (page.period ? `<span class="dg-tile-plain" aria-hidden="true">${esc(page.period)}</span>` : `<span class="dg-tile-icon" aria-hidden="true">${icon(page.icon || 'chapter')}</span>`);
@@ -369,7 +369,7 @@ function wissenPage(p) {
   }
   if (p.id === 'glossar') return head + section('Begriffe zum Nachschlagen', `<dl>${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('')}</dl>`, true);
   if (p.id === 'literatur') return head + section('Zum Weiterlesen', `<ul class="dg-lit">${literature.map(([a, t, v, y, n]) => `<li><b>${a}:</b> <cite>${t}</cite>. ${v}, ${y}. <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
-    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild und die Stimmungsbilder zu den Kapiteln 01, 13 und 15 sind KI-generiert (Magnific) und zeigen keine realen Designobjekte.</p>
+    + section('Bildnachweis', `<p>Werkabbildungen stammen von Wikimedia Commons. Gezeigt werden nur Werke, die gemeinfrei sind, mit Fotos unter freier Lizenz. Das Startbild, die Stimmungsbilder zu den Kapiteln 01, 13 und 15 und das Kachelbild zu Übung 6 sind KI-generiert (Magnific) und zeigen keine realen Designobjekte.</p>
       <ul class="dg-lit">${Object.values(bilder).filter((b) => !b.ki).map((b) => `<li>${esc(b.caption)}: ${esc(b.artist)}, <a href="${b.page}">Wikimedia Commons</a>, ${b.licenseUrl ? `<a href="${b.licenseUrl}">${esc(b.license)}</a>` : esc(b.license)}</li>`).join('')}</ul>`)
     + section('Weitere Module', '<p>Raster und Satzspiegel vertiefen Sie in <a href="../layout-raster/">Layout und Raster</a>, Schriftgeschichte und Klassifikation in <a href="../typografie/">Typografie</a>.</p>');
   return head;
