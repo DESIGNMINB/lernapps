@@ -96,7 +96,7 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] items-center gap-6 lg:gap-12 rounded-2xl border border-stone-200 bg-white p-6 md:p-10 lg:p-12 mb-6">
               <div>
                 <div className="w-12 h-12 rounded-xl bg-[#7440A2] text-white grid place-items-center text-[17px] font-bold" aria-hidden="true">UX</div>
-                <p className="mt-[22px] text-[11.5px] font-semibold uppercase tracking-[0.1em] text-stone-500">Lernmodul 06 · Nutzererfahrung &amp; Interface</p>
+                <p className="mt-[22px] text-[11.5px] font-semibold uppercase tracking-[0.1em] text-stone-500">Lernmodul 07 · Nutzererfahrung &amp; Interface</p>
                 <h1 className="mt-2.5 mb-3.5 text-[clamp(34px,4.6vw,48px)] leading-[1.12] font-bold tracking-[-0.02em] text-orange-600">UX-Grundlagen</h1>
                 <p className="max-w-[54ch] text-[16.5px] leading-relaxed text-stone-600">
                   Wie entstehen Oberflächen, die Menschen verstehen und gerne benutzen? Von Heuristiken, Gestaltgesetzen und ISO 9241 über Wahrnehmung und Barrierefreiheit bis zu Evaluation, Designmethoden und KI. Mit Bad-UI-Labor, Quiz und Glossar.
@@ -158,7 +158,7 @@ export default function App() {
             ))}
 
             <footer className="mt-[72px] border-t border-stone-200 pt-[18px] text-[13px] text-stone-500">
-              <p>© 2026 UX-Lernplattform · Lernmodul 06 · Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
+              <p>© 2026 UX-Lernplattform · Lernmodul 07 · Prof. Dipl. Des. T. Hinz · Hochschule Karlsruhe, Fakultät IWI</p>
             </footer>
           </div>
         );
@@ -186,7 +186,7 @@ export default function App() {
         {currentView !== ViewState.HOME && (
           <button type="button" onClick={() => setView(ViewState.HOME)} className="ux-content-head">
             <span className="mark" aria-hidden="true">UX</span>
-            <span className="name">UX Lernmodul<small>06 · UX-Grundlagen</small></span>
+            <span className="name">UX Lernmodul<small>07 · UX-Grundlagen</small></span>
           </button>
         )}
         {renderContent()}

@@ -101,7 +101,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) 
         </div>
         <div className="flex flex-col">
           <span className="text-xl font-bold text-stone-800 leading-tight">UX Lernmodul</span>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-stone-400 mt-0.5">06 · UX-Grundlagen</span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-stone-400 mt-0.5">07 · UX-Grundlagen</span>
         </div>
       </div>
 

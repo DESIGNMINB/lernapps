@@ -1,4 +1,4 @@
-# Modul 11 · Designsysteme & Styleguides
+# Modul 12 · Designsysteme & Styleguides
 
 Statische Lerneinheit für GitHub Pages. Keine Installation und kein Build nötig. Die Dateien werden im Repository gepflegt. 
 

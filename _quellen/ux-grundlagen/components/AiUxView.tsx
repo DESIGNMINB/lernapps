@@ -176,9 +176,9 @@ export const AiUxView = () => {
 
       {/* Verweis auf das vertiefende Lernmodul */}
       <aside className="mt-10 rounded-xl border border-orange-200 bg-orange-50 p-6">
-        <p className="text-xs font-bold uppercase tracking-widest text-orange-700">Weiter vertiefen · Lernmodul 09</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-orange-700">Weiter vertiefen · Lernmodul 10</p>
         <p className="mt-2 text-stone-700 leading-relaxed">Wie Bildmodelle arbeiten, wie Sie Bilder nach dem MARE-Prinzip und mit Fachbegriffen aus Fotografie und Film beauftragen, KI-Bilder prüfen und bearbeiten und was Urheberrecht und AI Act verlangen, zeigt das Modul UX &amp; KI.</p>
-        <a href="../ux-ki/" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-cta px-4 py-2.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Zum Lernmodul 09 →</a>
+        <a href="../ux-ki/" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-cta px-4 py-2.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Zum Lernmodul 10 →</a>
       </aside>
     </div>
   );

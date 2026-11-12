@@ -476,7 +476,7 @@ export const DesignMethodsView = () => {
           'Ein Prototyp simuliert die Interaktion. Er beantwortet die Frage: „Wie fühlt es sich an, das Produkt zu benutzen?“. Tools wie Figma oder Protopie erlauben es, Screens zu verknüpfen, Übergänge zu animieren und Mikro-Interaktionen zu testen.',
           'Prototypen sind essenziell für Usability-Tests, da Nutzende Aufgaben realitätsnah durchspielen können, ohne dass eine Zeile Code geschrieben wurde.'
         ],
-        more: { label: 'Weiter vertiefen · Lernmodul 08', text: 'Wie Sie Übergänge, Timing, Easing und Mikrointeraktionen gezielt gestalten und barrierefrei umsetzen, zeigt das Modul UX & Animation.', href: '../ux-animation/' }
+        more: { label: 'Weiter vertiefen · Lernmodul 09', text: 'Wie Sie Übergänge, Timing, Easing und Mikrointeraktionen gezielt gestalten und barrierefrei umsetzen, zeigt das Modul UX & Animation.', href: '../ux-animation/' }
       },
       sections: [
         {
@@ -721,7 +721,7 @@ export const DesignMethodsView = () => {
                       <aside className="rounded-xl border border-orange-200 bg-orange-50 p-5">
                         <p className="text-xs font-bold uppercase tracking-widest text-orange-700">{method.basics.more.label}</p>
                         <p className="mt-2 text-stone-700 leading-relaxed">{method.basics.more.text}</p>
-                        <a href={method.basics.more.href} className="mt-4 inline-flex items-center gap-2 rounded-lg bg-cta px-4 py-2.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Zum Lernmodul 08 →</a>
+                        <a href={method.basics.more.href} className="mt-4 inline-flex items-center gap-2 rounded-lg bg-cta px-4 py-2.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Zum Lernmodul 09 →</a>
                       </aside>
                     )}
 

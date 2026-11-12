@@ -209,14 +209,14 @@ export const EvaluationView: React.FC = () => {
       </header>
       <aside aria-labelledby="ev-deeper-title" className="grid md:grid-cols-[1.1fr_1fr] overflow-hidden rounded-2xl border border-orange-200 bg-orange-50">
         <div className="p-7 md:p-9 flex flex-col justify-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-orange-700">Weiter vertiefen · Lernmodul 07</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-orange-700">Weiter vertiefen · Lernmodul 08</p>
           <h3 id="ev-deeper-title" className="mt-2 text-2xl md:text-3xl font-bold text-stone-900 leading-tight">UX &amp; Evaluation mobiler Apps</h3>
           <p className="mt-3 text-stone-700 leading-relaxed">
-            Diese Seite gibt den Überblick über die Methoden. Wie Sie eine eigene App Schritt für Schritt evaluieren, zeigt das Lernmodul 07: heuristische Evaluation im Team, Usability-Tests mit Smartphone, SUS und UEQ auswerten, Befunde priorisieren und einen Testplan erstellen. Mit Fragebogen-Vorlagen zum Herunterladen und einem Werkzeug für Ihre eigenen Testdaten.
+            Diese Seite gibt den Überblick über die Methoden. Wie Sie eine eigene App Schritt für Schritt evaluieren, zeigt das Lernmodul 08: heuristische Evaluation im Team, Usability-Tests mit Smartphone, SUS und UEQ auswerten, Befunde priorisieren und einen Testplan erstellen. Mit Fragebogen-Vorlagen zum Herunterladen und einem Werkzeug für Ihre eigenen Testdaten.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href="../ux-evaluation/" className="inline-flex items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-sm font-bold text-white hover:bg-cta-hover transition-colors">
-              Zum Lernmodul 07 <span aria-hidden="true">→</span>
+              Zum Lernmodul 08 <span aria-hidden="true">→</span>
             </a>
             <a href="../ux-evaluation/#messen" className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-bold text-stone-800 hover:border-stone-500 transition-colors">
               Fragebögen und Vorlagen
@@ -702,7 +702,7 @@ export const EvaluationView: React.FC = () => {
       <aside className="rounded-2xl border border-stone-200 bg-white p-7 flex flex-col md:flex-row md:items-center gap-5 justify-between">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-orange-700">Nächster Schritt</p>
-          <p className="mt-1 text-lg font-bold text-stone-900">Ihre eigene App evaluieren: Lernmodul 07 · UX &amp; Evaluation</p>
+          <p className="mt-1 text-lg font-bold text-stone-900">Ihre eigene App evaluieren: Lernmodul 08 · UX &amp; Evaluation</p>
           <p className="mt-1 text-stone-600">Sechs Übungen vom Daumenzonen-Check bis zum fertigen Testplan.</p>
         </div>
         <a href="../ux-evaluation/" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-cta px-5 py-2.5 text-sm font-bold text-white hover:bg-cta-hover transition-colors">

@@ -46,7 +46,7 @@ export const ContentDownload: React.FC = () => {
     text += "SEITE: HOME\n";
     text += "-----------\n";
     text += "Headline: UX-Design Lernen - Barrierefreiheit & UX\n";
-    text += "Subtext: Lernmodul 06\n\n";
+    text += "Subtext: Lernmodul 07\n\n";
 
     // --- GRUNDLAGEN ---
     text += "SEITE: GRUNDLAGEN\n";
