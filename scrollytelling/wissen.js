@@ -36,7 +36,7 @@ export const terms = [
   ['Figma Make', 'KI-Werkzeug in Figma, das aus Prompts und Entwürfen lauffähige Anwendungen mit Code erzeugt.'],
   ['Code-Ebene', 'Ebene in Figma Sites mit eigenem Code für Effekte, die die fertigen Interaktionen nicht abdecken.'],
   ['Dev Mode', 'Ansicht in Figma für die Übergabe an die Entwicklung, mit Maßen, Code-Hinweisen und Anmerkungen.'],
-  ['Plugin', 'Erweiterung von Drittanbietern, die Figma um Funktionen ergänzt. Wird über die Figma Community installiert.']
+  ['Plugin', 'Erweiterung, die Figma um Funktionen ergänzt und meist nicht von Figma selbst stammt. Wird über die Figma Community installiert.']
 ];
 
 /* [Frage, Antworten, Index richtig, Erklärung] */

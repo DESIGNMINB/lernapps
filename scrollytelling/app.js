@@ -1,5 +1,5 @@
-import { chapters } from './kapitel.js?v=1';
-import { terms, quiz, plugins, pluginKategorien, quellen } from './wissen.js?v=1';
+import { chapters } from './kapitel.js?v=2';
+import { terms, quiz, plugins, pluginKategorien, quellen } from './wissen.js?v=2';
 import { musterOptionen, musterFaelle, storyboard, werkzeugOptionen, werkzeugFaelle, promptKriterien, promptBausteine, a11yFaelle, projektFelder, projektSchritte } from './uebungen.js?v=1';
 import { bilder } from './bilder.js?v=1';
 import { diagramme } from './diagramme.js?v=1';
@@ -417,7 +417,7 @@ function wireExercise(e) {
 const kosten = { frei: 'kostenlos', freemium: 'kostenlos nutzbar, mit Bezahloption' };
 function wissenPage(p) {
   const head = `<h1 class="page-title purple">${p.title}</h1>`;
-  if (p.id === 'plugins') return head + `<p class="page-intro">Plugins erweitern Figma um Funktionen von Drittanbietern. Für Scrollytelling brauchen Sie keines davon zwingend, aber diese ${plugins.length} Plugins sparen Zeit beim Planen, beim Bildmaterial, bei Bewegung, bei der Barrierefreiheit und auf dem Weg zur Webseite. Alle sind kostenlos oder in einer Grundfassung kostenlos nutzbar.</p>
+  if (p.id === 'plugins') return head + `<p class="page-intro">Plugins erweitern Figma um Funktionen, die andere Firmen und Einzelpersonen entwickelt haben. Für Scrollytelling brauchen Sie keines davon zwingend, aber diese ${plugins.length} Plugins sparen Zeit beim Planen, beim Bildmaterial, bei Bewegung, bei der Barrierefreiheit und auf dem Weg zur Webseite. Alle sind kostenlos oder in einer Grundfassung kostenlos nutzbar.</p>
     <div class="story-controls dg-filter" id="pf" role="group" aria-label="Plugins filtern">
       <button type="button" class="btn" data-f="" aria-pressed="true">Alle</button>
       ${pluginKategorien.map(([k, l]) => `<button type="button" class="btn" data-f="${k}" aria-pressed="false">${l}</button>`).join('')}
@@ -427,7 +427,7 @@ function wissenPage(p) {
     <ul class="dg-people" id="pf-list"></ul>`
     + section('So installieren Sie ein Plugin', `<ol>
       <li>Öffnen Sie eine Figma-Datei und wählen Sie im Werkzeugmenü <b>Actions</b> und dort den Reiter <b>Plugins &amp; widgets</b>, oder suchen Sie direkt in der <a href="https://www.figma.com/community/plugins">Figma Community</a>.</li>
-      <li>Suchen Sie den Namen, öffnen Sie die Detailseite und prüfen Sie Anbieter, Preis, letzte Aktualisierung und Datenschutzangaben.</li>
+      <li>Suchen Sie den Namen, öffnen Sie die Detailseite und prüfen Sie, wer das Plugin anbietet, und achten Sie auf Preis, letzte Aktualisierung und Datenschutzangaben.</li>
       <li>Starten Sie das Plugin mit <b>Run</b>. Häufig genutzte Plugins können Sie anheften.</li>
     </ol>`, true)
     + section('Vorsicht bei Plugins', `<ul>
