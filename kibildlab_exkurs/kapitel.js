@@ -56,9 +56,8 @@ export const chapters = [
         'Werkzeuge bieten einen Regler für die Stärke der Steuerung. Er heißt je nach Programm etwa „control weight“, „strength“ oder in der Bibliothek Diffusers „controlnet_conditioning_scale“ (Standardwert dort 1,0). Gemeint ist jeweils, wie stark das Ergebnis der Vorlage folgt.',
         'Allgemein gilt: Bei niedriger Stärke weicht das Bild deutlich von der Vorlage ab, bei hoher folgt es ihr eng. Sehr hohe Werte können ein Bild steif oder überzeichnet wirken lassen, vor allem bei groben Skizzen. Welche Werte gut sind, hängt von Modell, Bedingung und Vorlage ab. Feste Idealwerte gibt es nicht, deshalb arbeitet man mit Testreihen.'
       ] },
-      { h: 'Probieren Sie es aus: der ControlNet-Simulator', p: [
-        'Zeichnen Sie mit Maus, Stift oder Finger eine Skizze oder laden Sie eine Vorlage per Schaltfläche. Wählen Sie die Bedingung und die Stärke. Der Simulator zeigt, welche Steuerkarte aus Ihrer Skizze entsteht und wie eng ein Ergebnis ihr folgen würde.',
-        '<b>Wichtig:</b> Das ist eine Simulation. Es wird kein Bild generiert und nichts an einen Dienst gesendet; die Vorschau ist eine schematische Darstellung im Browser.'
+      { h: 'Probieren Sie es aus: von der Skizze zur Steuerkarte', p: [
+        'Wählen Sie eine Vorlage oder zeichnen Sie mit Maus, Stift oder Finger eine eigene Skizze. Die Bedingung legt fest, welche Steuerkarte daraus entsteht, der Regler die Stärke der Steuerung.'
       ], demo: 'controlnet' },
       { h: 'Grenzen und Verantwortung', list: [
         'ControlNet steuert Struktur, nicht Qualität: Hände, Text und Details können trotzdem fehlerhaft sein.',
@@ -87,7 +86,7 @@ export const chapters = [
         '<b>3. Freistellen und auffüllen:</b> Jede Ebene ausschneiden. Wo eine vordere Ebene etwas verdeckte, entsteht hinten ein Loch. Das füllt Inpainting (Labor 4).',
         '<b>4. Bewegen:</b> Ebenen beim Scrollen unterschiedlich schnell verschieben: hinten langsam, vorn schnell.'
       ] },
-      { h: 'Probieren Sie es aus: Schwellen und Parallax', p: ['Die Szene unten ist eine eigene Zeichnung mit passender Tiefenkarte. Schalten Sie zwischen Bild und Tiefenkarte um, setzen Sie die beiden Schwellen und bewegen Sie den Regler „Scrollposition“. Wenn Ihr System reduzierte Bewegung bevorzugt, bleibt die Szene ruhig und die Verschiebung wird als Zahl angezeigt.'], demo: 'tiefe' },
+      { h: 'Probieren Sie es aus: Schwellen und Parallax', p: ['Die Landschaft unten ist eine eigene Zeichnung mit passender Tiefenkarte. Setzen Sie die beiden Schwellen: Das Bild wird anhand der Tiefenkarte tatsächlich in drei Ebenen geschnitten. Mit dem Regler „Scrollposition“ verschieben Sie die Ebenen. Wo der Vordergrund wegrückt, erscheint eine Lücke, die in der Praxis per Inpainting gefüllt wird. Bevorzugt Ihr System reduzierte Bewegung, bleiben die Ebenen stehen und die Verschiebung wird als Zahl angezeigt.'], demo: 'tiefe' },
       { h: 'Parallax verantwortungsvoll einsetzen', p: [
         'Starke Bewegung kann Schwindel und Übelkeit auslösen. Respektieren Sie die Einstellung „Bewegung reduzieren“ (CSS-Medienabfrage prefers-reduced-motion), halten Sie die Verschiebung klein, und lassen Sie Text nie über bewegte Ebenen wandern, wenn er dadurch schlechter lesbar wird. Wie Parallax in Scrollytelling-Seiten gestaltet und barrierefrei umgesetzt wird, zeigt das Modul <a href="../scrollytelling/#parallax">Scrollytelling mit Figma, Kapitel Parallax und Bewegung</a>.'
       ] }
