@@ -14,9 +14,11 @@ Use case: photorealistic-natural. Generate a single landscape 4:3 editorial phot
 
 Close photograph of hands sorting six illustrated project brief cards into three distinct groups on a workshop table, laptop and pencils beside them. Decision-making exercise for choosing a digital design tool.
 
-## `parallax-labor.webp`
+## `parallax-editor.webp`
 
-Überarbeitete Fassung. Prompt: Use case: photorealistic-natural. Single landscape 4:3 photograph for university scrollytelling course, professional natural photography, no watermark or overlaid titles. A striking real landscape photograph taken through a forest edge: sharp dark evergreen branches in foreground, a sunlit forested ridge at middle distance, pale mountain peaks farther away, atmospheric sky in background. Obvious overlapping depth planes illustrate parallax intuitively. Natural cinematic mountain photography, no desk, no paper, no model, no text.
+Kontextkorrektur: illustrativer Parallax-Editor mit vier Ebenen und Geschwindigkeitsreglern, generiert mit dem integrierten OpenAI-Imagegen-Werkzeug am 13. November 2026. Kein Screenshot einer realen Software.
+
+Prompt: Use case: photorealistic-natural. A single 4:3 editorial photograph for the thumbnail of an interactive university exercise called Parallax-Spielplatz, about adjusting scrolling speeds of four layers in a website. Close three-quarter photograph of a real desktop monitor in a contemporary design studio. The monitor dominates 85 percent of composition, no people necessary, small keyboard edge visible. Its screen clearly shows a purpose-built parallax animation editor: left two-thirds a layered abstract cityscape with separate foreground buildings, middle buildings, distant skyline and sky, selected layers outlined subtly in blue; right third a clean inspector with exactly four large horizontal speed sliders at four distinct positions, each beside a small layer thumbnail. A slim vertical scroll progress track on the preview makes the scrolling context explicit. Plausible polished software interface, no branding, no AI chat, no code. Realistic glass and metal, natural window light, soft blue and violet interface accents. Strong clear composition readable as a thumbnail. No outdoor landscape photograph, no mountains, no paper models, no decorative props, no overlaid title, no watermark. Software is an illustrative example, not an exact Figma screenshot.
 
 ## `wasser-storyboard.webp`
 

@@ -1,7 +1,7 @@
 import { chapters } from './kapitel.js?v=3';
 import { terms, quiz, plugins, pluginKategorien, quellen } from './wissen.js?v=2';
 import { musterOptionen, musterFaelle, storyboard, werkzeugOptionen, werkzeugFaelle, promptKriterien, promptBausteine, a11yFaelle, projektFelder, projektSchritte } from './uebungen.js?v=2';
-import { bilder } from './bilder.js?v=2';
+import { bilder } from './bilder.js?v=3';
 import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
 
