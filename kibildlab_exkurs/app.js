@@ -1,6 +1,6 @@
 import { chapters, szene, verfahren, faelle } from './kapitel.js?v=3';
 import { terms, quiz, literature } from './wissen.js?v=1';
-import { bilder, outpaint, motiv } from './bilder.js?v=2';
+import { bilder, outpaint, motiv } from './bilder.js?v=3';
 
 /* Exkurs zu Lernmodul 10 (UX & KI) */
 const NAME = 'KI-Bild-App';
@@ -225,7 +225,7 @@ const VORLAGEN = {
   figur: { name: 'Figur in Bewegung', strokes: [[[200, 70], [220, 90], [200, 110], [180, 90], [200, 70]], [[200, 110], [195, 210]], [[200, 135], [150, 170]], [[200, 135], [255, 120]], [[195, 210], [150, 300]], [[195, 210], [245, 290], [270, 300]], [[20, 320], [380, 320]]] }
 };
 /* Beispielbilder je Vorlage und Stufe (img/cn-<vorlage>-<stufe>.webp), sobald erzeugt; Stufen 0 frei, 1 schwach, 2 eng, 3 übersteuert */
-const CN_BILDER = { 'landschaft-0': bilder.cn0, 'landschaft-1': bilder.cn1, 'landschaft-2': bilder.cn2, 'landschaft-3': bilder.cn3 };
+const CN_BILDER = Object.fromEntries([['landschaft', 'cn'], ['wireframe', 'wf'], ['figur', 'fg']].flatMap(([v, p]) => [0, 1, 2, 3].map((i) => [`${v}-${i}`, bilder[`${p}${i}`]])));
 const STUFEN = ['Frei', 'Schwach', 'Eng', 'Übersteuert'];
 const stufe = (s) => (s < 0.3 ? 0 : s < 0.9 ? 1 : s <= 1.2 ? 2 : 3);
 const STUFE_TXT = [
@@ -281,7 +281,7 @@ function wireControlnet() {
     $('#cn-map').setAttribute('aria-label', `Steuerkarte. ${TYP_TXT[typ]}`);
     const bild = vorlage && CN_BILDER[`${vorlage}-${k}`];
     $('#cn-result').innerHTML = `<div class="kb-result-text"><p class="kb-result-h">Stufe: ${STUFEN[k]}</p><p>${STUFE_TXT[k]}</p><p>${TYP_TXT[typ]} Welche Werte gut sind, hängt von Modell und Vorlage ab.</p>
-      ${vorlage ? '' : '<p class="story-note">Eigene Skizzen werden hier nicht in Bilder umgesetzt. Sie sehen die Steuerkarte, die ein Werkzeug wie ControlNet erhalten würde.</p>'}</div>
+      ${vorlage ? '' : '<p class="story-note"><b>Eigene Skizze:</b> Dafür gibt es kein Ergebnisbild, Sie sehen nur die Steuerkarte, die ein Werkzeug wie ControlNet erhalten würde. Um die Wirkung des Reglers zu sehen, wählen Sie oben eine Vorlage.</p>'}</div>
       ${bild ? `<figure class="kb-result-img"><img src="img/${bild.file}" alt="${esc(bild.alt)}" width="${bild.w}" height="${bild.h}" loading="lazy"><span class="ki-badge" aria-hidden="true">KI-generiert</span><figcaption>Beispielbild „${VORLAGEN[vorlage].name}“, Stufe ${STUFEN[k]}. KI-generiert (Magnific). ${esc(bild.note)}.</figcaption></figure>` : ''}`;
     if (strokes.length >= 3 && Object.keys(st.cnTypen).length >= 2) markDone('controlnet');
   }
