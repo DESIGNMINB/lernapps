@@ -1,8 +1,8 @@
-import { chapters, ebenen, mikro, meldungen, sensoren, chat, galerie } from './kapitel.js?v=1';
-import { terms, quiz, literature } from './wissen.js?v=1';
+import { chapters, ebenen, mikro, meldungen, sensoren, chat, galerie } from './kapitel.js?v=2';
+import { terms, quiz, literature } from './wissen.js?v=2';
 import { momente, checkliste } from './uebungen.js?v=1';
 import { zustaende, toene, texte, band, regeln } from './labor.js?v=1';
-import { bilder } from './bilder.js?v=1';
+import { bilder } from './bilder.js?v=2';
 import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
 
@@ -433,7 +433,7 @@ function wireCircumplex() {
       const start = { x: e.clientX, y: e.clientY }; let moved = false, ghost = null;
       const move = (ev) => {
         if (!moved && Math.hypot(ev.clientX - start.x, ev.clientY - start.y) < 5) return;
-        if (!moved) { moved = true; ghost = el.cloneNode(true); ghost.classList.add('ed-ghost'); ghost.removeAttribute('style'); document.body.appendChild(ghost); el.classList.add('is-drag'); }
+        if (!moved) { moved = true; ghost = el.cloneNode(true); ghost.classList.remove('is-placed', 'is-right'); ghost.classList.add('ed-ghost'); ghost.removeAttribute('style'); document.body.appendChild(ghost); el.classList.add('is-drag'); }
         ghost.style.left = `${ev.clientX}px`; ghost.style.top = `${ev.clientY}px`;
         plane.classList.toggle('is-over', inPlane(ev));
       };
@@ -501,7 +501,7 @@ function laborPage() {
         <button type="button" class="btn" id="lab-preset">Stimmige Antwort vorschlagen</button>
       </div>
     </div>
-    <div id="lab-feedback" aria-live="polite"></div>
+    <div id="lab-feedback"></div>
     ${section('Wichtiger Hinweis', '<p>Im Labor ist der Zustand der Person bekannt, weil Sie ihn einstellen. In der Wirklichkeit müsste ein System ihn schätzen, etwa mit Emotionserkennung. <a href="#affective">Teil 4</a> zeigt, wie unsicher solche Schätzungen sind, <a href="#ethik">Teil 6</a>, wo sie verboten sind. Ein adaptives Interface kann auch ohne Messung auskommen: Es reagiert auf das, was passiert, etwa auf einen Zahlungsfehler, statt auf das Gesicht der Person.</p>', true)}
     ${section('Reflexion', '<div class="story-fields"><label>Welche Einstellung halten Sie für eine frustrierte Person für richtig, und warum? Woher wüsste Ihr System, dass die Person frustriert ist?<textarea data-draft="u-labor:reflexion" rows="4"></textarea></label></div>')}`;
 }

@@ -63,7 +63,7 @@ export const literature = [
   ['Ekman, P.', 'An argument for basic emotions', 'Cognition and Emotion 6(3–4)', '1992', 'Grundemotionen', ''],
   ['Ekman, P.; Friesen, W. V.', 'Facial Action Coding System', 'Consulting Psychologists Press; überarbeitet mit Hager 2002', '1978', 'FACS und Action Units', ''],
   ['Russell, J. A.', 'A circumplex model of affect', 'Journal of Personality and Social Psychology 39(6)', '1980', 'Valenz und Arousal', ''],
-  ['Barrett, L. F.; Adolphs, R.; Marsella, S.; Martinez, A. M.; Pollak, S. D.', 'Emotional Expressions Reconsidered: Challenges to Inferring Emotion From Human Facial Movements', 'Psychological Science in the Public Interest 20(1)', '2019', 'Kritik an der Ableitung von Gefühlen aus Mimik', 'https://doi.org/10.1177/1529100619832930'],
+  ['Barrett, L. F.; Adolphs, R.; Marsella, S.; Martinez, A. M.; Pollak, S. D.', 'Emotional Expressions Reconsidered: Challenges to Inferring Emotion From Human Facial Movements', 'Psychological Science in the Public Interest 20(1), doi:10.1177/1529100619832930', '2019', 'Kritik an der Ableitung von Gefühlen aus Mimik', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC6640856/'],
   ['Norman, D. A.', 'Emotional Design: Why We Love (or Hate) Everyday Things', 'Basic Books', '2004', 'Viszeral, verhaltensbezogen, reflexiv', ''],
   ['Kurosu, M.; Kashimura, K.', 'Apparent usability vs. inherent usability', 'CHI ’95 Conference Companion, ACM', '1995', 'Ästhetik-Usability-Effekt', ''],
   ['Hassenzahl, M.; Burmester, M.; Koller, F.', 'AttrakDiff: Ein Fragebogen zur Messung wahrgenommener hedonischer und pragmatischer Qualität', 'Mensch & Computer 2003, Teubner', '2003', 'Pragmatische und hedonische Qualität', ''],

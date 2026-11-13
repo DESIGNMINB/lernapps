@@ -157,7 +157,7 @@ export const chapters = [
         'Der Unterschied zwischen Emotional Design und Manipulation liegt nicht in der Technik, sondern im Zweck: Hilft die emotionale Gestaltung den Menschen, ihre eigenen Ziele zu erreichen, oder bringt sie sie dazu, gegen ihre Absicht zu handeln?'
       ] },
       { h: 'Bias in der Gesichtsanalyse', p: [
-        'Joy Buolamwini und Timnit Gebru untersuchten 2018 in der Studie „Gender Shades“ drei kommerzielle Systeme, die aus Gesichtsfotos das Geschlecht bestimmen. Bei Männern mit heller Haut lag die Fehlerquote höchstens bei 0,8 Prozent, bei Frauen mit dunkler Haut bei bis zu 34,7 Prozent. Die Ursache lag vor allem in unausgewogenen Trainings- und Testdaten.',
+        'Joy Buolamwini und Timnit Gebru untersuchten 2018 in der Studie „Gender Shades“ drei kommerzielle Systeme, die aus Gesichtsfotos das Geschlecht bestimmen. Bei Männern mit heller Haut lag die Fehlerquote höchstens bei 0,8 Prozent, bei Frauen mit dunkler Haut bei bis zu 34,7 Prozent. Als wahrscheinliche Ursache nennen die Autorinnen unausgewogene Datensätze: Gängige Benchmarks zeigten überwiegend Gesichter mit heller Haut.',
         'Emotionserkennung baut auf denselben Verfahren der Gesichtsanalyse auf. Wenn schon das Erkennen von Gesichtsmerkmalen ungleich gut funktioniert, sind auch die daraus abgeleiteten Gefühlsschätzungen für manche Gruppen schlechter. Fehler treffen dann genau die Menschen, die ohnehin häufiger benachteiligt werden.'
       ], img: ['hoersaal'] },
       { h: 'Probieren Sie es aus: die Fallgalerie', p: ['Jede Karte beschreibt einen erfundenen, aber typischen Fall. Überlegen Sie zuerst selbst, was hier problematisch ist, und decken Sie dann die Auflösung auf.'], demo: 'galerie' },
