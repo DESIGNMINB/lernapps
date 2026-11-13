@@ -4,7 +4,7 @@ Acht eigenständige Motive mit dem integrierten OpenAI-Imagegen-Werkzeug generie
 
 ## Gemeinsamer Prompt
 
-Use case: photorealistic-natural. Generate a single landscape 4:3 editorial photograph for a German university scrollytelling learning module. Authentic contemporary design studio, natural light, warm wood and restrained blue-green accents, believable materials, clear composition readable as a small thumbnail. No overlaid text, no watermarks, no logos, no collage. Screens and printed sketches are illustrative, no legible text required. 
+Use case: photorealistic-natural. Generate a single landscape 4:3 editorial photograph for a German university scrollytelling learning module. Authentic contemporary design studio, natural light, warm wood and restrained blue-green accents, believable materials, clear composition readable as a small thumbnail. No overlaid text, no watermarks, no logos, no collage. Screens and printed sketches are illustrative, no legible text required.
 
 ## `werkzeugvergleich.webp`
 
@@ -39,3 +39,39 @@ Close photograph of hands using a keyboard to navigate an editorial web page on 
 ## `scroll-muster.webp`
 
 Überarbeitete Fassung. Prompt: Use case: photorealistic-natural. Single landscape 4:3 photograph for university scrollytelling course, professional natural photography, no watermark or overlaid titles. Close editorial photograph of one hand holding a modern smartphone upright in a quiet museum. Phone screen shows an elegant long-form editorial story about architecture with one large architectural photo and short typography blocks below. Real architectural exhibit softly blurred in background, natural light, focus on actual mobile reading. No paper scrolls, no collage, no second screen.
+
+# Ergänzende Übersichtsmotive · 13. November 2026
+
+Sieben weitere Motive mit dem integrierten OpenAI-Imagegen-Werkzeug generiert. Softwareansichten und Referenztexte sind illustrative Beispiele, keine originalgetreuen Screenshots oder echten Quellenbelege.
+
+Gemeinsamer Prompt: Use case: photorealistic-natural. One single landscape 4:3 professional editorial photograph for a university learning module on Scrollytelling with Figma. Direct, immediately recognizable connection to the described learning topic. Authentic materials, natural light, restrained blue/violet accents, clear subject at thumbnail size. Screens are illustrative software, no false official branding. No collage, watermark, overlaid headline or unnecessary decoration.
+
+## `figma-design-prototyp.webp`
+
+Close three-quarter photograph of a real large monitor showing a vector interface design editor: a tall mobile editorial webpage frame on the canvas, with several prototype frames connected by thin blue interaction wires, a layer list on the left and a prototype properties panel on the right. The webpage tells an ocean story with pictures and text. Monitor fills most of image, keyboard edge visible. No AI chat. Communicate building an interactive scroll prototype.
+
+Korrekturedit: Nur die drei Interaktionsbeschriftungen „On scroll“ durch „On click“ ersetzen; Bildaufbau und übrige Inhalte erhalten.
+
+## `figma-sites-responsive.webp`
+
+Real desktop monitor in a daylight studio showing a responsive website builder canvas with three views of the SAME long ocean storytelling website side by side: desktop, tablet and mobile widths, clear aligned layouts and editorial images. A small publishing control in the upper right, compact properties sidebar. Photograph at slight angle, crisp real screen, no AI chat. Communicate responsive web publishing.
+
+## `bewegung-reduzieren.webp`
+
+Close realistic photograph of a laptop showing a calm accessible long-form article with a prominent settings panel: one clearly labeled toggle 'Bewegung reduzieren' enabled, and another clearly labeled control 'Animation pausieren'. Large readable typography and a static editorial photo remain visible behind the panel. No accessibility stereotype icons. Focus on controlling animation and preserving readable content, natural desk environment.
+
+## `mini-projekt-plan.webp`
+
+Candid overhead photograph of a student's own finished scrollytelling project plan: laptop showing a structured document with a project title, short brief and a six-row storyboard table with small scene thumbnails; next to it a tablet showing the resulting coherent vertical editorial website about urban cycling. Hands pointing between plan and result. Communicate making and exporting a personal storyboard project, no loose flashcards.
+
+## `figma-plugins.webp`
+
+Close photograph of a designer's monitor showing an interface design editor with a floating plugin browser panel: neat grid of distinct extension tiles depicting icons, image editing, charts, accessibility contrast and animation. Behind panel visible mobile website frames. Mouse and partial hand in foreground. No puzzle pieces, no hardware tools. Communicate discovering useful design-software plugins, plausible software rather than giant decorative logos.
+
+## `glossar-nachschlagen.webp`
+
+Close editorial photograph of an open printed specialist design reference book on a library desk. Pages show alphabetically organized short glossary entries with clearly separated bold keywords such as 'Ankerlink', 'Breakpoint', 'Viewport', each with a short paragraph and small technical screen sketch. One hand holds page corner, plain reading glasses nearby. Emphasize looking up terminology, realistic typography and paper. No laptop, no flashcards, no decorative symbols.
+
+## `quellen-recherche.webp`
+
+Authentic photograph of a student researching web design documentation on a large monitor in a university library. Two browser windows: a clean official-style help article with sidebar navigation, and a web accessibility reference article with headings and short code sample. A notebook beside keyboard contains a short bibliography with URLs. Over-shoulder composition focused on source comparison, no generated page editor, no AI chat.
