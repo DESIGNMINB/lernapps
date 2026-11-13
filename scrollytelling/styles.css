@@ -277,8 +277,8 @@
 .sc-d-fade { opacity: .55; }
 .sc-d-arrow { stroke: var(--purple-ink); stroke-width: 2.2; }
 .sc-d-ink { fill: var(--purple-ink); }
-.sc-d-text { fill: var(--text-primary); font: 600 13px/1 inherit; font-family: inherit; }
-.sc-d-small { fill: var(--text-secondary); font: 500 12px/1 inherit; font-family: inherit; }
+.sc-d-text { fill: var(--text-primary); font-size: 14px; font-weight: 600; }
+.sc-d-small { fill: var(--text-secondary); font-size: 13px; font-weight: 500; }
 .sc-d-on { fill: #fff; }
 .sc-diagram svg { display: block; width: 100%; height: auto; padding: 14px; background: var(--bg-white); }
 .sc-tile-fig { display: block; width: 100%; padding: 12px; }
@@ -350,3 +350,9 @@
 @media (prefers-reduced-motion: reduce) { .sc-demo-bar, .sc-step { transition: none; } }
 /* overflow: hidden würde position: sticky im Live-Beispiel verhindern; clip schneidet gleich ab, ohne Scroll-Container */
 .content-card { overflow: clip; }
+/* Auf schmalen Bildschirmen Schemazeichnungen nicht unter Lesegröße verkleinern, sondern seitlich scrollbar machen */
+@media (max-width: 600px) {
+  .sc-diagram { overflow-x: auto; }
+  .sc-diagram svg { min-width: 560px; }
+  .sc-diagram figcaption { position: sticky; left: 0; max-width: calc(100vw - 48px); }
+}

@@ -10,17 +10,20 @@ export const diagramme = {
     caption: 'Futures Wheel nach Jerome C. Glenn: In der Mitte die Veränderung, im ersten Ring direkte Folgen, im zweiten Ring deren Folgen.',
     alt: 'Kreisdiagramm mit der Veränderung „KI dokumentiert die Pflege“ in der Mitte, drei direkten Folgen im ersten Ring und je zwei Folgen davon im äußeren Ring.',
     svg: (() => {
-      const cx = 320, cy = 200; let s = `<svg viewBox="0 0 640 400" role="img">${defs}`;
+      /* Breiten aus der Textlänge berechnet, damit kein Text übersteht */
+      const cx = 390, cy = 200, w2 = (q) => q.length * 7.4 + 26, w1 = (q) => q.length * 8.2 + 30;
+      let s = `<svg viewBox="0 0 780 400" role="img">${defs}`;
       ring1.forEach((r, i) => {
-        const a = -Math.PI / 2 + i * 2 * Math.PI / 3, x1 = cx + Math.cos(a) * 110, y1 = cy + Math.sin(a) * 95;
+        const a = -Math.PI / 2 + i * 2 * Math.PI / 3, x1 = cx + Math.cos(a) * 120, y1 = cy + Math.sin(a) * 100;
         s += `<line class="sc-d-line" x1="${cx}" y1="${cy}" x2="${x1}" y2="${y1}"/>`;
         ring2[i].forEach((q, j) => {
-          const b = a + (j ? 0.42 : -0.42), x2 = cx + Math.cos(b) * 245, y2 = cy + Math.sin(b) * 165;
-          s += `<line class="sc-d-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><rect class="sc-d-soft" x="${x2 - 78}" y="${y2 - 15}" width="156" height="30" rx="15"/>${t(x2, y2 + 4, q, 'sc-d-small')}`;
+          const b = a + (j ? 0.42 : -0.42), x2 = cx + Math.cos(b) * 255, y2 = cy + Math.sin(b) * 168;
+          s += `<line class="sc-d-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><rect class="sc-d-soft" x="${x2 - w2(q) / 2}" y="${y2 - 15}" width="${w2(q)}" height="30" rx="15"/>${t(x2, y2 + 4, q, 'sc-d-small')}`;
         });
-        s += `<rect class="sc-d-mid" x="${x1 - 72}" y="${y1 - 16}" width="144" height="32" rx="16"/>${t(x1, y1 + 4, r)}`;
+        s += `<rect class="sc-d-mid" x="${x1 - w1(r) / 2}" y="${y1 - 16}" width="${w1(r)}" height="32" rx="16"/>${t(x1, y1 + 5, r)}`;
       });
-      return s + `<ellipse class="sc-d-accent" cx="${cx}" cy="${cy}" rx="88" ry="30"/>${t(cx, cy + 5, 'KI dokumentiert die Pflege', 'sc-d-text sc-d-on')}</svg>`;
+      const c = 'KI dokumentiert die Pflege';
+      return s + `<ellipse class="sc-d-accent" cx="${cx}" cy="${cy}" rx="${c.length * 4.6 + 26}" ry="30"/>${t(cx, cy + 5, c, 'sc-d-text sc-d-on')}</svg>`;
     })()
   },
   achsen: {

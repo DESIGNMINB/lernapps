@@ -3,7 +3,7 @@ import { terms, quiz, literature } from './wissen.js?v=2';
 import { kegelZonen, kegelFaelle, signalArten, steepleOptionen, signalFaelle, prinzipien } from './uebungen.js?v=1';
 import { slots, tokens, techArtikel, techArtikelM, techDativ, bloecke } from './labor.js?v=2';
 import { bilder } from './bilder.js?v=1';
-import { diagramme } from './diagramme.js?v=1';
+import { diagramme } from './diagramme.js?v=3';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Titel, Exporte) */
@@ -165,7 +165,7 @@ function wireAB() {
 }
 function demoKegel() {
   return `<div class="fu-cone">
-    <svg viewBox="0 0 640 320" role="img" aria-label="Futures Cone: Von der Gegenwart links öffnet sich ein Kegel nach rechts. Innen liegt der fortgeschriebene Bereich, außen der abwegige. Ein gestrichelter Bereich zeigt die wünschenswerten Zukünfte." id="cone-svg"></svg>
+    <svg viewBox="0 0 640 334" role="img" aria-label="Futures Cone: Von der Gegenwart links öffnet sich ein Kegel nach rechts. Innen liegt der fortgeschriebene Bereich, außen der abwegige. Ein gestrichelter Bereich zeigt die wünschenswerten Zukünfte." id="cone-svg"></svg>
     <div class="fu-cone-controls">
       <label for="cone-year">Blick in die Zukunft bis <output id="cone-year-out">2040</output></label>
       <input type="range" id="cone-year" min="2026" max="2050" step="1" value="2040">
@@ -185,7 +185,7 @@ function drawKegel(sel) {
     <text class="sc-d-small" x="${ox}" y="318" text-anchor="middle">Heute (2026)</text><text class="sc-d-small" x="${hx}" y="318" text-anchor="middle">${year}</text>
     ${[...kegelBereiche].reverse().map(shape).join('')}${pref}
     <circle cx="${ox}" cy="${oy}" r="6" class="sc-d-accent"/>
-    ${p > 0.3 ? kegelBereiche.filter((b) => b.w >= 0.2).map(label).join('') + `<text class="sc-d-small fu-k-label" x="${ox + (hx - ox) * 0.78}" y="${oy - half * 0.22 - half * 0.32 - 6}" text-anchor="middle">Preferable</text>` : ''}`;
+    ${p > 0.3 ? kegelBereiche.filter((b) => b.w >= 0.2).filter((b, i, l) => i === 0 || half * (b.w - l[i - 1].w) >= 17).map(label).join('') + `<text class="sc-d-small fu-k-label" x="${ox + (hx - ox) * 0.78}" y="${oy - half * 0.22 - half * 0.32 - 6}" text-anchor="middle">Preferable</text>` : ''}`;
 }
 function wireKegel() {
   if (!$('#cone-svg')) return;
