@@ -108,7 +108,7 @@ function overview() {
     <section class="home-hero">
       <div>
         <div class="mod-chip" aria-hidden="true">FC</div>
-        <p class="hero-eyebrow">Lernmodul ${MODUL} · Master Medieninformatik</p>
+        <p class="hero-eyebrow">Lernmodul ${MODUL} · Master Vertiefungsrichtung Medieninformatik</p>
         <h1>${NAME}</h1>
         <p class="hero-lead">Zukünfte systematisch erkunden und Technik kritisch befragen: vom Unterschied zwischen affirmativem und kritischem Design über den Futures Cone, Signale und Szenarien bis zum Labor, in dem Sie ein Interface aus dem Jahr 2040 entwerfen und an seinen ethischen Grenzen drehen.</p>
         <div class="hero-actions"><div class="hero-cta">
