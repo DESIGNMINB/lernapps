@@ -52,6 +52,9 @@ export const bilder = {
   tiefeKarte: { file: 'tiefe-karte.webp', w: 1280, h: 720,
     caption: 'Tiefenkarte dazu, geschätzt mit Depth Anything 3 in Magnific: hell ist nah, dunkel ist fern',
     alt: 'Tiefenkarte derselben Landschaft in Graustufen: Baum und Wiese im Vordergrund fast weiß, Hügel und Haus mittelgrau, Berge dunkelgrau, Himmel fast schwarz' },
+  tiefePlate: { file: 'tiefe-ohne-baum.webp', w: 1280, h: 720,
+    caption: 'Dieselbe Landschaft ohne Baum: Magnific hat die verdeckte Fläche per Inpainting ergänzt, sie füllt beim Parallax die Lücke',
+    alt: 'Die Hügellandschaft im Abendlicht ohne den großen Baum: an seiner Stelle Himmel, Berge, Hügel und Wiese' },
   /* Labor 4: Inpainting */
   tischVorher: { file: 'inpaint-vorher.webp', w: 1600, h: 1073,
     caption: 'Vorher: Kaffeetasse in der Mitte des Tisches',

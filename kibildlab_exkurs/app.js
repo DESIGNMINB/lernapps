@@ -1,6 +1,6 @@
 import { chapters, szene, verfahren, faelle } from './kapitel.js?v=3';
 import { terms, quiz, literature } from './wissen.js?v=1';
-import { bilder, outpaint, motiv } from './bilder.js?v=3';
+import { bilder, outpaint, motiv } from './bilder.js?v=4';
 
 /* Exkurs zu Lernmodul 10 (UX & KI) */
 const NAME = 'KI-Bild-App';
@@ -316,7 +316,7 @@ function szeneSvg(mode = 'bild', off = {}) {
 const EBENEN = [['hinten', 'Hintergrund'], ['mitte', 'Mittelgrund'], ['vorn', 'Vordergrund']];
 const SPEED = { hinten: 0.1, mitte: 0.35, vorn: 0.8 };
 /* Quelle für Labor 3: Foto und Tiefenkarte gleicher Größe (hell = nah), beide KI-generiert mit Magnific. Ohne Quelle fällt die App auf die eigene Zeichnung zurück. */
-const TIEFE_QUELLE = { bild: `img/${bilder.tiefeFoto.file}`, karte: `img/${bilder.tiefeKarte.file}`, w: 1280, h: 720 };
+const TIEFE_QUELLE = { bild: `img/${bilder.tiefeFoto.file}`, karte: `img/${bilder.tiefeKarte.file}`, plate: `img/${bilder.tiefePlate.file}`, w: 1280, h: 720 };
 const svgUrl = (svg) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" '))}`;
 const ladeBild = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
 function demoTiefe() {
@@ -332,8 +332,9 @@ function demoTiefe() {
         <label for="tf-t1">Schwelle Hintergrund | Mittelgrund: <output id="tf-t1-out"></output></label><input type="range" id="tf-t1" min="0.05" max="0.95" step="0.05" value="${s.t1}">
         <label for="tf-t2">Schwelle Mittelgrund | Vordergrund: <output id="tf-t2-out"></output></label><input type="range" id="tf-t2" min="0.05" max="0.95" step="0.05" value="${s.t2}">
         <label for="tf-scroll">Scrollposition: <output id="tf-scroll-out">0</output> %</label><input type="range" id="tf-scroll" min="0" max="100" step="5" value="0">
+        <label class="kb-check"><input type="checkbox" id="tf-fill"> Lücken füllen (Hintergrund per Inpainting ergänzt)</label>
         <p class="story-note" id="tf-rm"></p>
-        <ul class="kb-legend" aria-hidden="true"><li class="l-hinten">Hintergrund</li><li class="l-mitte">Mittelgrund</li><li class="l-vorn">Vordergrund</li><li class="l-loch">Lücke</li></ul>
+        <ul class="kb-legend" aria-hidden="true"><li class="l-hinten">Hintergrund</li><li class="l-mitte">Mittelgrund</li><li class="l-vorn">Vordergrund</li><li class="l-loch">Lücke</li><li class="l-fill">gefüllt</li></ul>
       </div>
     </div>
     <p class="kb-result-text" id="tf-info" aria-live="polite"></p>
@@ -342,7 +343,7 @@ function demoTiefe() {
 function wireTiefe() {
   const cv = $('#tf-canvas'); if (!cv) return;
   const ctx = cv.getContext('2d'), W = 640, H = 360;
-  let pix = null, tiefe = null, alive = true; cleanups.push(() => { alive = false; });
+  let pix = null, tiefe = null, tiefeD = null, plate = null, alive = true; cleanups.push(() => { alive = false; });
   const quelle = TIEFE_QUELLE || { bild: svgUrl(szeneSvg('bild')), karte: svgUrl(szeneSvg('tiefe')) };
   Promise.all([ladeBild(quelle.bild), ladeBild(quelle.karte)]).then(([bi, ka]) => {
     if (!alive) return;
@@ -350,8 +351,16 @@ function wireTiefe() {
     o.drawImage(bi, 0, 0, W, H); pix = o.getImageData(0, 0, W, H);
     o.drawImage(ka, 0, 0, W, H); const k = o.getImageData(0, 0, W, H).data;
     tiefe = new Float32Array(W * H); for (let i = 0; i < W * H; i++) tiefe[i] = k[i * 4] / 255;
+    /* Für „Lücken füllen“: Tiefe um 5 px ausgedehnt (Maximum), damit Kantensäume mit dem Vordergrund wandern */
+    tiefeD = tiefe;
+    for (let n = 0; n < 5; n++) { const a = tiefeD, b = new Float32Array(W * H);
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let m = a[y * W + x];
+        if (x > 0) m = Math.max(m, a[y * W + x - 1]); if (x < W - 1) m = Math.max(m, a[y * W + x + 1]);
+        if (y > 0) m = Math.max(m, a[(y - 1) * W + x]); if (y < H - 1) m = Math.max(m, a[(y + 1) * W + x]); b[y * W + x] = m; }
+      tiefeD = b; }
     update();
   });
+  if (TIEFE_QUELLE) ladeBild(TIEFE_QUELLE.plate).then((p) => { if (alive) { plate = p; update(); } }).catch(() => {});
   const sch = document.createElement('canvas'); sch.width = 16; sch.height = 16; const sc = sch.getContext('2d');
   sc.fillStyle = '#C9CDD3'; sc.fillRect(0, 0, 16, 16); sc.fillStyle = '#E9EBEE'; sc.fillRect(0, 0, 8, 8); sc.fillRect(8, 8, 8, 8);
   const TINT = { hinten: [70, 120, 220], mitte: [240, 170, 40], vorn: [220, 60, 90] };
@@ -362,14 +371,15 @@ function wireTiefe() {
     $('#tf-t1-out').textContent = komma(t1, 2); $('#tf-t2-out').textContent = komma(t2, 2);
     const sc2 = Number($('#tf-scroll').value); $('#tf-scroll-out').textContent = String(sc2);
     const ansicht = content.querySelector('[name="tf-v"]:checked').value;
-    $('#tf-rm').textContent = reduced() ? `Bewegung reduziert: Die Ebenen bleiben stehen. Bei ${sc2} % verschöbe sich der Hintergrund um ${Math.round(sc2 * SPEED.hinten)} px, der Mittelgrund um ${Math.round(sc2 * SPEED.mitte)} px, der Vordergrund um ${Math.round(sc2 * SPEED.vorn)} px.` : 'Hinten langsam, vorn schnell. Wo der Vordergrund wegrückt, wird eine Lücke sichtbar.';
+    $('#tf-rm').textContent = reduced() ? `Bewegung reduziert: Die Ebenen bleiben stehen. Bei ${sc2} % verschöbe sich der Hintergrund um ${Math.round(sc2 * SPEED.hinten)} px, der Mittelgrund um ${Math.round(sc2 * SPEED.mitte)} px, der Vordergrund um ${Math.round(sc2 * SPEED.vorn)} px.` : ($('#tf-fill').checked ? 'Lücken gefüllt: Hinter den Ebenen liegt eine Fassung des Fotos ohne Baum, die Magnific per Inpainting ergänzt hat. So entsteht beim Verschieben kein Loch.' : 'Hinten langsam, vorn schnell. Wo der Vordergrund wegrückt, wird eine Lücke sichtbar.');
     if (!pix) return;
     const layer = (t) => (t < t1 ? 'hinten' : t < t2 ? 'mitte' : 'vorn');
+    const fill = $('#tf-fill').checked && plate, src = fill ? tiefeD : tiefe;
     const anteil = { hinten: 0, mitte: 0, vorn: 0 };
     const ebenen = ['hinten', 'mitte', 'vorn'].map((name) => {
       const img = ctx.createImageData(W, H), d = img.data, p = pix.data;
       for (let i = 0; i < W * H; i++) {
-        if (layer(tiefe[i]) !== name) continue;
+        if (layer(src[i]) !== name) continue;
         anteil[name]++;
         let r = p[i * 4], g = p[i * 4 + 1], b = p[i * 4 + 2];
         if (ansicht === 'karte') { const v = Math.round(tiefe[i] * 255); r = g = b = v; }
@@ -380,12 +390,19 @@ function wireTiefe() {
       return [name, c];
     });
     ctx.fillStyle = ctx.createPattern(sch, 'repeat'); ctx.fillRect(0, 0, W, H);
+    if (fill) {
+      /* Hintergrundfassung ohne Baum, mit dem Hintergrund verschoben; leicht breiter, damit rechts kein Rand frei wird */
+      const dx = reduced() ? 0 : Math.round(sc2 * SPEED.hinten);
+      ctx.drawImage(plate, -dx, 0, W + dx, H);
+      if (ansicht !== 'bild') { ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.fillRect(0, 0, W, H); }
+    }
     ebenen.forEach(([name, c]) => ctx.drawImage(c, reduced() ? 0 : -Math.round(sc2 * SPEED[name]), 0));
     const pct = (n) => Math.round((anteil[n] / (W * H)) * 100);
     $('#tf-info').textContent = `Hintergrund ${pct('hinten')} %, Mittelgrund ${pct('mitte')} %, Vordergrund ${pct('vorn')} % der Bildfläche.${pct('mitte') < 3 ? ' Der Mittelgrund ist fast leer: Die Schwellen liegen zu dicht beieinander.' : ''}`;
   }
   content.querySelectorAll('[name="tf-v"]').forEach((r) => r.onchange = update);
   ['#tf-t1', '#tf-t2', '#tf-scroll'].forEach((id) => { $(id).oninput = update; });
+  $('#tf-fill').onchange = update;
   update();
 }
 const SPUREN = [['', 'Noch nicht zugeordnet'], ...EBENEN];

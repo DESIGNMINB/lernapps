@@ -805,6 +805,7 @@
 .kb-legend li::before { content: ""; width: 14px; height: 14px; border-radius: 3px; }
 .kb-legend .l-hinten::before { background: rgb(70,120,220); } .kb-legend .l-mitte::before { background: rgb(240,170,40); } .kb-legend .l-vorn::before { background: rgb(220,60,90); }
 .kb-legend .l-loch::before { background: repeating-conic-gradient(#C9CDD3 0 25%, #E9EBEE 0 50%) 0 0 / 8px 8px; }
+.kb-legend .l-fill::before { background: linear-gradient(135deg, #8CB27A, #CFE3F5); }
 .kb-lanes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
 .kb-lane { min-height: 150px; padding: 10px; border: 2px dashed var(--border-color); border-radius: 10px; background: var(--bg-white); }
 .kb-lane h4 { margin: 0 0 8px; font-size: 14px; }
