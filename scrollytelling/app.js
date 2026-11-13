@@ -1,7 +1,7 @@
 import { chapters } from './kapitel.js?v=3';
 import { terms, quiz, plugins, pluginKategorien, quellen } from './wissen.js?v=2';
 import { musterOptionen, musterFaelle, storyboard, werkzeugOptionen, werkzeugFaelle, promptKriterien, promptBausteine, a11yFaelle, projektFelder, projektSchritte } from './uebungen.js?v=2';
-import { bilder } from './bilder.js?v=1';
+import { bilder } from './bilder.js?v=2';
 import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
 
@@ -19,12 +19,12 @@ const esc = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const exercises = [
-  { id: 'u-muster', tileFig: 'muster', title: 'Scroll-Muster erkennen', subtitle: 'Acht Beschreibungen dem passenden Muster zuordnen', icon: 'scroll' },
-  { id: 'u-parallax', tile: 'ebenen-diorama', title: 'Parallax-Spielplatz', subtitle: 'Geschwindigkeiten von vier Ebenen einstellen und Tiefe erzeugen', icon: 'layers' },
-  { id: 'u-storyboard', tile: 'storyboard-tisch', title: 'Storyboard ordnen', subtitle: 'Sechs Schritte einer Wassergeschichte in einen Spannungsbogen bringen', icon: 'board' },
-  { id: 'u-werkzeug', tile: 'hero', title: 'Werkzeug wählen', subtitle: 'Sechs Projekte: Figma Design, Sites oder Make?', icon: 'tools' },
-  { id: 'u-prompt', tile: 'make-arbeitsplatz', title: 'Prompt-Werkstatt', subtitle: 'Einen Prompt für Figma Make schreiben und gegen neun Kriterien prüfen', icon: 'spark' },
-  { id: 'u-a11y', tile: 'usability-test', title: 'Barrierefrei oder nicht?', subtitle: 'Acht Umsetzungen beurteilen', icon: 'access' },
+  { id: 'u-muster', tile: 'scroll-muster', title: 'Scroll-Muster erkennen', subtitle: 'Acht Beschreibungen dem passenden Muster zuordnen', icon: 'scroll' },
+  { id: 'u-parallax', tile: 'parallax-labor', title: 'Parallax-Spielplatz', subtitle: 'Geschwindigkeiten von vier Ebenen einstellen und Tiefe erzeugen', icon: 'layers' },
+  { id: 'u-storyboard', tile: 'wasser-storyboard', title: 'Storyboard ordnen', subtitle: 'Sechs Schritte einer Wassergeschichte in einen Spannungsbogen bringen', icon: 'board' },
+  { id: 'u-werkzeug', tile: 'werkzeug-aufgabe', title: 'Werkzeug wählen', subtitle: 'Sechs Projekte: Figma Design, Sites oder Make?', icon: 'tools' },
+  { id: 'u-prompt', tile: 'prompt-werkstatt', title: 'Prompt-Werkstatt', subtitle: 'Einen Prompt für Figma Make schreiben und gegen neun Kriterien prüfen', icon: 'spark' },
+  { id: 'u-a11y', tile: 'tastatur-test', title: 'Barrierefrei oder nicht?', subtitle: 'Acht Umsetzungen beurteilen', icon: 'access' },
   { id: 'u-projekt', tileFig: 'storyboard', title: 'Mini-Projekt: Ihre Seite', subtitle: 'Eigenes Scroll-Storyboard planen und als Word-Dokument exportieren', icon: 'check' }
 ];
 const wissenPages = [
@@ -32,10 +32,10 @@ const wissenPages = [
   { id: 'glossar', title: 'Glossar', subtitle: `${terms.length} Begriffe von Ankerlink bis Viewport`, icon: 'book', chip: 'A–Z' },
   { id: 'quellen', title: 'Quellen und Links', subtitle: 'Figma-Hilfe, Barrierefreiheit, Beispiele und Bildnachweis', icon: 'link', chip: 'Q' }
 ];
-const quizPage = { id: 'quiz', tile: 'handy-scroll', title: 'Quiz Scrollytelling', subtitle: `${quiz.length} Fragen quer durch alle Kapitel`, icon: 'quiz' };
+const quizPage = { id: 'quiz', tile: 'quiz-karten', title: 'Quiz Scrollytelling', subtitle: `${quiz.length} Fragen quer durch alle Kapitel`, icon: 'quiz' };
 const pages = [{ id: 'home', title: 'Übersicht', icon: 'grid' }, ...chapters, ...exercises, ...wissenPages, quizPage];
 /* Kachelbilder der Kapitel ohne eigenes Foto */
-const chapterTiles = { werkzeuge: { tile: 'hero' }, design: { tileFig: 'position' }, sites: { tileFig: 'sticky-mobil' }, parallax: { tile: 'ebenen-diorama' }, barrierefrei: { tileFig: 'muster' }, testen: { tile: 'usability-test' } };
+const chapterTiles = { werkzeuge: { tile: 'werkzeugvergleich' }, design: { tileFig: 'position' }, sites: { tileFig: 'sticky-mobil' }, parallax: { tile: 'ebenen-diorama' }, barrierefrei: { tileFig: 'muster' }, testen: { tile: 'usability-test' } };
 
 const icons = {
   grid: 'M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z',
@@ -87,7 +87,7 @@ function figure(key) {
   if (!b) return '';
   return `<figure class="dg-fig"><img src="img/${b.file}" alt="${esc(b.alt)}" width="${b.w}" height="${b.h}" loading="lazy">
     <span class="ki-badge" aria-hidden="true">KI-generiert</span>
-    <figcaption>${esc(b.caption)} <span class="dg-credit">KI-generiert mit Magnific, Stimmungsbild ohne reale Vorlage</span></figcaption></figure>`;
+    <figcaption>${esc(b.caption)} <span class="dg-credit">KI-generiert mit ${esc(b.generator || 'Magnific')}, Stimmungsbild ohne reale Vorlage</span></figcaption></figure>`;
 }
 function diagram(key) {
   const d = diagramme[key];
@@ -147,7 +147,7 @@ function overview() {
     <ul class="tiles">${wissenPages.map((p) => tile(p, p.chip, 'Öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissenstest</h2><span>Quiz</span></div>
     <ul class="tiles">${tile(quizPage, '?', 'Quiz starten')}</ul>
-    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert (Magnific), Schemazeichnungen eigene Darstellung · Angaben zu Figma: Stand November 2026, Funktionen ändern sich häufig</p>
+    <p class="footer-note">Lernmodul ${MODUL} · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Fotos KI-generiert (Magnific und OpenAI Imagegen), Schemazeichnungen eigene Darstellung · Angaben zu Figma: Stand November 2026, Funktionen ändern sich häufig</p>
   </div>`;
 }
 
@@ -439,8 +439,8 @@ function wissenPage(p) {
   if (p.id === 'glossar') return head + section('Begriffe zum Nachschlagen', `<dl>${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('')}</dl>`, true);
   if (p.id === 'quellen') return head + `<p class="page-intro">Angaben zu Figma geprüft im November 2026 anhand der Figma-Hilfe. Figma ändert Funktionen und Bezeichnungen häufig. Im Zweifel gilt die aktuelle Hilfe.</p>`
     + section('Quellen und Weiterlesen', `<ul class="dg-lit">${quellen.map(([t, u, n]) => `<li><a href="${u}">${t}</a> <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
-    + section('Bildnachweis', `<p>Alle Fotos in diesem Modul sind KI-generierte Stimmungsbilder (Magnific) ohne reale Vorlage und als solche gekennzeichnet. Die Schemazeichnungen sind eigene Darstellungen.</p>
-      <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: KI-generiert</li>`).join('')}</ul>`)
+    + section('Bildnachweis', `<p>Alle Fotos in diesem Modul sind KI-generierte Stimmungsbilder (Magnific und OpenAI Imagegen) ohne reale Vorlage und als solche gekennzeichnet. Die Schemazeichnungen sind eigene Darstellungen.</p>
+      <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: KI-generiert mit ${esc(b.generator || 'Magnific')}</li>`).join('')}</ul>`)
     + section('Weitere Module', '<p>Die Dramaturgie von Geschichten vertiefen Sie im Modul <a href="../storytelling/">Storytelling</a>, Bewegung und Easing in <a href="../ux-animation/">UX &amp; Animation</a>, Raster für lange Seiten in <a href="../layout-raster/">Layout und Raster</a>.</p>');
   return head;
 }

@@ -1,4 +1,4 @@
-/* Alle Fotos sind KI-generierte Stimmungsbilder (Magnific, November 2026) ohne reale Vorlage. Schemazeichnungen: diagramme.js */
+/* Fotos sind KI-generierte Stimmungsbilder (Magnific und OpenAI Imagegen, November 2026) ohne reale Vorlage. Schemazeichnungen: diagramme.js */
 const ki = { ki: true, w: 1000, h: 746 };
 export const bilder = {
   hero: { ...ki, file: 'hero.webp', w: 1200, h: 896,
@@ -18,5 +18,13 @@ export const bilder = {
     alt: 'Laptop auf einem hellen Schreibtisch mit geteiltem Bildschirm: links Chat-Nachrichten, rechts eine farbige Webseitenvorschau; daneben ein Notizbuch mit Liste und eine Tasse Kaffee' },
   'usability-test': { ...ki, file: 'usability-test.webp',
     caption: 'Ein kurzer Test auf dem Tablet: Eine Person liest, eine andere beobachtet und notiert',
-    alt: 'Zwei Studierende an einem Tisch in einem Seminarraum: Einer bedient eine Webseite auf einem Tablet, die andere schreibt auf einem Klemmbrett mit Checkliste mit' }
+    alt: 'Zwei Studierende an einem Tisch in einem Seminarraum: Einer bedient eine Webseite auf einem Tablet, die andere schreibt auf einem Klemmbrett mit Checkliste mit' },
+  "werkzeugvergleich": {"ki": true, "file": "werkzeugvergleich.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Monitor mit drei Ansichten: mobiler Entwurf, redaktionelle Website und KI-Chat", "caption": "Monitor mit drei Ansichten: mobiler Entwurf, redaktionelle Website und KI-Chat"},
+  "werkzeug-aufgabe": {"ki": true, "file": "werkzeug-aufgabe.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Hände sortieren sechs illustrierte Projektkarten auf einem Tisch", "caption": "Hände sortieren sechs illustrierte Projektkarten auf einem Tisch"},
+  "parallax-labor": {"ki": true, "file": "parallax-labor.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Waldzweige im Vordergrund, bewaldete Hügel in der Mitte und ferne Berggipfel zeigen räumliche Tiefe", "caption": "Waldzweige im Vordergrund, bewaldete Hügel in der Mitte und ferne Berggipfel zeigen räumliche Tiefe"},
+  "wasser-storyboard": {"ki": true, "file": "wasser-storyboard.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Sechs Bildkarten erzählen den Weg des Wassers vom Meer bis zum Trinkglas", "caption": "Sechs Bildkarten erzählen den Weg des Wassers vom Meer bis zum Trinkglas"},
+  "prompt-werkstatt": {"ki": true, "file": "prompt-werkstatt.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Eine Person schreibt einen strukturierten Prompt in ein Notizbuch neben einem Laptop", "caption": "Eine Person schreibt einen strukturierten Prompt in ein Notizbuch neben einem Laptop"},
+  "tastatur-test": {"ki": true, "file": "tastatur-test.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Hände bedienen eine Tastatur; auf dem Monitor ist ein Navigationslink mit Fokusrahmen markiert", "caption": "Hände bedienen eine Tastatur; auf dem Monitor ist ein Navigationslink mit Fokusrahmen markiert"},
+  "quiz-karten": {"ki": true, "file": "quiz-karten.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Eine Studentin bearbeitet ein digitales Multiple-Choice-Quiz am Laptop in einer Bibliothek", "caption": "Eine Studentin bearbeitet ein digitales Multiple-Choice-Quiz am Laptop in einer Bibliothek"},
+  "scroll-muster": {"ki": true, "file": "scroll-muster.webp", "w": 960, "h": 720, "generator": "OpenAI Imagegen", "alt": "Eine Hand hält ein Smartphone mit einer Architekturreportage in einem Museum", "caption": "Eine Hand hält ein Smartphone mit einer Architekturreportage in einem Museum"},
 };
