@@ -7,7 +7,7 @@ import { diagramme } from './diagramme.js?v=3';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Titel, Exporte) */
-const MODUL = '13';
+const MODUL = '14';
 const NAME = 'Futuring & Critical Design';
 
 const $ = (s) => document.querySelector(s);
@@ -486,7 +486,7 @@ function wissenPage(p) {
   if (p.id === 'literatur') return head + section('Literatur und Quellen', `<ul class="dg-lit">${literature.map(([a, t, v, y, n, u]) => `<li><b>${a}:</b> ${u ? `<a href="${u}"><cite>${t}</cite></a>` : `<cite>${t}</cite>`}. ${v}, ${y}. <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
     + section('Bildnachweis', `<p>Alle Fotos sind KI-generierte Stimmungsbilder (Magnific) ohne reale Vorlage und als solche gekennzeichnet. Sie zeigen keine realen Werke. Die Fallstudien sind urheberrechtlich geschützt und werden nur beschrieben und verlinkt. Schemazeichnungen und der interaktive Kegel sind eigene Darstellungen.</p>
       <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: KI-generiert</li>`).join('')}</ul>`)
-    + section('Weitere Module', '<p>Dramaturgie und Worldbuilding vertiefen Sie im Modul <a href="../storytelling/">Storytelling</a>, KI im Gestaltungsprozess in <a href="../ux-ki/">UX &amp; KI</a>, Haltungen der Designgeschichte in <a href="../designgeschichte/">Designgeschichte</a>.</p>');
+    + section('Weitere Module', '<p>Dramaturgie und Worldbuilding vertiefen Sie im Modul <a href="../storytelling/">Storytelling</a>, KI im Gestaltungsprozess in <a href="../ux-ki/">UX &amp; KI</a>, Haltungen der Designgeschichte in <a href="../designgeschichte/">Designgeschichte</a>, Gefühle, Emotionserkennung und emotionale Manipulation in <a href="../emotional-design/">Emotional Design &amp; Affective Computing</a>.</p>');
   return head;
 }
 
