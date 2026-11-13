@@ -5,7 +5,7 @@ import { bilder } from './bilder.js?v=9';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Hero, Titel, Exporte) */
-const MODUL = '06';
+const MODUL = '05';
 
 const $ = (s) => document.querySelector(s);
 const content = $('#dg-content');

@@ -6,7 +6,7 @@ import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Titel, Exporte) */
-const MODUL = '05';
+const MODUL = '06';
 const NAME = 'Scrollytelling mit Figma';
 
 const $ = (s) => document.querySelector(s);
@@ -115,7 +115,7 @@ function overview() {
     <section class="home-hero">
       <div>
         <div class="mod-chip" aria-hidden="true">SC</div>
-        <p class="hero-eyebrow">Lernmodul ${MODUL} · Grundlagen der Mediengestaltung · Exkurs</p>
+        <p class="hero-eyebrow">Lernmodul ${MODUL} · Exkurs</p>
         <h1>${NAME}</h1>
         <p class="hero-lead">Wie gestalten Sie eine Webseite, die beim Scrollen eine Geschichte erzählt? Dieser Exkurs führt vom Scroll-Storyboard über drei Wege in Figma, nämlich Prototyp in Figma Design, Website mit Figma Sites und Prototyp per Prompt mit Figma Make, bis zu Parallax, Barrierefreiheit und Test.</p>
         <div class="hero-actions"><div class="hero-cta">
