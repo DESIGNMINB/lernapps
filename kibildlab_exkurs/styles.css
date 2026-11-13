@@ -821,3 +821,11 @@
 .kb-fb-list li { margin: 0 !important; padding: 8px 12px; border-radius: 8px; border-left: 3px solid var(--border-color); }
 .kb-fb-list li.is-ok { border-color: #2E7D32; } .kb-fb-list li.is-off { border-color: var(--purple-brand); }
 @media (max-width: 760px) { .kb-tf2 { grid-template-columns: 1fr; } .kb-lanes { grid-template-columns: 1fr 1fr; } }
+
+/* Bildreihen und KI-Kennzeichnung in den Laboren */
+.dg-figs.four { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.dg-figs.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.dg-figs.two, .dg-figs.three, .dg-figs.four { align-items: start; }
+.kb-result-img .ki-badge, .kb-tf-fig .ki-badge { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(17, 24, 39, .78); color: #fff; font-size: 11px; font-weight: 600; line-height: 1.2; pointer-events: none; }
+.kb-tf-fig { position: relative; }
+.kb-tf-credit { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }

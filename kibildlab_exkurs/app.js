@@ -1,6 +1,6 @@
-import { chapters, szene, verfahren, faelle } from './kapitel.js?v=2';
+import { chapters, szene, verfahren, faelle } from './kapitel.js?v=3';
 import { terms, quiz, literature } from './wissen.js?v=1';
-import { bilder, outpaint, motiv } from './bilder.js?v=1';
+import { bilder, outpaint, motiv } from './bilder.js?v=2';
 
 /* Exkurs zu Lernmodul 10 (UX & KI) */
 const NAME = 'KI-Bild-App';
@@ -28,7 +28,7 @@ const pages = [
   { id: 'literatur', art: 'wissen', title: 'Literatur und Bildnachweis', subtitle: 'Quellen, Dokumentation und Nachweise', icon: 'book', chip: 'L' }
 ];
 const labs = pages.filter((p) => p.art === 'kapitel');
-const tiles = { copyspace: 'fluss', controlnet: 'skizze', painting: 'fluss916', literatur: 'skizze' };
+const tiles = { copyspace: 'fluss', controlnet: 'skizze', tiefe: 'tiefeFoto', painting: 'fluss916', literatur: 'skizze' };
 
 const icons = {
   home: 'M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z',
@@ -66,8 +66,8 @@ $('#fu-nav').innerHTML = [
 function figure(key) {
   const b = bilder[key];
   return `<figure class="dg-fig"><img src="img/${b.file}" alt="${esc(b.alt)}" width="${b.w}" height="${b.h}" loading="lazy">
-    <span class="ki-badge" aria-hidden="true">KI-generiert</span>
-    <figcaption>${esc(b.caption)} <span class="dg-credit">KI-generiert mit Magnific, Beispielbild ohne reale Vorlage</span></figcaption></figure>`;
+    ${b.ki === false ? '' : '<span class="ki-badge" aria-hidden="true">KI-generiert</span>'}
+    <figcaption>${esc(b.caption)} <span class="dg-credit">${b.ki === false ? esc(b.note) : `KI-generiert (Magnific). ${b.note ? esc(b.note) : 'Beispielbild ohne reale Vorlage'}`}</span></figcaption></figure>`;
 }
 function tileArt(page, chip) {
   const b = bilder[tiles[page.id]];
@@ -109,7 +109,7 @@ function overview() {
     <ul class="tiles">${labs.map((p) => tile(p, `0${p.nr}`, 'Labor öffnen')).join('')}</ul>
     <div class="home-section-label"><h2>Wissen</h2><span>Quiz und Nachschlagen</span></div>
     <ul class="tiles">${pages.filter((p) => p.art === 'quiz' || p.art === 'wissen').map((p) => tile(p, p.chip, p.art === 'quiz' ? 'Quiz starten' : 'Öffnen')).join('')}</ul>
-    <p class="footer-note">Exkurs zu Lernmodul 10 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Beispielbilder KI-generiert (Magnific), Szene und Schemata eigene Darstellung · Der ControlNet-Simulator erzeugt keine KI-Bilder und sendet keine Daten</p>
+    <p class="footer-note">Exkurs zu Lernmodul 10 · Lern-Apps Gestaltung &amp; UX · Hochschule Karlsruhe, Fakultät IWI · Beispielbilder, Tiefenkarte und Inpainting KI-generiert (Magnific), Schemata eigene Darstellung · Der ControlNet-Simulator erzeugt keine KI-Bilder und sendet keine Daten</p>
   </div>`;
 }
 
@@ -225,7 +225,7 @@ const VORLAGEN = {
   figur: { name: 'Figur in Bewegung', strokes: [[[200, 70], [220, 90], [200, 110], [180, 90], [200, 70]], [[200, 110], [195, 210]], [[200, 135], [150, 170]], [[200, 135], [255, 120]], [[195, 210], [150, 300]], [[195, 210], [245, 290], [270, 300]], [[20, 320], [380, 320]]] }
 };
 /* Beispielbilder je Vorlage und Stufe (img/cn-<vorlage>-<stufe>.webp), sobald erzeugt; Stufen 0 frei, 1 schwach, 2 eng, 3 übersteuert */
-const CN_BILDER = {};
+const CN_BILDER = { 'landschaft-0': bilder.cn0, 'landschaft-1': bilder.cn1, 'landschaft-2': bilder.cn2, 'landschaft-3': bilder.cn3 };
 const STUFEN = ['Frei', 'Schwach', 'Eng', 'Übersteuert'];
 const stufe = (s) => (s < 0.3 ? 0 : s < 0.9 ? 1 : s <= 1.2 ? 2 : 3);
 const STUFE_TXT = [
@@ -282,7 +282,7 @@ function wireControlnet() {
     const bild = vorlage && CN_BILDER[`${vorlage}-${k}`];
     $('#cn-result').innerHTML = `<div class="kb-result-text"><p class="kb-result-h">Stufe: ${STUFEN[k]}</p><p>${STUFE_TXT[k]}</p><p>${TYP_TXT[typ]} Welche Werte gut sind, hängt von Modell und Vorlage ab.</p>
       ${vorlage ? '' : '<p class="story-note">Eigene Skizzen werden hier nicht in Bilder umgesetzt. Sie sehen die Steuerkarte, die ein Werkzeug wie ControlNet erhalten würde.</p>'}</div>
-      ${bild ? `<figure class="kb-result-img"><img src="img/${bild.file}" alt="${esc(bild.alt)}" width="600" height="600"><span class="ki-badge" aria-hidden="true">KI-generiert</span><figcaption>Beispielbild „${VORLAGEN[vorlage].name}“, Stufe ${STUFEN[k]}. KI-generiert mit Magnific, Skizze als Referenz; veranschaulicht die Stufe, nicht mit festen ControlNet-Gewichten erzeugt.</figcaption></figure>` : ''}`;
+      ${bild ? `<figure class="kb-result-img"><img src="img/${bild.file}" alt="${esc(bild.alt)}" width="${bild.w}" height="${bild.h}" loading="lazy"><span class="ki-badge" aria-hidden="true">KI-generiert</span><figcaption>Beispielbild „${VORLAGEN[vorlage].name}“, Stufe ${STUFEN[k]}. KI-generiert (Magnific). ${esc(bild.note)}.</figcaption></figure>` : ''}`;
     if (strokes.length >= 3 && Object.keys(st.cnTypen).length >= 2) markDone('controlnet');
   }
   const refresh = () => { paper(); clearTimeout(timer); timer = setTimeout(render, 60); };
@@ -315,8 +315,8 @@ function szeneSvg(mode = 'bild', off = {}) {
 }
 const EBENEN = [['hinten', 'Hintergrund'], ['mitte', 'Mittelgrund'], ['vorn', 'Vordergrund']];
 const SPEED = { hinten: 0.1, mitte: 0.35, vorn: 0.8 };
-/* Quelle für Labor 3: Bild und Tiefenkarte gleicher Größe (hell = nah). Solange kein Foto vorliegt, die eigene Zeichnung. */
-const TIEFE_QUELLE = null; /* z. B. { bild: 'img/tiefe-foto.webp', karte: 'img/tiefe-karte.webp', w: 1280, h: 720 } */
+/* Quelle für Labor 3: Foto und Tiefenkarte gleicher Größe (hell = nah), beide KI-generiert mit Magnific. Ohne Quelle fällt die App auf die eigene Zeichnung zurück. */
+const TIEFE_QUELLE = { bild: `img/${bilder.tiefeFoto.file}`, karte: `img/${bilder.tiefeKarte.file}`, w: 1280, h: 720 };
 const svgUrl = (svg) => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" '))}`;
 const ladeBild = (src) => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
 function demoTiefe() {
@@ -326,8 +326,8 @@ function demoTiefe() {
       <div class="kb-seg-group"><span class="kb-seg-label" id="tf-vl">Ansicht</span><div class="kb-seg" role="radiogroup" aria-labelledby="tf-vl">${[['bild', 'Bild'], ['karte', 'Tiefenkarte'], ['ebenen', 'Ebenen eingefärbt']].map(([k, l], i) => `<label class="kb-segbtn"><input type="radio" name="tf-v" value="${k}" ${i ? '' : 'checked'}> ${l}</label>`).join('')}</div></div>
     </div>
     <div class="kb-tf2">
-      <figure class="kb-pane"><canvas id="tf-canvas" width="640" height="360" role="img" aria-describedby="tf-desc"></canvas>
-        <figcaption class="dg-sr" id="tf-desc">Landschaft mit Himmel, Bergen, Hügeln, Haus, Wiese und einem Baum im Vordergrund, in drei Tiefenebenen geschnitten.</figcaption></figure>
+      <figure class="kb-pane kb-tf-fig"><canvas id="tf-canvas" width="640" height="360" role="img" aria-describedby="tf-desc"></canvas><span class="ki-badge" aria-hidden="true">KI-generiert</span>
+        <span class="dg-sr" id="tf-desc">${esc(bilder.tiefeFoto.alt)}. Anhand der Tiefenkarte in drei Ebenen geschnitten.</span><p class="kb-tf-credit">Foto und Tiefenkarte KI-generiert (Magnific, Tiefe geschätzt mit Depth Anything 3).</p></figure>
       <div class="kb-tf-ctrl">
         <label for="tf-t1">Schwelle Hintergrund | Mittelgrund: <output id="tf-t1-out"></output></label><input type="range" id="tf-t1" min="0.05" max="0.95" step="0.05" value="${s.t1}">
         <label for="tf-t2">Schwelle Mittelgrund | Vordergrund: <output id="tf-t2-out"></output></label><input type="range" id="tf-t2" min="0.05" max="0.95" step="0.05" value="${s.t2}">
@@ -480,6 +480,7 @@ function wireFormate() {
   const crop = $('#fm-crop'); if (!crop) return;
   const outF = $('#fm-out'), orig = $('#fm-orig');
   function update() {
+    if (!crop.isConnected) return;
     const k = content.querySelector('[name="fm-f"]:checked').value, [, l, r] = FORMATE.find(([x]) => x === k);
     [crop, outF].forEach((f) => { f.style.aspectRatio = String(r); f.style.width = `min(100%, ${Math.round(480 * r)}px)`; });
     const ci = crop.querySelector('img'), oi = outF.querySelector('img');
@@ -537,7 +538,7 @@ function sectionHtml(s) {
     ${s.list ? `<ul>${s.list.map((l) => `<li>${l}</li>`).join('')}</ul>` : ''}
     ${s.table ? table(s.table) : ''}
     ${demo ? demo() : ''}
-    ${(s.img || []).length ? `<div class="dg-figs">${s.img.map(figure).join('')}</div>` : ''}
+    ${(s.img || []).length ? `<div class="dg-figs${s.figs ? ` ${s.figs}` : ''}">${s.img.map(figure).join('')}</div>` : ''}
   </section>`;
 }
 function chapterPage(c) {
@@ -564,8 +565,8 @@ function wissenPage(p) {
   const head = `<h1 class="page-title purple">${p.title}</h1>`;
   if (p.id === 'glossar') return head + section('Begriffe zum Nachschlagen', `<dl>${[...terms].sort(([a], [b]) => a.localeCompare(b, 'de')).map(([t, d]) => `<dt>${t}</dt><dd>${d}</dd>`).join('')}</dl>`, true);
   return head + section('Literatur und Quellen', `<ul class="dg-lit">${literature.map(([a, t, v, y, n, u]) => `<li><b>${a}:</b> ${u ? `<a href="${u}"><cite>${t}</cite></a>` : `<cite>${t}</cite>`}. ${v}, ${y}. <span class="story-note">${n}</span></li>`).join('')}</ul>`, true)
-    + section('Bildnachweis', `<p>Die Beispielbilder sind mit Magnific erzeugt und als KI-generiert gekennzeichnet; sie haben keine reale Vorlage. Die 9:16-Fassung der Flusspromenade ist mit dem Expand-Werkzeug von Magnific aus dem Querformat erweitert. Die Landschaft in Labor 3, ihre Tiefenkarte und die schematische Vorschau des Simulators sind eigene Darstellungen.</p>
-      <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: KI-generiert</li>`).join('')}</ul>`)
+    + section('Bildnachweis', `<p>Die Beispielbilder sind mit Magnific erzeugt und als KI-generiert gekennzeichnet; sie haben keine reale Vorlage. Die 9:16-Fassung der Flusspromenade ist mit dem Expand-Werkzeug von Magnific aus dem Querformat erweitert. Die Testreihe in Labor 2 ist mit Magnific aus der Vorlage „Haus und Baum“ als Bildreferenz erzeugt; die Stufen sind über die Bindung an die Skizze im Prompt nachgestellt, nicht mit ControlNet-Gewichten. Die Tiefenkarte in Labor 3 hat Magnific (Depth Anything 3) aus dem Foto geschätzt; für die App ist sie so umgekehrt, dass Nahes hell ist, und ihre Tonwerte sind gespreizt. Das Inpainting-Beispiel in Labor 4 ist mit dem Retusche-Werkzeug von Magnific und einer eigenen Maske erzeugt.</p>
+      <ul class="dg-lit">${Object.values(bilder).map((b) => `<li>${esc(b.caption)}: ${b.ki === false ? 'eigene Darstellung' : 'KI-generiert (Magnific)'}</li>`).join('')}</ul>`)
     + section('Weiter im System', '<p>Dieser Exkurs gehört zu <a href="../ux-ki/">Lernmodul 10, UX &amp; KI</a>, besonders zu den Kapiteln <a href="../ux-ki/#bearbeitung">Generative Bildbearbeitung</a> und <a href="../ux-ki/#recht">Recht, Ethik, Rolle</a>. Raster vertiefen Sie in <a href="../layout-raster/">Layout und Raster</a>, Parallax in <a href="../scrollytelling/#parallax">Scrollytelling mit Figma</a>.</p>');
 }
 function quizPageHtml(p) {

@@ -54,8 +54,9 @@ export const chapters = [
         ] } },
       { h: 'Wie stark soll die Steuerung sein?', p: [
         'Werkzeuge bieten einen Regler für die Stärke der Steuerung. Er heißt je nach Programm etwa „control weight“, „strength“ oder in der Bibliothek Diffusers „controlnet_conditioning_scale“ (Standardwert dort 1,0). Gemeint ist jeweils, wie stark das Ergebnis der Vorlage folgt.',
-        'Allgemein gilt: Bei niedriger Stärke weicht das Bild deutlich von der Vorlage ab, bei hoher folgt es ihr eng. Sehr hohe Werte können ein Bild steif oder überzeichnet wirken lassen, vor allem bei groben Skizzen. Welche Werte gut sind, hängt von Modell, Bedingung und Vorlage ab. Feste Idealwerte gibt es nicht, deshalb arbeitet man mit Testreihen.'
-      ] },
+        'Allgemein gilt: Bei niedriger Stärke weicht das Bild deutlich von der Vorlage ab, bei hoher folgt es ihr eng. Sehr hohe Werte können ein Bild steif oder überzeichnet wirken lassen, vor allem bei groben Skizzen. Welche Werte gut sind, hängt von Modell, Bedingung und Vorlage ab. Feste Idealwerte gibt es nicht, deshalb arbeitet man mit Testreihen.',
+        'Die Testreihe unten zeigt das Prinzip an der Vorlage „Haus und Baum“ aus dem Simulator: gleicher Bildprompt, von „ohne Skizze“ bis „klebt an der Skizze“. Die Bilder sind mit Magnific erzeugt, das keinen ControlNet-Regler anbietet. Die Stufen sind deshalb nachgestellt und keine Messreihe mit festen Gewichten.'
+      ], img: ['cn0', 'cn1', 'cn2', 'cn3'], figs: 'four' },
       { h: 'Probieren Sie es aus: von der Skizze zur Steuerkarte', p: [
         'Wählen Sie eine Vorlage oder zeichnen Sie mit Maus, Stift oder Finger eine eigene Skizze. Die Bedingung legt fest, welche Steuerkarte daraus entsteht, der Regler die Stärke der Steuerung.'
       ], demo: 'controlnet' },
@@ -78,15 +79,16 @@ export const chapters = [
     sections: [
       { h: 'Was eine Tiefenkarte ist', p: [
         'Eine Tiefenkarte ist ein Graustufenbild gleicher Größe wie das Foto. Jeder Bildpunkt gibt an, wie weit die Stelle entfernt ist. Viele Werkzeuge zeigen Nahes hell und Fernes dunkel; prüfen Sie im jeweiligen Programm, wie herum die Skala läuft.',
-        'Modelle wie MiDaS (Ranftl et al., IEEE TPAMI, online 2020) oder Depth Anything (Yang et al. 2024) schätzen die Tiefe aus einem einzigen Bild. Sie liefern meist <b>relative</b> Tiefe: Die Reihenfolge stimmt oft, echte Abstände in Metern dagegen nicht.'
-      ] },
+        'Modelle wie MiDaS (Ranftl et al., IEEE TPAMI, online 2020) oder Depth Anything (Yang et al. 2024) schätzen die Tiefe aus einem einzigen Bild. Sie liefern meist <b>relative</b> Tiefe: Die Reihenfolge stimmt oft, echte Abstände in Metern dagegen nicht.',
+        'Das Beispiel unten zeigt ein KI-generiertes Foto und die Tiefenkarte, die Magnific mit Depth Anything 3 daraus geschätzt hat. Der Baum vorn ist am hellsten, der Himmel am dunkelsten. An den Rändern der Baumkrone sehen Sie, dass die Schätzung Kanten nur grob trifft.'
+      ], img: ['tiefeFoto', 'tiefeKarte'], figs: 'two' },
       { h: 'Vom Bild zu Ebenen', list: [
         '<b>1. Tiefe schätzen:</b> Tiefenkarte erzeugen, etwa mit einem Bildwerkzeug oder einem Depth-Modell.',
         '<b>2. Schwellen setzen:</b> Graustufen in zwei oder drei Bereiche teilen. Daraus entstehen Masken für Vorder-, Mittel- und Hintergrund.',
         '<b>3. Freistellen und auffüllen:</b> Jede Ebene ausschneiden. Wo eine vordere Ebene etwas verdeckte, entsteht hinten ein Loch. Das füllt Inpainting (Labor 4).',
         '<b>4. Bewegen:</b> Ebenen beim Scrollen unterschiedlich schnell verschieben: hinten langsam, vorn schnell.'
       ] },
-      { h: 'Probieren Sie es aus: Schwellen und Parallax', p: ['Die Landschaft unten ist eine eigene Zeichnung mit passender Tiefenkarte. Setzen Sie die beiden Schwellen: Das Bild wird anhand der Tiefenkarte tatsächlich in drei Ebenen geschnitten. Mit dem Regler „Scrollposition“ verschieben Sie die Ebenen. Wo der Vordergrund wegrückt, erscheint eine Lücke, die in der Praxis per Inpainting gefüllt wird. Bevorzugt Ihr System reduzierte Bewegung, bleiben die Ebenen stehen und die Verschiebung wird als Zahl angezeigt.'], demo: 'tiefe' },
+      { h: 'Probieren Sie es aus: Schwellen und Parallax', p: ['Die Landschaft unten ist das Foto von oben mit seiner Tiefenkarte. Setzen Sie die beiden Schwellen: Das Bild wird anhand der Tiefenkarte tatsächlich in drei Ebenen geschnitten. Mit dem Regler „Scrollposition“ verschieben Sie die Ebenen. Wo der Vordergrund wegrückt, erscheint eine Lücke, die in der Praxis per Inpainting gefüllt wird. Bevorzugt Ihr System reduzierte Bewegung, bleiben die Ebenen stehen und die Verschiebung wird als Zahl angezeigt.'], demo: 'tiefe' },
       { h: 'Parallax verantwortungsvoll einsetzen', p: [
         'Starke Bewegung kann Schwindel und Übelkeit auslösen. Respektieren Sie die Einstellung „Bewegung reduzieren“ (CSS-Medienabfrage prefers-reduced-motion), halten Sie die Verschiebung klein, und lassen Sie Text nie über bewegte Ebenen wandern, wenn er dadurch schlechter lesbar wird. Wie Parallax in Scrollytelling-Seiten gestaltet und barrierefrei umgesetzt wird, zeigt das Modul <a href="../scrollytelling/#parallax">Scrollytelling mit Figma, Kapitel Parallax und Bewegung</a>.'
       ] }
@@ -109,6 +111,10 @@ export const chapters = [
           ['Outpainting', 'Das Bild wird über seinen Rand hinaus erweitert', 'Anderes Seitenverhältnis, Platz für Text gewinnen', 'Erfundener Inhalt am Rand: Perspektive, Licht und Logik prüfen'],
           ['Beschneiden (zum Vergleich)', 'Ein Ausschnitt wird gewählt, nichts Neues entsteht', 'Wenn das Motiv im Ausschnitt vollständig bleibt', 'Motiv oder Kontext geht verloren']
         ] } },
+      { h: 'Inpainting: ein Bereich, neu erzeugt', p: [
+        'Beim Inpainting markiert eine Maske den Bereich, der neu entstehen soll: weiß wird ersetzt, schwarz bleibt. Im Beispiel ersetzt Magnific die Kaffeetasse durch eine Vase. Achten Sie auf die Ränder der Maske: Ragt das alte Objekt darüber hinaus, bleiben Reste stehen. Im ersten Versuch für dieses Beispiel blieb so ein gläserner Rest der Untertasse übrig, erst eine größere Maske löste das.',
+        'Prüfen Sie danach Licht, Schatten und Spiegelungen. Sie müssen zum Rest des Bildes passen, sonst wirkt der ersetzte Bereich aufgeklebt.'
+      ], img: ['tischVorher', 'tischMaske', 'tischNachher'], figs: 'three' },
       { h: 'Probieren Sie es aus: ein Bild, drei Formate', p: ['Wählen Sie das Zielformat und vergleichen Sie Beschneiden mit Outpainting. Die gestrichelte Linie zeigt, wo das Originalbild endet und erzeugter Inhalt beginnt. Das erweiterte Bild ist ein echtes Beispiel, erzeugt mit dem Expand-Werkzeug von Magnific.'], demo: 'formate' },
       { h: 'Responsive Bilder im Code', p: [
         'Für unterschiedliche Formate liefert man im Web verschiedene Bildfassungen aus, etwa mit dem HTML-Element <code>picture</code> und Medienabfragen oder mit <code>object-fit</code> und <code>object-position</code> in CSS. Outpainting ergänzt dieses Vorgehen: Es liefert die Fassungen, die durch bloßes Beschneiden nicht entstehen könnten.'
@@ -128,14 +134,14 @@ export const chapters = [
   }
 ];
 
-/* Labor 3: Szene mit Tiefe 0 (fern) bis 1 (nah) */
+/* Labor 3: Szene mit Tiefe 0 (fern) bis 1 (nah), Werte aus der Tiefenkarte des Fotos abgelesen */
 export const szene = [
   { id: 'himmel', name: 'Himmel mit Sonne', tiefe: 0.05 },
   { id: 'berge', name: 'Berge', tiefe: 0.2 },
-  { id: 'huegel', name: 'Hügel', tiefe: 0.45 },
-  { id: 'haus', name: 'Haus', tiefe: 0.55 },
+  { id: 'huegel', name: 'Hügel', tiefe: 0.42 },
+  { id: 'haus', name: 'Haus', tiefe: 0.58 },
   { id: 'baum', name: 'Baum im Vordergrund', tiefe: 0.9 },
-  { id: 'wiese', name: 'Wiese vorn', tiefe: 0.8 }
+  { id: 'wiese', name: 'Wiese vorn', tiefe: 0.95 }
 ];
 
 /* Labor 4: Szenarien [Situation, richtige Wahl, Erklärung]; Optionen: crop, out, in, keine */

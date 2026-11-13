@@ -1,4 +1,5 @@
-/* Beispielbilder: KI-generiert mit Magnific (November 2026), ohne reale Vorlage. Schemazeichnungen und Szene in Labor 3: eigene Darstellung */
+/* Beispielbilder: KI-generiert mit Magnific (November 2026), ohne reale Vorlage. Schemazeichnungen: eigene Darstellung */
+const STUFE_CAP = 'Stufe nachgestellt, nicht mit ControlNet-Gewichten erzeugt';
 export const bilder = {
   skizze: { file: 'skizze.webp', w: 1000, h: 746,
     caption: 'Von der Skizze zum Bild: links ein Bleistiftentwurf, rechts ein Rendering mit derselben Anordnung',
@@ -8,7 +9,42 @@ export const bilder = {
     alt: 'Flusspromenade im Morgenlicht im Querformat: rechts fährt eine Radfahrerin oder ein Radfahrer klein auf dem Uferweg mit Geländer, Laternen und Bäumen; die linke Hälfte zeigt ruhigen, rosa-orangen Himmel und spiegelglattes Wasser' },
   fluss916: { file: 'fluss916.webp', w: 720, h: 1279,
     caption: 'Dasselbe Bild per Outpainting auf 9:16 erweitert: Himmel oben und Wasser unten sind erzeugt',
-    alt: 'Hochformatige Fassung der Flusspromenade: Das ursprüngliche Bild liegt als Band in der Mitte, darüber viel zusätzlicher Himmel mit Wolke und einem Zweig am oberen Rand, darunter zusätzliches Wasser und Uferweg' }
+    alt: 'Hochformatige Fassung der Flusspromenade: Das ursprüngliche Bild liegt als Band in der Mitte, darüber viel zusätzlicher Himmel mit Wolke und einem Zweig am oberen Rand, darunter zusätzliches Wasser und Uferweg' },
+  /* Labor 2: Testreihe zur Vorlage „Haus und Baum“, Stufen 0 frei bis 3 übersteuert */
+  cn0: { file: 'cn-landschaft-0.webp', w: 800, h: 800,
+    caption: 'Stufe Frei: ohne Skizze erzeugt. Haus und Baum stehen klein und weit weg, die Anordnung ist offen',
+    note: 'Ohne Skizze als Referenz erzeugt, nur mit dem Bildprompt',
+    alt: 'Foto einer flachen Graslandschaft unter hellem Himmel: in der Mitte, klein und weit entfernt, ein verwittertes Holzhaus mit Satteldach, direkt rechts daneben ein ausladender Laubbaum. Größe und Lage weichen deutlich von der Skizze ab' },
+  cn1: { file: 'cn-landschaft-1.webp', w: 800, h: 800,
+    caption: 'Stufe Schwach: Haus links, Baum rechts wie in der Skizze, Größen und Abstände sind frei',
+    note: `Skizze als lockere Referenz. ${STUFE_CAP}`,
+    alt: 'Foto einer Wiese: links eine Holzhütte mit Satteldach und offener Tür, rechts mit Abstand ein runder Laubbaum, dahinter eine flache Horizontlinie. Die grobe Anordnung der Skizze ist erkennbar, die Formen sind frei' },
+  cn2: { file: 'cn-landschaft-2.webp', w: 800, h: 800,
+    caption: 'Stufe Eng: Lage, Größe und Umriss von Haus, Tür, Baum und Horizont folgen der Skizze',
+    note: `Skizze als enge Referenz. ${STUFE_CAP}`,
+    alt: 'Foto einer Wiese: links ein weiß gestrichenes Häuschen mit Satteldach und mittiger Tür, rechts ein Baum mit kugelrunder Krone auf dünnem Stamm, gerade Horizontlinie. Lage und Proportionen entsprechen der Skizze' },
+  cn3: { file: 'cn-landschaft-3.webp', w: 800, h: 800,
+    caption: 'Stufe Übersteuert: Die Formen kleben an den Strichen der Skizze und wirken steif',
+    note: `Skizze als starre Vorgabe. ${STUFE_CAP}`,
+    alt: 'Foto einer Wiese: links ein weißes Häuschen als starrer Kasten mit Tür, rechts ein Baum mit klumpig-eckiger Krone und schwarzem, strichartigem Stamm. Die Formen wirken künstlich, wie nachgezeichnet' },
+  /* Labor 3: Foto und Tiefenkarte, gleiche Größe, hell = nah */
+  tiefeFoto: { file: 'tiefe-foto.webp', w: 1280, h: 720,
+    caption: 'Landschaft mit klarem Vorder-, Mittel- und Hintergrund für die Tiefenkarte in Labor 3',
+    alt: 'Hügellandschaft im Abendlicht: links im Vordergrund ein großer Laubbaum auf einer Wiese, in der Mitte grüne Hügel mit einem Bauernhaus mit rotem Dach, dahinter eine Bergkette, oben klarer Himmel mit tief stehender Sonne rechts' },
+  tiefeKarte: { file: 'tiefe-karte.webp', w: 1280, h: 720,
+    caption: 'Tiefenkarte dazu, geschätzt mit Depth Anything 3 in Magnific: hell ist nah, dunkel ist fern',
+    alt: 'Tiefenkarte derselben Landschaft in Graustufen: Baum und Wiese im Vordergrund fast weiß, Hügel und Haus mittelgrau, Berge dunkelgrau, Himmel fast schwarz' },
+  /* Labor 4: Inpainting */
+  tischVorher: { file: 'inpaint-vorher.webp', w: 1600, h: 1073,
+    caption: 'Vorher: Kaffeetasse in der Mitte des Tisches',
+    alt: 'Heller Holztisch vor einer hellen Wand: links ein aufgeschlagenes Notizbuch mit Bleistift, in der Mitte eine weiße Kaffeetasse auf Untertasse, rechts eine kleine Topfpflanze' },
+  tischMaske: { file: 'inpaint-maske.webp', w: 1600, h: 1073, ki: false,
+    note: 'Eigene Darstellung: Maske selbst angelegt und an Magnific übergeben',
+    caption: 'Maske: Nur der weiße Bereich wird neu erzeugt, alles Schwarze bleibt',
+    alt: 'Maske für das Inpainting: schwarze Fläche mit einem weißen, abgerundeten Rechteck genau an der Stelle von Tasse und Untertasse' },
+  tischNachher: { file: 'inpaint-nachher.webp', w: 1600, h: 1073,
+    caption: 'Nachher: An der Stelle der Tasse steht eine Glasvase mit gelben Tulpen, der Rest bleibt praktisch unverändert',
+    alt: 'Derselbe Holztisch: Notizbuch, Bleistift und Topfpflanze unverändert, in der Mitte statt der Tasse eine kleine Glasvase mit gelben Tulpen' }
 };
 /* Lage des Originals im erweiterten Bild (gemessen): oberer Rand und Höhe als Anteil */
 export const outpaint = { top: 0.454, height: 0.311 };
