@@ -1,6 +1,6 @@
 import { chapters, szene, verfahren, faelle } from './kapitel.js?v=3';
 import { terms, quiz, literature } from './wissen.js?v=1';
-import { bilder, outpaint, motiv } from './bilder.js?v=4';
+import { bilder, outpaint, motiv } from './bilder.js?v=5';
 
 /* Exkurs zu Lernmodul 10 (UX & KI) */
 const NAME = 'KI-Bild-App';
@@ -28,7 +28,7 @@ const pages = [
   { id: 'literatur', art: 'wissen', title: 'Literatur und Bildnachweis', subtitle: 'Quellen, Dokumentation und Nachweise', icon: 'book', chip: 'L' }
 ];
 const labs = pages.filter((p) => p.art === 'kapitel');
-const tiles = { copyspace: 'fluss', controlnet: 'skizze', tiefe: 'tiefeFoto', painting: 'fluss916', literatur: 'skizze' };
+const tiles = { copyspace: 'fluss', controlnet: 'skizze', tiefe: 'tiefeFoto', painting: 'fluss916', quiz: 'quiz', glossar: 'glossar', literatur: 'skizze' };
 
 const icons = {
   home: 'M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z',

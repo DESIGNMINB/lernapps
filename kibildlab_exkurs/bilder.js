@@ -55,6 +55,13 @@ export const bilder = {
   tiefePlate: { file: 'tiefe-ohne-baum.webp', w: 1280, h: 720,
     caption: 'Dieselbe Landschaft ohne Baum: Magnific hat die verdeckte Fläche per Inpainting ergänzt, sie füllt beim Parallax die Lücke',
     alt: 'Die Hügellandschaft im Abendlicht ohne den großen Baum: an seiner Stelle Himmel, Berge, Hügel und Wiese' },
+  /* Kacheln Quiz und Glossar */
+  quiz: { file: 'quiz.webp', w: 1000, h: 750,
+    caption: 'Kachelbild Quiz: Karteikarten mit gezeichnetem Fragezeichen',
+    alt: 'Dunkler Holztisch von oben: ein Stapel leerer Karteikarten, davor eine Karte mit einem mit Bleistift gezeichneten Fragezeichen, daneben ein Bleistift, bunte Klebepunkte und eine Tasse Kaffee' },
+  glossar: { file: 'glossar.webp', w: 1000, h: 750,
+    caption: 'Kachelbild Glossar: aufgeschlagenes Nachschlagebuch mit Registerreitern',
+    alt: 'Dunkler Holztisch von oben: ein aufgeschlagenes Buch mit leeren Seiten und bunten Registerreitern am Rand, rechts ein Karteikasten aus Holz mit Karten, ein Bleistift und ein Radiergummi' },
   /* Labor 4: Inpainting */
   tischVorher: { file: 'inpaint-vorher.webp', w: 1600, h: 1073,
     caption: 'Vorher: Kaffeetasse in der Mitte des Tisches',
