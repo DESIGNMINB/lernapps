@@ -272,7 +272,10 @@
 .sc-d-line { fill: none; stroke: var(--text-muted); stroke-width: 2; }
 .sc-d-frame { fill: none; stroke: var(--purple-brand); stroke-width: 3; stroke-dasharray: 6 4; }
 .sc-d-soft { fill: var(--purple-soft); stroke: var(--border-color); }
-.sc-d-mid { fill: #B48FD6; }
+.sc-d-mid { fill: #DCCBEE; }
+[data-theme="dark"] .sc-d-mid { fill: #3F2D60; }
+/* Text auf mittlerem Lila: immer Hauptfarbe, ≥ 4,5:1 hell (9,7:1) und dunkel (10,9:1) */
+.sc-d-midtext { fill: var(--text-primary); font-size: 13px; font-weight: 500; }
 .sc-d-accent { fill: var(--purple-brand); }
 .sc-d-fade { opacity: .55; }
 .sc-d-arrow { stroke: var(--purple-ink); stroke-width: 2.2; }

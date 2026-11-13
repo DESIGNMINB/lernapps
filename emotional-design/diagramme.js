@@ -34,7 +34,7 @@ export const diagramme = {
     svg: `<svg viewBox="0 0 640 300" role="img">${defs}
       <line class="sc-d-arrow" x1="60" y1="270" x2="60" y2="30" marker-end="url(#ed-ah)"/>
       ${t(76, 284, 'schnell, unbewusst', 'sc-d-small', 'start')}${t(76, 24, 'langsam, bewusst', 'sc-d-small', 'start')}
-      <rect class="sc-d-mid" x="100" y="196" width="500" height="66" rx="12"/>${t(350, 226, 'Viszeral: erster Eindruck', 'sc-d-text')}${t(350, 248, 'Form, Farbe, Klang, Material', 'sc-d-small')}
+      <rect class="sc-d-mid" x="100" y="196" width="500" height="66" rx="12"/>${t(350, 226, 'Viszeral: erster Eindruck', 'sc-d-text')}${t(350, 248, 'Form, Farbe, Klang, Material', 'sc-d-midtext')}
       <rect class="sc-d-soft" x="100" y="118" width="500" height="66" rx="12"/>${t(350, 148, 'Verhaltensbezogen: Nutzung', 'sc-d-text')}${t(350, 170, 'Funktion, Verständlichkeit, Kontrolle, Rückmeldung', 'sc-d-small')}
       <rect class="sc-d-accent" x="100" y="40" width="500" height="66" rx="12"/>${t(350, 70, 'Reflexiv: Bedeutung', 'sc-d-text sc-d-on')}${t(350, 92, 'Selbstbild, Erinnerung, Geschichte', 'sc-d-small sc-d-on')}
     </svg>`
@@ -49,7 +49,7 @@ export const diagramme = {
         const y = 40 + i * 90;
         s += `<rect class="sc-d-soft" x="20" y="${y}" width="150" height="58" rx="10"/>${t(95, y + 26, a)}${t(95, y + 46, b, 'sc-d-small')}
           <line class="sc-d-arrow" x1="172" y1="${y + 29}" x2="226" y2="${y + 29}" marker-end="url(#ed-ah)"/>
-          <rect class="sc-d-mid" x="230" y="${y + 6}" width="150" height="46" rx="10"/>${t(305, y + 35, 'Einzelschätzung', 'sc-d-small')}
+          <rect class="sc-d-mid" x="230" y="${y + 6}" width="150" height="46" rx="10"/>${t(305, y + 35, 'Einzelschätzung', 'sc-d-midtext')}
           <line class="sc-d-arrow" x1="382" y1="${y + 29}" x2="436" y2="${165 + (i - 1) * 14}" marker-end="url(#ed-ah)"/>`;
       });
       return s + `<rect class="sc-d-mid" x="440" y="132" width="140" height="66" rx="10"/>${t(510, 160, 'Gewichtete')}${t(510, 180, 'Fusion')}

@@ -3,7 +3,7 @@ import { terms, quiz, literature } from './wissen.js?v=2';
 import { momente, checkliste } from './uebungen.js?v=1';
 import { zustaende, toene, texte, band, regeln } from './labor.js?v=1';
 import { bilder } from './bilder.js?v=2';
-import { diagramme } from './diagramme.js?v=1';
+import { diagramme } from './diagramme.js?v=2';
 import { makeDocx } from './docx.js?v=1';
 
 /* Modulnummer an einer Stelle (Übersicht, Titel, Exporte) */
