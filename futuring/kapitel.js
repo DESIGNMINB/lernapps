@@ -31,7 +31,7 @@ export const chapters = [
     lead: 'Es gibt nicht die eine Zukunft, sondern viele. Der Futures Cone, der Zukunftskegel, ordnet sie danach, wie wahrscheinlich, plausibel, möglich und wünschenswert sie sind.',
     sections: [
       { h: 'Herkunft', p: [
-        'Das Modell stammt aus der Zukunftsforschung. Trevor Hancock und Clement Bezold beschrieben 1994 mögliche, plausible, wahrscheinliche und wünschenswerte Zukünfte. Joseph Voros zeichnete daraus 2003 den bekannten Kegel und erweiterte ihn später um die Kategorien „projected“ und „preposterous“. Dunne und Raby machten ihn in „Speculative Everything“ im Design bekannt.',
+        'Das Modell stammt aus der Zukunftsforschung. Charles Taylor sprach 1990 von einem „cone of plausibility“. Trevor Hancock und Clement Bezold unterschieden 1994 mögliche, plausible, wahrscheinliche und wünschenswerte Zukünfte. Joseph Voros arbeitet seit 2000 mit dem Kegel und erweiterte ihn nach und nach, unter anderem um „preposterous“. Seine heutige Fassung (2017) nennt außerdem „projected“ und fasst alles Denkbare als „potential“ zusammen. Dunne und Raby machten den Kegel in „Speculative Everything“ (2013) im Design bekannt.',
         'Der Kegel beginnt in der Gegenwart. Je weiter man in die Zukunft blickt, desto größer wird die Unsicherheit und desto breiter der Kegel. Die Bereiche liegen ineinander: Jede wahrscheinliche Zukunft ist auch plausibel, jede plausible auch möglich.'
       ] },
       { h: 'Probieren Sie es aus: der Kegel bis 2050', p: ['Bewegen Sie den Regler auf der Zeitachse und beobachten Sie, wie der Kegel breiter wird. Wählen Sie einen Bereich, um Definition und ein Beispiel aus der Medieninformatik zu sehen. Mit der Tastatur erreichen Sie die Bereiche über die Schaltflächen unter der Grafik.'], demo: 'kegel' },
@@ -53,7 +53,7 @@ export const chapters = [
     merke: [
       'Der Futures Cone öffnet sich von der Gegenwart in die Zukunft: Je weiter weg, desto größer die Unsicherheit.',
       'Bereiche von innen nach außen: projected, probable, plausible, possible, preposterous. Preferable liegt quer dazu.',
-      'Herkunft: Hancock und Bezold (1994), Kegel von Voros (2003), im Design bekannt durch Dunne und Raby (2013).',
+      'Herkunft: Taylor (1990), Hancock und Bezold (1994), ausgebaut von Voros (seit 2000), im Design bekannt durch Dunne und Raby (2013).',
       'Speculative Design zielt meist auf das Plausible: fremd genug zum Nachdenken, nah genug zum Ernstnehmen.'
     ]
   },

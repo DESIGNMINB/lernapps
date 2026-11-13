@@ -1,7 +1,7 @@
-import { chapters, abListe, kegelBereiche, kegelPreferable, steeple, faelle } from './kapitel.js?v=1';
-import { terms, quiz, literature } from './wissen.js?v=1';
+import { chapters, abListe, kegelBereiche, kegelPreferable, steeple, faelle } from './kapitel.js?v=2';
+import { terms, quiz, literature } from './wissen.js?v=2';
 import { kegelZonen, kegelFaelle, signalArten, steepleOptionen, signalFaelle, prinzipien } from './uebungen.js?v=1';
-import { slots, tokens, techArtikel, techArtikelM, bloecke } from './labor.js?v=1';
+import { slots, tokens, techArtikel, techArtikelM, techDativ, bloecke } from './labor.js?v=2';
 import { bilder } from './bilder.js?v=1';
 import { diagramme } from './diagramme.js?v=1';
 import { makeDocx } from './docx.js?v=1';
@@ -156,7 +156,7 @@ function demoAB() {
     <ul class="fu-ab">${abListe.map(([a, b, ae, be], i) => `<li><button type="button" class="fu-flip" aria-pressed="false" data-i="${i}">
       <span class="fu-side fu-a"><small>A · affirmativ</small><b>${a}</b><i lang="en">${ae}</i></span>
       <span class="fu-side fu-b"><small>B · kritisch</small><b>${b}</b><i lang="en">${be}</i></span></button></li>`).join('')}</ul>
-    <p class="story-note">Auswahl aus der A/B-Liste in Dunne, A.; Raby, F.: Speculative Everything. MIT Press, 2013, S. vii. Die Liste ist dort länger.</p>`;
+    <p class="story-note">Auswahl aus der A/B-Liste in Dunne, A.; Raby, F.: Speculative Everything. MIT Press, 2013. Die Liste ist dort länger.</p>`;
 }
 function wireAB() {
   const list = content.querySelector('.fu-ab'); if (!list) return;
@@ -243,7 +243,7 @@ function scenario() {
   const t = tok(labor.slot.tech), tr = tok(labor.slot.trend), o = tok(labor.slot.ort);
   const mark = (s, k) => `<mark class="fu-kw fu-kw-${k}">${s}</mark>`;
   const male = ['lernen', 'gesundheit'].includes(o.id);
-  const artikel = (male ? techArtikelM : techArtikel)[t.id];
+  const artikel = (o.id === 'wohnen' ? techDativ : male ? techArtikelM : techArtikel)[t.id];
   const szene = o.szene(artikel).replace(artikel, mark(artikel, 'tech')).replace(artikel[0].toUpperCase() + artikel.slice(1), (x) => mark(x, 'tech'));
   const kegel = kegelBereiche.find((k) => k.id === t.kegel);
   return { t, tr, o, kegel, html: `<p>Karlsruhe, 2040. ${mark(tr.label, 'trend')}: ${tr.welt} ${mark(t.label, 'tech')}: ${t.alltag}</p>

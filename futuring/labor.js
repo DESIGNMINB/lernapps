@@ -60,6 +60,7 @@ export const tokens = [
 ];
 /* Artikel für die Szene */
 export const techArtikel = { 'ki-begleiter': 'ihr KI-Begleiter', bci: 'ein Brain-Computer-Interface', emotion: 'die Emotionserkennung', zwilling: 'ein digitaler Zwilling', ar: 'eine AR-Brille' };
+export const techDativ = { 'ki-begleiter': 'ihrem KI-Begleiter', bci: 'einem Brain-Computer-Interface', emotion: 'der Emotionserkennung', zwilling: 'ihrem digitalen Zwilling', ar: 'ihrer AR-Brille' };
 export const techArtikelM = { 'ki-begleiter': 'sein KI-Begleiter', bci: 'ein Brain-Computer-Interface', emotion: 'die Emotionserkennung', zwilling: 'sein digitaler Zwilling', ar: 'eine AR-Brille' };
 
 /* Bausteine des diegetischen Prototyps. Stufen 0–4, je [Vorschautext, Hinweis]. warnAb: ab welcher Stufe gewarnt wird */

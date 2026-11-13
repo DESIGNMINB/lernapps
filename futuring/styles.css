@@ -487,3 +487,4 @@
 [data-theme="dark"] .fu-zone h3 { color: #fff; }
 [data-theme="dark"] .fu-zone.fu-k-projected h3, [data-theme="dark"] .fu-zone.fu-k-probable h3 { color: #1F1230; }
 .fu-kw { padding: 0 1px; }
+[data-theme="dark"] .fu-zone.fu-k-probable h3 { color: #fff; }
