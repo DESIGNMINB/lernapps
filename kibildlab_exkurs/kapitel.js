@@ -1,4 +1,4 @@
-/* KIBildLab, Exkurs zu Lernmodul 10 (UX & KI).
+/* KI-Bild-App, Exkurs zu Lernmodul 10 (UX & KI).
    Abschnitte: { h, p: [Absätze], list, img: [Bildschlüssel], fig: Diagrammschlüssel, demo, table } */
 export const chapters = [
   {

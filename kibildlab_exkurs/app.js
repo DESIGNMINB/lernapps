@@ -3,7 +3,7 @@ import { terms, quiz, literature } from './wissen.js?v=1';
 import { bilder, outpaint, motiv } from './bilder.js?v=1';
 
 /* Exkurs zu Lernmodul 10 (UX & KI) */
-const NAME = 'KIBildLab';
+const NAME = 'KI-Bild-App';
 const UNTER = 'Bildkomposition mit KI steuern';
 const KURZ = 'KB';
 
@@ -23,7 +23,7 @@ const ch = (id) => chapters.find((c) => c.id === id);
 const pages = [
   { id: 'home', title: 'Übersicht', icon: 'home' },
   ...chapters.map((c, i) => ({ ...c, nr: i + 1, art: 'kapitel' })),
-  { id: 'quiz', art: 'quiz', title: 'Quiz KIBildLab', subtitle: `${quiz.length} Fragen zu Copy Space, ControlNet, Tiefe und Outpainting`, icon: 'quiz', chip: '?' },
+  { id: 'quiz', art: 'quiz', title: 'Quiz KI-Bild-App', subtitle: `${quiz.length} Fragen zu Copy Space, ControlNet, Tiefe und Outpainting`, icon: 'quiz', chip: '?' },
   { id: 'glossar', art: 'wissen', title: 'Glossar', subtitle: `${terms.length} Begriffe von C2PA bis Zero Convolution`, icon: 'book', chip: 'A–Z' },
   { id: 'literatur', art: 'wissen', title: 'Literatur und Bildnachweis', subtitle: 'Quellen, Dokumentation und Nachweise', icon: 'book', chip: 'L' }
 ];

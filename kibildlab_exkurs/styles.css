@@ -693,7 +693,7 @@
 }
 .ed-dash-streak[hidden] { display: none; }
 
-/* ===== KIBildLab (kb-*) ===== */
+/* ===== KI-Bild-App (kb-*) ===== */
 .kb-cs-stage { position: relative; border-radius: 12px; overflow: hidden; container-type: inline-size; touch-action: pan-y; }
 .kb-cs-stage img { user-select: none; -webkit-user-drag: none; }
 .kb-cs-stage img { display: block; width: 100%; height: auto; }
