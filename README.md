@@ -13,6 +13,7 @@ Startseite und Lern-Apps, veröffentlicht über GitHub Pages.
 | `ux-ki/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Animations-App, `ki.css`, `app.js`, `media/` mit Prompt-Protokoll im Kapitel Literatur); PDF-Zusammenfassung mit `python3 ../summaries/build.py ki` | Direkt in diesem Ordner bearbeiten |
 | `layout-raster/` | Wird **hier** gepflegt (statisch: `index.html`, `styles.css` aus der Farb-App, `lr.css`, `app.js`, `media/` mit Magnific-Bildern und -Video); PDF-Zusammenfassung mit `python3 ../summaries/build.py layout` | Direkt in diesem Ordner bearbeiten |
 | `scrollytelling/` | Modul 05 (Exkurs), wird **hier** gepflegt (statische ES-Module wie `designgeschichte/`: `kapitel.js`, `uebungen.js`, `wissen.js` mit Plugins, `diagramme.js`, `bilder.js`, `img/`); PDF-Zusammenfassung mit `python3 ../summaries/build.py scrolly` | Direkt in diesem Ordner bearbeiten |
+| `futuring/` | Modul 13 (Master, Futuring & Critical Design), wird **hier** gepflegt (statische ES-Module wie `scrollytelling/`: `kapitel.js`, `labor.js` mit Szenario-Bausteinen und Ethik-Reglern, `uebungen.js`, `wissen.js`, `diagramme.js`, `bilder.js`, `img/`); PDF-Zusammenfassung mit `python3 ../summaries/build.py futuring` | Direkt in diesem Ordner bearbeiten |
 | `designsysteme/` | Modul 12, statisches HTML und JavaScript-Module; nutzt das bestehende IWI-Basislayout aus `ux-ki/styles.css` | Inhalte in `content.js`, Übungen in `app.js`, Token-/Exportlogik in `model.js`; siehe `designsysteme/README.md` |
 
 ## Suche über alle Lern-Apps
