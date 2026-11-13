@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIBildLab – Exkurs: Modul 10 (UX & KI)</title>
+  <meta name="description" content="Interaktiver Labor-Exkurs für Mediendesign-Studierende: Layout-Kontrolle mit ControlNet, Copy Space und präzise Bildkomposition jenseits von Text-Prompts.">
+
+  <!-- Google Fonts: IBM Plex Sans & Mono für nahtlose Integration in das Lern-Ökosystem -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo-badge">✦</div>
+      <div class="brand-info">
+        <div class="brand-title">
+          <span>KIBildLab</span>
+          <span class="brand-badge">Exkurs: Modul 10 (UX & KI)</span>
+        </div>
+        <div class="brand-sub">Layout-Kontrolle, ControlNet & Copy Space</div>
+      </div>
+    </div>
+
+    <!-- Exkurs-Lernfortschritt -->
+    <div class="header-progress-wrap">
+      <span class="progress-label" id="headerProgressLabel">0 von 4 Lab-Experimenten abgeschlossen</span>
+      <div class="progress-track" title="Dein Labor-Fortschritt">
+        <div class="progress-fill" id="headerProgressFill"></div>
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="btn-header btn-theme-toggle" id="btnThemeToggle" title="Farbschema wechseln (Dunkel / Hell)">☀️</button>
+      <button class="btn-header" id="btnResetProgress" title="Labor-Fortschritt zurücksetzen">
+        <span>↺</span><span class="hidden-mobile">Reset</span>
+      </button>
+      <button class="btn-header" id="btnMobileNavToggle" style="display: none;" title="Menü öffnen">☰</button>
+    </div>
+  </header>
+
+  <!-- Haupt-Container mit Sidebar und Workspace -->
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-category-header">SANDBOX & EXPERIMENTE</div>
+      <ul class="nav-module-list" id="sidebarNavList">
+        <!-- Dynamisch über modules-data.js & app.js befüllt -->
+      </ul>
+    </aside>
+
+    <!-- Zentraler Arbeits- und Lernbereich -->
+    <main class="app-main" id="appMainContent">
+      <!-- Wird reaktiv gerendert -->
+    </main>
+
+  </div>
+
+  <!-- Toast Notifier -->
+  <div id="appToast" class="toast-msg"></div>
+
+  <!-- Scripts -->
+  <script src="modules-data.js"></script>
+  <script src="canvas-simulators.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    const navToggle = document.getElementById('btnMobileNavToggle');
+    const sidebar = document.getElementById('appSidebar');
+    if (navToggle && sidebar) {
+      if (window.innerWidth <= 850) {
+        navToggle.style.display = 'inline-flex';
+      }
+      window.addEventListener('resize', () => {
+        navToggle.style.display = window.innerWidth <= 850 ? 'inline-flex' : 'none';
+      });
+      navToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 850 && !sidebar.contains(e.target) && !navToggle.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

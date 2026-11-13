@@ -1,0 +1,103 @@
+/* style.css - Basis-Styling für den KIBildLab Exkurs */
+
+:root {
+  /* Tailwind-inspirierte Slate-Farbpalette für nahtlosen Übergang */
+  --bg-app: #0f172a;       /* slate-900 */
+  --bg-surface: #1e293b;   /* slate-800 */
+  --bg-panel: #0b1120;     /* slate-950 */
+  --text-main: #f8fafc;    /* slate-50 */
+  --text-muted: #94a3b8;   /* slate-400 */
+  --border-color: #334155; /* slate-700 */
+  --accent-color: #3b82f6; /* blue-500 */
+  --accent-hover: #2563eb; /* blue-600 */
+
+  /* Typografie */
+  --font-main: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-panel: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header & Sidebar */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+}
+.brand-section { display: flex; align-items: center; gap: 1rem; }
+.brand-title { font-weight: 700; font-size: 1.25rem; }
+.brand-badge {
+  font-size: 0.75rem; background-color: var(--accent-color); color: white;
+  padding: 0.15rem 0.5rem; border-radius: 9999px; margin-left: 0.5rem; font-family: var(--font-mono);
+}
+.brand-sub { font-size: 0.85rem; color: var(--text-muted); }
+
+.header-progress-wrap { text-align: center; flex: 1; max-width: 300px; margin: 0 2rem; }
+.progress-label { font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: block; margin-bottom: 0.25rem;}
+.progress-track { height: 6px; background: var(--border-color); border-radius: 3px; overflow: hidden;}
+.progress-fill { height: 100%; background: var(--accent-color); width: 0%; transition: width 0.3s; }
+
+.header-actions { display: flex; gap: 0.5rem; }
+.btn-header {
+  background: transparent; border: 1px solid var(--border-color); color: var(--text-main);
+  padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-main); font-weight: 500; display: flex; align-items: center; gap: 0.5rem;
+}
+.btn-header:hover { background: var(--bg-panel); border-color: var(--accent-color); }
+
+.app-container { display: flex; flex: 1; overflow: hidden; }
+.app-sidebar { width: 300px; background-color: var(--bg-surface); border-right: 1px solid var(--border-color); padding: 1.5rem; overflow-y: auto; }
+.sidebar-category-header { font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 0.05em; }
+
+.app-main { flex: 1; padding: 2rem; overflow-y: auto; background-color: var(--bg-app); }
+
+.nav-module-list { list-style: none; }
+.nav-module-list li {
+  padding: 0.75rem; margin-bottom: 0.5rem; background-color: var(--bg-panel);
+  border: 1px solid var(--border-color); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease;
+}
+.nav-module-list li:hover, .nav-module-list li.active {
+  border-color: var(--accent-color); background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Toast */
+.toast-msg {
+  position: fixed; bottom: 2rem; right: 2rem; background: var(--accent-color); color: white;
+  padding: 0.75rem 1.5rem; border-radius: 0.5rem; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease; font-family: var(--font-main); z-index: 1000;
+}
+.toast-msg.show { opacity: 1; }
+
+@media (max-width: 850px) {
+  .app-sidebar { position: fixed; left: -100%; height: calc(100vh - 70px); z-index: 100; transition: left 0.3s; }
+  .app-sidebar.open { left: 0; }
+  .header-progress-wrap, .hidden-mobile { display: none; }
+}
